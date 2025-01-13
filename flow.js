@@ -2,6 +2,43 @@
 // It contains a list of steps and a list of transitions, with the descprion of the steps.
 
 
+const elements = {
+    "dense-vector-configuration": [
+        {
+            "type": "number-with-suggestions",
+            "name": "dimensions",
+            "suggestions": [
+                {
+                    "label": "CLIP",
+                    "value": 512
+                },
+                {
+                    "label": "openai-ai/text-embedding-3-small",
+                    "value": 1536
+                },
+                {
+                    "label": "openai-ai/text-embedding-3-large",
+                    "value": 3072
+                }
+            ]
+        },
+        {
+            "type": "dropdown",
+            "name": "metric",
+            "options": ["Cosine", "Euclid", "Dot", "Manhattan"],
+            "default": "Cosine"
+        },
+    ],
+    "sparse-vector-configuration": [
+        {
+            "type": "checkbox",
+            "title": "Use IDF?",
+            "name": "use_idf",
+            "default": true,
+        }
+    ]
+}
+
 
 const steps = {
     "use-case-step": {
@@ -50,10 +87,16 @@ const steps = {
             {
                 "title": "Simple Single embedding",
                 "description": "Simplest configuration, only one vector field per document.",
+                "on-select": {
+                    "continue-step": "simple-dense-embedding-step"
+                }
             },
             {
                 "title": "Simple Hybrid Search",
                 "description": "Dense + Sparse vectors searched simultaneously. Search covers both semantic and keyword-based search.",
+                "on-select": {
+                    "continue-step": "simple-hybrid-searc-step"
+                }
             },
             {
                 "title": "Hybrid Search with Late Interaction re-ranking",
@@ -75,28 +118,41 @@ const steps = {
         "description": "Configuration for dense embedding",
         "elements": [
             {
-                "type": "number-with-suggestions",
-                "name": "dimensions",
-                "suggestions": [
-                    {
-                        "label": "CLIP",
-                        "value": 512
-                    },
-                    {
-                        "label": "openai-ai/text-embedding-3-small",
-                        "value": 1536
-                    },
-                    {
-                        "label": "openai-ai/text-embedding-3-large",
-                        "value": 3072
-                    }
-                ]
+                "type": "string-input",
+                "title": "Dense vector name",
+                "name": "dense_vector_name",
+                "default": "dense"
             },
             {
-                "type": "dropdown",
-                "name": "metric",
-                "options": [ "Cosine", "Euclid", "Dot", "Manhattan" ],
-                "default": "Cosine"
+                "type": "dense-vector-configuration",
+                "name": "dense_vector_config",
+            },
+            {
+                "type": "string-input",
+                "title": "Sparse vector name",
+                "name": "sparse_vector_name",
+                "default": "sparse"
+            },
+            {
+
+            },
+            {
+                "type": "button",
+                "title": "Continue",
+                "on-click": {
+                    "continue-step": "index-field-selection-step"
+                }
+            }
+        ],
+    },
+    "simple-hybrid-searc-step": {
+        // In this step user should select a field that contains tenant id
+        "title": "Vector configuration",
+        "description": "Configuration for dense embedding",
+        "elements": [
+            {
+                "type": "dense-vector-configuration",
+                "name": "dense_vector_config",
             },
             {
                 "type": "button",
@@ -113,5 +169,84 @@ const steps = {
         // For each field user needs to choose which type in index they want and parameters for this index.
         "title": "Payload indexes",
         "Description": "We need to create indexes, if we want to do filtered search.",
+        "elements": [
+            {
+                "type": "repeatable",
+                "elements": [
+                    {
+                        "type": "string-input",
+                        "name": "Field name",
+                    },
+                    {
+                        "type": "button-group-with-inputs",
+                        "enums": [
+                            {
+                                "name": "keyword",
+                            },
+                            {
+                                "name": "integer",
+                                "fields": [
+                                    {
+                                        "name": "lookup",
+                                        "type": "checkbox",
+                                        "default": true
+                                    },
+                                    {
+                                        "name": "range",
+                                        "type": "checkbox",
+                                        "default": true
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "float",
+                            },
+                            {
+                                "name": "uuid",
+                            },
+                            {
+                                "name": "datetime",
+                            },
+                            {
+                                "name": "text",
+                                "fields": [
+                                    {
+                                        "name": "tokenizer",
+                                        "type": "dropdown",
+                                        "options": ["prefix", "whitespace", "word", "multilingual"],
+                                    },
+                                    {
+                                        "name": "lowercase",
+                                        "type": "checkbox",
+                                        "default": true
+                                    },
+                                    {
+                                        "name": "min_token_length",
+                                        "type": "number",
+                                        "default": null
+                                    },
+                                    {
+                                        "name": "max_token_length",
+                                        "type": "number",
+                                        "default": null
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "geo",
+                            },
+                            {
+                                "name": "bool"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "button",
+                "title": "Finish",
+                "on-click": "finish"
+            }
+        ]
     }
 }
