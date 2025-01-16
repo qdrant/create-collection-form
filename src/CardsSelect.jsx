@@ -5,8 +5,7 @@ import PropTypes from "prop-types";
 
 const CardsSelect = ({ stepName, config, stepData, onApply }) => {
   const { title, description, cards } = config;
-  const restoredValue = localStorage.getItem("formData")?.[stepName];
-  const [selected, setSelected] = useState(stepData || restoredValue);
+  const [selected, setSelected] = useState(stepData);
 
   const handleSelect = useCallback(
     (cardData) => {

@@ -4,8 +4,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 const TenantFieldSelectionStep = ({ stepName, config, stepData, onApply }) => {
-  const restoredValue = localStorage.getItem("formData")?.[stepName];
-  const [value, setValue] = useState(stepData || restoredValue || "");
+  const [value, setValue] = useState(stepData || {});
 
   // todo: validate input
 
@@ -18,13 +17,16 @@ const TenantFieldSelectionStep = ({ stepName, config, stepData, onApply }) => {
         switch (element.type) {
           case "string-input": {
             return (
-              <TextField
+              <TextField // 
                 key={element.title}
                 variant="standard"
-                id={config.name}
-                label={config.title}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+                id={element.name}
+                label={element.title}
+                value={value[element.name] || element.default || ""}
+                onChange={(e) => {
+                  setValue({[element.name]: e.target.value});
+                  onApply(stepName, value, null);
+                }}
               />
             );
           }
@@ -33,7 +35,7 @@ const TenantFieldSelectionStep = ({ stepName, config, stepData, onApply }) => {
               <Button
                 key={element.title}
                 variant="contained"
-                onClick={() => onApply(stepName, value)}
+                onClick={() => onApply(stepName, value, element["on-click"]["continue-step"])}
               >
                 {element.title}
               </Button>
@@ -63,7 +65,7 @@ TenantFieldSelectionStep.propTypes = {
     ),
   }),
   stepData: PropTypes.any,
-  onApply: PropTypes.func,
+  onApply: PropTypes.func.isRequired,
 };
 
 export default TenantFieldSelectionStep;

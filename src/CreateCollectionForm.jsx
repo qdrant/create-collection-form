@@ -5,11 +5,7 @@ import CardsSelect from "./CardsSelect.jsx";
 import TenantFieldSelectionStep from "./TenantFieldSelectionStep.jsx";
 
 export function CreateCollectionForm() {
-  const stepsNames = Object.keys(steps);
-  const firstStepName = stepsNames[0];
-  const [currentStep, setCurrentStep] = useState(() => {
-    return JSON.parse(localStorage.getItem("currentStep")) || firstStepName;
-  });
+  const firstStepName = "use-case-step";
 
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || [firstStepName];
@@ -18,37 +14,30 @@ export function CreateCollectionForm() {
     return JSON.parse(localStorage.getItem("formData")) || {};
   });
 
-  const updatePath = (prevStep, currentStep) => {
+  const updatePath = (prevStep, nextStep) => {
     const prevStepIndex = path.indexOf(prevStep);
     const newPath = path.slice(0, prevStepIndex + 1);
-    newPath.push(currentStep);
+    newPath.push(nextStep);
     setPath(newPath);
   };
 
   const handleStepApply = (stepName, data, nextStep) => {
     setFormData((prev) => ({ ...prev, [stepName]: data }));
-    if (nextStep) {
-      updatePath(stepName, nextStep);
-      setCurrentStep(nextStep);
-    } else {
-      const nextStep = stepsNames.indexOf(stepName) + 1;
-      updatePath(stepName, stepsNames[nextStep]);
-      setCurrentStep(stepsNames[nextStep]);
+    if (!nextStep) {
+      return;
     }
+    updatePath(stepName, nextStep);
   };
 
   useEffect(() => {
     if (formData) {
       localStorage.setItem("formData", JSON.stringify(formData));
     }
-    if (currentStep) {
-      localStorage.setItem("currentStep", JSON.stringify(currentStep));
-    }
     if (path.length > 0) {
       localStorage.setItem("path", JSON.stringify(path));
     }
     console.log("path", path);
-  }, [currentStep, path, formData]);
+  }, [path, formData]);
 
   const stepsComponents = {
     "use-case-step": CardsSelect,
@@ -63,12 +52,16 @@ export function CreateCollectionForm() {
         if (!StepComponent) {
           return null;
         }
+        
+        const restoredValue = localStorage.getItem("formData")?.[step];
+        const stepData = formData[step] || restoredValue;
+
         return (
           <StepComponent
             key={step}
             stepName={step}
             config={steps[step]}
-            stepData={formData[step]}
+            stepData={stepData}
             onApply={handleStepApply}
           />
         );

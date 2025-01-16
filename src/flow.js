@@ -38,6 +38,9 @@ const elements = {
   ],
 };
 
+// ToDo: Each step except for the last one should have "continue-step".
+// If it doesn't have "continue-step", that means we should add one.
+
 export const steps = {
   "use-case-step": {
     // In this config user should select from 2 cards, which type of search they want to perform
