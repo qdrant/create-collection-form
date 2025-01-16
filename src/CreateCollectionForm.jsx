@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import { steps } from "./flow.js";
 import CardsSelect from "./CardsSelect.jsx";
 import TenantFieldSelectionStep from "./TenantFieldSelectionStep.jsx";
+import SimpleDenseEmbeddingStep from "./SimpleDenseEmbeddingStep.jsx";
 
 export function CreateCollectionForm() {
   const firstStepName = "use-case-step";
@@ -36,13 +37,14 @@ export function CreateCollectionForm() {
     if (path.length > 0) {
       localStorage.setItem("path", JSON.stringify(path));
     }
-    console.log("path", path);
+    // console.log("path", path);
   }, [path, formData]);
 
   const stepsComponents = {
     "use-case-step": CardsSelect,
     "tenant-field-selection-step": TenantFieldSelectionStep,
     "templates-selection-step": CardsSelect,
+    "simple-dense-embedding-step": SimpleDenseEmbeddingStep,
   };
 
   return (
@@ -52,7 +54,7 @@ export function CreateCollectionForm() {
         if (!StepComponent) {
           return null;
         }
-        
+
         const restoredValue = localStorage.getItem("formData")?.[step];
         const stepData = formData[step] || restoredValue;
 

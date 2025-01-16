@@ -4,6 +4,9 @@ import { FormCard } from "./Inputs.jsx";
 import PropTypes from "prop-types";
 
 const CardsSelect = ({ stepName, config, stepData, onApply }) => {
+  // todo: fix chosen card for the third step
+  // if it has active card, show next step too
+
   const { title, description, cards } = config;
   const [selected, setSelected] = useState(stepData);
 

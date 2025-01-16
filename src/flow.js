@@ -1,10 +1,11 @@
 // This file contains a definition of a form flow.
 // It contains a list of steps and a list of transitions, with the descprion of the steps.
 
-const elements = {
+export const elements = {
   "dense-vector-configuration": [
     {
       type: "number-with-suggestions",
+      title: "Choose dimensions",
       name: "dimensions",
       suggestions: [
         {
@@ -26,6 +27,7 @@ const elements = {
       name: "metric",
       options: ["Cosine", "Euclid", "Dot", "Manhattan"],
       default: "Cosine",
+      title: "Choose metric",
     },
   ],
   "sparse-vector-configuration": [
@@ -161,7 +163,6 @@ export const steps = {
         name: "sparse_vector_name",
         default: "sparse",
       },
-      {},
       {
         type: "button",
         title: "Continue",

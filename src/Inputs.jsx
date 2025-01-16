@@ -1,6 +1,13 @@
 // import { useState } from "react";
-import { Card, CardContent, TextField, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  MenuItem,
+  TextField,
+  Typography,
+} from "@mui/material";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 export const FormCard = ({ card, isActive, onClick }) => {
   return (
@@ -33,6 +40,51 @@ FormCard.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
+export const NumberWithSuggestions = ({ config, defaultValue, onChange }) => {
+  const [value, setValue] = useState(defaultValue || "");
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    onChange(e);
+  };
+
+  return (
+    <TextField
+      id=""
+      select
+      label="Select"
+      // defaultValue={defaultValue || ""}
+      value={value}
+      helperText={config.title}
+      variant="standard"
+      onChange={handleChange}
+    >
+      {/*todo*/}
+      {config.suggestions &&
+        config.suggestions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+    </TextField>
+  );
+};
+
+// props validation
+NumberWithSuggestions.propTypes = {
+  config: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    suggestions: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired,
+      }),
+    ).isRequired,
+  }).isRequired,
+  value: PropTypes.number,
+  onChange: PropTypes.func.isRequired,
+};
+
 // export const StrnigInput = ({ config, onChange }) => {
 //   const [value, setValue] = useState("");
 //
@@ -49,4 +101,10 @@ FormCard.propTypes = {
 //       onChange={handleChange}
 //     />
 //   );
+// };
+
+// const FormInputElements = {
+//   'string-input': TextField,
+//   'button': Button,
+//   'dense-vector-configuration': DenseVectorConfiguration,
 // };
