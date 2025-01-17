@@ -88,3 +88,13 @@ export const Checkbox = ({ config, defaultValue, onChange }) => {
     />
   );
 };
+
+// props validation
+Checkbox.propTypes = {
+  config: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  defaultValue: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+};
