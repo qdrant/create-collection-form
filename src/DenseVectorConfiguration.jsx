@@ -1,13 +1,13 @@
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { NumberWithSuggestions } from "./Inputs.jsx";
+import { Dropdown, NumberWithSuggestions } from "./Inputs.jsx";
 import { Typography } from "@mui/material";
 
-const DenseVectorConfiguration = function ({ config, value, onChange }) {
+const DenseVectorConfiguration = function ({ config, stepData, onChange }) {
   const components = {
     "number-with-suggestions": NumberWithSuggestions,
+    dropdown: Dropdown,
   };
-
   return (
     <Box>
       {config.map((element) => {
@@ -21,7 +21,7 @@ const DenseVectorConfiguration = function ({ config, value, onChange }) {
             <Typography variant="h6">{element.title}</Typography>
             <Component
               config={element}
-              defaultValue={value}
+              defaultValue={stepData}
               onChange={onChange}
             />
           </Box>
@@ -31,7 +31,7 @@ const DenseVectorConfiguration = function ({ config, value, onChange }) {
   );
 };
 
-// todo: decide on default value alternative name
+// todo: decide on default stepData alternative name
 
 // props validation
 DenseVectorConfiguration.propTypes = {
@@ -46,7 +46,7 @@ DenseVectorConfiguration.propTypes = {
       ),
     }),
   ).isRequired,
-  value: PropTypes.number,
+  stepData: PropTypes.object,
   onChange: PropTypes.func.isRequired,
 };
 

@@ -3,6 +3,7 @@ import {
   Card,
   CardContent,
   MenuItem,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -41,11 +42,13 @@ FormCard.propTypes = {
 };
 
 export const NumberWithSuggestions = ({ config, defaultValue, onChange }) => {
-  const [value, setValue] = useState(defaultValue || "");
+  const [value, setValue] = useState(
+    defaultValue ? defaultValue[config.name] : "",
+  );
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    onChange(e);
+    onChange(config.name, e.target.value);
   };
 
   return (
@@ -53,7 +56,6 @@ export const NumberWithSuggestions = ({ config, defaultValue, onChange }) => {
       id=""
       select
       label="Select"
-      // defaultValue={defaultValue || ""}
       value={value}
       helperText={config.title}
       variant="standard"
@@ -85,11 +87,45 @@ NumberWithSuggestions.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
+export const Dropdown = ({ config, defaultValue, onChange }) => {
+  const [value, setValue] = useState(
+    defaultValue ? defaultValue[config.name] : "",
+  );
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    onChange(config.name, e.target.value);
+  };
+
+  // todo: add labelId and id
+  return (
+    <Select labelId="" id="" value={value} onChange={handleChange} label="Age">
+      <MenuItem value="">
+        <em>None</em>
+      </MenuItem>
+      {config.options.map((option) => (
+        <MenuItem key={option} value={option}>
+          {option}
+        </MenuItem>
+      ))}
+    </Select>
+  );
+};
+
+// props validation
+Dropdown.propTypes = {
+  config: PropTypes.shape({
+    options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+};
+
 // export const StrnigInput = ({ config, onChange }) => {
-//   const [value, setValue] = useState("");
+//   const [stepData, setValue] = useState("");
 //
 //   const handleChange = (e) => {
-//     setValue(e.target.value);
+//     setValue(e.target.stepData);
 //     onChange(e);
 //   };
 //   return (
@@ -97,7 +133,7 @@ NumberWithSuggestions.propTypes = {
 //       variant="standard"
 //       id={config.name}
 //       label={config.title}
-//       value={value}
+//       stepData={stepData}
 //       onChange={handleChange}
 //     />
 //   );

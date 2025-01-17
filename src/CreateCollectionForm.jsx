@@ -37,7 +37,6 @@ export function CreateCollectionForm() {
     if (path.length > 0) {
       localStorage.setItem("path", JSON.stringify(path));
     }
-    // console.log("path", path);
   }, [path, formData]);
 
   const stepsComponents = {

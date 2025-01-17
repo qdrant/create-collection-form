@@ -11,8 +11,10 @@ const SimpleDenseEmbeddingStep = function ({
   const components = {
     "dense-vector-configuration": DenseVectorConfiguration,
   };
-  const onChange = (e) => {
-    onApply(stepName, e.target.value, null);
+  const onChange = (key, value) => {
+    // todo: new data is {stepName: {key: stepData, key2: value2}}
+    const newValue = { ...stepData, [key]: value };
+    onApply(stepName, newValue, null);
   };
   return (
     <Box>
@@ -26,7 +28,7 @@ const SimpleDenseEmbeddingStep = function ({
           <Component
             key={element.name}
             config={elements[element.type]}
-            value={stepData}
+            stepData={stepData}
             onChange={onChange}
           />
         );
