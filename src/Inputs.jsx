@@ -41,57 +41,10 @@ FormCard.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export const NumberWithSuggestions = ({ config, defaultValue, onChange }) => {
-  const [value, setValue] = useState(
-    defaultValue ? defaultValue[config.name] : "",
-  );
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    onChange(config.name, e.target.value);
-  };
-
-  return (
-    <TextField
-      id=""
-      select
-      label="Select"
-      value={value}
-      helperText={config.title}
-      variant="standard"
-      onChange={handleChange}
-    >
-      {/*todo*/}
-      {config.suggestions &&
-        config.suggestions.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-    </TextField>
-  );
-};
-
-// props validation
-NumberWithSuggestions.propTypes = {
-  config: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    suggestions: PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string.isRequired,
-        value: PropTypes.number.isRequired,
-      }),
-    ).isRequired,
-  }).isRequired,
-  defaultValue: PropTypes.object,
-  onChange: PropTypes.func.isRequired,
-};
 
 export const Dropdown = ({ config, defaultValue, onChange }) => {
-  const [value, setValue] = useState(
-    defaultValue ? defaultValue[config.name] : "",
-  );
+  const [value, setValue] = useState(defaultValue || "");
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -101,9 +54,6 @@ export const Dropdown = ({ config, defaultValue, onChange }) => {
   // todo: add labelId and id
   return (
     <Select labelId="" id="" value={value} onChange={handleChange} label="Age">
-      <MenuItem value="">
-        <em>None</em>
-      </MenuItem>
       {config.options.map((option) => (
         <MenuItem key={option} value={option}>
           {option}
@@ -119,7 +69,7 @@ Dropdown.propTypes = {
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
-  defaultValue: PropTypes.object,
+  defaultValue: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 

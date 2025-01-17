@@ -2,42 +2,46 @@
 // It contains a list of steps and a list of transitions, with the descprion of the steps.
 
 export const elements = {
-  "dense-vector-configuration": [
-    {
-      type: "number-with-suggestions",
-      title: "Choose dimensions",
-      name: "dimensions",
-      suggestions: [
-        {
-          label: "CLIP",
-          value: 512,
-        },
-        {
-          label: "openai-ai/text-embedding-3-small",
-          value: 1536,
-        },
-        {
-          label: "openai-ai/text-embedding-3-large",
-          value: 3072,
-        },
-      ],
-    },
-    {
-      type: "dropdown",
-      name: "metric",
-      options: ["Cosine", "Euclid", "Dot", "Manhattan"],
-      default: "Cosine",
-      title: "Choose metric",
-    },
-  ],
-  "sparse-vector-configuration": [
-    {
-      type: "checkbox",
-      title: "Use IDF?",
-      name: "use_idf",
-      default: true,
-    },
-  ],
+  "dense-vector-configuration": {
+    "elements": [
+      {
+        type: "number-with-suggestions",
+        title: "Choose dimensions",
+        name: "dimensions",
+        suggestions: [
+          {
+            label: "CLIP",
+            value: 512,
+          },
+          {
+            label: "openai-ai/text-embedding-3-small",
+            value: 1536,
+          },
+          {
+            label: "openai-ai/text-embedding-3-large",
+            value: 3072,
+          },
+        ],
+      },
+      {
+        type: "dropdown",
+        name: "metric",
+        options: ["Cosine", "Euclid", "Dot", "Manhattan"],
+        default: "Cosine",
+        title: "Choose metric",
+      },
+    ]
+  },
+  "sparse-vector-configuration": {
+    "elements": [
+      {
+        type: "checkbox",
+        title: "Use IDF?",
+        name: "use_idf",
+        default: true,
+      },
+    ]
+  },
 };
 
 // ToDo: Each step except for the last one should have "continue-step".
@@ -149,19 +153,13 @@ export const steps = {
     elements: [
       {
         type: "string-input",
-        title: "Dense vector name",
-        name: "dense_vector_name",
+        title: "Vector name",
+        name: "vector_name",
         default: "dense",
       },
       {
         type: "dense-vector-configuration",
-        name: "dense_vector_config",
-      },
-      {
-        type: "string-input",
-        title: "Sparse vector name",
-        name: "sparse_vector_name",
-        default: "sparse",
+        name: "vector_config",
       },
       {
         type: "button",
@@ -178,8 +176,20 @@ export const steps = {
     description: "Configuration for dense embedding",
     elements: [
       {
+        type: "string-input",
+        title: "Dense vector name",
+        name: "dense_vector_name",
+        default: "dense",
+      },
+      {
         type: "dense-vector-configuration",
         name: "dense_vector_config",
+      },
+      {
+        type: "string-input",
+        title: "Sparse vector name",
+        name: "sparse_vector_name",
+        default: "sparse",
       },
       {
         type: "button",

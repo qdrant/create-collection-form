@@ -49,7 +49,10 @@ const SimpleDenseEmbeddingStep = function ({
             return (
               <Component
                 key={element.name}
-                config={elements[element.type] || element}
+                config={{
+                  ...elements[element.type] || {},
+                  ...element,
+                }}
                 stepData={stepData}
                 onChange={onChange}
               />
