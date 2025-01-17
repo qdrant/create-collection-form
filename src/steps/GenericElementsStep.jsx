@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import { elements } from "../flow.js";
 import { Button, Typography } from "@mui/material";
-import { useState } from "react";
 import PropTypes from "prop-types";
 import components from "../inputs/collection.jsx";
 
@@ -13,14 +12,14 @@ const GenericElementsStep = function ({
 }) {
   const value = stepData || {};
 
-  const onChange = (key, value) => {
-    const newValue = { ...stepData, [key]: value };
-    onApply(stepName, newValue, null);
-  };
   return (
     <Box>
       <Typography variant="h4">{config.title}</Typography>
       {config.elements.map((element) => {
+        const onChange = (value) => {
+            const newValue = { ...stepData, [element.name]: value };
+            onApply(stepName, newValue, null);
+        };
         switch (element.type) {
           case "button": {
             return (
@@ -48,7 +47,7 @@ const GenericElementsStep = function ({
                   ...elements[element.type] || {},
                   ...element,
                 }}
-                stepData={stepData}
+                stepData={value[element.name]}
                 onChange={onChange}
               />
             );

@@ -6,26 +6,17 @@ import Typography from "@mui/material/Typography";
 
 
 const Repeatable = ({ config, stepData, onChange }) => {
-    const values = stepData[config.name] || [];
-
-    const handleValueChange = (index, name, value) => {
-        const newValues = [...values];
-        newValues[index] = {
-            ...newValues[index],
-            [name]: value,
-        }
-        onChange(config.name, newValues);
-    };
+    const values = stepData || [];
 
     const handleAdd = () => {
         const newValues = [...values, {}];
-        onChange(config.name, newValues);
+        onChange(newValues);
     };
 
     const handleRemove = (index) => {
         const newValues = [...values];
         newValues.splice(index, 1);
-        onChange(config.name, newValues);
+        onChange(newValues);
     };
 
     return (
@@ -33,6 +24,16 @@ const Repeatable = ({ config, stepData, onChange }) => {
             {values.map((value, index) => (
                 <Box key={index}>
                     {config.elements.map((element) => {
+
+                        const handleValueChange = (value) => {
+                            const newValues = [...values];
+                            newValues[index] = {
+                                ...newValues[index],
+                                [element.name]: value,
+                            }
+                            onChange(newValues);
+                        };
+
                         const Component = components[element.type];
                         if (!Component) {
                             console.log("Skipping element", element.type);
@@ -40,11 +41,10 @@ const Repeatable = ({ config, stepData, onChange }) => {
                         }
                         return (
                             <Box key={element.name}>
-                                <Typography variant="h6">{element.title}</Typography>
                                 <Component
                                     config={element}
-                                    defaultValue={value[element.name] || element.default}
-                                    onChange={(name, value) => handleValueChange(index, name, value)}
+                                    stepData={value[element.name] || element.default}
+                                    onChange={(value) => handleValueChange(value)}
                                 />
                             </Box>
                         );

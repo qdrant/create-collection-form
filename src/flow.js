@@ -217,10 +217,13 @@ export const steps = {
         elements: [
           {
             type: "string-input",
+            title: "Field name",
             name: "field_name",
           },
           {
             type: "button-group-with-inputs",
+            title: "Field type",
+            name: "field_config",
             enums: [
               {
                 name: "keyword",
@@ -229,11 +232,13 @@ export const steps = {
                 name: "integer",
                 fields: [
                   {
+                    title: "Allow match filters",
                     name: "lookup",
                     type: "checkbox",
                     default: true,
                   },
                   {
+                    title: "Allow range filters",
                     name: "range",
                     type: "checkbox",
                     default: true,
@@ -253,21 +258,26 @@ export const steps = {
                 name: "text",
                 fields: [
                   {
+                    title: "Tokenizer",
                     name: "tokenizer",
                     type: "dropdown",
                     options: ["prefix", "whitespace", "word", "multilingual"],
+                    default: "whitespace",
                   },
                   {
+                    title: "Lowercase",
                     name: "lowercase",
                     type: "checkbox",
                     default: true,
                   },
                   {
+                    title: "Min token length",
                     name: "min_token_length",
                     type: "number",
                     default: null,
                   },
                   {
+                    title: "Max token length",
                     name: "max_token_length",
                     type: "number",
                     default: null,

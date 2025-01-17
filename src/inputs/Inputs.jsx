@@ -3,16 +3,16 @@ import {
   MenuItem,
   Select,
   TextField,
+  Checkbox as MuiCheckbox,
 } from "@mui/material";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-export const Dropdown = ({ config, defaultValue, onChange }) => {
-  const [value, setValue] = useState(defaultValue || "");
+export const Dropdown = ({ config, stepData, onChange }) => {
+  const value = stepData || "";
 
   const handleChange = (e) => {
-    setValue(e.target.value);
-    onChange(config.name, e.target.value);
+    onChange(e.target.value);
   };
 
   // todo: add labelId and id
@@ -33,12 +33,12 @@ Dropdown.propTypes = {
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
-  defaultValue: PropTypes.string,
+  stepData: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
-export const StringInput = ({ config, defaultValue, onChange }) => {
-  const [value, setValue] = useState(defaultValue || "");
+export const StringInput = ({ config, stepData, onChange }) => {
+  const value = stepData || "";
 
   // todo:
   // validate input
@@ -50,8 +50,7 @@ export const StringInput = ({ config, defaultValue, onChange }) => {
       label={config.title}
       value={value || config.default || ""}
       onChange={(e) => {
-        setValue(e.target.value);
-        onChange(config.name, e.target.value);
+        onChange(e.target.value);
       }}
     />
   );
@@ -64,27 +63,24 @@ StringInput.propTypes = {
     name: PropTypes.string.isRequired,
     default: PropTypes.string,
   }).isRequired,
-  defaultValue: PropTypes.string,
+  stepData: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
-export const Checkbox = ({ config, defaultValue, onChange }) => {
-  const [value, setValue] = useState(defaultValue || false);
+export const Checkbox = ({ config, stepData, onChange }) => {
+  const value = stepData || false;
+
+  // console.log("Checkbox", value);
 
   const handleChange = (e) => {
-    setValue(e.target.checked);
-    onChange(config.name, e.target.checked);
+    onChange(e.target.checked);
   };
 
   return (
-    <TextField
-      key={config.title}
-      variant="standard"
-      id={config.name}
-      label={config.title}
-      type="checkbox"
+    <MuiCheckbox
       checked={value}
       onChange={handleChange}
+      inputProps={{ "aria-label": "controlled" }}
     />
   );
 };
@@ -95,6 +91,42 @@ Checkbox.propTypes = {
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
-  defaultValue: PropTypes.bool,
+  stepData: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+};
+
+
+export const NumberInput = ({ config, stepData, onChange }) => {
+  const value = stepData || 0;
+
+  const handleChange = (e) => {
+    let valueNumber = parseInt(e.target.value);
+    if (isNaN(valueNumber)) {
+      valueNumber = 0;
+    }
+    onChange(valueNumber);
+  }
+
+  return (
+    <TextField
+      key={config.title}
+      variant="standard"
+      id={config.name}
+      label={config.title}
+      value={value || config.default || ""}
+      onChange={handleChange}
+      type="number"
+    />
+  );
+}
+
+// props validation
+NumberInput.propTypes = {
+  config: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    default: PropTypes.number,
+  }).isRequired,
+  stepData: PropTypes.number,
   onChange: PropTypes.func.isRequired,
 };
