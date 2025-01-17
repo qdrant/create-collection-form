@@ -121,26 +121,33 @@ Dropdown.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-// export const StrnigInput = ({ config, onChange }) => {
-//   const [stepData, setValue] = useState("");
-//
-//   const handleChange = (e) => {
-//     setValue(e.target.stepData);
-//     onChange(e);
-//   };
-//   return (
-//     <TextField
-//       variant="standard"
-//       id={config.name}
-//       label={config.title}
-//       stepData={stepData}
-//       onChange={handleChange}
-//     />
-//   );
-// };
+export const StringInput = ({ config, defaultValue, onChange }) => {
+  const [value, setValue] = useState(defaultValue || "");
 
-// const FormInputElements = {
-//   'string-input': TextField,
-//   'button': Button,
-//   'dense-vector-configuration': DenseVectorConfiguration,
-// };
+  // todo:
+  // validate input
+  return (
+    <TextField
+      key={config.title}
+      variant="standard"
+      id={config.name}
+      label={config.title}
+      value={value || config.default || ""}
+      onChange={(e) => {
+        setValue(e.target.value);
+        onChange(config.name, e.target.value);
+      }}
+    />
+  );
+};
+
+// props validation
+StringInput.propTypes = {
+  config: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    default: PropTypes.string,
+  }).isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+};

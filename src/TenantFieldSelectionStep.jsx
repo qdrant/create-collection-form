@@ -1,14 +1,12 @@
 import Box from "@mui/material/Box";
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { StringInput } from "./Inputs.jsx";
 
 const TenantFieldSelectionStep = ({ stepName, config, stepData, onApply }) => {
   const [value, setValue] = useState(stepData || {});
-
-  // todo:
-  // 1. move input to Inputs.jsx
-  //  2. validate input
+  console.log(config);
 
   return (
     <Box>
@@ -17,21 +15,6 @@ const TenantFieldSelectionStep = ({ stepName, config, stepData, onApply }) => {
 
       {config.elements.map((element) => {
         switch (element.type) {
-          case "string-input": {
-            return (
-              <TextField //
-                key={element.title}
-                variant="standard"
-                id={element.name}
-                label={element.title}
-                value={value[element.name] || element.default || ""}
-                onChange={(e) => {
-                  setValue({ [element.name]: e.target.value });
-                  onApply(stepName, value, null);
-                }}
-              />
-            );
-          }
           case "button": {
             return (
               <Button
@@ -46,7 +29,17 @@ const TenantFieldSelectionStep = ({ stepName, config, stepData, onApply }) => {
             );
           }
           default: {
-            return null;
+            return (
+              <StringInput
+                key={element.title}
+                config={element}
+                defaultValue={value[element.name] || element.default || ""}
+                onChange={(key, value) => {
+                  setValue({ [key]: value });
+                  onApply(stepName, value, null);
+                }}
+              />
+            );
           }
         }
       })}
