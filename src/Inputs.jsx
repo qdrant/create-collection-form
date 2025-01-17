@@ -103,3 +103,24 @@ StringInput.propTypes = {
   defaultValue: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
+
+export const Checkbox = ({ config, defaultValue, onChange }) => {
+  const [value, setValue] = useState(defaultValue || false);
+
+  const handleChange = (e) => {
+    setValue(e.target.checked);
+    onChange(config.name, e.target.checked);
+  };
+
+  return (
+    <TextField
+      key={config.title}
+      variant="standard"
+      id={config.name}
+      label={config.title}
+      type="checkbox"
+      checked={value}
+      onChange={handleChange}
+    />
+  );
+};

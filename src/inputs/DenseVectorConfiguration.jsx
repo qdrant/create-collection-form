@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Dropdown } from "./Inputs.jsx";
+import { Dropdown } from "../Inputs.jsx";
 import { Typography } from "@mui/material";
-import { NumberWithSuggestions } from "./inputs/NumberWithSuggestions.jsx";
+import { NumberWithSuggestions } from "./NumberWithSuggestions.jsx";
 
 
 const DenseVectorConfiguration = function ({ config, stepData, onChange }) {

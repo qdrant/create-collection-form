@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { steps } from "./flow.js";
 import CardsSelect from "./CardsSelect.jsx";
-import TenantFieldSelectionStep from "./TenantFieldSelectionStep.jsx";
-import SimpleDenseEmbeddingStep from "./SimpleDenseEmbeddingStep.jsx";
+import TenantFieldSelectionStep from "./steps/TenantFieldSelectionStep.jsx";
+import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
+import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 
 export function CreateCollectionForm() {
   const firstStepName = "use-case-step";
@@ -44,6 +45,7 @@ export function CreateCollectionForm() {
     "tenant-field-selection-step": TenantFieldSelectionStep,
     "templates-selection-step": CardsSelect,
     "simple-dense-embedding-step": SimpleDenseEmbeddingStep,
+    "simple-hybrid-embedding-step": SimpleHybridEmbeddingStep,
   };
 
   return (

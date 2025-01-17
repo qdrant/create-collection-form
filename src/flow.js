@@ -115,7 +115,7 @@ export const steps = {
           "Dense + Sparse vectors searched simultaneously. Search covers both semantic and keyword-based search.",
         name: "simple-hybrid-search",
         "on-select": {
-          "continue-step": "simple-hybrid-searc-step",
+          "continue-step": "simple-hybrid-embedding-step",
         },
       },
       {
@@ -170,7 +170,7 @@ export const steps = {
       },
     ],
   },
-  "simple-hybrid-searc-step": {
+  "simple-hybrid-embedding-step": {
     // In this config user should select a field that contains tenant id
     title: "Vector configuration",
     description: "Configuration for dense embedding",
@@ -190,6 +190,10 @@ export const steps = {
         title: "Sparse vector name",
         name: "sparse_vector_name",
         default: "sparse",
+      },
+      {
+        type: "sparse-vector-configuration",
+        name: "sparse_vector_config",
       },
       {
         type: "button",

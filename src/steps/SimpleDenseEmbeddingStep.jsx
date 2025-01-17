@@ -1,7 +1,7 @@
-import DenseVectorConfiguration from "./DenseVectorConfiguration.jsx";
+import DenseVectorConfiguration from "../inputs/DenseVectorConfiguration.jsx";
 import Box from "@mui/material/Box";
-import { elements } from "./flow.js";
-import { StringInput } from "./Inputs.jsx";
+import { elements } from "../flow.js";
+import { StringInput } from "../Inputs.jsx";
 import { Button, Typography } from "@mui/material";
 import { useState } from "react";
 import PropTypes from "prop-types";
