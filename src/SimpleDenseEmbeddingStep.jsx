@@ -2,8 +2,9 @@ import DenseVectorConfiguration from "./DenseVectorConfiguration.jsx";
 import Box from "@mui/material/Box";
 import { elements } from "./flow.js";
 import { StringInput } from "./Inputs.jsx";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const SimpleDenseEmbeddingStep = function ({
   stepName,
@@ -23,6 +24,7 @@ const SimpleDenseEmbeddingStep = function ({
   };
   return (
     <Box>
+      <Typography variant="h4">{config.title}</Typography>
       {config.elements.map((element) => {
         switch (element.type) {
           case "button": {
@@ -60,6 +62,19 @@ const SimpleDenseEmbeddingStep = function ({
 };
 
 // props validation
-SimpleDenseEmbeddingStep.propTypes = {};
+SimpleDenseEmbeddingStep.propTypes = {
+  stepName: PropTypes.string.isRequired,
+  config: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    elements: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        title: PropTypes.string,
+      }),
+    ),
+  }),
+  stepData: PropTypes.any,
+  onApply: PropTypes.func.isRequired,
+};
 
 export default SimpleDenseEmbeddingStep;

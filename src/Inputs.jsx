@@ -76,6 +76,7 @@ export const NumberWithSuggestions = ({ config, defaultValue, onChange }) => {
 NumberWithSuggestions.propTypes = {
   config: PropTypes.shape({
     title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     suggestions: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
@@ -83,7 +84,7 @@ NumberWithSuggestions.propTypes = {
       }),
     ).isRequired,
   }).isRequired,
-  value: PropTypes.number,
+  defaultValue: PropTypes.object,
   onChange: PropTypes.func.isRequired,
 };
 
@@ -116,8 +117,9 @@ export const Dropdown = ({ config, defaultValue, onChange }) => {
 Dropdown.propTypes = {
   config: PropTypes.shape({
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
+    name: PropTypes.string.isRequired,
   }).isRequired,
-  value: PropTypes.string,
+  defaultValue: PropTypes.object,
   onChange: PropTypes.func.isRequired,
 };
 
@@ -148,6 +150,6 @@ StringInput.propTypes = {
     name: PropTypes.string.isRequired,
     default: PropTypes.string,
   }).isRequired,
-  value: PropTypes.string,
+  defaultValue: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };

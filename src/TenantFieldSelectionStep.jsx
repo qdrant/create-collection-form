@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { StringInput } from "./Inputs.jsx";
@@ -10,7 +10,7 @@ const TenantFieldSelectionStep = ({ stepName, config, stepData, onApply }) => {
 
   return (
     <Box>
-      <h1>{config.title}</h1>
+      <Typography variant="h4">{config.title}</Typography>
       <p>{config.description}</p>
 
       {config.elements.map((element) => {

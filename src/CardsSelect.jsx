@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo, memo } from "react";
 import Box from "@mui/material/Box";
 import { FormCard } from "./Inputs.jsx";
 import PropTypes from "prop-types";
+import { Typography } from "@mui/material";
 
 const CardsSelect = ({ stepName, config, stepData, onApply }) => {
   // todo: fix chosen card for the third step
@@ -33,7 +34,7 @@ const CardsSelect = ({ stepName, config, stepData, onApply }) => {
 
   return (
     <Box>
-      <h1>{title}</h1>
+      <Typography variant="h4">{title}</Typography>
       <p>{description}</p>
       <Box
         sx={{
