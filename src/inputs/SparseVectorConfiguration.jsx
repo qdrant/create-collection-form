@@ -1,13 +1,10 @@
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Checkbox } from "../Inputs.jsx";
 import { Typography } from "@mui/material";
-
+import components from "./collection.jsx";
 
 const SparseVectorConfiguration = function ({ config, stepData, onChange }) {
-  const components = {
-    checkbox: Checkbox,
-  };
+
 
   let configOnChange = function (name, value) {
     let newData = {

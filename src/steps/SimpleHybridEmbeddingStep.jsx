@@ -1,11 +1,10 @@
-import DenseVectorConfiguration from "../inputs/DenseVectorConfiguration.jsx";
-import SparseVectorConfiguration from "../inputs/SparseVectorConfiguration.jsx";
 import Box from "@mui/material/Box";
 import { elements } from "../flow.js";
-import { StringInput } from "../Inputs.jsx";
 import { Button, Typography } from "@mui/material";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import components from "../inputs/collection.jsx";
+
 
 const SimpleHybridEmbeddingStep = function ({
   stepName,
@@ -14,11 +13,6 @@ const SimpleHybridEmbeddingStep = function ({
   onApply,
 }) {
   const [value, setValue] = useState(stepData || {});
-  const components = {
-    "dense-vector-configuration": DenseVectorConfiguration,
-    "sparse-vector-configuration": SparseVectorConfiguration,
-    "string-input": StringInput,
-  };
   const onChange = (key, value) => {
     const newValue = { ...stepData, [key]: value };
     setValue(newValue);

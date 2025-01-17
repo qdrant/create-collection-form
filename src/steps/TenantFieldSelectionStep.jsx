@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import { Button, Typography } from "@mui/material";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { StringInput } from "../Inputs.jsx";
+import { StringInput } from "../inputs/Inputs.jsx";
 
 const TenantFieldSelectionStep = ({ stepName, config, stepData, onApply }) => {
   const [value, setValue] = useState(stepData || {});

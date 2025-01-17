@@ -1,8 +1,42 @@
 import { useState, useCallback, useMemo, memo } from "react";
 import Box from "@mui/material/Box";
-import { FormCard } from "./Inputs.jsx";
 import PropTypes from "prop-types";
 import { Typography } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+
+
+const FormCard = ({ card, isActive, onClick }) => {
+  return (
+    <Card
+      sx={{
+        cursor: isActive ? "default" : "pointer",
+        border: isActive ? "1px solid #000" : "none",
+      }}
+      onClick={onClick}
+    >
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h3">
+          {card.title}
+        </Typography>
+        <Typography variant="body2" sx={{ color: "text.secondary" }}>
+          {card.description}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+};
+
+// props validation
+FormCard.propTypes = {
+  card: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }),
+  isActive: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
 
 const CardsSelect = ({ stepName, config, stepData, onApply }) => {
   // todo: fix chosen card for the third step

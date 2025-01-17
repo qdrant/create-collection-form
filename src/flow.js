@@ -213,6 +213,7 @@ export const steps = {
     elements: [
       {
         type: "repeatable",
+        name: "payload_fields",
         elements: [
           {
             type: "string-input",
