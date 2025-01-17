@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import components from "./collection.jsx";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 
-const Repeatable = ({ config, defaultValue, onChange }) => {
-    const values = defaultValue || [];
+const Repeatable = ({ config, stepData, onChange }) => {
+    const values = stepData[config.name] || [];
 
     const handleValueChange = (index, name, value) => {
         const newValues = [...values];
@@ -41,7 +44,7 @@ const Repeatable = ({ config, defaultValue, onChange }) => {
                                 <Component
                                     config={element}
                                     defaultValue={value[element.name] || element.default}
-                                    onChange={(value) => handleValueChange(index, element.name, value)}
+                                    onChange={(name, value) => handleValueChange(index, name, value)}
                                 />
                             </Box>
                         );
@@ -61,7 +64,7 @@ Repeatable.propTypes = {
         name: PropTypes.string.isRequired,
         elements: PropTypes.array,
     }).isRequired,
-    defaultValue: PropTypes.array,
+    stepData: PropTypes.any,
     onChange: PropTypes.func.isRequired,
 };
 

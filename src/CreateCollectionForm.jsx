@@ -5,6 +5,7 @@ import CardsSelect from "./CardsSelect.jsx";
 import TenantFieldSelectionStep from "./steps/TenantFieldSelectionStep.jsx";
 import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
+import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
 
 export function CreateCollectionForm() {
   const firstStepName = "use-case-step";
@@ -46,6 +47,7 @@ export function CreateCollectionForm() {
     "templates-selection-step": CardsSelect,
     "simple-dense-embedding-step": SimpleDenseEmbeddingStep,
     "simple-hybrid-embedding-step": SimpleHybridEmbeddingStep,
+    "index-field-selection-step": IndexFieldSelectionStep,
   };
 
   return (

@@ -217,7 +217,7 @@ export const steps = {
         elements: [
           {
             type: "string-input",
-            name: "Field name",
+            name: "field_name",
           },
           {
             type: "button-group-with-inputs",
