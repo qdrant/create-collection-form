@@ -1,5 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from 'react';
+import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
+import {
+  createTheme,
+  CssBaseline,
+  Paper,
+  ThemeProvider,
+  useTheme,
+} from '@mui/material';
+import { defaultTheme } from "./theme.js";
 import { steps } from "./flow.js";
 import CardsSelect from "./CardsSelect.jsx";
 import TenantFieldSelectionStep from "./steps/TenantFieldSelectionStep.jsx";
@@ -7,7 +16,7 @@ import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
 
-export function CreateCollectionForm() {
+export function CreateCollectionForm({theme = defaultTheme}) {
   const firstStepName = "use-case-step";
 
   const [path, setPath] = useState(() => {
@@ -50,32 +59,55 @@ export function CreateCollectionForm() {
     "index-field-selection-step": IndexFieldSelectionStep,
   };
 
+  const mode = useTheme().palette.mode;
+  const componentTheme = useMemo(
+      () => {
+        return createTheme({
+        palette: {
+          mode,
+        },
+      }, mode === 'dark' ? theme.colorSchemes.dark : theme.colorSchemes.light);
+      }, [mode]);
+
   return (
-    <Box>
-      {path.map((step) => {
-        const StepComponent = stepsComponents[step];
-        if (!StepComponent) {
-          return null;
-        }
+      <ThemeProvider theme={componentTheme}>
+        <CssBaseline />
+        <Box sx={{
+          pt: 6,
+        }}>
+          {path.map((step) => {
+            const StepComponent = stepsComponents[step];
+            if (!StepComponent) {
+              return null;
+            }
 
-        const restoredValue = localStorage.getItem("formData")?.[step];
-        const stepData = formData[step] || restoredValue;
+            const restoredValue = localStorage.getItem("formData")?.[step];
+            const stepData = formData[step] || restoredValue;
 
-        return (
-          <StepComponent
-            key={step}
-            stepName={step}
-            config={steps[step]}
-            stepData={stepData}
-            onApply={handleStepApply}
-          />
-        );
-      })}
-    </Box>
+            return (
+                <Paper key={step}
+                     sx={{
+                        p: 4,
+                       mb: 10,
+                     }}
+                >
+                <StepComponent
+                    stepName={step}
+                    config={steps[step]}
+                    stepData={stepData}
+                    onApply={handleStepApply}
+                />
+                </Paper>
+            );
+          })}
+        </Box>
+      </ThemeProvider>
   );
 }
 
 // props validation
-CreateCollectionForm.propTypes = {};
+CreateCollectionForm.propTypes = {
+  theme: PropTypes.object,
+};
 
 export default CreateCollectionForm;
