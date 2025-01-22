@@ -3,7 +3,7 @@
 
 export const elements = {
   "dense-vector-configuration": {
-    "elements": [
+    elements: [
       {
         type: "number-with-suggestions",
         title: "Choose dimensions",
@@ -30,17 +30,17 @@ export const elements = {
         default: "Cosine",
         title: "Choose metric",
       },
-    ]
+    ],
   },
   "sparse-vector-configuration": {
-    "elements": [
+    elements: [
       {
         type: "checkbox",
         title: "Use IDF?",
         name: "use_idf",
         default: true,
       },
-    ]
+    ],
   },
 };
 

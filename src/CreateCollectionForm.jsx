@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import {
@@ -7,7 +7,7 @@ import {
   Paper,
   ThemeProvider,
   useTheme,
-} from '@mui/material';
+} from "@mui/material";
 import { defaultTheme } from "./theme.js";
 import { steps } from "./flow.js";
 import CardsSelect from "./CardsSelect.jsx";
@@ -16,7 +16,7 @@ import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
 
-export function CreateCollectionForm({theme = defaultTheme}) {
+export function CreateCollectionForm({ theme = defaultTheme }) {
   const firstStepName = "use-case-step";
 
   const [path, setPath] = useState(() => {
@@ -60,48 +60,53 @@ export function CreateCollectionForm({theme = defaultTheme}) {
   };
 
   const mode = useTheme().palette.mode;
-  const componentTheme = useMemo(
-      () => {
-        return createTheme({
+  const componentTheme = useMemo(() => {
+    return createTheme(
+      {
         palette: {
           mode,
         },
-      }, mode === 'dark' ? theme.colorSchemes.dark : theme.colorSchemes.light);
-      }, [mode]);
+      },
+      mode === "dark" ? theme.colorSchemes.dark : theme.colorSchemes.light,
+    );
+  }, [mode]);
 
   return (
-      <ThemeProvider theme={componentTheme}>
-        <CssBaseline />
-        <Box sx={{
+    <ThemeProvider theme={componentTheme}>
+      <CssBaseline />
+      <Box
+        sx={{
           pt: 6,
-        }}>
-          {path.map((step) => {
-            const StepComponent = stepsComponents[step];
-            if (!StepComponent) {
-              return null;
-            }
+        }}
+      >
+        {path.map((step) => {
+          const StepComponent = stepsComponents[step];
+          if (!StepComponent) {
+            return null;
+          }
 
-            const restoredValue = localStorage.getItem("formData")?.[step];
-            const stepData = formData[step] || restoredValue;
+          const restoredValue = localStorage.getItem("formData")?.[step];
+          const stepData = formData[step] || restoredValue;
 
-            return (
-                <Paper key={step}
-                     sx={{
-                        p: 4,
-                       mb: 10,
-                     }}
-                >
-                <StepComponent
-                    stepName={step}
-                    config={steps[step]}
-                    stepData={stepData}
-                    onApply={handleStepApply}
-                />
-                </Paper>
-            );
-          })}
-        </Box>
-      </ThemeProvider>
+          return (
+            <Paper
+              key={step}
+              sx={{
+                p: 4,
+                mb: 10,
+              }}
+            >
+              <StepComponent
+                stepName={step}
+                config={steps[step]}
+                stepData={stepData}
+                onApply={handleStepApply}
+              />
+            </Paper>
+          );
+        })}
+      </Box>
+    </ThemeProvider>
   );
 }
 

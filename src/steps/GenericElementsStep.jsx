@@ -4,12 +4,7 @@ import { Button, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import components from "../inputs/collection.jsx";
 
-const GenericElementsStep = function ({
-  stepName,
-  config,
-  stepData,
-  onApply,
-}) {
+const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
   const value = stepData || {};
 
   return (
@@ -17,8 +12,8 @@ const GenericElementsStep = function ({
       <Typography variant="h4">{config.title}</Typography>
       {config.elements.map((element) => {
         const onChange = (value) => {
-            const newValue = { ...stepData, [element.name]: value };
-            onApply(stepName, newValue, null);
+          const newValue = { ...stepData, [element.name]: value };
+          onApply(stepName, newValue, null);
         };
         switch (element.type) {
           case "button": {
@@ -44,7 +39,7 @@ const GenericElementsStep = function ({
               <Component
                 key={element.name}
                 config={{
-                  ...elements[element.type] || {},
+                  ...(elements[element.type] || {}),
                   ...element,
                 }}
                 stepData={value[element.name]}

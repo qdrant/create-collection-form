@@ -1,4 +1,4 @@
-import GenericInputs from './GenericInputs';
+import GenericInputs from "./GenericInputs";
 
 const SparseVectorConfiguration = GenericInputs;
 

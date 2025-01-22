@@ -4,16 +4,14 @@ import { Typography } from "@mui/material";
 import components from "./collection.jsx";
 
 const GenericInputs = function ({ config, stepData, onChange }) {
-
   return (
     <Box>
       {config.elements.map((element) => {
-
         let configOnChange = function (value) {
           let newData = {
             ...stepData,
             [element.name]: value,
-          }
+          };
           onChange(newData);
         };
 
@@ -46,14 +44,14 @@ const GenericInputs = function ({ config, stepData, onChange }) {
 
 // props validation
 GenericInputs.propTypes = {
-  config: PropTypes.shape(
-    {
-      name: PropTypes.string.isRequired,
-      elements: PropTypes.arrayOf(PropTypes.shape({
+  config: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    elements: PropTypes.arrayOf(
+      PropTypes.shape({
         title: PropTypes.string.isRequired,
-      })),
-    }
-  ).isRequired,
+      }),
+    ),
+  }).isRequired,
   stepData: PropTypes.object,
   onChange: PropTypes.func.isRequired,
 };

@@ -4,8 +4,6 @@ import { Typography } from "@mui/material";
 import components from "./collection.jsx";
 import GenericInputs from "./GenericInputs.jsx";
 
-
-
 /*
 Component capable of rendering the following configuration:
 
@@ -76,7 +74,6 @@ Component capable of rendering the following configuration:
 */
 
 const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
-
   let allEnumsObject = {};
   config.enums.forEach((enumObject) => {
     allEnumsObject[enumObject.name] = enumObject;
@@ -93,21 +90,18 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
       {/* Select one of the enums with group button */}
       <Box>
         {config.enums.map((enumObject) => {
-
           let configOnChange = function (value) {
             let newData = {
               ...stepData,
               [config.name + "_enum"]: value,
-            }
+            };
             console.log("newData", newData);
             onChange(newData);
           };
 
           return (
             <Box key={enumObject.name}>
-              <button
-                onClick={() => configOnChange(enumObject.name)}
-              >
+              <button onClick={() => configOnChange(enumObject.name)}>
                 {enumObject.name}
               </button>
             </Box>
@@ -117,8 +111,11 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
 
       {/* Render fields of the selected enum */}
 
-      <GenericInputs config={{ elements: selectedEnumFields, name: config.name + "_config" }} stepData={stepData} onChange={onChange} />
-
+      <GenericInputs
+        config={{ elements: selectedEnumFields, name: config.name + "_config" }}
+        stepData={stepData}
+        onChange={onChange}
+      />
     </Box>
   );
 };
@@ -127,25 +124,23 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
 
 // props validation
 ButtonGroupWithInputs.propTypes = {
-  config: PropTypes.shape(
-    {
-      name: PropTypes.string.isRequired,
-      title: PropTypes.string,
-      enums: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          fields: PropTypes.arrayOf(
-            PropTypes.shape({
-              title: PropTypes.string,
-              type: PropTypes.string.isRequired,
-              name: PropTypes.string.isRequired,
-              default: PropTypes.any,
-            })
-          ),
-        }),
-      ),
-    }
-  ).isRequired,
+  config: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    enums: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        fields: PropTypes.arrayOf(
+          PropTypes.shape({
+            title: PropTypes.string,
+            type: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            default: PropTypes.any,
+          }),
+        ),
+      }),
+    ),
+  }).isRequired,
   stepData: PropTypes.object,
   onChange: PropTypes.func.isRequired,
 };

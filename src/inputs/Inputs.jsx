@@ -95,7 +95,6 @@ Checkbox.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-
 export const NumberInput = ({ config, stepData, onChange }) => {
   const value = stepData || 0;
 
@@ -105,7 +104,7 @@ export const NumberInput = ({ config, stepData, onChange }) => {
       valueNumber = 0;
     }
     onChange(valueNumber);
-  }
+  };
 
   return (
     <TextField
@@ -118,7 +117,7 @@ export const NumberInput = ({ config, stepData, onChange }) => {
       type="number"
     />
   );
-}
+};
 
 // props validation
 NumberInput.propTypes = {

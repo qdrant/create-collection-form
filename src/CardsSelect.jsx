@@ -1,16 +1,15 @@
 import { useState, useCallback, useMemo, memo } from "react";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Typography, useTheme } from '@mui/material';
+import { Typography, useTheme } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-
 
 const FormCard = ({ card, isActive, onClick }) => {
   const theme = useTheme();
   return (
     <Card
-        elevation={isActive ? 3 : 0}
+      elevation={isActive ? 3 : 0}
       sx={{
         cursor: isActive ? "default" : "pointer",
         border: `1px solid ${theme.palette.grey[600]}`,
@@ -39,7 +38,6 @@ FormCard.propTypes = {
   isActive: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
-
 
 const CardsSelect = ({ stepName, config, stepData, onApply }) => {
   // todo: fix chosen card for the third step
