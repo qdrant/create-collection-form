@@ -3,8 +3,11 @@ import {
   MenuItem,
   Select,
   TextField,
-  Checkbox as MuiCheckbox, InputBase, InputLabel, FormControl,
-} from '@mui/material';
+  Checkbox as MuiCheckbox,
+  InputBase,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
@@ -18,11 +21,11 @@ export const Dropdown = ({ config, stepData, onChange }) => {
   // todo: add labelId and id
   return (
     <Select
-        labelId=""
-        id=""
-        value={value}
-        onChange={handleChange}
-        input={<InputBase />}
+      labelId=""
+      id=""
+      value={value}
+      onChange={handleChange}
+      input={<InputBase />}
     >
       {config.options.map((option) => (
         <MenuItem key={option} value={option}>
@@ -49,20 +52,20 @@ export const StringInput = ({ config, stepData, onChange }) => {
   // todo:
   // validate input
   return (
-      <FormControl variant="standard">
-        <InputLabel shrink htmlFor={config.name}>
-          {config.title}
-        </InputLabel>
-    <InputBase
-      key={config.title}
-      variant="outlined"
-      id={config.name}
-      value={value || config.default || ""}
-      onChange={(e) => {
-        onChange(e.target.value);
-      }}
-    />
-      </FormControl>
+    <FormControl variant="standard">
+      <InputLabel shrink htmlFor={config.name}>
+        {config.title}
+      </InputLabel>
+      <InputBase
+        key={config.title}
+        variant="outlined"
+        id={config.name}
+        value={value || config.default || ""}
+        onChange={(e) => {
+          onChange(e.target.value);
+        }}
+      />
+    </FormControl>
   );
 };
 

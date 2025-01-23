@@ -5,8 +5,10 @@ import {
   TextField,
   MenuItem,
   Typography,
-  InputBase, InputLabel, FormControl,
-} from '@mui/material';
+  InputBase,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 
 const NumberWithSuggestions = ({ config, stepData, onChange }) => {
   const value = stepData || "";
@@ -37,18 +39,19 @@ const NumberWithSuggestions = ({ config, stepData, onChange }) => {
         );
       }}
       renderInput={(params) => (
-          <FormControl variant="standard">
-            <InputLabel shrink htmlFor={config.name}>
-              {config.title}
-            </InputLabel>
-            <InputBase
-                {...params.InputProps}
-                inputProps={params.inputProps}
-                id={config.name}
-                value={value || config.default || ""}
-            />
-          </FormControl>
-      )}/>
+        <FormControl variant="standard">
+          <InputLabel shrink htmlFor={config.name}>
+            {config.title}
+          </InputLabel>
+          <InputBase
+            {...params.InputProps}
+            inputProps={params.inputProps}
+            id={config.name}
+            value={value || config.default || ""}
+          />
+        </FormControl>
+      )}
+    />
   );
 };
 
