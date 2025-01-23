@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Autocomplete, TextField, MenuItem, Typography } from "@mui/material";
+import {
+  Autocomplete,
+  TextField,
+  MenuItem,
+  Typography,
+  InputBase, InputLabel, FormControl,
+} from '@mui/material';
 
 const NumberWithSuggestions = ({ config, stepData, onChange }) => {
   const value = stepData || "";
@@ -31,9 +37,18 @@ const NumberWithSuggestions = ({ config, stepData, onChange }) => {
         );
       }}
       renderInput={(params) => (
-        <TextField {...params} label={config.title} variant="standard" />
-      )}
-    />
+          <FormControl variant="standard">
+            <InputLabel shrink htmlFor={config.name}>
+              {config.title}
+            </InputLabel>
+            <InputBase
+                {...params.InputProps}
+                inputProps={params.inputProps}
+                id={config.name}
+                value={value || config.default || ""}
+            />
+          </FormControl>
+      )}/>
   );
 };
 

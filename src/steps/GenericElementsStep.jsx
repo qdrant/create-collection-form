@@ -18,8 +18,15 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
         switch (element.type) {
           case "button": {
             return (
+                <Box sx={{
+                  display: "flex",
+                  justifyContent: "end",
+                  marginTop: 2,
+                }}
+                     key={element.title}
+                >
               <Button
-                key={element.title}
+                  // key={element.title}
                 variant="contained"
                 onClick={() =>
                   onApply(stepName, value, element["on-click"]["continue-step"])
@@ -27,6 +34,7 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
               >
                 {element.title}
               </Button>
+              </Box>
             );
           }
           default: {

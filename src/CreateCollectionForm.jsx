@@ -8,7 +8,7 @@ import {
   ThemeProvider,
   useTheme,
 } from "@mui/material";
-import { defaultTheme } from "./theme.js";
+import { defaultTheme } from "./theme/theme.js";
 import { steps } from "./flow.js";
 import CardsSelect from "./CardsSelect.jsx";
 import TenantFieldSelectionStep from "./steps/TenantFieldSelectionStep.jsx";
@@ -16,6 +16,8 @@ import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
 
+// todo:
+// 1. scroll to the next step
 export function CreateCollectionForm({ theme = defaultTheme }) {
   const firstStepName = "use-case-step";
 

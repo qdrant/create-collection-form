@@ -12,8 +12,7 @@ const FormCard = ({ card, isActive, onClick }) => {
       elevation={isActive ? 3 : 0}
       sx={{
         cursor: isActive ? "default" : "pointer",
-        border: `1px solid ${theme.palette.grey[600]}`,
-        background: theme.palette.background.paper,
+        border: isActive ? `1px solid ${theme.palette.grey[700]}` : "inherit",
       }}
       onClick={onClick}
     >
