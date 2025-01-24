@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import {
   Autocomplete,
@@ -59,6 +58,7 @@ NumberWithSuggestions.propTypes = {
   config: PropTypes.shape({
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    default: PropTypes.number,
     suggestions: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
@@ -66,7 +66,7 @@ NumberWithSuggestions.propTypes = {
       }),
     ).isRequired,
   }).isRequired,
-  stepData: PropTypes.number,
+  stepData: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onChange: PropTypes.func.isRequired,
 };
 

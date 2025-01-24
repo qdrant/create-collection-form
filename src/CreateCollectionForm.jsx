@@ -71,7 +71,7 @@ export function CreateCollectionForm({ theme = defaultTheme }) {
       },
       mode === "dark" ? theme.colorSchemes.dark : theme.colorSchemes.light,
     );
-  }, [mode]);
+  }, [mode, theme.colorSchemes.dark, theme.colorSchemes.light]);
 
   return (
     <ThemeProvider theme={componentTheme}>
