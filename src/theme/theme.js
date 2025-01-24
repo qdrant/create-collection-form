@@ -15,7 +15,7 @@ const commonComponentsStyleOverrides = {
             justifyContent: "center",
             alignItems: "center",
             alignSelf: "stretch",
-            color: theme.palette.text.primary,
+            color: theme.palette.primary.contrastText,
             background: `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%))`,
             boxShadow: "0px 2px 1px 0px #FF516B inset",
             fontWeight: "semibold",
@@ -56,9 +56,6 @@ const commonComponentsStyleOverrides = {
               borderColor: theme.palette.grey[900],
               boxShadow: `0px 0px 0px 1px ${theme.palette.grey[600]}`,
             },
-            label: {
-              color: theme.palette.grey[900],
-            },
           },
         };
       },
@@ -79,10 +76,10 @@ const commonComponentsStyleOverrides = {
     styleOverrides: {
       root: ({ theme }) => {
         return {
-          color: theme.palette.grey[700],
+          color: theme.palette.text.secondary,
           lineHeight: "21px",
           "&.Mui-focused": {
-            color: theme.palette.grey[900],
+            color: theme.palette.text.primary,
           },
         };
       },
@@ -107,7 +104,10 @@ export const defaultTheme = {
     light: {
       palette: {
         primary: {
+          light: defaultColors["primary-60"],
           main: defaultColors["primary-50"],
+          dark: defaultColors["primary-40"],
+          contrastText: defaultColors["neutral-98"],
         },
         secondary: {
           main: defaultColors["secondary-blue-50"],
@@ -165,6 +165,7 @@ export const defaultTheme = {
           light: defaultColors["primary-60"],
           main: defaultColors["primary-50"],
           dark: defaultColors["primary-40"],
+          contrastText: defaultColors["neutral-98"],
         },
         secondary: {
           main: defaultColors["secondary-blue-50"],
