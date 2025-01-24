@@ -8,7 +8,7 @@ const commonComponentsStyleOverrides = {
           textTransform: "capitalize",
           fontWeight: "semibold",
           fontSize: "18px",
-          '&.MuiButton-contained': {
+          "&.MuiButton-contained": {
             display: "flex",
             height: "40px",
             padding: "8px 22px",
@@ -21,18 +21,16 @@ const commonComponentsStyleOverrides = {
             fontWeight: "semibold",
             fontSize: "18px",
           },
-          '& .MuiButton-icon': {
-            marginTop: '-3px',
+          "& .MuiButton-icon": {
+            marginTop: "-3px",
           },
-          '&.MuiButton-text': {
-
-          },
+          "&.MuiButton-text": {},
           // hover
-          '&:hover': {
-            '&.MuiButton-text': {
-              background: 'transparent',
+          "&:hover": {
+            "&.MuiButton-text": {
+              background: "transparent",
               color: theme.palette.primary.light,
-            }
+            },
           },
         };
       },
@@ -93,15 +91,15 @@ const commonComponentsStyleOverrides = {
   MuiAutocomplete: {
     styleOverrides: {
       root: {
-        '&.MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot': {
+        "&.MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot": {
           paddingRight: 0,
         },
-        '& .MuiAutocomplete-endAdornment': {
-          right: '10px',
-        }
-      }
-    }
-  }
+        "& .MuiAutocomplete-endAdornment": {
+          right: "10px",
+        },
+      },
+    },
+  },
 };
 
 export const defaultTheme = {

@@ -86,7 +86,7 @@ export const Checkbox = ({ config, stepData, onChange }) => {
 
   return (
     <MuiCheckbox
-        sx={{ alignSelf: "start" }}
+      sx={{ alignSelf: "start" }}
       checked={value}
       onChange={handleChange}
       inputProps={{ "aria-label": "controlled" }}
@@ -116,19 +116,19 @@ export const NumberInput = ({ config, stepData, onChange }) => {
   };
 
   return (
-      <FormControl variant="standard">
-        <InputLabel shrink htmlFor={config.name}>
-          {config.title}
-        </InputLabel>
-    <InputBase
-      key={config.title}
-      variant="outlined"
-      id={config.name}
-      value={value || config.default || ""}
-      onChange={handleChange}
-      type="number"
-    />
-        </FormControl>
+    <FormControl variant="standard">
+      <InputLabel shrink htmlFor={config.name}>
+        {config.title}
+      </InputLabel>
+      <InputBase
+        key={config.title}
+        variant="outlined"
+        id={config.name}
+        value={value || config.default || ""}
+        onChange={handleChange}
+        type="number"
+      />
+    </FormControl>
   );
 };
 
