@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Typography } from "@mui/material";
-import components from "./collection.jsx";
+import { Typography, useTheme } from '@mui/material';
 import GenericInputs from "./GenericInputs.jsx";
+import Card from '@mui/material/Card';
 
 /*
 Component capable of rendering the following configuration:
@@ -84,11 +84,18 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
   let selecedEnumData = allEnumsObject[selectedEnum] || {};
   let selectedEnumFields = selecedEnumData.fields || [];
 
+  const theme = useTheme();
+
   return (
     <Box>
-      <Typography variant="h6">{config.title}</Typography>
+      <Typography variant="h6" mt={2}>{config.title}</Typography>
       {/* Select one of the enums with group button */}
-      <Box>
+      <Box sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 1,
+        mb: 2,
+      }}>
         {config.enums.map((enumObject) => {
           let configOnChange = function (value) {
             let newData = {
@@ -101,9 +108,16 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
 
           return (
             <Box key={enumObject.name}>
-              <button onClick={() => configOnChange(enumObject.name)}>
+              <Card
+                  sx={{
+                    px: 2,
+                    py: 1,
+                    border: selectedEnum === enumObject.name ? `1px solid ${theme.palette.grey[700]}` : "inherit",
+                    cursor: selectedEnum === enumObject.name ? "default" : "pointer",
+                  }}
+                  onClick={() => configOnChange(enumObject.name)}>
                 {enumObject.name}
-              </button>
+              </Card>
             </Box>
           );
         })}

@@ -5,7 +5,13 @@ import components from "./collection.jsx";
 
 const GenericInputs = function ({ config, stepData, onChange }) {
   return (
-    <Box>
+    <Box sx={{
+      display: "flex",
+      flexWrap: "wrap",
+      flex: 1,
+      justifyContent: "start",
+      gap: 2,
+    }}>
       {config.elements.map((element) => {
         let configOnChange = function (value) {
           let newData = {
@@ -26,7 +32,15 @@ const GenericInputs = function ({ config, stepData, onChange }) {
         }
 
         return (
-          <Box key={element.title}>
+          <Box key={element.title} sx={{
+            display: "flex",
+            flexDirection: "column",
+            flexBasis: "49%",
+            flexShrink: 1,
+            flexGrow: 1,
+            justifyContent: "space-around",
+            mt: 2,
+          }}>
             <Typography variant="h6">{element.title}</Typography>
             <Component
               config={element}

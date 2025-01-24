@@ -1,15 +1,12 @@
-// import { useState } from "react";
 import {
   MenuItem,
   Select,
-  TextField,
   Checkbox as MuiCheckbox,
   InputBase,
   InputLabel,
   FormControl,
 } from "@mui/material";
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 export const Dropdown = ({ config, stepData, onChange }) => {
   const value = stepData || "";
@@ -83,14 +80,13 @@ StringInput.propTypes = {
 export const Checkbox = ({ config, stepData, onChange }) => {
   const value = stepData || false;
 
-  // console.log("Checkbox", value);
-
   const handleChange = (e) => {
     onChange(e.target.checked);
   };
 
   return (
     <MuiCheckbox
+        sx={{ alignSelf: "start" }}
       checked={value}
       onChange={handleChange}
       inputProps={{ "aria-label": "controlled" }}
@@ -120,15 +116,19 @@ export const NumberInput = ({ config, stepData, onChange }) => {
   };
 
   return (
-    <TextField
+      <FormControl variant="standard">
+        <InputLabel shrink htmlFor={config.name}>
+          {config.title}
+        </InputLabel>
+    <InputBase
       key={config.title}
       variant="outlined"
       id={config.name}
-      label={config.title}
       value={value || config.default || ""}
       onChange={handleChange}
       type="number"
     />
+        </FormControl>
   );
 };
 

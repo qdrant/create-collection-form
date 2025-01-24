@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 import components from "./collection.jsx";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import { Add, Delete } from '@mui/icons-material';
+import { Divider } from '@mui/material';
 
 const Repeatable = ({ config, stepData, onChange }) => {
   const values = stepData || [];
@@ -21,7 +22,10 @@ const Repeatable = ({ config, stepData, onChange }) => {
   return (
     <Box>
       {values.map((value, index) => (
-        <Box key={index}>
+        <Box key={index} sx={{
+          display: "flex",
+          flexDirection: "column",
+        }}>
           {config.elements.map((element) => {
             const handleValueChange = (value) => {
               const newValues = [...values];
@@ -47,10 +51,22 @@ const Repeatable = ({ config, stepData, onChange }) => {
               </Box>
             );
           })}
-          <Button onClick={() => handleRemove(index)}>Remove</Button>
+          <Button
+              variant="text"
+              size={"small"}
+              startIcon={<Delete />}
+              sx={{ alignSelf: "end"}}
+              onClick={() => handleRemove(index)}
+          >Remove</Button>
+          {config.elements.length > 1 && <Divider sx={{mt: 2, mb: 3, mx: -4}} />}
         </Box>
       ))}
-      <Button onClick={handleAdd}>Add</Button>
+      <Button
+          variant="text"
+          size="large"
+          startIcon={<Add />}
+          onClick={handleAdd}
+      >Add</Button>
     </Box>
   );
 };

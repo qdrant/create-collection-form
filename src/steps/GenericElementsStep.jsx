@@ -22,7 +22,9 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
                 sx={{
                   display: "flex",
                   justifyContent: "end",
-                  marginTop: 2,
+                  marginTop: 4,
+                  flexShrink: 0,
+                  flexBasis: "100%",
                 }}
                 key={element.title}
               >

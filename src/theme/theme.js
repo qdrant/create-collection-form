@@ -5,18 +5,35 @@ const commonComponentsStyleOverrides = {
     styleOverrides: {
       root: ({ theme }) => {
         return {
-          display: "flex",
-          height: "40px",
-          padding: "8px 22px",
-          justifyContent: "center",
-          alignItems: "center",
-          alignSelf: "stretch",
-          color: theme.palette.text.primary,
-          background: `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%))`,
-          boxShadow: "0px 2px 1px 0px #FF516B inset",
           textTransform: "capitalize",
           fontWeight: "semibold",
           fontSize: "18px",
+          '&.MuiButton-contained': {
+            display: "flex",
+            height: "40px",
+            padding: "8px 22px",
+            justifyContent: "center",
+            alignItems: "center",
+            alignSelf: "stretch",
+            color: theme.palette.text.primary,
+            background: `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%))`,
+            boxShadow: "0px 2px 1px 0px #FF516B inset",
+            fontWeight: "semibold",
+            fontSize: "18px",
+          },
+          '& .MuiButton-icon': {
+            marginTop: '-3px',
+          },
+          '&.MuiButton-text': {
+
+          },
+          // hover
+          '&:hover': {
+            '&.MuiButton-text': {
+              background: 'transparent',
+              color: theme.palette.primary.light,
+            }
+          },
         };
       },
     },
@@ -39,7 +56,7 @@ const commonComponentsStyleOverrides = {
           "&.Mui-focused": {
             "& .MuiInputBase-input": {
               borderColor: theme.palette.grey[900],
-              boxShadow: `0px 0px 0px 2px ${theme.palette.grey[600]}`,
+              boxShadow: `0px 0px 0px 1px ${theme.palette.grey[600]}`,
             },
             label: {
               color: theme.palette.grey[900],
@@ -55,7 +72,7 @@ const commonComponentsStyleOverrides = {
         display: "flex",
         flexDirection: "column",
         width: "100%",
-        marginTop: "2rem",
+        marginTop: "1rem",
         marginBottom: "16px",
       },
     },
@@ -73,6 +90,18 @@ const commonComponentsStyleOverrides = {
       },
     },
   },
+  MuiAutocomplete: {
+    styleOverrides: {
+      root: {
+        '&.MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot': {
+          paddingRight: 0,
+        },
+        '& .MuiAutocomplete-endAdornment': {
+          right: '10px',
+        }
+      }
+    }
+  }
 };
 
 export const defaultTheme = {
