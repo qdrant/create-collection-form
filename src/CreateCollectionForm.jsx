@@ -91,20 +91,19 @@ export function CreateCollectionForm({ theme = defaultTheme }) {
           const stepData = formData[step] || restoredValue;
 
           return (
-            <Paper
-              key={step}
+            <Box
               sx={{
-                p: 4,
-                mb: 10,
+                mb: 7,
               }}
             >
               <StepComponent
+                key={step}
                 stepName={step}
                 config={steps[step]}
                 stepData={stepData}
                 onApply={handleStepApply}
               />
-            </Paper>
+            </Box>
           );
         })}
       </Box>

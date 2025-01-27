@@ -149,7 +149,19 @@ export const defaultTheme = {
         ...commonComponentsStyleOverrides,
         MuiCard: {
           styleOverrides: {
-            root: ({ theme }) => {
+            root: ({ theme, ownerState }) => {
+              if (ownerState?.variant === "borders-only") {
+                return {
+                  background: "transparent",
+                  border: `1px solid ${theme.palette.grey[800]}`,
+                };
+              }
+              if (ownerState?.variant === "outlined") {
+                return {
+                  background: theme.palette.background.default,
+                  border: `1px solid ${theme.palette.grey[800]}`,
+                };
+              }
               return {
                 background: theme.palette.background.default,
                 border: `1px solid ${theme.palette.grey[800]}`,
@@ -207,7 +219,19 @@ export const defaultTheme = {
         ...commonComponentsStyleOverrides,
         MuiCard: {
           styleOverrides: {
-            root: ({ theme }) => {
+            root: ({ theme, ownerState }) => {
+              if (ownerState?.variant === "borders-only") {
+                return {
+                  background: "transparent",
+                  border: `1px solid ${theme.palette.grey[300]}`,
+                };
+              }
+              if (ownerState?.variant === "outlined") {
+                return {
+                  background: `linear-gradient(${theme.palette.grey[100]} 0%, rgba(14, 20, 36) 100%)`,
+                  border: `1px solid ${theme.palette.grey[300]}`,
+                };
+              }
               return {
                 background: `linear-gradient(${theme.palette.grey[100]} 0%, rgba(14, 20, 36) 100%)`,
                 border: `1px solid ${theme.palette.grey[300]}`,
