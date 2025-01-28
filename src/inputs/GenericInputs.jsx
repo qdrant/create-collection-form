@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import { Typography } from "@mui/material";
 import components from "./collection.jsx";
-import Card from "@mui/material/Card";
 
 const GenericInputs = function ({ config, stepData, onChange }) {
   console.log(config.elements);

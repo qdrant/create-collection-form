@@ -2,11 +2,11 @@ import {
   MenuItem,
   Select,
   Checkbox as MuiCheckbox,
-  InputBase,
   InputLabel,
   FormControl,
 } from "@mui/material";
 import PropTypes from "prop-types";
+import { CCFormControl, CCFormInputBase } from "../ThemedComponents.jsx";
 
 export const Dropdown = ({ config, stepData, onChange }) => {
   const value = stepData || "";
@@ -22,7 +22,7 @@ export const Dropdown = ({ config, stepData, onChange }) => {
       id=""
       value={value}
       onChange={handleChange}
-      input={<InputBase />}
+      input={<CCFormInputBase />}
     >
       {config.options.map((option) => (
         <MenuItem key={option} value={option}>
@@ -49,11 +49,11 @@ export const StringInput = ({ config, stepData, onChange }) => {
   // todo:
   // validate input
   return (
-    <FormControl variant="standard">
+    <CCFormControl variant="standard">
       <InputLabel shrink htmlFor={config.name}>
         {config.title}
       </InputLabel>
-      <InputBase
+      <CCFormInputBase
         key={config.title}
         variant="outlined"
         id={config.name}
@@ -62,7 +62,7 @@ export const StringInput = ({ config, stepData, onChange }) => {
           onChange(e.target.value);
         }}
       />
-    </FormControl>
+    </CCFormControl>
   );
 };
 
@@ -116,11 +116,11 @@ export const NumberInput = ({ config, stepData, onChange }) => {
   };
 
   return (
-    <FormControl variant="standard">
+    <CCFormControl variant="standard">
       <InputLabel shrink htmlFor={config.name}>
         {config.title}
       </InputLabel>
-      <InputBase
+      <CCFormInputBase
         key={config.title}
         variant="outlined"
         id={config.name}
@@ -128,7 +128,7 @@ export const NumberInput = ({ config, stepData, onChange }) => {
         onChange={handleChange}
         type="number"
       />
-    </FormControl>
+    </CCFormControl>
   );
 };
 

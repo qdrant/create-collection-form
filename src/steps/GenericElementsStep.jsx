@@ -3,7 +3,7 @@ import { elements } from "../flow.js";
 import { Button, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import components from "../inputs/collection.jsx";
-import Card from "@mui/material/Card";
+import { CCFormButton, CCFormCard } from "../ThemedComponents.jsx";
 
 const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
   const value = stepData || {};
@@ -20,7 +20,7 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
           console.log(group.variant);
 
           return (
-            <Card
+            <CCFormCard
               variant={group.variant}
               key={groupIndex}
               sx={{
@@ -52,12 +52,12 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
                   </Box>
                 );
               })}
-            </Card>
+            </CCFormCard>
           );
         })}
       {config.button && (
         // todo: update
-        <Button
+        <CCFormButton
           // key={element.title}
           variant="contained"
           onClick={() =>
@@ -65,7 +65,7 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
           }
         >
           {config.button.title}
-        </Button>
+        </CCFormButton>
       )}
     </Box>
   );

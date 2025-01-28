@@ -1,19 +1,15 @@
-import { useState, useCallback, useMemo, memo } from "react";
+import { useState, useCallback, useMemo, memo, forwardRef } from "react";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Typography, useTheme } from "@mui/material";
-import Card from "@mui/material/Card";
+import { Typography } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
+import { CCFormSelectCard } from "./ThemedComponents";
 
 const FormCard = ({ card, isActive, onClick }) => {
-  const theme = useTheme();
   return (
-    <Card
+    <CCFormSelectCard
       elevation={isActive ? 3 : 0}
-      sx={{
-        cursor: isActive ? "default" : "pointer",
-        border: isActive ? `1px solid ${theme.palette.grey[700]}` : "inherit",
-      }}
+      className={isActive ? "active" : ""}
       onClick={onClick}
     >
       <CardContent>
@@ -24,7 +20,7 @@ const FormCard = ({ card, isActive, onClick }) => {
           {card.description}
         </Typography>
       </CardContent>
-    </Card>
+    </CCFormSelectCard>
   );
 };
 

@@ -1,86 +1,67 @@
-import { useEffect, useMemo, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
-import {
-  createTheme,
-  CssBaseline,
-  Paper,
-  ThemeProvider,
-  useTheme,
-} from "@mui/material";
-import { defaultTheme } from "./theme/theme.js";
 import { steps } from "./flow.js";
 import CardsSelect from "./CardsSelect.jsx";
 import TenantFieldSelectionStep from "./steps/TenantFieldSelectionStep.jsx";
 import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
+import { useThemeProps } from "@mui/material";
+import { CCFormRoot } from "./ThemedComponents";
 
-// todo:
-// 1. scroll to the next step
-export function CreateCollectionForm({ theme = defaultTheme }) {
-  const firstStepName = "use-case-step";
+export const CreateCollectionForm = forwardRef(
+  function CreateCollectionForm(inProps, ref) {
+    const props = useThemeProps({
+      props: inProps,
+      name: "MuiCreateCollectionForm",
+    });
+    const { ...other } = props;
 
-  const [path, setPath] = useState(() => {
-    return JSON.parse(localStorage.getItem("path")) || [firstStepName];
-  });
-  const [formData, setFormData] = useState(() => {
-    return JSON.parse(localStorage.getItem("formData")) || {};
-  });
+    const ownerState = { ...props };
 
-  const updatePath = (prevStep, nextStep) => {
-    const prevStepIndex = path.indexOf(prevStep);
-    const newPath = path.slice(0, prevStepIndex + 1);
-    newPath.push(nextStep);
-    setPath(newPath);
-  };
+    const [path, setPath] = useState(() => {
+      return JSON.parse(localStorage.getItem("path")) || ["use-case-step"];
+    });
+    const [formData, setFormData] = useState(() => {
+      return JSON.parse(localStorage.getItem("formData")) || {};
+    });
 
-  const handleStepApply = (stepName, data, nextStep) => {
-    setFormData((prev) => ({ ...prev, [stepName]: data }));
-    if (!nextStep) {
-      return;
-    }
-    updatePath(stepName, nextStep);
-  };
+    const updatePath = (prevStep, nextStep) => {
+      const prevStepIndex = path.indexOf(prevStep);
+      const newPath = path.slice(0, prevStepIndex + 1);
+      newPath.push(nextStep);
+      setPath(newPath);
+    };
 
-  useEffect(() => {
-    if (formData) {
-      localStorage.setItem("formData", JSON.stringify(formData));
-    }
-    if (path.length > 0) {
-      localStorage.setItem("path", JSON.stringify(path));
-    }
-  }, [path, formData]);
+    const handleStepApply = (stepName, data, nextStep) => {
+      setFormData((prev) => ({ ...prev, [stepName]: data }));
+      if (!nextStep) {
+        return;
+      }
+      updatePath(stepName, nextStep);
+    };
 
-  const stepsComponents = {
-    "use-case-step": CardsSelect,
-    "tenant-field-selection-step": TenantFieldSelectionStep,
-    "templates-selection-step": CardsSelect,
-    "simple-dense-embedding-step": SimpleDenseEmbeddingStep,
-    "simple-hybrid-embedding-step": SimpleHybridEmbeddingStep,
-    "index-field-selection-step": IndexFieldSelectionStep,
-  };
+    useEffect(() => {
+      if (formData) {
+        localStorage.setItem("formData", JSON.stringify(formData));
+      }
+      if (path.length > 0) {
+        localStorage.setItem("path", JSON.stringify(path));
+      }
+    }, [path, formData]);
 
-  const mode = useTheme().palette.mode;
-  const componentTheme = useMemo(() => {
-    return createTheme(
-      {
-        palette: {
-          mode,
-        },
-      },
-      mode === "dark" ? theme.colorSchemes.dark : theme.colorSchemes.light,
-    );
-  }, [mode, theme.colorSchemes.dark, theme.colorSchemes.light]);
+    const stepsComponents = {
+      "use-case-step": CardsSelect,
+      "tenant-field-selection-step": TenantFieldSelectionStep,
+      "templates-selection-step": CardsSelect,
+      "simple-dense-embedding-step": SimpleDenseEmbeddingStep,
+      "simple-hybrid-embedding-step": SimpleHybridEmbeddingStep,
+      "index-field-selection-step": IndexFieldSelectionStep,
+    };
 
-  return (
-    <ThemeProvider theme={componentTheme}>
-      <CssBaseline />
-      <Box
-        sx={{
-          pt: 6,
-        }}
-      >
+    return (
+      <CCFormRoot ref={ref} ownerState={ownerState} {...other}>
         {path.map((step) => {
           const StepComponent = stepsComponents[step];
           if (!StepComponent) {
@@ -92,12 +73,12 @@ export function CreateCollectionForm({ theme = defaultTheme }) {
 
           return (
             <Box
+              key={step}
               sx={{
                 mb: 7,
               }}
             >
               <StepComponent
-                key={step}
                 stepName={step}
                 config={steps[step]}
                 stepData={stepData}
@@ -106,14 +87,14 @@ export function CreateCollectionForm({ theme = defaultTheme }) {
             </Box>
           );
         })}
-      </Box>
-    </ThemeProvider>
-  );
-}
+      </CCFormRoot>
+    );
+  },
+);
 
 // props validation
 CreateCollectionForm.propTypes = {
-  theme: PropTypes.object,
+  ref: PropTypes.object,
 };
 
 export default CreateCollectionForm;

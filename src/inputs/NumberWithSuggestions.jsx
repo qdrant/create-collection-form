@@ -3,10 +3,10 @@ import {
   Autocomplete,
   MenuItem,
   Typography,
-  InputBase,
   InputLabel,
   FormControl,
 } from "@mui/material";
+import { CCFormControl, CCFormInputBase } from "../ThemedComponents.jsx";
 
 const NumberWithSuggestions = ({ config, stepData, onChange }) => {
   const value = stepData || "";
@@ -37,17 +37,17 @@ const NumberWithSuggestions = ({ config, stepData, onChange }) => {
         );
       }}
       renderInput={(params) => (
-        <FormControl variant="standard">
+        <CCFormControl variant="standard">
           <InputLabel shrink htmlFor={config.name}>
             {config.title}
           </InputLabel>
-          <InputBase
+          <CCFormInputBase
             {...params.InputProps}
             inputProps={params.inputProps}
             id={config.name}
             value={value || config.default || ""}
           />
-        </FormControl>
+        </CCFormControl>
       )}
     />
   );

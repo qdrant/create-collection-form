@@ -6,7 +6,8 @@
   "author": "Qdrant Team",
   "description": "React component for Qdrant create collection form",
   "main": "./src/index.js",
-  "dependencies": {
+  "module": "./src/index.js",
+  "peerDependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.1",
