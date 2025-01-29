@@ -1,20 +1,12 @@
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Typography } from "@mui/material";
+import { Grid2, Typography } from "@mui/material";
 import components from "./collection.jsx";
 
 const GenericInputs = function ({ config, stepData, onChange }) {
   console.log(config.elements);
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        flex: 1,
-        justifyContent: "start",
-        gap: 2,
-      }}
-    >
+    <Grid2 container spacing={2}>
       {config.groups.map((group) =>
         group.elements.map((element) => {
           let configOnChange = function (value) {
@@ -36,16 +28,13 @@ const GenericInputs = function ({ config, stepData, onChange }) {
           }
 
           return (
-            <Box
+            <Grid2
+              item
+              size={4} // todo: make it configurable
               key={element.title}
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                flexBasis: "49%",
-                flexShrink: 1,
-                flexGrow: 1,
-                justifyContent: "space-around",
                 mt: 2,
+                // alignContent: "end",
               }}
             >
               <Typography variant="h6">{element.title}</Typography>
@@ -54,11 +43,11 @@ const GenericInputs = function ({ config, stepData, onChange }) {
                 stepData={elementData}
                 onChange={configOnChange}
               />
-            </Box>
+            </Grid2>
           );
         }),
       )}
-    </Box>
+    </Grid2>
   );
 };
 
