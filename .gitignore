@@ -1,4 +1,4 @@
 # User-specific stuff
 .idea
-dev-preview-app
 node_modules
+example-app/node_modules
