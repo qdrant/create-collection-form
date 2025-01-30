@@ -17,19 +17,24 @@ export const Dropdown = ({ config, stepData, onChange }) => {
 
   // todo: add labelId and id
   return (
-    <Select
-      labelId=""
-      id=""
-      value={value}
-      onChange={handleChange}
-      input={<CCFormInputBase />}
-    >
-      {config.options.map((option) => (
-        <MenuItem key={option} value={option}>
-          {option}
-        </MenuItem>
-      ))}
-    </Select>
+    <CCFormControl variant="standard">
+      <InputLabel shrink htmlFor={config.name}>
+        {config.title}
+      </InputLabel>
+      <Select
+        labelId=""
+        id=""
+        value={value}
+        onChange={handleChange}
+        input={<CCFormInputBase />}
+      >
+        {config.options.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </Select>
+    </CCFormControl>
   );
 };
 
@@ -44,7 +49,9 @@ Dropdown.propTypes = {
 };
 
 export const StringInput = ({ config, stepData, onChange }) => {
-  const value = stepData || "";
+  const defaultValue = config.default || "";
+
+  const value = !stepData && stepData !== "" ? defaultValue : stepData;
 
   // todo:
   // validate input
@@ -57,7 +64,7 @@ export const StringInput = ({ config, stepData, onChange }) => {
         key={config.title}
         variant="outlined"
         id={config.name}
-        value={value || config.default || ""}
+        value={value}
         onChange={(e) => {
           onChange(e.target.value);
         }}

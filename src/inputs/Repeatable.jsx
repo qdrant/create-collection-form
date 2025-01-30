@@ -4,7 +4,9 @@ import Box from "@mui/material/Box";
 import { Add, Delete } from "@mui/icons-material";
 import { Divider } from "@mui/material";
 import Card from "@mui/material/Card";
-import { CCFormButton } from "../ThemedComponents.jsx";
+import { CCFormButton, CCFormCard } from "../ThemedComponents.jsx";
+import { Fragment } from "react";
+import { Grid2 } from "@mui/material";
 
 // todo: update for the new structure
 const Repeatable = ({ config, stepData, onChange }) => {
@@ -22,54 +24,49 @@ const Repeatable = ({ config, stepData, onChange }) => {
   };
 
   return (
-    <Box>
+    <Grid2 size={12}>
       {values.map((value, index) => (
-        <Box
-          key={index}
+        <CCFormCard
           sx={{
+            px: 2,
+            pt: 2,
+            pb: 1,
+            mt: 2,
             display: "flex",
             flexDirection: "column",
           }}
+          key={index}
         >
-          {config.groups?.length &&
-            config.groups.map((group, groupIndex) => {
-              return (
-                <Card
-                  variant={group.variant}
-                  key={groupIndex}
-                  sx={{
-                    p: 2,
-                    mb: 3,
-                  }}
-                >
-                  {group.elements.map((element) => {
-                    const handleValueChange = (value) => {
-                      const newValues = [...values];
-                      newValues[index] = {
-                        ...newValues[index],
-                        [element.name]: value,
-                      };
-                      onChange(newValues);
-                    };
+          <Grid2 container spacing={2}>
+            {config.elements.map((element) => {
+              const handleValueChange = (value) => {
+                const newValues = [...values];
+                newValues[index] = {
+                  ...newValues[index],
+                  [element.name]: value,
+                };
+                onChange(newValues);
+              };
 
-                    const Component = components[element.type];
-                    if (!Component) {
-                      console.log("Skipping element", element.type);
-                      return null;
-                    }
-                    return (
-                      <Box key={element.name}>
-                        <Component
-                          config={element}
-                          stepData={value[element.name] || element.default}
-                          onChange={(value) => handleValueChange(value)}
-                        />
-                      </Box>
-                    );
-                  })}
-                </Card>
+              const Component = components[element.type];
+              if (!Component) {
+                console.log("Skipping element", element.type);
+                return null;
+              }
+              return (
+                <Fragment key={element.name}>
+                  <Component
+                    config={element}
+                    stepData={value[element.name] || element.default}
+                    onChange={(value) => handleValueChange(value)}
+                  />
+                </Fragment>
               );
             })}
+          </Grid2>
+
+          <Divider sx={{ mt: 2, mb: 1, mx: -4 }} />
+
           <CCFormButton
             variant="text"
             size={"small"}
@@ -79,10 +76,7 @@ const Repeatable = ({ config, stepData, onChange }) => {
           >
             Remove
           </CCFormButton>
-          {config.elements.length > 1 && (
-            <Divider sx={{ mt: 2, mb: 3, mx: -4 }} />
-          )}
-        </Box>
+        </CCFormCard>
       ))}
       <CCFormButton
         variant="text"
@@ -92,7 +86,7 @@ const Repeatable = ({ config, stepData, onChange }) => {
       >
         Add
       </CCFormButton>
-    </Box>
+    </Grid2>
   );
 };
 

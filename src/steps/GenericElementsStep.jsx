@@ -3,71 +3,69 @@ import { elements } from "../flow.js";
 import { Button, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import components from "../inputs/collection.jsx";
-import { CCFormButton, CCFormCard } from "../ThemedComponents.jsx";
+import { CCFormButton } from "../ThemedComponents.jsx";
+import { Grid2 } from "@mui/material";
+import { Fragment } from "react";
 
 const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
   const value = stepData || {};
 
   return (
-    <Box>
-      <Typography variant="h4" sx={{ mb: 2 }}>
-        {config.title}
-      </Typography>
+    <Grid2 container spacing={2}>
+      <Grid2 size={12}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
+          {config.title}
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 2 }}>
+          {config.description}
+        </Typography>
+      </Grid2>
 
-      {/*todo: don't use index as key*/}
-      {config.groups?.length &&
-        config.groups.map((group, groupIndex) => {
-          console.log(group.variant);
-
+      {config.elements &&
+        config.elements.map((element, idx) => {
+          const onChange = (value) => {
+            const newValue = { ...stepData, [element.name]: value };
+            onApply(stepName, newValue, null);
+          };
+          const Component = components[element.type];
+          if (!Component) {
+            console.log("Skipping element", element.type);
+            return null;
+          }
           return (
-            <CCFormCard
-              variant={group.variant}
-              key={groupIndex}
-              sx={{
-                p: 2,
-                mb: 3,
-              }}
-            >
-              {group.elements.map((element, idx) => {
-                const onChange = (value) => {
-                  const newValue = { ...stepData, [element.name]: value };
-                  onApply(stepName, newValue, null);
-                };
-                const Component = components[element.type];
-                if (!Component) {
-                  console.log("Skipping element", element.type);
-                  return null;
-                }
-                return (
-                  <Box key={idx}>
-                    <Component
-                      key={element.name}
-                      config={{
-                        ...(elements[element.type] || {}),
-                        ...element,
-                      }}
-                      stepData={value[element.name]}
-                      onChange={onChange}
-                    />
-                  </Box>
-                );
-              })}
-            </CCFormCard>
+            <Fragment key={idx}>
+              <Component
+                key={element.name}
+                config={{
+                  ...(elements[element.type] || {}),
+                  ...element,
+                }}
+                stepData={value[element.name]}
+                onChange={onChange}
+              />
+            </Fragment>
           );
         })}
+
       {config.button && (
         // todo: update
-        <CCFormButton
-          // key={element.title}
-          variant="contained"
-          onClick={() =>
-            onApply(stepName, value, config.button["on-click"]["continue-step"])
-          }
-        >
-          {config.button.title}
-        </CCFormButton>
+        <Grid2 size={12}>
+          <CCFormButton
+            // key={element.title}
+            variant="contained"
+            onClick={() =>
+              onApply(
+                stepName,
+                value,
+                config.button["on-click"]["continue-step"],
+              )
+            }
+          >
+            {config.button.title}
+          </CCFormButton>
+        </Grid2>
       )}
-    </Box>
+    </Grid2>
   );
 };
 
@@ -76,14 +74,10 @@ GenericElementsStep.propTypes = {
   stepName: PropTypes.string.isRequired,
   config: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    groups: PropTypes.arrayOf(
+    elements: PropTypes.arrayOf(
       PropTypes.shape({
-        elements: PropTypes.arrayOf(
-          PropTypes.shape({
-            type: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-          }),
-        ),
+        type: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
       }),
     ),
   }),

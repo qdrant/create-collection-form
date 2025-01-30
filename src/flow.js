@@ -3,52 +3,42 @@
 
 export const elements = {
   "dense-vector-configuration": {
-    groups: [
+    elements: [
       {
-        variant: "borders-only",
-        elements: [
+        type: "number-with-suggestions",
+        title: "Choose dimensions",
+        name: "dimensions",
+        suggestions: [
           {
-            type: "number-with-suggestions",
-            title: "Choose dimensions",
-            name: "dimensions",
-            suggestions: [
-              {
-                label: "CLIP",
-                value: 512,
-              },
-              {
-                label: "openai-ai/text-embedding-3-small",
-                value: 1536,
-              },
-              {
-                label: "openai-ai/text-embedding-3-large",
-                value: 3072,
-              },
-            ],
+            label: "CLIP",
+            value: 512,
           },
           {
-            type: "dropdown",
-            name: "metric",
-            options: ["Cosine", "Euclid", "Dot", "Manhattan"],
-            default: "Cosine",
-            title: "Choose metric",
+            label: "openai-ai/text-embedding-3-small",
+            value: 1536,
+          },
+          {
+            label: "openai-ai/text-embedding-3-large",
+            value: 3072,
           },
         ],
+      },
+      {
+        type: "dropdown",
+        name: "metric",
+        options: ["Cosine", "Euclid", "Dot", "Manhattan"],
+        default: "Cosine",
+        title: "Choose metric",
       },
     ],
   },
   "sparse-vector-configuration": {
-    groups: [
+    elements: [
       {
-        variant: "borders-only",
-        elements: [
-          {
-            type: "checkbox",
-            title: "Use IDF?",
-            name: "use_idf",
-            default: true,
-          },
-        ],
+        type: "checkbox",
+        title: "Use IDF?",
+        name: "use_idf",
+        default: true,
       },
     ],
   },
@@ -90,16 +80,12 @@ export const steps = {
     "long-description":
       "This field should be used to filter data based on tenant id. For example: user_id, organization_id, etc. Payload field should be of a `keyword` type.",
 
-    groups: [
+    elements: [
       {
-        variant: "borders-only",
-        elements: [
-          {
-            type: "string-input",
-            title: "Tenant field name",
-            name: "tenant_id",
-          },
-        ],
+        size: 12,
+        type: "string-input",
+        title: "Tenant field name",
+        name: "tenant_id",
       },
     ],
     button: {
@@ -166,16 +152,11 @@ export const steps = {
     // In this config user should select a field that contains tenant id
     title: "Vector configuration",
     description: "Configuration for dense embedding",
-    groups: [
+    elements: [
       {
-        variant: "borders-only",
+        type: "group",
+        name: "vector_config_group",
         elements: [
-          {
-            type: "string-input",
-            title: "Vector name",
-            name: "vector_name",
-            default: "dense",
-          },
           {
             type: "dense-vector-configuration",
             name: "vector_config",
@@ -195,35 +176,34 @@ export const steps = {
     // In this config user should select a field that contains tenant id
     title: "Vector configuration",
     description: "Configuration for dense embedding",
-    groups: [
+    elements: [
       {
-        variant: "outlined",
-        elements: [
-          {
-            type: "string-input",
-            title: "Dense vector name",
-            name: "dense_vector_name",
-            default: "dense",
-          },
-        ],
+        type: "string-input",
+        title: "Dense vector name",
+        name: "dense_vector_name",
+        default: "dense",
+        size: 12,
       },
       {
-        variant: "outlined",
+        type: "group",
+        name: "vector_config_group",
         elements: [
           {
             type: "dense-vector-configuration",
             name: "dense_vector_config",
           },
-          {
-            type: "string-input",
-            title: "Sparse vector name",
-            name: "sparse_vector_name",
-            default: "sparse",
-          },
         ],
       },
       {
-        variant: "outlined",
+        type: "string-input",
+        title: "Sparse vector name",
+        name: "sparse_vector_name",
+        default: "sparse",
+        size: 12,
+      },
+      {
+        type: "group",
+        name: "sparse_vector_config_group",
         elements: [
           {
             type: "sparse-vector-configuration",
@@ -246,98 +226,87 @@ export const steps = {
     // For each field user needs to choose which type in index they want and parameters for this index.
     title: "Payload indexes",
     Description: "We need to create indexes, if we want to do filtered search.",
-    groups: [
+    elements: [
       {
+        type: "repeatable",
+        name: "payload_fields",
         elements: [
           {
-            type: "repeatable",
-            name: "payload_fields",
-            groups: [
+            type: "string-input",
+            title: "Field name",
+            name: "field_name",
+            size: 12,
+          },
+          {
+            type: "button-group-with-inputs",
+            title: "Field type",
+            name: "field_config",
+            size: 12,
+            enums: [
               {
-                elements: [
+                name: "keyword",
+              },
+              {
+                name: "integer",
+                fields: [
                   {
-                    type: "string-input",
-                    title: "Field name",
-                    name: "field_name",
+                    title: "Allow match filters",
+                    name: "lookup",
+                    type: "checkbox",
+                    default: true,
                   },
                   {
-                    type: "button-group-with-inputs",
-                    title: "Field type",
-                    name: "field_config",
-                    enums: [
-                      {
-                        name: "keyword",
-                      },
-                      {
-                        name: "integer",
-                        fields: [
-                          {
-                            title: "Allow match filters",
-                            name: "lookup",
-                            type: "checkbox",
-                            default: true,
-                          },
-                          {
-                            title: "Allow range filters",
-                            name: "range",
-                            type: "checkbox",
-                            default: true,
-                          },
-                        ],
-                      },
-                      {
-                        name: "float",
-                      },
-                      {
-                        name: "uuid",
-                      },
-                      {
-                        name: "datetime",
-                      },
-                      {
-                        name: "text",
-                        fields: [
-                          {
-                            title: "Tokenizer",
-                            name: "tokenizer",
-                            type: "dropdown",
-                            options: [
-                              "prefix",
-                              "whitespace",
-                              "word",
-                              "multilingual",
-                            ],
-                            default: "whitespace",
-                          },
-                          {
-                            title: "Lowercase",
-                            name: "lowercase",
-                            type: "checkbox",
-                            default: true,
-                          },
-                          {
-                            title: "Min token length",
-                            name: "min_token_length",
-                            type: "number",
-                            default: null,
-                          },
-                          {
-                            title: "Max token length",
-                            name: "max_token_length",
-                            type: "number",
-                            default: null,
-                          },
-                        ],
-                      },
-                      {
-                        name: "geo",
-                      },
-                      {
-                        name: "bool",
-                      },
-                    ],
+                    title: "Allow range filters",
+                    name: "range",
+                    type: "checkbox",
+                    default: true,
                   },
                 ],
+              },
+              {
+                name: "float",
+              },
+              {
+                name: "uuid",
+              },
+              {
+                name: "datetime",
+              },
+              {
+                name: "text",
+                fields: [
+                  {
+                    title: "Tokenizer",
+                    name: "tokenizer",
+                    type: "dropdown",
+                    options: ["prefix", "whitespace", "word", "multilingual"],
+                    default: "whitespace",
+                  },
+                  {
+                    title: "Lowercase",
+                    name: "lowercase",
+                    type: "checkbox",
+                    default: true,
+                  },
+                  {
+                    title: "Min token length",
+                    name: "min_token_length",
+                    type: "number",
+                    default: null,
+                  },
+                  {
+                    title: "Max token length",
+                    name: "max_token_length",
+                    type: "number",
+                    default: null,
+                  },
+                ],
+              },
+              {
+                name: "geo",
+              },
+              {
+                name: "bool",
               },
             ],
           },

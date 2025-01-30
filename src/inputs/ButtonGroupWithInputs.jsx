@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Typography, useTheme } from "@mui/material";
+import { Grid2, Typography, useTheme } from "@mui/material";
 import GenericInputs from "./GenericInputs.jsx";
-import Card from "@mui/material/Card";
+import { CCFormCard } from "../ThemedComponents.jsx";
 
 /*
 Component capable of rendering the following configuration:
@@ -87,10 +87,11 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
   const theme = useTheme();
 
   return (
-    <Box>
+    <Grid2 size={12}>
       <Typography variant="h6" mt={2}>
         {config.title}
       </Typography>
+
       {/* Select one of the enums with group button */}
       <Box
         sx={{
@@ -112,7 +113,7 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
 
           return (
             <Box key={enumObject.name}>
-              <Card
+              <CCFormCard
                 sx={{
                   px: 2,
                   py: 1,
@@ -126,7 +127,7 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
                 onClick={() => configOnChange(enumObject.name)}
               >
                 {enumObject.name}
-              </Card>
+              </CCFormCard>
             </Box>
           );
         })}
@@ -134,12 +135,17 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
 
       {/* Render fields of the selected enum */}
 
-      <GenericInputs
-        config={{ elements: selectedEnumFields, name: config.name + "_config" }}
-        stepData={stepData}
-        onChange={onChange}
-      />
-    </Box>
+      <Grid2 container spacing={2}>
+        <GenericInputs
+          config={{
+            elements: selectedEnumFields,
+            name: config.name + "_config",
+          }}
+          stepData={stepData}
+          onChange={onChange}
+        />
+      </Grid2>
+    </Grid2>
   );
 };
 
