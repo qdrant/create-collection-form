@@ -1,6 +1,7 @@
-import { MenuItem, Select, Checkbox as MuiCheckbox } from "@mui/material";
+import { FormControlLabel, InputLabel, MenuItem, Select } from "@mui/material";
 import PropTypes from "prop-types";
 import {
+  CCFormCheckbox,
   CCFormControl,
   CCFormInputBase,
   CCFormLabel,
@@ -26,6 +27,11 @@ export const Dropdown = ({ config, stepData, onChange }) => {
         value={value}
         onChange={handleChange}
         input={<CCFormInputBase variant="outlined" />}
+        MenuProps={{
+          classes: {
+            list: "dropdown-list",
+          },
+        }}
       >
         {config.options.map((option) => (
           <MenuItem key={option} value={option}>
@@ -91,12 +97,19 @@ export const Checkbox = ({ config, stepData, onChange }) => {
   };
 
   return (
-    <MuiCheckbox
-      sx={{ alignSelf: "start" }}
-      checked={value}
-      onChange={handleChange}
-      inputProps={{ "aria-label": "controlled" }}
-    />
+    <CCFormControl sx={{ display: "flex", flexDirection: "row" }}>
+      <FormControlLabel
+        label={config.title}
+        control={
+          <CCFormCheckbox
+            sx={{ alignSelf: "start" }}
+            checked={value}
+            onChange={handleChange}
+            inputProps={{ "aria-label": "controlled" }}
+          />
+        }
+      />
+    </CCFormControl>
   );
 };
 

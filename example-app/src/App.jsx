@@ -12,8 +12,6 @@ import {
 import { ColorModeContext } from "./context/color-context.jsx";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import merge from "lodash.merge";
-import defaultColors from "../../src/theme/default-colors.js";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");

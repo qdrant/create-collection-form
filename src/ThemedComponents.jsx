@@ -6,7 +6,7 @@ import {
   InputLabel,
   Typography,
   styled,
-  createSvgIcon,
+  Checkbox,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import defaultColors from "./theme/default-colors.js";
@@ -15,7 +15,6 @@ export const CCFormRoot = styled("div", {
   name: "MuiCreateCollectionForm",
   slot: "root",
 })(({ theme }) => ({
-  // if needed, you can access the theme and ownerState here
   padding: "1rem",
   color:
     theme.palette.mode === "dark"
@@ -23,7 +22,7 @@ export const CCFormRoot = styled("div", {
       : defaultColors["neutral-10"],
   backgroundColor:
     theme.palette.mode === "dark"
-      ? defaultColors["neutral-20"]
+      ? defaultColors["neutral-10"]
       : defaultColors["neutral-98"],
 
   "& > .MuiTypography-root": {
@@ -61,10 +60,13 @@ export const CCFormSelectCard = styled(Card, {
 
   if (theme.palette.mode === "dark") {
     styles["&.MuiPaper-root"] = {
-      background: defaultColors["neutral-10"],
+      background: defaultColors["neutral-20"],
       border: 0,
       boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-40"]} inset`,
       color: defaultColors["neutral-80"],
+      "&:hover": {
+        boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-80"]} inset`,
+      },
       "&.active": {
         border: 0,
         boxShadow: `0px 0px 0px 2px ${defaultColors["neutral-80"]} inset`,
@@ -92,6 +94,9 @@ export const CCFormSelectCard = styled(Card, {
       background: theme.palette.background.default,
       boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-90"]} inset`,
       border: 0,
+      "&:hover": {
+        boxShadow: `0px 0px 0px 1px ${defaultColors["secondary-blue-30"]} inset`,
+      },
       "&.active": {
         cursor: "default",
         border: 0,
@@ -129,7 +134,7 @@ export const CCFormCard = styled(Card, {
         color: defaultColors["neutral-98"],
       },
       "&.MuiPaper-root": {
-        backgroundColor: defaultColors["neutral-10"],
+        backgroundColor: defaultColors["neutral-20"],
         border: 0,
         boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-80"]} inset`,
         color: defaultColors["neutral-98"],
@@ -159,6 +164,7 @@ export const CCFormButton = styled(Button, {
   textTransform: "capitalize",
   fontWeight: "semibold",
   fontSize: "18px",
+  color: defaultColors["primary-50"],
   "&.MuiButton-contained": {
     display: "flex",
     height: "40px",
@@ -201,7 +207,6 @@ export const CCFormControl = styled(FormControl, {
   name: "MuiCreateCollectionForm",
   slot: "formControl",
 })(() => ({
-  // if needed, you can access the theme and ownerState here
   display: "flex",
   flexDirection: "column",
   width: "100%",
@@ -220,13 +225,17 @@ export const CCFormInputBase = styled(InputBase, {
   padding: "8px 0",
 
   "&[variant='outlined']": {
-    border: `1px solid ${defaultColors["neutral-70"]}`,
+    border: `1px solid ${defaultColors["neutral-40"]}`,
+    borderColor:
+      theme.palette.mode === "dark"
+        ? defaultColors["neutral-40"]
+        : defaultColors["neutral-90"],
     borderRadius: "4px",
     padding: "8px 12px",
     backgroundColor:
       theme.palette.mode === "dark"
         ? defaultColors["neutral-20"]
-        : defaultColors["neutral-98"],
+        : theme.palette.background.default,
   },
 
   "&.Mui-focused": {
@@ -255,6 +264,19 @@ export const CCFormInputBase = styled(InputBase, {
   },
 }));
 
+export const CCFormCheckbox = styled(Checkbox, {
+  name: "MuiCreateCollectionForm",
+  slot: "checkbox",
+})(() => ({
+  color: defaultColors["primary-50"],
+  "&.MuiCheckbox-colorPrimary": {
+    color: defaultColors["primary-50"],
+    "&.Mui-checked": {
+      color: defaultColors["primary-50"],
+    },
+  },
+}));
+
 export const CCFormLabel = styled(InputLabel, {
   name: "MuiCreateCollectionForm",
   slot: "label",
@@ -277,7 +299,6 @@ export const CCFormAutoComplete = styled(Autocomplete, {
   name: "MuiCreateCollectionForm",
   slot: "autoComplete",
 })(() => ({
-  // if needed, you can access the theme and ownerState here
   "&.MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot": {
     paddingRight: 0,
   },
@@ -285,14 +306,3 @@ export const CCFormAutoComplete = styled(Autocomplete, {
     right: "10px",
   },
 }));
-
-// icon component, aplying icon name as a string
-// and returning the corresponding MUI icon component
-export const CCFormIcon = styled(
-  (props) =>
-    createSvgIcon(<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />, props.name),
-  {
-    name: "MuiCreateCollectionForm",
-    slot: "icon",
-  },
-)(() => ({}));

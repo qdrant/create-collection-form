@@ -50,6 +50,7 @@ const NumberWithSuggestions = ({ config, stepData, onChange }) => {
             inputProps={params.inputProps}
             variant="outlined"
             id={config.name}
+            placeholder={config.placeholder || ""}
             value={value || config.default || ""}
           />
         </CCFormControl>

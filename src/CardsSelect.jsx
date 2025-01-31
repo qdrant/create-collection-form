@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
-import { CCFormIcon, CCFormSelectCard, CCFormTitle } from "./ThemedComponents";
+import { CCFormSelectCard, CCFormTitle } from "./ThemedComponents";
 import defaultColors from "./theme/default-colors.js";
 
 const FormCard = ({ card, isActive, onClick }) => {
@@ -33,26 +33,28 @@ const FormCard = ({ card, isActive, onClick }) => {
         className={isActive ? "active" : ""}
         onClick={onClick}
       >
-        <CardContent>
-          <Box display="flex" gap={2} alignItems="center" mb={1}>
-            {card.icon && (
-              <CardIcon
-                sx={{
-                  width: "1rem",
-                  height: "1rem",
-                  mb: 2,
-                }}
-              />
-            )}
+        <CardContent sx={{ display: "flex" }}>
+          {card.icon && (
+            <CardIcon
+              sx={{
+                width: "1rem",
+                height: "1rem",
+                mb: 2,
+                mr: 2,
+                mt: 0.5,
+              }}
+            />
+          )}
+          <Box>
             <Typography className={"CCFormSelectCard-Title"} mb={2}>
               {card.title}
             </Typography>
+            <Typography variant="body2">{card["short-description"]}</Typography>
+            <Divider sx={{ my: 2 }} />
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              {card.description}
+            </Typography>
           </Box>
-          <Typography variant="body2">{card["short-description"]}</Typography>
-          <Divider sx={{ my: 2 }} />
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            {card.description}
-          </Typography>
         </CardContent>
       </CCFormSelectCard>
     </Grid2>

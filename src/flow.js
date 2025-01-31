@@ -8,6 +8,7 @@ export const elements = {
         type: "number-with-suggestions",
         title: "Choose dimensions",
         name: "dimensions",
+        placeholder: "Start typing...",
         suggestions: [
           {
             label: "CLIP",
