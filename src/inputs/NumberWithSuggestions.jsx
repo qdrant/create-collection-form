@@ -6,7 +6,11 @@ import {
   InputLabel,
   FormControl,
 } from "@mui/material";
-import { CCFormControl, CCFormInputBase } from "../ThemedComponents.jsx";
+import {
+  CCFormControl,
+  CCFormInputBase,
+  CCFormLabel,
+} from "../ThemedComponents.jsx";
 
 const NumberWithSuggestions = ({ config, stepData, onChange }) => {
   const value = stepData || "";
@@ -38,9 +42,9 @@ const NumberWithSuggestions = ({ config, stepData, onChange }) => {
       }}
       renderInput={(params) => (
         <CCFormControl variant="standard">
-          <InputLabel shrink htmlFor={config.name}>
+          <CCFormLabel shrink htmlFor={config.name}>
             {config.title}
-          </InputLabel>
+          </CCFormLabel>
           <CCFormInputBase
             {...params.InputProps}
             inputProps={params.inputProps}

@@ -6,7 +6,11 @@ import {
   FormControl,
 } from "@mui/material";
 import PropTypes from "prop-types";
-import { CCFormControl, CCFormInputBase } from "../ThemedComponents.jsx";
+import {
+  CCFormControl,
+  CCFormInputBase,
+  CCFormLabel,
+} from "../ThemedComponents.jsx";
 
 export const Dropdown = ({ config, stepData, onChange }) => {
   const value = stepData || "";
@@ -18,9 +22,9 @@ export const Dropdown = ({ config, stepData, onChange }) => {
   // todo: add labelId and id
   return (
     <CCFormControl variant="standard">
-      <InputLabel shrink htmlFor={config.name}>
+      <CCFormLabel shrink htmlFor={config.name}>
         {config.title}
-      </InputLabel>
+      </CCFormLabel>
       <Select
         labelId=""
         id=""
@@ -57,9 +61,9 @@ export const StringInput = ({ config, stepData, onChange }) => {
   // validate input
   return (
     <CCFormControl variant="standard">
-      <InputLabel shrink htmlFor={config.name}>
+      <CCFormLabel shrink htmlFor={config.name}>
         {config.title}
-      </InputLabel>
+      </CCFormLabel>
       <CCFormInputBase
         key={config.title}
         variant="outlined"
@@ -124,9 +128,9 @@ export const NumberInput = ({ config, stepData, onChange }) => {
 
   return (
     <CCFormControl variant="standard">
-      <InputLabel shrink htmlFor={config.name}>
+      <CCFormLabel shrink htmlFor={config.name}>
         {config.title}
-      </InputLabel>
+      </CCFormLabel>
       <CCFormInputBase
         key={config.title}
         variant="outlined"

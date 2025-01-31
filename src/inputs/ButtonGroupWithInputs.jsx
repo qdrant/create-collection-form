@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import { Grid2, Typography, useTheme } from "@mui/material";
 import GenericInputs from "./GenericInputs.jsx";
-import { CCFormCard } from "../ThemedComponents.jsx";
+import { CCFormSelectCard } from "../ThemedComponents.jsx";
 
 /*
 Component capable of rendering the following configuration:
@@ -113,21 +113,16 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
 
           return (
             <Box key={enumObject.name}>
-              <CCFormCard
+              <CCFormSelectCard
                 sx={{
                   px: 2,
                   py: 1,
-                  border:
-                    selectedEnum === enumObject.name
-                      ? `1px solid ${theme.palette.grey[700]}`
-                      : "inherit",
-                  cursor:
-                    selectedEnum === enumObject.name ? "default" : "pointer",
                 }}
                 onClick={() => configOnChange(enumObject.name)}
+                className={selectedEnum === enumObject.name ? "active" : ""}
               >
                 {enumObject.name}
-              </CCFormCard>
+              </CCFormSelectCard>
             </Box>
           );
         })}

@@ -12,8 +12,8 @@ import {
 import { ColorModeContext } from "./context/color-context.jsx";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import { CreateCollectionFormTheme } from "../../src/theme/theme.js";
 import merge from "lodash.merge";
+import defaultColors from "../../src/theme/default-colors.js";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -39,10 +39,13 @@ function App() {
         merge(
           {
             palette: {
+              primary: {
+                main: defaultColors["primary-50"],
+              },
               mode,
             },
           },
-          CreateCollectionFormTheme.colorSchemes[mode],
+          // CreateCollectionFormTheme.colorSchemes[mode],
         ),
       ),
     [mode],

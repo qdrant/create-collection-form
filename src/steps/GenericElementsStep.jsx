@@ -13,7 +13,7 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
   return (
     <Grid2 container spacing={2}>
       <Grid2 size={12}>
-        <Typography variant="h4" sx={{ mb: 2 }}>
+        <Typography variant="h5" sx={{ mb: 2 }}>
           {config.title}
         </Typography>
         <Typography variant="body1" sx={{ mb: 2 }}>

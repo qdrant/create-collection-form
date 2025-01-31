@@ -64,7 +64,9 @@ const CardsSelect = ({ stepName, config, stepData, onApply }) => {
 
   return (
     <Box>
-      <Typography variant="h4">{title}</Typography>
+      <Typography variant="h5" sx={{ mb: 2 }}>
+        {title}
+      </Typography>
       <p>{description}</p>
       <Box
         sx={{
