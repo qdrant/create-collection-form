@@ -26,7 +26,7 @@ export const CCFormRoot = styled("div", {
       ? defaultColors["neutral-20"]
       : defaultColors["neutral-98"],
 
-  "& .MuiTypography-root": {
+  "& > .MuiTypography-root": {
     color:
       theme.palette.mode === "dark"
         ? defaultColors["neutral-98"]
@@ -54,6 +54,9 @@ export const CCFormSelectCard = styled(Card, {
     "&.active": {
       cursor: "default",
     },
+    "& .MuiCardContent-root .MuiDivider-root ~ .MuiTypography-root": {
+      lineHeight: 2,
+    },
   };
 
   if (theme.palette.mode === "dark") {
@@ -61,7 +64,6 @@ export const CCFormSelectCard = styled(Card, {
       background: defaultColors["neutral-10"],
       border: 0,
       boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-40"]} inset`,
-      color: defaultColors["neutral-98"],
       "&.active": {
         border: 0,
         boxShadow: `0px 0px 0px 2px ${defaultColors["neutral-80"]} inset`,
@@ -70,6 +72,9 @@ export const CCFormSelectCard = styled(Card, {
         "& .MuiCardContent-root .MuiTypography-root": {
           color: `${defaultColors["neutral-80"]} !important`,
         },
+      },
+      "& .MuiCardContent-root .MuiTypography-root": {
+        color: defaultColors["neutral-98"],
       },
       "& .CCFormSelectCard-Title": {
         fontWeight: "bold",
@@ -94,6 +99,9 @@ export const CCFormSelectCard = styled(Card, {
             color: `${defaultColors["secondary-blue-30"]}`,
           },
         },
+      },
+      "& .MuiCardContent-root .MuiTypography-root": {
+        color: defaultColors["neutral-30"],
       },
       "& .CCFormSelectCard-Title": {
         color: `${defaultColors["secondary-blue-30"]}`,
@@ -215,23 +223,40 @@ export const CCFormControl = styled(FormControl, {
 export const CCFormInputBase = styled(InputBase, {
   name: "MuiCreateCollectionForm",
   slot: "input",
-})(({ theme }) => ({
-  "label + &": {
-    marginTop: theme.spacing(3),
-  },
-  display: "flex",
-  height: "40px",
-  lineHeight: "40px",
-  borderBottom: `1px solid ${defaultColors["neutral-70"]}`,
-  padding: "8px 0",
+})(({ theme }) => {
+  return {
+    display: "flex",
+    height: "40px",
+    lineHeight: "40px",
+    borderBottom: `1px solid ${defaultColors["neutral-70"]}`,
+    padding: "8px 0",
 
-  "&.Mui-focused": {
-    borderColor:
-      theme.palette.mode === "dark"
-        ? defaultColors["neutral-80"]
-        : defaultColors["neutral-50"],
-  },
-}));
+    "&.Mui-focused": {
+      borderColor:
+        theme.palette.mode === "dark"
+          ? defaultColors["neutral-80"]
+          : defaultColors["neutral-50"],
+    },
+
+    "&.Mui-disabled": {
+      color:
+        theme.palette.mode === "dark"
+          ? defaultColors["neutral-80"]
+          : defaultColors["neutral-50"],
+    },
+    // placeholder
+    "& input::placeholder": {
+      color:
+        theme.palette.mode === "dark"
+          ? defaultColors["neutral-80"]
+          : defaultColors["neutral-50"] + " !important",
+    },
+
+    "label + &": {
+      marginTop: theme.spacing(3),
+    },
+  };
+});
 
 export const CCFormLabel = styled(InputLabel, {
   name: "MuiCreateCollectionForm",

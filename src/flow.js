@@ -94,6 +94,7 @@ export const steps = {
         type: "string-input",
         title: "Tenant field name",
         name: "tenant_id",
+        placeholder: "Insert field name here",
       },
     ],
     button: {

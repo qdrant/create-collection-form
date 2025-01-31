@@ -68,6 +68,7 @@ export const StringInput = ({ config, stepData, onChange }) => {
         key={config.title}
         variant="outlined"
         id={config.name}
+        placeholder={config.placeholder || ""}
         value={value}
         onChange={(e) => {
           onChange(e.target.value);

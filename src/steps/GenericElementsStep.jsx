@@ -46,9 +46,8 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
 
       {config.button && (
         // todo: update
-        <Grid2 size={12}>
+        <Grid2 size={12} display={"flex"} justifyContent={"flex-end"}>
           <CCFormButton
-            // key={element.title}
             variant="contained"
             onClick={() =>
               onApply(

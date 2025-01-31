@@ -75,7 +75,7 @@ export const CreateCollectionForm = forwardRef(
             <Box
               key={step}
               sx={{
-                mb: 7,
+                mb: 8,
               }}
             >
               <StepComponent
