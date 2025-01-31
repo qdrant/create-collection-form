@@ -1,26 +1,61 @@
 import { useState, useCallback, useMemo, memo, forwardRef } from "react";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Typography } from "@mui/material";
+import {
+  createSvgIcon,
+  Divider,
+  Grid,
+  Grid2,
+  Icon,
+  Typography,
+} from "@mui/material";
 import CardContent from "@mui/material/CardContent";
-import { CCFormSelectCard } from "./ThemedComponents";
+import { CCFormIcon, CCFormSelectCard, CCFormTitle } from "./ThemedComponents";
+import defaultColors from "./theme/default-colors.js";
 
 const FormCard = ({ card, isActive, onClick }) => {
+  const CardIcon =
+    card.icon &&
+    createSvgIcon(
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d={card.icon.path}
+        fill={defaultColors["neutral-50"]}
+      />,
+      "CardIcon",
+    );
+
   return (
-    <CCFormSelectCard
-      elevation={isActive ? 3 : 0}
-      className={isActive ? "active" : ""}
-      onClick={onClick}
-    >
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h3">
-          {card.title}
-        </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          {card.description}
-        </Typography>
-      </CardContent>
-    </CCFormSelectCard>
+    <Grid2 size={card.size || 3} display="flex">
+      <CCFormSelectCard
+        elevation={1}
+        className={isActive ? "active" : ""}
+        onClick={onClick}
+      >
+        <CardContent>
+          <Box display="flex" gap={2} alignItems="center" mb={1}>
+            {card.icon && (
+              <CardIcon
+                sx={{
+                  width: "1rem",
+                  height: "1rem",
+                  mb: 2,
+                }}
+              />
+            )}
+            <Typography className={"CCFormSelectCard-Title"} mb={2}>
+              {card.title}
+            </Typography>
+          </Box>
+          <Typography variant="body2">{card["short-description"]}</Typography>
+          <Divider sx={{ my: 2 }} />
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            {card.description}
+          </Typography>
+        </CardContent>
+      </CCFormSelectCard>
+    </Grid2>
   );
 };
 
@@ -38,7 +73,7 @@ const CardsSelect = ({ stepName, config, stepData, onApply }) => {
   // todo: fix chosen card for the third step
   // if it has active card, show next step too
 
-  const { title, description, cards } = config;
+  const { title, description, cards, gap } = config;
   const [selected, setSelected] = useState(stepData);
 
   const handleSelect = useCallback(
@@ -64,26 +99,17 @@ const CardsSelect = ({ stepName, config, stepData, onApply }) => {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ mb: 2 }}>
+      <CCFormTitle variant="h6" sx={{ mb: 2 }}>
         {title}
-      </Typography>
+      </CCFormTitle>
       <p>{description}</p>
-      <Box
-        sx={{
-          width: "100%",
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fill, minmax(min(200px, 100%), 1fr))",
-          gap: 2,
-        }}
-      >
+      <Grid2 container spacing={gap || 2} alignItems={"stretch"}>
         {renderedCards}
-      </Box>
+      </Grid2>
     </Box>
   );
 };
 
-// todo: move this to Inputs.jsx?
 const MemoizedFormCard = memo(FormCard);
 
 // props validation

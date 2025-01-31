@@ -1,14 +1,11 @@
-import Box from "@mui/material/Box";
 import { elements } from "../flow.js";
 import PropTypes from "prop-types";
-import { Grid2, Typography } from "@mui/material";
 import components from "./collection.jsx";
 import { Fragment } from "react";
 
 const GenericInputs = function ({ config, stepData, onChange }) {
   return (
     <>
-      {/* <Grid2 container spacing={2}> */}
       {config.elements.map((element) => {
         let configOnChange = function (value) {
           let newData = {

@@ -35,19 +35,25 @@ function App() {
 
   const theme = useMemo(
     () =>
-      createTheme(
-        merge(
-          {
-            palette: {
-              primary: {
-                main: defaultColors["primary-50"],
-              },
-              mode,
+      createTheme({
+        palette: {
+          mode,
+        },
+        // here is how to override CreateCollectionForm's styles,
+        // see src/ThemedComponents.jsx for the reference
+        components: {
+          MuiCreateCollectionForm: {
+            // the name of the component
+            styleOverrides: {
+              // root: { // "root" is a slot name
+              //   backgroundColor: 'green',
+              // },
+              // selectCard: { // "selectCard" is a slot name
+              // }
             },
           },
-          // CreateCollectionFormTheme.colorSchemes[mode],
-        ),
-      ),
+        },
+      }),
     [mode],
   );
   return (

@@ -1,9 +1,8 @@
-import Box from "@mui/material/Box";
 import { elements } from "../flow.js";
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import components from "../inputs/collection.jsx";
-import { CCFormButton } from "../ThemedComponents.jsx";
+import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
 import { Grid2 } from "@mui/material";
 import { Fragment } from "react";
 
@@ -13,9 +12,7 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
   return (
     <Grid2 container spacing={2}>
       <Grid2 size={12}>
-        <Typography variant="h5" sx={{ mb: 2 }}>
-          {config.title}
-        </Typography>
+        <CCFormTitle sx={{ mb: 2 }}>{config.title}</CCFormTitle>
         <Typography variant="body1" sx={{ mb: 2 }}>
           {config.description}
         </Typography>

@@ -4,7 +4,9 @@ import {
   FormControl,
   InputBase,
   InputLabel,
+  Typography,
   styled,
+  createSvgIcon,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import defaultColors from "./theme/default-colors.js";
@@ -32,12 +34,22 @@ export const CCFormRoot = styled("div", {
   },
 }));
 
+export const CCFormTitle = styled(
+  (props) => <Typography variant="h6" component="h2" {...props} />,
+  {
+    name: "MuiCreateCollectionForm",
+    slot: "title",
+  },
+)(() => ({
+  color: `${defaultColors["primary-50"]} !important`,
+}));
+
 export const CCFormSelectCard = styled(Card, {
   name: "MuiCreateCollectionForm",
   slot: "selectCard",
 })(({ theme }) => {
-  // if needed, you can access the theme and ownerState here
   const styles = {
+    padding: "0.5rem 0.25rem 1.25rem",
     cursor: "pointer",
     "&.active": {
       cursor: "default",
@@ -54,15 +66,37 @@ export const CCFormSelectCard = styled(Card, {
         border: 0,
         boxShadow: `0px 0px 0px 2px ${defaultColors["neutral-80"]} inset`,
       },
+      "&:not(.active)": {
+        "& .MuiCardContent-root .MuiTypography-root": {
+          color: `${defaultColors["neutral-80"]} !important`,
+        },
+      },
+      "& .CCFormSelectCard-Title": {
+        fontWeight: "bold",
+        color: `${defaultColors["neutral-80"]} !important`,
+      },
     };
   }
   if (theme.palette.mode === "light") {
     styles["&.MuiPaper-root"] = {
       background: theme.palette.background.default,
-      border: "1px solid transparent",
+      boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-90"]} inset`,
+      border: 0,
       "&.active": {
         cursor: "default",
-        border: `1px solid ${defaultColors["neutral-80"]}`,
+        border: 0,
+        boxShadow: `0px 0px 0px 2px ${defaultColors["secondary-blue-30"]} inset`,
+      },
+      "&:not(.active)": {
+        "& .MuiCardContent-root .MuiTypography-root": {
+          color: `${defaultColors["neutral-50"]}`,
+          "&.CCFormSelectCard-Title": {
+            color: `${defaultColors["secondary-blue-30"]}`,
+          },
+        },
+      },
+      "& .CCFormSelectCard-Title": {
+        color: `${defaultColors["secondary-blue-30"]}`,
       },
     };
   }
@@ -74,8 +108,6 @@ export const CCFormCard = styled(Card, {
   name: "MuiCreateCollectionForm",
   slot: "card",
 })(({ theme, ownerState }) => {
-  // if needed, you can access the theme and ownerState here
-  // margin: "1rem",
   let styles = {};
 
   if (theme.palette.mode === "dark") {
@@ -127,8 +159,6 @@ export const CCFormButton = styled(Button, {
   name: "MuiCreateCollectionForm",
   slot: "button",
 })(({ theme }) => ({
-  // if needed, you can access the theme and ownerState here
-
   textTransform: "capitalize",
   fontWeight: "semibold",
   fontSize: "18px",
@@ -160,7 +190,7 @@ export const CCFormButton = styled(Button, {
     marginTop: "-3px",
   },
   "&.MuiButton-text": {},
-  // hover
+
   "&:hover": {
     "&.MuiButton-text": {
       background: "transparent",
@@ -186,7 +216,6 @@ export const CCFormInputBase = styled(InputBase, {
   name: "MuiCreateCollectionForm",
   slot: "input",
 })(({ theme }) => ({
-  // if needed, you can access the theme and ownerState here
   "label + &": {
     marginTop: theme.spacing(3),
   },
@@ -208,7 +237,6 @@ export const CCFormLabel = styled(InputLabel, {
   name: "MuiCreateCollectionForm",
   slot: "label",
 })(({ theme }) => ({
-  // if needed, you can access the theme and ownerState here
   fontSize: "1.25rem",
   color:
     theme.palette.mode === "dark"
@@ -235,3 +263,14 @@ export const CCFormAutoComplete = styled(Autocomplete, {
     right: "10px",
   },
 }));
+
+// icon component, aplying icon name as a string
+// and returning the corresponding MUI icon component
+export const CCFormIcon = styled(
+  (props) =>
+    createSvgIcon(<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />, props.name),
+  {
+    name: "MuiCreateCollectionForm",
+    slot: "icon",
+  },
+)(() => ({}));
