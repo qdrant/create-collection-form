@@ -197,8 +197,10 @@ export const CCFormButton = styled(Button, {
   "&:hover": {
     "&.MuiButton-text": {
       background: "transparent",
-      color: theme.palette.primary.light,
-      backgroundColor: defaultColors["neutral-20"],
+      color:
+        theme.palette.mode === "dark"
+          ? defaultColors["neutral-100"]
+          : defaultColors["primary-60"],
     },
   },
 }));
