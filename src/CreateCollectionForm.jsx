@@ -16,9 +16,9 @@ export const CreateCollectionForm = forwardRef(
       props: inProps,
       name: "MuiCreateCollectionForm",
     });
-    const { ...other } = props;
+    const { variant, ...other } = props;
 
-    const ownerState = { ...props };
+    const ownerState = { variant, ...props };
 
     const [path, setPath] = useState(() => {
       return JSON.parse(localStorage.getItem("path")) || ["use-case-step"];

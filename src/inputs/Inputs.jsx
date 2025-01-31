@@ -1,16 +1,11 @@
-import {
-  MenuItem,
-  Select,
-  Checkbox as MuiCheckbox,
-  InputLabel,
-  FormControl,
-} from "@mui/material";
+import { MenuItem, Select, Checkbox as MuiCheckbox } from "@mui/material";
 import PropTypes from "prop-types";
 import {
   CCFormControl,
   CCFormInputBase,
   CCFormLabel,
 } from "../ThemedComponents.jsx";
+import { forwardRef } from "react";
 
 export const Dropdown = ({ config, stepData, onChange }) => {
   const value = stepData || "";
@@ -30,7 +25,7 @@ export const Dropdown = ({ config, stepData, onChange }) => {
         id=""
         value={value}
         onChange={handleChange}
-        input={<CCFormInputBase />}
+        input={<CCFormInputBase variant="outlined" />}
       >
         {config.options.map((option) => (
           <MenuItem key={option} value={option}>
@@ -66,7 +61,6 @@ export const StringInput = ({ config, stepData, onChange }) => {
       </CCFormLabel>
       <CCFormInputBase
         key={config.title}
-        variant="outlined"
         id={config.name}
         placeholder={config.placeholder || ""}
         value={value}
@@ -116,7 +110,7 @@ Checkbox.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export const NumberInput = ({ config, stepData, onChange }) => {
+export const NumberInput = forwardRef(({ config, stepData, onChange }, ref) => {
   const value = stepData || 0;
 
   const handleChange = (e) => {
@@ -128,7 +122,7 @@ export const NumberInput = ({ config, stepData, onChange }) => {
   };
 
   return (
-    <CCFormControl variant="standard">
+    <CCFormControl ref={ref} variant="standard">
       <CCFormLabel shrink htmlFor={config.name}>
         {config.title}
       </CCFormLabel>
@@ -139,10 +133,11 @@ export const NumberInput = ({ config, stepData, onChange }) => {
         value={value || config.default || ""}
         onChange={handleChange}
         type="number"
+        ownerState={{ variant: "outlined" }}
       />
     </CCFormControl>
   );
-};
+});
 
 // props validation
 NumberInput.propTypes = {

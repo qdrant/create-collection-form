@@ -95,6 +95,7 @@ export const steps = {
         title: "Tenant field name",
         name: "tenant_id",
         placeholder: "Insert field name here",
+        variant: "outlined",
       },
     ],
     button: {

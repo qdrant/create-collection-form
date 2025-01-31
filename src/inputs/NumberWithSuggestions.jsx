@@ -48,6 +48,7 @@ const NumberWithSuggestions = ({ config, stepData, onChange }) => {
           <CCFormInputBase
             {...params.InputProps}
             inputProps={params.inputProps}
+            variant="outlined"
             id={config.name}
             value={value || config.default || ""}
           />

@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Grid2, Typography, useTheme } from "@mui/material";
+import { CardContent, Grid2, Typography, useTheme } from "@mui/material";
 import GenericInputs from "./GenericInputs.jsx";
 import { CCFormSelectCard } from "../ThemedComponents.jsx";
 
