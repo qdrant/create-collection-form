@@ -84,7 +84,12 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
   let selecedEnumData = allEnumsObject[selectedEnum] || {};
   let selectedEnumFields = selecedEnumData.fields || [];
 
-  const theme = useTheme();
+  const fieldsConfig = {
+    elements: selectedEnumFields,
+    name: config.name + "_config",
+  }
+
+  console.log("fieldsConfig", fieldsConfig);
 
   return (
     <Grid2 size={12}>
@@ -132,10 +137,7 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
 
       <Grid2 container spacing={2}>
         <GenericInputs
-          config={{
-            elements: selectedEnumFields,
-            name: config.name + "_config",
-          }}
+          config={fieldsConfig}
           stepData={stepData}
           onChange={onChange}
         />

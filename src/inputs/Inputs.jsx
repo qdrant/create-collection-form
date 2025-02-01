@@ -6,7 +6,6 @@ import {
   CCFormInputBase,
   CCFormLabel,
 } from "../ThemedComponents.jsx";
-import { forwardRef } from "react";
 
 export const Dropdown = ({ config, stepData, onChange }) => {
   const value = stepData || "";
@@ -123,19 +122,29 @@ Checkbox.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export const NumberInput = forwardRef(({ config, stepData, onChange }, ref) => {
+export const NumberInput = ({ config, stepData, onChange }) => {
   const value = stepData || 0;
+
+  const maxValue = config?.max; 
+  const minValue = config?.min; 
 
   const handleChange = (e) => {
     let valueNumber = parseInt(e.target.value);
     if (isNaN(valueNumber)) {
       valueNumber = 0;
+    } else {
+      if (maxValue && valueNumber > maxValue) {
+        valueNumber = maxValue;
+      }
+      if (minValue && valueNumber < minValue) {
+        valueNumber = minValue;
+      }
     }
     onChange(valueNumber);
   };
 
   return (
-    <CCFormControl ref={ref} variant="standard">
+    <CCFormControl variant="standard">
       <CCFormLabel shrink htmlFor={config.name}>
         {config.title}
       </CCFormLabel>
@@ -145,12 +154,11 @@ export const NumberInput = forwardRef(({ config, stepData, onChange }, ref) => {
         id={config.name}
         value={value || config.default || ""}
         onChange={handleChange}
-        type="number"
         ownerState={{ variant: "outlined" }}
       />
     </CCFormControl>
   );
-});
+};
 
 // props validation
 NumberInput.propTypes = {
