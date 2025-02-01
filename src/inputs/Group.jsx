@@ -4,8 +4,6 @@ import GenericInputs from "./GenericInputs";
 import PropTypes from "prop-types";
 
 const Group = function ({ config, stepData, onChange }) {
-  console.log("Group config", config);
-
   return (
     <Grid2 size={12}>
       <CCFormCard

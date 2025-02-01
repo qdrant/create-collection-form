@@ -8,7 +8,7 @@ export const elements = {
         type: "number-with-suggestions",
         title: "Choose dimensions",
         name: "dimensions",
-        placeholder: "Start typing...",
+        required: true,
         suggestions: [
           {
             label: "CLIP",
@@ -39,7 +39,7 @@ export const elements = {
         type: "checkbox",
         title: "Use IDF?",
         name: "use_idf",
-        default: true,
+        default: false,
       },
     ],
   },
@@ -95,8 +95,9 @@ export const steps = {
         type: "string-input",
         title: "Tenant field name",
         name: "tenant_id",
-        placeholder: "Insert field name here",
+        placeholder: "Example: user-id",
         variant: "outlined",
+        required: true,
       },
     ],
     button: {
@@ -192,8 +193,9 @@ export const steps = {
         type: "string-input",
         title: "Dense vector name",
         name: "dense_vector_name",
-        default: "dense",
+        placeholder: "Example: abstract-dense-vector",
         size: 12,
+        required: true,
       },
       {
         type: "group",
@@ -209,8 +211,9 @@ export const steps = {
         type: "string-input",
         title: "Sparse vector name",
         name: "sparse_vector_name",
-        default: "sparse",
+        placeholder: "Example: title-sparse-vector",
         size: 12,
+        required: true,
       },
       {
         type: "group",
@@ -241,12 +244,15 @@ export const steps = {
       {
         type: "repeatable",
         name: "payload_fields",
+        required: true,
         elements: [
           {
             type: "string-input",
             title: "Field name",
             name: "field_name",
+            placeholder: "Example: document-id",
             size: 12,
+            required: true,
           },
           {
             type: "button-group-with-inputs",

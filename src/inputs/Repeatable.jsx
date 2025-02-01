@@ -1,12 +1,9 @@
 import PropTypes from "prop-types";
-import components from "./collection.jsx";
-import Box from "@mui/material/Box";
 import { Add, Delete } from "@mui/icons-material";
 import { Divider } from "@mui/material";
-import Card from "@mui/material/Card";
 import { CCFormButton, CCFormCard } from "../ThemedComponents.jsx";
-import { Fragment } from "react";
 import { Grid2 } from "@mui/material";
+import GenericInputs from "./GenericInputs";
 
 // todo: update for the new structure
 const Repeatable = ({ config, stepData, onChange }) => {
@@ -25,8 +22,15 @@ const Repeatable = ({ config, stepData, onChange }) => {
 
   return (
     <Grid2 size={12}>
-      {values.map((value, index) => (
-        <CCFormCard
+      {values.map((value, index) => {
+
+        const elementOnChange = (value) => {
+          const newValues = [...values];
+          newValues[index] = value;
+          onChange(newValues);
+        };
+
+        return (<CCFormCard
           sx={{
             px: 2,
             pt: 2,
@@ -38,31 +42,11 @@ const Repeatable = ({ config, stepData, onChange }) => {
           key={index}
         >
           <Grid2 container spacing={2}>
-            {config.elements.map((element) => {
-              const handleValueChange = (value) => {
-                const newValues = [...values];
-                newValues[index] = {
-                  ...newValues[index],
-                  [element.name]: value,
-                };
-                onChange(newValues);
-              };
-
-              const Component = components[element.type];
-              if (!Component) {
-                console.log("Skipping element", element.type);
-                return null;
-              }
-              return (
-                <Fragment key={element.name}>
-                  <Component
-                    config={element}
-                    stepData={value[element.name] || element.default}
-                    onChange={(value) => handleValueChange(value)}
-                  />
-                </Fragment>
-              );
-            })}
+            <GenericInputs
+              config={config}
+              stepData={value}
+              onChange={elementOnChange}
+            />
           </Grid2>
 
           <Divider sx={{ mt: 2, mb: 1, mx: -4 }} />
@@ -77,7 +61,8 @@ const Repeatable = ({ config, stepData, onChange }) => {
             Remove
           </CCFormButton>
         </CCFormCard>
-      ))}
+        )
+      })}
       <CCFormButton
         variant="text"
         size="large"

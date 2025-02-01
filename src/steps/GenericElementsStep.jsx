@@ -5,9 +5,51 @@ import components from "../inputs/collection.jsx";
 import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
 import { Grid2 } from "@mui/material";
 import { Fragment } from "react";
+import { checkCompleted } from "../inputs/checkCompleted.js";
 
 const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
   const value = stepData || {};
+
+  let isStepCompleted = true;
+
+  const renderedElements = config.elements &&
+    config.elements.map((element, idx) => {
+
+      const elementConfig = {
+        ...(elements[element.type] || {}),
+        ...element,
+      };
+
+      const elementData = value[element.name];
+
+      const isElementRequired = elementConfig.required === true;
+      let isElementCompleted = checkCompleted(elementData);
+
+      isStepCompleted = isStepCompleted && (!isElementRequired || isElementCompleted);
+
+      const onChange = (value) => {
+        // We need to understand if stepData is completed. 
+        // If value if an object, we need to rely on completed field.
+        // If value is something else, we just check that it is not empty.
+        const newValue = { ...stepData, [element.name]: value };
+        onApply(stepName, newValue, null);
+      };
+      const Component = components[element.type];
+      if (!Component) {
+        console.log("Skipping element", element.type);
+        return null;
+      }
+      return (
+        <Fragment key={idx}>
+          <Component
+            key={element.name}
+            config={elementConfig}
+            stepData={elementData}
+            onChange={onChange}
+          />
+        </Fragment>
+      );
+    });
 
   return (
     <Grid2 container spacing={2}>
@@ -18,36 +60,14 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
         </Typography>
       </Grid2>
 
-      {config.elements &&
-        config.elements.map((element, idx) => {
-          const onChange = (value) => {
-            const newValue = { ...stepData, [element.name]: value };
-            onApply(stepName, newValue, null);
-          };
-          const Component = components[element.type];
-          if (!Component) {
-            console.log("Skipping element", element.type);
-            return null;
-          }
-          return (
-            <Fragment key={idx}>
-              <Component
-                key={element.name}
-                config={{
-                  ...(elements[element.type] || {}),
-                  ...element,
-                }}
-                stepData={value[element.name]}
-                onChange={onChange}
-              />
-            </Fragment>
-          );
-        })}
+      {renderedElements}
 
       {config.button && (
         // todo: update
         <Grid2 size={12} display={"flex"} justifyContent={"flex-end"}>
           <CCFormButton
+            // key={element.title}
+            disabled={!isStepCompleted}
             variant="contained"
             onClick={() =>
               onApply(

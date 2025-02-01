@@ -1,12 +1,32 @@
 import { elements } from "../flow.js";
 import PropTypes from "prop-types";
 import components from "./collection.jsx";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { checkCompleted } from "./checkCompleted.js";
 
 const GenericInputs = function ({ config, stepData, onChange }) {
-  return (
+
+  let allElementsCompleted = true;
+
+  const renderedElements = (
     <>
       {config.elements.map((element) => {
+
+        const elementConfig = {
+          ...(elements[element.type] || {}),
+          ...element,
+        };
+
+        let elementData = stepData && stepData[element.name];
+        if (elementData === undefined) {
+          elementData = element.default;
+        }
+        
+        const isElementRequired = elementConfig.required === true;
+        let isElementCompleted = checkCompleted(elementData);
+
+        allElementsCompleted = allElementsCompleted && (!isElementRequired || isElementCompleted);
+
         let configOnChange = function (value) {
           let newData = {
             ...stepData,
@@ -20,18 +40,12 @@ const GenericInputs = function ({ config, stepData, onChange }) {
           console.log("Skipping element", element.type);
           return null;
         }
-        let elementData = stepData && stepData[element.name];
-        if (elementData === undefined) {
-          elementData = element.default;
-        }
+        
 
         return (
           <Fragment key={element.name}>
             <Component
-              config={{
-                ...(elements[element.type] || {}),
-                ...element,
-              }}
+              config={elementConfig}
               stepData={elementData}
               onChange={configOnChange}
             />
@@ -40,6 +54,17 @@ const GenericInputs = function ({ config, stepData, onChange }) {
       })}
     </>
   );
+
+
+  useEffect(() => {
+    const isRegisteredCompleted = stepData && stepData.completed === true;
+    if (allElementsCompleted !== isRegisteredCompleted) {
+      onChange({ ...stepData, completed: allElementsCompleted });
+    }
+  }, [stepData]);
+
+
+  return renderedElements;
 };
 
 // todo: decide on default stepData alternative name
