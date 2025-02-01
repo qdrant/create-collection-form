@@ -244,6 +244,7 @@ export const steps = {
       {
         type: "repeatable",
         name: "payload_fields",
+        maxRepetitions: 10,
         required: true,
         elements: [
           {

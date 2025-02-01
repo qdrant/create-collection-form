@@ -9,6 +9,9 @@ import GenericInputs from "./GenericInputs";
 const Repeatable = ({ config, stepData, onChange }) => {
   const values = stepData || [];
 
+  const maxRepetitions = config?.maxRepetitions || 10000;
+
+
   const handleAdd = () => {
     const newValues = [...values, {}];
     onChange(newValues);
@@ -63,14 +66,16 @@ const Repeatable = ({ config, stepData, onChange }) => {
         </CCFormCard>
         )
       })}
-      <CCFormButton
-        variant="text"
-        size="large"
-        startIcon={<Add />}
-        onClick={handleAdd}
-      >
-        Add
-      </CCFormButton>
+      {values.length < maxRepetitions && (
+        <CCFormButton
+          variant="text"
+          size="large"
+          startIcon={<Add />}
+          onClick={handleAdd}
+        >
+          Add
+        </CCFormButton>
+      )}
     </Grid2>
   );
 };

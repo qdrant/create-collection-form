@@ -60,9 +60,11 @@ export const CreateCollectionForm = forwardRef(
       "index-field-selection-step": IndexFieldSelectionStep,
     };
 
+    const totalSteps = path.length;
+
     return (
       <CCFormRoot ref={ref} ownerState={ownerState} {...other}>
-        {path.map((step) => {
+        {path.map((step, index) => {
           const StepComponent = stepsComponents[step];
           if (!StepComponent) {
             return null;
@@ -70,6 +72,7 @@ export const CreateCollectionForm = forwardRef(
 
           const restoredValue = localStorage.getItem("formData")?.[step];
           const stepData = formData[step] || restoredValue;
+          const isLast = index === totalSteps - 1;
 
           return (
             <Box
@@ -83,6 +86,7 @@ export const CreateCollectionForm = forwardRef(
                 config={steps[step]}
                 stepData={stepData}
                 onApply={handleStepApply}
+                isLast={isLast}
               />
             </Box>
           );

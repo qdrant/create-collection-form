@@ -7,7 +7,7 @@ import { Grid2 } from "@mui/material";
 import { Fragment } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
 
-const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
+const GenericElementsStep = function ({ stepName, config, stepData, onApply, isLast = true }) {
   const value = stepData || {};
 
   let isStepCompleted = true;
@@ -62,7 +62,7 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply }) {
 
       {renderedElements}
 
-      {config.button && (
+      {config.button && isLast && (
         // todo: update
         <Grid2 size={12} display={"flex"} justifyContent={"flex-end"}>
           <CCFormButton
