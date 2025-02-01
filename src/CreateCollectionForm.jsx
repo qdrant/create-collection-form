@@ -10,97 +10,126 @@ import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
 import { useThemeProps } from "@mui/material";
 import { CCFormRoot } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
+import { Grid2 } from "@mui/material";
+import { CCFormButton } from "./ThemedComponents";
 
 
-export const CreateCollectionForm = forwardRef(
-  function CreateCollectionForm(inProps, ref) {
-    const props = useThemeProps({
-      props: inProps,
-      name: "MuiCreateCollectionForm",
-    });
-    const { variant, ...other } = props;
+export const CreateCollectionForm = function CreateCollectionForm({ onFinish }) {
 
-    const ownerState = { variant, ...props };
+  const [path, setPath] = useState(() => {
+    return JSON.parse(localStorage.getItem("path")) || ["use-case-step"];
+  });
 
-    const [path, setPath] = useState(() => {
-      return JSON.parse(localStorage.getItem("path")) || ["use-case-step"];
-    });
-    const [formData, setFormData] = useState(() => {
-      return JSON.parse(localStorage.getItem("formData")) || {};
-    });
+  const [formData, setFormData] = useState(() => {
+    return JSON.parse(localStorage.getItem("formData")) || {};
+  });
 
-    const updatePath = (prevStep, nextStep) => {
-      const prevStepIndex = path.indexOf(prevStep);
-      const newPath = path.slice(0, prevStepIndex + 1);
-      newPath.push(nextStep);
-      setPath(newPath);
-    };
+  const updatePath = (prevStep, nextStep) => {
+    const prevStepIndex = path.indexOf(prevStep);
+    const newPath = path.slice(0, prevStepIndex + 1);
+    newPath.push(nextStep);
+    setPath(newPath);
+  };
 
-    const handleStepApply = (stepName, data, nextStep) => {
-      setFormData((prev) => ({ ...prev, [stepName]: data }));
-      if (!nextStep) {
-        return;
-      }
-      updatePath(stepName, nextStep);
-    };
+  const handleStepApply = (stepName, data, nextStep) => {
+    console.log("handleStepApply", stepName, data);
+    setFormData((prev) => ({ ...prev, [stepName]: data }));
+    if (!nextStep) {
+      return;
+    }
+    updatePath(stepName, nextStep);
+  };
 
-    useEffect(() => {
-      if (formData) {
-        localStorage.setItem("formData", JSON.stringify(formData));
-      }
-      if (path.length > 0) {
-        localStorage.setItem("path", JSON.stringify(path));
-      }
-    }, [path, formData]);
+  useEffect(() => {
+    if (formData) {
+      localStorage.setItem("formData", JSON.stringify(formData));
+    }
+    if (path.length > 0) {
+      localStorage.setItem("path", JSON.stringify(path));
+    }
+  }, [path, formData]);
 
-    const stepsComponents = {
-      "use-case-step": CardsSelect,
-      "tenant-field-selection-step": TenantFieldSelectionStep,
-      "templates-selection-step": CardsSelect,
-      "simple-dense-embedding-step": SimpleDenseEmbeddingStep,
-      "simple-hybrid-embedding-step": SimpleHybridEmbeddingStep,
-      "index-field-selection-step": IndexFieldSelectionStep,
-    };
+  const stepsComponents = {
+    "use-case-step": CardsSelect,
+    "tenant-field-selection-step": TenantFieldSelectionStep,
+    "templates-selection-step": CardsSelect,
+    "simple-dense-embedding-step": SimpleDenseEmbeddingStep,
+    "simple-hybrid-embedding-step": SimpleHybridEmbeddingStep,
+    "index-field-selection-step": IndexFieldSelectionStep,
+  };
 
-    const totalSteps = path.length;
+  const totalSteps = path.length;
+  let isAllCompleted = true;
+  let isFinished = false;
+
+  const renderedSteps = path.map((step, index) => {
+    let StepComponent = stepsComponents[step];
+    if (!StepComponent) {
+      StepComponent = GenericElementsStep;
+    }
+
+    const restoredValue = localStorage.getItem("formData")?.[step];
+    const stepData = formData[step] || restoredValue;
+    const isLast = index === totalSteps - 1;
+
+    let isStepCompleted = true;
+    if (typeof stepData === "object") {
+      isStepCompleted = stepData?.completed;
+    } else {
+      isStepCompleted = !!stepData;
+    }
+
+    isAllCompleted = isAllCompleted && isStepCompleted;
+    const stepConfig = steps[step];
+
+    if (stepConfig?.finish) {
+      isFinished = true;
+    }
 
     return (
-      <CCFormRoot ref={ref} ownerState={ownerState} {...other}>
-        {path.map((step, index) => {
-          let StepComponent = stepsComponents[step];
-          if (!StepComponent) {
-            StepComponent = GenericElementsStep;
-          }
-
-          const restoredValue = localStorage.getItem("formData")?.[step];
-          const stepData = formData[step] || restoredValue;
-          const isLast = index === totalSteps - 1;
-
-          return (
-            <Box
-              key={step}
-              sx={{
-                mb: 8,
-              }}
-            >
-              <StepComponent
-                stepName={step}
-                config={steps[step]}
-                stepData={stepData}
-                onApply={handleStepApply}
-                isLast={isLast}
-              />
-            </Box>
-          );
-        })}
-      </CCFormRoot>
+      <Box
+        key={step}
+        sx={{
+          mb: 8,
+        }}
+      >
+        <StepComponent
+          stepName={step}
+          config={stepConfig}
+          stepData={stepData}
+          onApply={handleStepApply}
+          isLast={isLast}
+        />
+      </Box>
     );
-  },
-);
+  });
+
+
+  return (
+    <CCFormRoot>
+      {renderedSteps}
+
+      {isFinished && (
+        // todo: update
+        <Grid2 size={12} display={"flex"} justifyContent={"flex-end"}>
+          <CCFormButton
+            // key={element.title}
+            disabled={!isAllCompleted}
+            variant="contained"
+            onClick={() => onFinish(formData)}
+          >
+            Finish
+          </CCFormButton>
+        </Grid2>
+      )}
+    </CCFormRoot>
+  );
+};
 
 // props validation
 CreateCollectionForm.propTypes = {
   ref: PropTypes.object,
+  onFinish: PropTypes.func.isRequired,
 };
 
 export default CreateCollectionForm;

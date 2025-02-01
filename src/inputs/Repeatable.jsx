@@ -4,12 +4,21 @@ import { Divider } from "@mui/material";
 import { CCFormButton, CCFormCard } from "../ThemedComponents.jsx";
 import { Grid2 } from "@mui/material";
 import GenericInputs from "./GenericInputs";
+import { useEffect } from "react";
 
 // todo: update for the new structure
 const Repeatable = ({ config, stepData, onChange }) => {
   const values = stepData || [];
 
   const maxRepetitions = config?.maxRepetitions || 10000;
+
+  useEffect(() => {
+    // Check if stepData is an array
+    if (!Array.isArray(stepData)) {
+      console.log("Repeatable: stepData is not an array", stepData);
+      onChange([]);
+    }
+  }, [stepData]);
 
 
   const handleAdd = () => {

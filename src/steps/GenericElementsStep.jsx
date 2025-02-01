@@ -6,6 +6,7 @@ import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
 import { Grid2 } from "@mui/material";
 import { Fragment } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
+import { useEffect } from "react";
 
 const GenericElementsStep = function ({ stepName, config, stepData, onApply, isLast = true }) {
   const value = stepData || {};
@@ -23,9 +24,9 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply, isL
       const elementData = value[element.name];
 
       const isElementRequired = elementConfig.required === true;
-      let isElementCompleted = checkCompleted(elementData);
+      let isElementCompleted = checkCompleted(elementData, isElementRequired);
 
-      isStepCompleted = isStepCompleted && (!isElementRequired || isElementCompleted);
+      isStepCompleted = isStepCompleted && isElementCompleted;
 
       const onChange = (value) => {
         // We need to understand if stepData is completed. 
@@ -50,6 +51,13 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply, isL
         </Fragment>
       );
     });
+
+  useEffect(() => {
+    const isRegisteredCompleted = stepData && stepData.completed === true;
+    if (isStepCompleted !== isRegisteredCompleted) {
+      onApply(stepName, { ...stepData, completed: isStepCompleted }, null);
+    }
+  }, [stepData]);
 
   return (
     <Grid2 container spacing={2}>

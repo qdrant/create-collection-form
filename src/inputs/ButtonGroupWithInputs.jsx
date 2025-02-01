@@ -89,8 +89,6 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
     name: config.name + "_config",
   }
 
-  console.log("fieldsConfig", fieldsConfig);
-
   return (
     <Grid2 size={12}>
       <Typography variant="h6" mt={2}>

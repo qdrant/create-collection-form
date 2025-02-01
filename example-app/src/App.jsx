@@ -67,7 +67,7 @@ function App() {
                 <DarkModeIcon />
               )}
             </IconButton>
-            <CreateCollectionForm />
+            <CreateCollectionForm onFinish={(data) => alert(data)} />
           </Container>
         </ThemeProvider>
       </ColorModeContext.Provider>

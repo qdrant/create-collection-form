@@ -200,10 +200,12 @@ export const steps = {
       {
         type: "group",
         name: "vector_config_group",
+        required: true,
         elements: [
           {
             type: "dense-vector-configuration",
             name: "dense_vector_config",
+            required: true,
           },
         ],
       },
@@ -222,6 +224,7 @@ export const steps = {
           {
             type: "sparse-vector-configuration",
             name: "sparse_vector_config",
+            required: true,
           },
         ],
       },
@@ -235,33 +238,66 @@ export const steps = {
     },
   },
   "custom-collection-dense-step": {
-    "title": "Custom collection - Dense vectors",
-    "description": "Configure dense vectors for your collection",
-    "elements": [
+    title: "Custom collection - Dense vectors",
+    description: "Configure dense vectors for your collection",
+    elements: [
       {
-        "type": "repeatable",
-        "name": "custom_dense_vectors",
-        "maxRepetitions": 3,
-        "required": true,
-        "elements": [
+        type: "repeatable",
+        name: "custom_dense_vectors",
+        maxRepetitions: 3,
+        elements: [
           {
-            "type": "string-input",
-            "title": "Vector name",
-            "name": "vector_name",
-            "placeholder": "Example: dense-vector",
-            "size": 12,
-            "required": true
+            type: "string-input",
+            title: "Vector name",
+            name: "vector_name",
+            placeholder: "Example: dense-vector",
+            size: 12,
+            required: true
           },
           {
-            "type": "dense-vector-configuration",
-            "name": "vector_config"
+            type: "dense-vector-configuration",
+            name: "vector_config",
+            required: true,
           }
         ]
       }
     ],
-    "button": {
-      "type": "button",
-      "title": "Continue",
+    button: {
+      type: "button",
+      title: "Continue",
+      "on-click": {
+        "continue-step": "custom-collection-sparse-step"
+      }
+    }
+  },
+  "custom-collection-sparse-step": {
+    title: "Custom collection - Sparse vectors",
+    description: "Configure sparse vectors for your collection",
+    elements: [
+      {
+        type: "repeatable",
+        name: "custom_sparse_vectors",
+        maxRepetitions: 3,
+        elements: [
+          {
+            type: "string-input",
+            title: "Vector name",
+            name: "vector_name",
+            placeholder: "Example: sparse-vector",
+            size: 12,
+            required: true
+          },
+          {
+            type: "sparse-vector-configuration",
+            name: "vector_config",
+            required: true,
+          }
+        ]
+      }
+    ],
+    button: {
+      type: "button",
+      title: "Continue",
       "on-click": {
         "continue-step": "index-field-selection-step"
       }
@@ -273,12 +309,12 @@ export const steps = {
     // For each field user needs to choose which type in index they want and parameters for this index.
     title: "Payload indexes",
     description: "We need to create indexes, if we want to do filtered search.",
+    finish: true,
     elements: [
       {
         type: "repeatable",
         name: "payload_fields",
         maxRepetitions: 10,
-        required: true,
         elements: [
           {
             type: "string-input",
@@ -364,10 +400,5 @@ export const steps = {
         ],
       },
     ],
-    button: {
-      type: "button",
-      title: "Finish",
-      "on-click": "finish",
-    },
   },
 };

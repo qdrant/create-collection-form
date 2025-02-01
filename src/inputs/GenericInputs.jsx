@@ -23,9 +23,9 @@ const GenericInputs = function ({ config, stepData, onChange }) {
         }
         
         const isElementRequired = elementConfig.required === true;
-        let isElementCompleted = checkCompleted(elementData);
+        let isElementCompleted = checkCompleted(elementData, isElementRequired);
 
-        allElementsCompleted = allElementsCompleted && (!isElementRequired || isElementCompleted);
+        allElementsCompleted = allElementsCompleted && isElementCompleted;
 
         let configOnChange = function (value) {
           let newData = {
