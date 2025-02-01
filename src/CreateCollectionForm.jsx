@@ -9,6 +9,8 @@ import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
 import { useThemeProps } from "@mui/material";
 import { CCFormRoot } from "./ThemedComponents";
+import GenericElementsStep from "./steps/GenericElementsStep.jsx";
+
 
 export const CreateCollectionForm = forwardRef(
   function CreateCollectionForm(inProps, ref) {
@@ -65,9 +67,9 @@ export const CreateCollectionForm = forwardRef(
     return (
       <CCFormRoot ref={ref} ownerState={ownerState} {...other}>
         {path.map((step, index) => {
-          const StepComponent = stepsComponents[step];
+          let StepComponent = stepsComponents[step];
           if (!StepComponent) {
-            return null;
+            StepComponent = GenericElementsStep;
           }
 
           const restoredValue = localStorage.getItem("formData")?.[step];

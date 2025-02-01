@@ -155,7 +155,7 @@ export const steps = {
         description: "You can define your own configuration.",
         name: "custom",
         "on-select": {
-          "continue-step": "",
+          "continue-step": "custom-collection-dense-step",
         },
       },
     ],
@@ -234,12 +234,45 @@ export const steps = {
       },
     },
   },
+  "custom-collection-dense-step": {
+    "title": "Custom collection - Dense vectors",
+    "description": "Configure dense vectors for your collection",
+    "elements": [
+      {
+        "type": "repeatable",
+        "name": "custom_dense_vectors",
+        "maxRepetitions": 3,
+        "required": true,
+        "elements": [
+          {
+            "type": "string-input",
+            "title": "Vector name",
+            "name": "vector_name",
+            "placeholder": "Example: dense-vector",
+            "size": 12,
+            "required": true
+          },
+          {
+            "type": "dense-vector-configuration",
+            "name": "vector_config"
+          }
+        ]
+      }
+    ],
+    "button": {
+      "type": "button",
+      "title": "Continue",
+      "on-click": {
+        "continue-step": "index-field-selection-step"
+      }
+    }
+  },
   "index-field-selection-step": {
     // In this config we let user specify which payload fields should be indexed.
     // User can specify as many fields as they want.
     // For each field user needs to choose which type in index they want and parameters for this index.
     title: "Payload indexes",
-    Description: "We need to create indexes, if we want to do filtered search.",
+    description: "We need to create indexes, if we want to do filtered search.",
     elements: [
       {
         type: "repeatable",
