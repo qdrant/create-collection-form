@@ -11,6 +11,7 @@ import { Checkbox } from "./Inputs.jsx";
 import { NumberInput } from "./Inputs.jsx";
 
 import SizeWrapper from "./SizeWrapper.jsx";
+import Description from "./Description.jsx";
 
 function wrapWithSize(component) {
   return function (params) {
@@ -29,6 +30,7 @@ const compoments = {
   repeatable: Repeatable,
   number: wrapWithSize(NumberInput),
   group: Group,
+  description: wrapWithSize(Description),
 };
 
 export default compoments;

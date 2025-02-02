@@ -251,8 +251,12 @@ export const steps = {
             title: "Vector name",
             name: "vector_name",
             placeholder: "Example: dense-vector",
-            size: 12,
+            size: 6,
             required: true
+          },
+          {
+            "type": "description",
+            description: "This name will be used as a name of vector",
           },
           {
             type: "dense-vector-configuration",

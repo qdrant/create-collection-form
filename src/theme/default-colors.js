@@ -1,6 +1,6 @@
 const defaultColors = {
-  "neutral-10": "#090e1a",
-  "neutral-20": "#161e33",
+  "neutral-10": "#0b0f19",
+  "neutral-20": "#111827",
   "neutral-30": "#28324d",
   "neutral-40": "#3d4866",
   "neutral-50": "#576280",

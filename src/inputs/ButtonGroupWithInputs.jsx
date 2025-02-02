@@ -89,58 +89,65 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
     name: config.name + "_config",
   }
 
+  const size = config?.size || 12;
+
   return (
-    <Grid2 size={12}>
-      <Typography variant="h6" mt={2}>
-        {config.title}
-      </Typography>
+    <>
+      <Grid2 size={size}>
+        <Typography variant="h6" mt={2}>
+          {config.title}
+        </Typography>
 
-      {/* Select one of the enums with group button */}
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 1,
-          mb: 2,
-        }}
-      >
-        {config.enums.map((enumObject) => {
-          let configOnChange = function (value) {
-            let newData = {
-              ...stepData,
-              [config.name + "_enum"]: value,
+        {/* Select one of the enums with group button */}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 1,
+            mb: 2,
+          }}
+        >
+          {config.enums.map((enumObject) => {
+            let configOnChange = function (value) {
+              let newData = {
+                ...stepData,
+                [config.name + "_enum"]: value,
+              };
+              console.log("newData", newData);
+              onChange(newData);
             };
-            console.log("newData", newData);
-            onChange(newData);
-          };
 
-          return (
-            <Box key={enumObject.name}>
-              <CCFormSelectCard
-                sx={{
-                  px: 2,
-                  py: 1,
-                }}
-                onClick={() => configOnChange(enumObject.name)}
-                className={selectedEnum === enumObject.name ? "active" : ""}
-              >
-                {enumObject.name}
-              </CCFormSelectCard>
-            </Box>
-          );
-        })}
-      </Box>
+            return (
+              <Box key={enumObject.name}>
+                <CCFormSelectCard
+                  sx={{
+                    px: 2,
+                    py: 1,
+                  }}
+                  onClick={() => configOnChange(enumObject.name)}
+                  className={selectedEnum === enumObject.name ? "active" : ""}
+                >
+                  {enumObject.name}
+                </CCFormSelectCard>
+              </Box>
+            );
+          })}
+        </Box>
 
-      {/* Render fields of the selected enum */}
+        {/* Render fields of the selected enum */}
 
-      <Grid2 container spacing={2}>
-        <GenericInputs
-          config={fieldsConfig}
-          stepData={stepData}
-          onChange={onChange}
-        />
+
       </Grid2>
-    </Grid2>
+      <Grid2 size={12}>
+        <Grid2 container spacing={2}>
+          <GenericInputs
+            config={fieldsConfig}
+            stepData={stepData}
+            onChange={onChange}
+          />
+        </Grid2>
+      </Grid2>
+    </>
   );
 };
 
