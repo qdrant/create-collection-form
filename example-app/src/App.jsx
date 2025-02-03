@@ -12,6 +12,7 @@ import {
 import { ColorModeContext } from "./context/color-context.jsx";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { dropdownTheme } from "../../src/theme/dropdown-theme.js";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -51,8 +52,14 @@ function App() {
               // },
               // selectCard: { // "selectCard" is a slot name
               // }
+              // etc.
             },
           },
+          // dropdown theme overrides are the separate file
+          // due to component's popover nature
+          // this will affect ALL dropdowns in the app
+          // use only if you want to change the default dropdown theme
+          ...dropdownTheme,
         },
       }),
     [mode],
