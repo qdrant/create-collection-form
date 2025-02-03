@@ -134,24 +134,24 @@ export const steps = {
           "continue-step": "simple-hybrid-embedding-step",
         },
       },
-      {
-        title: "Hybrid Search with Late Interaction re-ranking",
-        description:
-          "Dense + Sparse vectors searched simultaneously. Results are combined and re-ranked using heavy multi-vector model like e.g. ColBERT",
-        name: "hybrid-search-late-interaction",
-        "on-select": {
-          "continue-step": "",
-        },
-      },
-      {
-        title: "Visual Latest Interaction",
-        description:
-          "End-to-end retrieval of PDFs, presentations, images, etc. Collection consists of two multi-vector fields: one compressed for pre-fetch and other for re-ranking.",
-        name: "visual-latest-interaction",
-        "on-select": {
-          "continue-step": "",
-        },
-      },
+      // {
+      //   title: "Hybrid Search with Late Interaction re-ranking",
+      //   description:
+      //     "Dense + Sparse vectors searched simultaneously. Results are combined and re-ranked using heavy multi-vector model like e.g. ColBERT",
+      //   name: "hybrid-search-late-interaction",
+      //   "on-select": {
+      //     "continue-step": "",
+      //   },
+      // },
+      // {
+      //   title: "Visual Latest Interaction",
+      //   description:
+      //     "End-to-end retrieval of PDFs, presentations, images, etc. Collection consists of two multi-vector fields: one compressed for pre-fetch and other for re-ranking.",
+      //   name: "visual-latest-interaction",
+      //   "on-select": {
+      //     "continue-step": "",
+      //   },
+      // },
       {
         title: "Custom",
         description: "You can define your own configuration.",
@@ -170,10 +170,12 @@ export const steps = {
       {
         type: "group",
         name: "vector_config_group",
+        required: true,
         elements: [
           {
             type: "dense-vector-configuration",
             name: "vector_config",
+            required: true,
           },
         ],
       },
@@ -266,8 +268,20 @@ export const steps = {
             name: "vector_config",
             required: true,
           },
-        ],
-      },
+          {
+            type: "details",
+            name: "advanced_config",
+            title: "Advanced configuration",
+            elements: [
+              {
+                type: "number",
+                title: "SOMETHING",
+                name: "something",
+              }
+            ]
+          }
+        ]
+      }
     ],
     button: {
       type: "button",
@@ -335,6 +349,7 @@ export const steps = {
             type: "button-group-with-inputs",
             title: "Field type",
             name: "field_config",
+            required: true,
             size: 12,
             enums: [
               {

@@ -91,6 +91,13 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
 
   const size = config?.size || 12;
 
+  let buttonSelected = false;
+
+  let currentButtonValue = stepData && stepData[config.name + "_enum"];
+  if (currentButtonValue) {
+    buttonSelected = true;
+  }
+
   return (
     <>
       <Grid2 size={size}>
@@ -140,7 +147,10 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
         <Grid2 container spacing={2}>
           <GenericInputs
             config={fieldsConfig}
-            stepData={stepData}
+            stepData={{
+              ...stepData,
+              parentCompleted: buttonSelected,
+            }}
             onChange={onChange}
           />
         </Grid2>

@@ -4,6 +4,7 @@ import NumberWithSuggestions from "./NumberWithSuggestions.jsx";
 import ButtonGroupWithInputs from "./ButtonGroupWithInputs.jsx";
 import Repeatable from "./Repeatable.jsx";
 import Group from "./Group.jsx";
+import Details from "./Details.jsx";
 
 import { Dropdown } from "./Inputs.jsx";
 import { StringInput } from "./Inputs.jsx";
@@ -31,6 +32,7 @@ const compoments = {
   number: wrapWithSize(NumberInput),
   group: Group,
   description: wrapWithSize(Description),
+  details: Details,
 };
 
 export default compoments;

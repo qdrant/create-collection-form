@@ -5,7 +5,12 @@ import { Fragment, useEffect } from "react";
 import { checkCompleted } from "./checkCompleted.js";
 
 const GenericInputs = function ({ config, stepData, onChange }) {
+
   let allElementsCompleted = true;
+
+  if (stepData?.parentCompleted === false) {
+    allElementsCompleted = false;
+  }
 
   const renderedElements = (
     <>
@@ -52,12 +57,15 @@ const GenericInputs = function ({ config, stepData, onChange }) {
     </>
   );
 
+
+
   useEffect(() => {
+    /// Always change ig complete is not defined
     const isRegisteredCompleted = stepData && stepData.completed === true;
     if (allElementsCompleted !== isRegisteredCompleted) {
       onChange({ ...stepData, completed: allElementsCompleted });
     }
-  }, [stepData]);
+  }, [stepData, allElementsCompleted]);
 
   return renderedElements;
 };

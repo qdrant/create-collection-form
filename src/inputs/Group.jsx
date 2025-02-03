@@ -1,4 +1,4 @@
-import { Grid, Grid2 } from "@mui/material";
+import { Grid2 } from "@mui/material";
 import { CCFormCard } from "../ThemedComponents";
 import GenericInputs from "./GenericInputs";
 import PropTypes from "prop-types";
