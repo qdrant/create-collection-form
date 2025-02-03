@@ -350,7 +350,7 @@ export const CCFormDescription = styled(Paper, {
 
   if (theme.palette.mode === "dark") {
     styles["&.MuiPaper-root"] = {
-      background: defaultColors["neutral-10"],
+      background: defaultColors["neutral-20"],
       border: 0,
       color: defaultColors["neutral-90"],
       "& .MuiTypography-root": {
@@ -361,7 +361,7 @@ export const CCFormDescription = styled(Paper, {
 
   if (theme.palette.mode === "light") {
     styles["&.MuiPaper-root"] = {
-      background: defaultColors["neutral-98"],
+      background: defaultColors["neutral-100"],
       boxShadow: "none",
       color: defaultColors["neutral-40"],
       border: 0,

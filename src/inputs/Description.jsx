@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { CCFormDescription } from "../ThemedComponents.jsx";
 import { Typography } from "@mui/material";
+import { InfoOutlined } from "@mui/icons-material";
 
 const Description = ({ config, stepData, onChange }) => {
-  // todo: add labelId and id
   return (
     <CCFormDescription elevation={0}>
+      <InfoOutlined fontSize="1rem" sx={{ mr: 1, mb: 0.5 }} />
       <Typography variant="body2">{config.description}</Typography>
     </CCFormDescription>
   );
