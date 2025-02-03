@@ -345,6 +345,7 @@ export const CCFormDescription = styled(Paper, {
     display: "flex",
     alignItems: "center",
     padding: "1rem",
+    height: "100%",
   };
 
   if (theme.palette.mode === "dark") {
