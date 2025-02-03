@@ -13,9 +13,9 @@ import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { Grid2 } from "@mui/material";
 import { CCFormButton } from "./ThemedComponents";
 
-
-export const CreateCollectionForm = function CreateCollectionForm({ onFinish }) {
-
+export const CreateCollectionForm = function CreateCollectionForm({
+  onFinish,
+}) {
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["use-case-step"];
   });
@@ -103,7 +103,6 @@ export const CreateCollectionForm = function CreateCollectionForm({ onFinish }) 
       </Box>
     );
   });
-
 
   return (
     <CCFormRoot>

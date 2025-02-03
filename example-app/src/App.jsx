@@ -35,6 +35,9 @@ function App() {
     () =>
       createTheme({
         palette: {
+          background: {
+            default: mode === "dark" ? "#0b0f19" : "#f0f3fa",
+          },
           mode,
         },
         // here is how to override CreateCollectionForm's styles,

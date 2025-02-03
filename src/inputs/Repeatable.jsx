@@ -20,7 +20,6 @@ const Repeatable = ({ config, stepData, onChange }) => {
     }
   }, [stepData]);
 
-
   const handleAdd = () => {
     const newValues = [...values, {}];
     onChange(newValues);
@@ -35,45 +34,45 @@ const Repeatable = ({ config, stepData, onChange }) => {
   return (
     <Grid2 size={12}>
       {values.map((value, index) => {
-
         const elementOnChange = (value) => {
           const newValues = [...values];
           newValues[index] = value;
           onChange(newValues);
         };
 
-        return (<CCFormCard
-          sx={{
-            px: 2,
-            pt: 2,
-            pb: 1,
-            mt: 2,
-            display: "flex",
-            flexDirection: "column",
-          }}
-          key={index}
-        >
-          <Grid2 container spacing={2}>
-            <GenericInputs
-              config={config}
-              stepData={value}
-              onChange={elementOnChange}
-            />
-          </Grid2>
-
-          <Divider sx={{ mt: 2, mb: 1, mx: -4 }} />
-
-          <CCFormButton
-            variant="text"
-            size={"small"}
-            startIcon={<Delete />}
-            sx={{ alignSelf: "end" }}
-            onClick={() => handleRemove(index)}
+        return (
+          <CCFormCard
+            sx={{
+              px: 2,
+              pt: 2,
+              pb: 1,
+              mt: 2,
+              display: "flex",
+              flexDirection: "column",
+            }}
+            key={index}
           >
-            Remove
-          </CCFormButton>
-        </CCFormCard>
-        )
+            <Grid2 container spacing={2}>
+              <GenericInputs
+                config={config}
+                stepData={value}
+                onChange={elementOnChange}
+              />
+            </Grid2>
+
+            <Divider sx={{ mt: 2, mb: 1, mx: -4 }} />
+
+            <CCFormButton
+              variant="text"
+              size={"small"}
+              startIcon={<Delete />}
+              sx={{ alignSelf: "end" }}
+              onClick={() => handleRemove(index)}
+            >
+              Remove
+            </CCFormButton>
+          </CCFormCard>
+        );
       })}
       {values.length < maxRepetitions && (
         <CCFormButton

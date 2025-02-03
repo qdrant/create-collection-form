@@ -252,27 +252,27 @@ export const steps = {
             name: "vector_name",
             placeholder: "Example: dense-vector",
             size: 6,
-            required: true
+            required: true,
           },
           {
-            "type": "description",
+            type: "description",
             description: "This name will be used as a name of vector",
           },
           {
             type: "dense-vector-configuration",
             name: "vector_config",
             required: true,
-          }
-        ]
-      }
+          },
+        ],
+      },
     ],
     button: {
       type: "button",
       title: "Continue",
       "on-click": {
-        "continue-step": "custom-collection-sparse-step"
-      }
-    }
+        "continue-step": "custom-collection-sparse-step",
+      },
+    },
   },
   "custom-collection-sparse-step": {
     title: "Custom collection - Sparse vectors",
@@ -289,23 +289,23 @@ export const steps = {
             name: "vector_name",
             placeholder: "Example: sparse-vector",
             size: 12,
-            required: true
+            required: true,
           },
           {
             type: "sparse-vector-configuration",
             name: "vector_config",
             required: true,
-          }
-        ]
-      }
+          },
+        ],
+      },
     ],
     button: {
       type: "button",
       title: "Continue",
       "on-click": {
-        "continue-step": "index-field-selection-step"
-      }
-    }
+        "continue-step": "index-field-selection-step",
+      },
+    },
   },
   "index-field-selection-step": {
     // In this config we let user specify which payload fields should be indexed.

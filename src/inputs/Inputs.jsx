@@ -125,8 +125,8 @@ Checkbox.propTypes = {
 export const NumberInput = ({ config, stepData, onChange }) => {
   const value = stepData || 0;
 
-  const maxValue = config?.max; 
-  const minValue = config?.min; 
+  const maxValue = config?.max;
+  const minValue = config?.min;
 
   const handleChange = (e) => {
     let valueNumber = parseInt(e.target.value);

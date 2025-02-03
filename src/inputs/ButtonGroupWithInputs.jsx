@@ -87,7 +87,7 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
   const fieldsConfig = {
     elements: selectedEnumFields,
     name: config.name + "_config",
-  }
+  };
 
   const size = config?.size || 12;
 
@@ -135,8 +135,6 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
         </Box>
 
         {/* Render fields of the selected enum */}
-
-
       </Grid2>
       <Grid2 size={12}>
         <Grid2 container spacing={2}>

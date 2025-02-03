@@ -8,14 +8,20 @@ import { Fragment } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
 import { useEffect } from "react";
 
-const GenericElementsStep = function ({ stepName, config, stepData, onApply, isLast = true }) {
+const GenericElementsStep = function ({
+  stepName,
+  config,
+  stepData,
+  onApply,
+  isLast = true,
+}) {
   const value = stepData || {};
 
   let isStepCompleted = true;
 
-  const renderedElements = config.elements &&
+  const renderedElements =
+    config.elements &&
     config.elements.map((element, idx) => {
-
       const elementConfig = {
         ...(elements[element.type] || {}),
         ...element,
@@ -29,7 +35,7 @@ const GenericElementsStep = function ({ stepName, config, stepData, onApply, isL
       isStepCompleted = isStepCompleted && isElementCompleted;
 
       const onChange = (value) => {
-        // We need to understand if stepData is completed. 
+        // We need to understand if stepData is completed.
         // If value if an object, we need to rely on completed field.
         // If value is something else, we just check that it is not empty.
         const newValue = { ...stepData, [element.name]: value };

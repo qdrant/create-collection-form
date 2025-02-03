@@ -5,13 +5,11 @@ import { Fragment, useEffect } from "react";
 import { checkCompleted } from "./checkCompleted.js";
 
 const GenericInputs = function ({ config, stepData, onChange }) {
-
   let allElementsCompleted = true;
 
   const renderedElements = (
     <>
       {config.elements.map((element) => {
-
         const elementConfig = {
           ...(elements[element.type] || {}),
           ...element,
@@ -21,7 +19,7 @@ const GenericInputs = function ({ config, stepData, onChange }) {
         if (elementData === undefined) {
           elementData = element.default;
         }
-        
+
         const isElementRequired = elementConfig.required === true;
         let isElementCompleted = checkCompleted(elementData, isElementRequired);
 
@@ -40,7 +38,6 @@ const GenericInputs = function ({ config, stepData, onChange }) {
           console.log("Skipping element", element.type);
           return null;
         }
-        
 
         return (
           <Fragment key={element.name}>
@@ -55,14 +52,12 @@ const GenericInputs = function ({ config, stepData, onChange }) {
     </>
   );
 
-
   useEffect(() => {
     const isRegisteredCompleted = stepData && stepData.completed === true;
     if (allElementsCompleted !== isRegisteredCompleted) {
       onChange({ ...stepData, completed: allElementsCompleted });
     }
   }, [stepData]);
-
 
   return renderedElements;
 };

@@ -7,6 +7,7 @@ const SizeWrapper = ({ config, element, ...other }) => {
     <Grid2
       size={config?.size || 6} // todo: make it configurable
       sx={{
+        // display: "flex",
         mt: 2,
         // alignContent: "end",
       }}

@@ -23,40 +23,10 @@ const defaultColors = {
   "primary-90": "#ffdadb",
 
   "secondary-blue-10": "#001848",
-  "secondary-blue-30": "#0040a1",
-  "secondary-blue-50": "#2f6ff0",
-  "secondary-blue-70": "#89a9ff",
-  "secondary-blue-90": "#d9e2fe",
-
-  "secondary-violet-10": "#24005b",
-  "secondary-violet-30": "#5700c9",
-  "secondary-violet-50": "#8547ff",
-  "secondary-violet-70": "#b99aff",
-  "secondary-violet-90": "#eaddff",
-
-  "secondary-teal-10": "#002020",
-  "secondary-teal-30": "#004f4f",
-  "secondary-teal-50": "#038585",
-  "secondary-teal-70": "#77e5e5",
-  "secondary-teal-90": "#c0f0f0",
-
-  "success-10": "#00210f",
-  "success-30": "#00522f",
-  "success-50": "#008a53",
-  "success-70": "#50bf83",
-  "success-90": "#befad6",
-
-  "warning-10": "#311300",
-  "warning-30": "#733501",
-  "warning-50": "#e0700d",
-  "warning-70": "#ff8d39",
-  "warning-90": "#ffdbc7",
-
-  "error-10": "#410002",
-  "error-30": "#93000d",
-  "error-50": "#e02828",
-  "error-70": "#fe897f",
-  "error-90": "#ffdad6",
+  "secondary-blue-30": "#24386c",
+  "secondary-blue-50": "#3b5db3",
+  "secondary-blue-70": "#7589be",
+  "secondary-blue-90": "#b2bfe8",
 };
 
 export default defaultColors;

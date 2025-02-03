@@ -7,6 +7,7 @@ import {
   Typography,
   styled,
   Checkbox,
+  Paper,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import defaultColors from "./theme/default-colors.js";
@@ -39,8 +40,11 @@ export const CCFormTitle = styled(
     name: "MuiCreateCollectionForm",
     slot: "title",
   },
-)(() => ({
-  color: `${defaultColors["primary-50"]} !important`,
+)(({ theme }) => ({
+  color:
+    theme.palette.mode === "dark"
+      ? defaultColors["secondary-blue-90"]
+      : defaultColors["secondary-blue-50"],
 }));
 
 export const CCFormSelectCard = styled(Card, {
@@ -69,7 +73,7 @@ export const CCFormSelectCard = styled(Card, {
       },
       "&.active": {
         border: 0,
-        boxShadow: `0px 0px 0px 2px ${defaultColors["neutral-80"]} inset`,
+        boxShadow: `0px 0px 0px 2px ${defaultColors["secondary-blue-90"]} inset`,
         color: defaultColors["neutral-98"],
         "& .MuiCardContent-root .MuiTypography-root": {
           color: defaultColors["neutral-98"],
@@ -91,7 +95,7 @@ export const CCFormSelectCard = styled(Card, {
   }
   if (theme.palette.mode === "light") {
     styles["&.MuiPaper-root"] = {
-      background: theme.palette.background.default,
+      background: theme.palette.background.paper,
       boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-90"]} inset`,
       border: 0,
       "&:hover": {
@@ -100,7 +104,7 @@ export const CCFormSelectCard = styled(Card, {
       "&.active": {
         cursor: "default",
         border: 0,
-        boxShadow: `0px 0px 0px 2px ${defaultColors["secondary-blue-30"]} inset`,
+        boxShadow: `0px 0px 0px 2px ${defaultColors["secondary-blue-50"]} inset`,
       },
       "&:not(.active)": {
         "& .MuiCardContent-root .MuiTypography-root": {
@@ -147,7 +151,7 @@ export const CCFormCard = styled(Card, {
         color: defaultColors["neutral-30"],
       },
       "&.MuiPaper-root": {
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.paper,
         border: 0,
         boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-80"]} inset`,
         color: defaultColors["neutral-30"],
@@ -164,7 +168,6 @@ export const CCFormButton = styled(Button, {
   textTransform: "capitalize",
   fontWeight: "semibold",
   fontSize: "18px",
-  color: defaultColors["primary-50"],
   "&.MuiButton-contained": {
     display: "flex",
     height: "40px",
@@ -173,34 +176,50 @@ export const CCFormButton = styled(Button, {
     alignItems: "center",
     alignSelf: "stretch",
     fontWeight: "semibold",
-    fontSize: "18px",
-    background: `linear-gradient(180deg, ${defaultColors["primary-50"]} 0%, ${defaultColors["primary-60"]} 100%)`,
-    boxShadow: `0px 2px 1px 0px ${defaultColors["primary-60"]} inset`,
-    color: defaultColors["neutral-98"],
+    fontSize: "15px",
+    background:
+      theme.palette.mode === "dark"
+        ? defaultColors["secondary-blue-90"]
+        : defaultColors["secondary-blue-50"],
+    color:
+      theme.palette.mode === "dark"
+        ? defaultColors["neutral-10"]
+        : defaultColors["neutral-100"],
     "&:hover": {
-      background: `linear-gradient(180deg, ${defaultColors["primary-60"]} 0%, ${defaultColors["primary-50"]} 100%)`,
+      background:
+        theme.palette.mode === "dark"
+          ? defaultColors["secondary-blue-70"]
+          : defaultColors["secondary-blue-30"],
     },
     "&:active": {
-      backgroundColor: defaultColors["primary-60"],
-      boxShadow: `0px 2px 1px 0px ${defaultColors["primary-60"]} inset`,
+      background:
+        theme.palette.mode === "dark"
+          ? defaultColors["secondary-blue-90"]
+          : defaultColors["secondary-blue-50"],
     },
     "&:disabled": {
-      background: defaultColors["neutral-60"],
-      boxShadow: `0px 2px 1px 0px ${defaultColors["neutral-60"]} inset`,
+      background:
+        theme.palette.mode === "dark"
+          ? defaultColors["neutral-80"]
+          : defaultColors["neutral-90"],
+      color: defaultColors["neutral-60"],
     },
   },
   "& .MuiButton-icon": {
     marginTop: "-3px",
   },
-  "&.MuiButton-text": {},
+  "&.MuiButton-text": {
+    color:
+      theme.palette.mode === "dark"
+        ? defaultColors["secondary-blue-90"]
+        : defaultColors["secondary-blue-50"],
 
-  "&:hover": {
-    "&.MuiButton-text": {
+    "&:hover": {
       background: "transparent",
       color:
         theme.palette.mode === "dark"
-          ? defaultColors["neutral-100"]
-          : defaultColors["primary-60"],
+          ? defaultColors["secondary-blue-70"]
+          : defaultColors["secondary-blue-30"],
     },
   },
 }));
@@ -237,7 +256,7 @@ export const CCFormInputBase = styled(InputBase, {
     backgroundColor:
       theme.palette.mode === "dark"
         ? defaultColors["neutral-20"]
-        : theme.palette.background.default,
+        : theme.palette.background.paper,
   },
 
   "&.Mui-focused": {
@@ -269,12 +288,21 @@ export const CCFormInputBase = styled(InputBase, {
 export const CCFormCheckbox = styled(Checkbox, {
   name: "MuiCreateCollectionForm",
   slot: "checkbox",
-})(() => ({
-  color: defaultColors["primary-50"],
+})(({ theme }) => ({
+  color:
+    theme.palette.mode === "dark"
+      ? defaultColors["secondary-blue-90"]
+      : defaultColors["secondary-blue-50"],
   "&.MuiCheckbox-colorPrimary": {
-    color: defaultColors["primary-50"],
+    color:
+      theme.palette.mode === "dark"
+        ? defaultColors["secondary-blue-90"]
+        : defaultColors["secondary-blue-50"],
     "&.Mui-checked": {
-      color: defaultColors["primary-50"],
+      color:
+        theme.palette.mode === "dark"
+          ? defaultColors["secondary-blue-90"]
+          : defaultColors["secondary-blue-50"],
     },
   },
 }));
@@ -308,3 +336,39 @@ export const CCFormAutoComplete = styled(Autocomplete, {
     right: "10px",
   },
 }));
+
+export const CCFormDescription = styled(Paper, {
+  name: "MuiCreateCollectionForm",
+  slot: "description",
+})(({ theme }) => {
+  const styles = {
+    display: "flex",
+    alignItems: "center",
+    padding: "1rem",
+  };
+
+  if (theme.palette.mode === "dark") {
+    styles["&.MuiPaper-root"] = {
+      background: defaultColors["neutral-10"],
+      border: 0,
+      color: defaultColors["neutral-90"],
+      "& .MuiTypography-root": {
+        color: defaultColors["neutral-90"],
+      },
+    };
+  }
+
+  if (theme.palette.mode === "light") {
+    styles["&.MuiPaper-root"] = {
+      background: defaultColors["neutral-98"],
+      boxShadow: "none",
+      color: defaultColors["neutral-40"],
+      border: 0,
+      "& .MuiTypography-root": {
+        color: defaultColors["neutral-40"],
+      },
+    };
+  }
+
+  return styles;
+});
