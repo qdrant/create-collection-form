@@ -12,6 +12,7 @@ import { CCFormRoot } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { Grid2 } from "@mui/material";
 import { CCFormButton } from "./ThemedComponents";
+import { prepareOutput } from "./prepareOutput.js";
 
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
@@ -115,7 +116,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
             // key={element.title}
             disabled={!isAllCompleted}
             variant="contained"
-            onClick={() => onFinish(formData)}
+            onClick={() => onFinish(prepareOutput(formData))}
           >
             Finish
           </CCFormButton>
