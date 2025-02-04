@@ -11,8 +11,8 @@ const Description = ({ config, stepData, onChange }) => {
 
   return (
     <CCFormDescription elevation={0}>
-      <InfoOutlined fontSize="1rem" sx={{ mr: 1, mb: 0.5 }} />
-      <Typography variant="body2" sx={{ whiteSpace: "pre-line" }}>
+      <InfoOutlined fontSize="1rem" sx={{ mr: 1, mt: 0.3 }} />
+      <Typography variant="caption" sx={{ whiteSpace: "pre-line" }}>
         {config.description}&nbsp;
         {link && (
           <a href={link} target="_blank" rel="noreferrer">

@@ -346,7 +346,16 @@ export const CCFormDescription = styled(Paper, {
     display: "flex",
     alignItems: "center",
     padding: "1rem",
-    height: "100%",
+    a: {
+      textDecoration: "none",
+      whiteSpace: "nowrap",
+      "&:hover": {
+        textDecoration: "underline",
+      },
+    },
+    "& .MuiSvgIcon-root": {
+      alignSelf: "flex-start",
+    },
   };
 
   if (theme.palette.mode === "dark") {
@@ -358,16 +367,9 @@ export const CCFormDescription = styled(Paper, {
       "& .MuiTypography-root": {
         color: defaultColors["neutral-80"],
       },
-      a: {
-        color: defaultColors["secondary-blue-90"],
-        textDecoration: "none",
-        whiteSpace: "nowrap",
-        "&:hover": {
-          color: defaultColors["secondary-blue-70"],
-          textDecoration: "underline",
-        },
-      },
     };
+    styles.a.color = defaultColors["secondary-blue-90"];
+    styles.a["&:hover"].color = defaultColors["secondary-blue-70"];
   }
 
   if (theme.palette.mode === "light") {
@@ -380,6 +382,8 @@ export const CCFormDescription = styled(Paper, {
         color: defaultColors["neutral-40"],
       },
     };
+    styles.a.color = defaultColors["secondary-blue-50"];
+    styles.a["&:hover"].color = defaultColors["secondary-blue-30"];
   }
 
   return styles;
