@@ -47,6 +47,7 @@ export const elements = {
         description: "This checkbox enables Inverse Document Frequency (IDF) weighting. \n Enabled it if you use BM25 or other models that require IDF.",
         link: "https://qdrant.tech/documentation/concepts/indexing/#idf-modifier",
         linkText: "Learn more",
+        name: "use_idf_description",
         size: 9,
       }
     ],
@@ -102,13 +103,20 @@ export const steps = {
 
     elements: [
       {
-        size: 12,
+        size: 6,
         type: "string-input",
         title: "Tenant field name",
         name: "tenant_id",
         placeholder: "Example: user-id",
         required: true,
       },
+      {
+        size: 6,
+        type: "description",
+        description: "This payload field should be used to separate tenants within collection. \n A specuil payload index of type `keyword` will be created for this field. \n All requests to the collection should include this field as a filter.",
+        link: "https://qdrant.tech/documentation/guides/multiple-partitions/",
+        linkText: "Multitenancy Documentation",
+      }
     ],
     button: {
       type: "button",
@@ -219,6 +227,7 @@ export const steps = {
             type: "description",
             description: "Name of the dense vector field",
             link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
+            name: "dense_vector_name_description",
             size: 6,
           },
           {
@@ -245,6 +254,7 @@ export const steps = {
             type: "description",
             description: "Name of the sparse vector field",
             link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
+            name: "sparse_vector_name_description",
             size: 6,
           },
           {
@@ -284,6 +294,7 @@ export const steps = {
           {
             type: "description",
             description: "This name will be used as a name of vector",
+            name: "vector_name_description",
           },
           {
             type: "dense-vector-configuration",
@@ -392,6 +403,7 @@ export const steps = {
                     description: "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
+                    name: "lookup_description",
                     size: 9
                   },
                   {
@@ -406,6 +418,7 @@ export const steps = {
                     description: "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
+                    name: "range_description",
                     size: 9
                   },
                 ],
@@ -435,6 +448,7 @@ export const steps = {
                     description: "Defines how the text is tokenized",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
                     linkText: "Learn more",
+                    name: "tokenizer_description",
                     size: 8
                   },
                   {
@@ -449,6 +463,7 @@ export const steps = {
                     description: "Converts all characters to lowercase",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
                     linkText: "Learn more",
+                    name: "lowercase_description",
                     size: 8
                   },
                   {

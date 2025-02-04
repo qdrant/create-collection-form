@@ -79,7 +79,7 @@ GenericInputs.propTypes = {
     elements: PropTypes.arrayOf(
       PropTypes.shape({
         type: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
+        name: PropTypes.string,
       }),
     ),
   }).isRequired,

@@ -33,7 +33,7 @@ const Description = ({ config, stepData, onChange }) => {
 Description.propTypes = {
   config: PropTypes.shape({
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
   }).isRequired,
   stepData: PropTypes.string,
   onChange: PropTypes.func.isRequired,
