@@ -1,20 +1,17 @@
 import { Grid2 } from "@mui/material";
 import GenericInputs from "./GenericInputs";
 import PropTypes from "prop-types";
-import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-
+import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { CCFormAccordion } from "../ThemedComponents.jsx";
 
 const Details = function ({ config, stepData, onChange }) {
-
   const size = config.size || 12;
 
   return (
     <Grid2 size={size}>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ArrowDropDownIcon />}
-        >
+      <CCFormAccordion>
+        <AccordionSummary expandIcon={<ArrowDropDownIcon />}>
           Advanced Configuration
         </AccordionSummary>
         <AccordionDetails>
@@ -26,7 +23,7 @@ const Details = function ({ config, stepData, onChange }) {
             />
           </Grid2>
         </AccordionDetails>
-      </Accordion>
+      </CCFormAccordion>
     </Grid2>
   );
 };

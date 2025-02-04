@@ -5,7 +5,6 @@ import { Fragment, useEffect } from "react";
 import { checkCompleted } from "./checkCompleted.js";
 
 const GenericInputs = function ({ config, stepData, onChange }) {
-
   let allElementsCompleted = true;
 
   if (stepData?.parentCompleted === false) {
@@ -56,8 +55,6 @@ const GenericInputs = function ({ config, stepData, onChange }) {
       })}
     </>
   );
-
-
 
   useEffect(() => {
     /// Always change ig complete is not defined

@@ -40,15 +40,16 @@ export const elements = {
         title: "Use IDF?",
         name: "use_idf",
         default: false,
-        size: 3,
+        size: 6,
       },
       {
         type: "description",
-        description: "This checkbox enables Inverse Document Frequency (IDF) weighting. \n Enabled it if you use BM25 or other models that require IDF.",
+        description:
+          "This checkbox enables Inverse Document Frequency (IDF) weighting. \n Enabled it if you use BM25 or other models that require IDF.",
         link: "https://qdrant.tech/documentation/concepts/indexing/#idf-modifier",
         linkText: "Learn more",
         name: "use_idf_description",
-        size: 9,
+        size: 6,
       }
     ],
   },
@@ -310,11 +311,11 @@ export const steps = {
                 type: "number",
                 title: "SOMETHING",
                 name: "something",
-              }
-            ]
-          }
-        ]
-      }
+              },
+            ],
+          },
+        ],
+      },
     ],
     button: {
       type: "button",
@@ -400,7 +401,8 @@ export const steps = {
                   },
                   {
                     type: "description",
-                    description: "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
+                    description:
+                      "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
                     name: "lookup_description",
@@ -415,7 +417,8 @@ export const steps = {
                   },
                   {
                     type: "description",
-                    description: "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
+                    description:
+                      "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
                     name: "range_description",
