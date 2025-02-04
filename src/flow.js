@@ -40,7 +40,15 @@ export const elements = {
         title: "Use IDF?",
         name: "use_idf",
         default: false,
+        size: 3,
       },
+      {
+        type: "description",
+        description: "This checkbox enables Inverse Document Frequency (IDF) weighting. \n Enabled it if you use BM25 or other models that require IDF.",
+        link: "https://qdrant.tech/documentation/concepts/indexing/#idf-modifier",
+        linkText: "Learn more",
+        size: 9,
+      }
     ],
   },
 };
@@ -191,21 +199,28 @@ export const steps = {
   "simple-hybrid-embedding-step": {
     // In this config user should select a field that contains tenant id
     title: "Vector configuration",
-    description: "Configuration for dense embedding",
+    description: "Configuration for dense and sparse embeddings",
     elements: [
-      {
-        type: "string-input",
-        title: "Dense vector name",
-        name: "dense_vector_name",
-        placeholder: "Example: abstract-dense-vector",
-        size: 12,
-        required: true,
-      },
       {
         type: "group",
         name: "vector_config_group",
         required: true,
         elements: [
+          {
+            type: "string-input",
+            title: "Dense vector name",
+            name: "dense_vector_name",
+            variant: "outlined",
+            placeholder: "Example: abstract-dense-vector",
+            size: 6,
+            required: true,
+          },
+          {
+            type: "description",
+            description: "Name of the dense vector field",
+            link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
+            size: 6,
+          },
           {
             type: "dense-vector-configuration",
             name: "dense_vector_config",
@@ -214,17 +229,24 @@ export const steps = {
         ],
       },
       {
-        type: "string-input",
-        title: "Sparse vector name",
-        name: "sparse_vector_name",
-        placeholder: "Example: title-sparse-vector",
-        size: 12,
-        required: true,
-      },
-      {
         type: "group",
         name: "sparse_vector_config_group",
         elements: [
+          {
+            type: "string-input",
+            title: "Sparse vector name",
+            name: "sparse_vector_name",
+            variant: "outlined",
+            placeholder: "Example: title-sparse-vector",
+            size: 6,
+            required: true,
+          },
+          {
+            type: "description",
+            description: "Name of the sparse vector field",
+            link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
+            size: 6,
+          },
           {
             type: "sparse-vector-configuration",
             name: "sparse_vector_config",
@@ -363,12 +385,28 @@ export const steps = {
                     name: "lookup",
                     type: "checkbox",
                     default: true,
+                    size: 3,
+                  },
+                  {
+                    type: "description",
+                    description: "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
+                    link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
+                    linkText: "Learn more",
+                    size: 9
                   },
                   {
                     title: "Allow range filters",
                     name: "range",
                     type: "checkbox",
                     default: true,
+                    size: 3,
+                  },
+                  {
+                    type: "description",
+                    description: "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
+                    link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
+                    linkText: "Learn more",
+                    size: 9
                   },
                 ],
               },
@@ -390,12 +428,28 @@ export const steps = {
                     type: "dropdown",
                     options: ["prefix", "whitespace", "word", "multilingual"],
                     default: "whitespace",
+                    size: 4,
+                  },
+                  {
+                    type: "description",
+                    description: "Defines how the text is tokenized",
+                    link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
+                    linkText: "Learn more",
+                    size: 8
                   },
                   {
                     title: "Lowercase",
                     name: "lowercase",
                     type: "checkbox",
                     default: true,
+                    size: 4,
+                  },
+                  {
+                    type: "description",
+                    description: "Converts all characters to lowercase",
+                    link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
+                    linkText: "Learn more",
+                    size: 8
                   },
                   {
                     title: "Min token length",
