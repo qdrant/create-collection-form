@@ -50,7 +50,7 @@ export const elements = {
         linkText: "Learn more",
         name: "use_idf_description",
         size: 6,
-      }
+      },
     ],
   },
 };
@@ -114,10 +114,11 @@ export const steps = {
       {
         size: 6,
         type: "description",
-        description: "This payload field should be used to separate tenants within collection. \n A specuil payload index of type `keyword` will be created for this field. \n All requests to the collection should include this field as a filter.",
+        description:
+          "This payload field should be used to separate tenants within collection. \n A specuil payload index of type `keyword` will be created for this field. \n All requests to the collection should include this field as a filter.",
         link: "https://qdrant.tech/documentation/guides/multiple-partitions/",
         linkText: "Multitenancy Documentation",
-      }
+      },
     ],
     button: {
       type: "button",
@@ -406,7 +407,7 @@ export const steps = {
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
                     name: "lookup_description",
-                    size: 9
+                    size: 9,
                   },
                   {
                     title: "Allow range filters",
@@ -422,7 +423,7 @@ export const steps = {
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
                     name: "range_description",
-                    size: 9
+                    size: 9,
                   },
                 ],
               },
@@ -452,7 +453,7 @@ export const steps = {
                     link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
                     linkText: "Learn more",
                     name: "tokenizer_description",
-                    size: 8
+                    size: 8,
                   },
                   {
                     title: "Lowercase",
@@ -467,7 +468,7 @@ export const steps = {
                     link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
                     linkText: "Learn more",
                     name: "lowercase_description",
-                    size: 8
+                    size: 8,
                   },
                   {
                     title: "Min token length",
