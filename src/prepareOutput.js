@@ -16,7 +16,7 @@ import { steps } from "./flow.js";
 //             "size": 512,
 //             "distance": "Euclid",
 //             "multivector": false,
-//             "storage_tier": "medium",
+//             "storage_tier": "balanced",
 //             "precision_tier": "high"
 //         }
 //     ],
@@ -24,7 +24,7 @@ import { steps } from "./flow.js";
 //         {
 //             "name": "sparse1",
 //             "use_idf": true,
-//             "storage_tier": "medium",
+//             "storage_tier": "balanced",
 //             "precision_tier": "high"
 //         }
 //     ],
@@ -87,7 +87,7 @@ function simpleDenseEmbeddingExtractor(data, stepData) {
       size: size,
       distance: distance,
       multivector: false,
-      storage_tier: "medium",
+      storage_tier: "balanced",
       precision_tier: "high",
     },
   ];
@@ -130,7 +130,7 @@ function simpleHybridEmbeddingExtractor(data, stepData) {
       size: denseSize,
       distance: denseDistance,
       multivector: false,
-      storage_tier: "medium",
+      storage_tier: "balanced",
       precision_tier: "high",
     },
   ];
@@ -139,7 +139,7 @@ function simpleHybridEmbeddingExtractor(data, stepData) {
     {
       name: sparseName,
       use_idf: use_idf,
-      storage_tier: "medium",
+      storage_tier: "balanced",
       precision_tier: "high",
     },
   ];
@@ -181,7 +181,7 @@ function customCollectionDenseExtractor(data, stepData) {
       size: vector.vector_config.dimensions,
       distance: vector.vector_config.metric || "Cosine",
       multivector: vector?.advanced_config?.multivector || false,
-      storage_tier: vector?.advanced_config?.storage_tier || "medium",
+      storage_tier: vector?.advanced_config?.storage_tier || "balanced",
       precision_tier: vector?.advanced_config?.precision_tier || "high",
     };
   });
@@ -215,7 +215,7 @@ function customCollectionSparseExtractor(data, stepData) {
     return {
       name: vector.vector_name,
       use_idf: vector?.vector_config?.use_idf || false,
-      storage_tier: vector?.advanced_config?.storage_tier || "medium",
+      storage_tier: vector?.advanced_config?.storage_tier || "balanced",
       precision_tier: vector?.advanced_config?.precision_tier || "high",
     };
   });

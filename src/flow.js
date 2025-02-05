@@ -309,10 +309,51 @@ export const steps = {
             title: "Advanced configuration",
             elements: [
               {
-                type: "number",
-                title: "SOMETHING",
-                name: "something",
+                type: "checkbox",
+                title: "Multivector",
+                name: "multivector",
+                default: false,
+                size: 6,
               },
+              {
+                type: "description",
+                description:
+                  "Create multiple sub-vectors per point. \n Enabled it if you use Late Interraction models like ColBERT, ColPali, e.t.c.",
+                name: "multivector_description",
+                link: "https://qdrant.tech/documentation/concepts/vectors/#multivectors",
+                linkText: "Learn more",
+                size: 6,
+              },
+              {
+                type: "enum-slider",
+                title: "Storage Tier",
+                name: "storage_tier",
+                options: ["storage", "balanced", "performance"],
+                defaultValue: "balanced",
+                size: 6,
+              },
+              {
+                type: "description",
+                description:
+                  "Storage tier defines how the vector is stored. \n Storage tier is optimized high data volume and low frequency of requests, performance tier is optimized for low latency",
+                name: "storage_tier_description",
+                size: 6,
+              },
+              {
+                type: "enum-slider",
+                title: "Precision Tier",
+                name: "precision_tier",
+                options: ["low", "medium", "high"],
+                defaultValue: "high",
+                size: 6,
+              },
+              {
+                type: "description",
+                description:
+                  "Precision tier defines how vectors are compressed. \n Low precision tier applies quantization, high precision tier doesn't compress vectors",
+                name: "precision_tier_description",
+                size: 6,
+              }
             ],
           },
         ],
