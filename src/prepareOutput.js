@@ -259,8 +259,7 @@ export const stepExtractors = {
     "index-field-selection-step": indexFieldSelectionExtractor,
 }
 
-export function prepareOutput(formState) {
-    const path = JSON.parse(localStorage.getItem("path")) || [];
+export function prepareOutput(formState, path) {
     let output = {};
 
     path.forEach(step => {
