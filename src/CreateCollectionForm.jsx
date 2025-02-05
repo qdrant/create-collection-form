@@ -106,8 +106,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
   });
 
   const handleFinish = () => {
-    const output = prepareOutput(formData, path);
-    onFinish(JSON.stringify(output, null, 2));
+    onFinish(prepareOutput(formData, path));
   };
 
   return (
