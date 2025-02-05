@@ -105,6 +105,11 @@ export const CreateCollectionForm = function CreateCollectionForm({
     );
   });
 
+  const handleFinish = () => {
+    const output = prepareOutput(formData, path);
+    onFinish(JSON.stringify(output, null, 2));
+  };
+
   return (
     <CCFormRoot>
       {renderedSteps}
@@ -116,7 +121,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
             // key={element.title}
             disabled={!isAllCompleted}
             variant="contained"
-            onClick={() => onFinish(JSON.stringify(prepareOutput(formData), null, 2))}
+            onClick={handleFinish}
           >
             Finish
           </CCFormButton>
