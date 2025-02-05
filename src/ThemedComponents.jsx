@@ -446,11 +446,11 @@ export const CCFormSlider = styled(Slider, {
 })(({ theme }) => {
   const styles = {
     "& .MuiSlider-markLabel": {
-      "&:nth-child(4)": {
+      "&:nth-of-type(4)": {
         transform: "none",
         left: 0,
       },
-      "&:nth-last-child(2)": {
+      "&:nth-last-of-type(2)": {
         left: "auto !important",
         transform: "none",
         right: "-3px",
