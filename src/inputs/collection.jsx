@@ -5,6 +5,7 @@ import ButtonGroupWithInputs from "./ButtonGroupWithInputs.jsx";
 import Repeatable from "./Repeatable.jsx";
 import Group from "./Group.jsx";
 import Details from "./Details.jsx";
+import EnumSlider from "./EnumSlider.jsx";
 
 import { Dropdown } from "./Inputs.jsx";
 import { StringInput } from "./Inputs.jsx";
@@ -33,6 +34,7 @@ const compoments = {
   group: Group,
   description: wrapWithSize(Description),
   details: Details,
+  "enum-slider": wrapWithSize(EnumSlider),
 };
 
 export default compoments;

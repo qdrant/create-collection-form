@@ -1,3 +1,4 @@
+
 /// Function to convert form state into usable output
 /// formState: object containing each step's form data
 /// steps: array of step objects
@@ -13,7 +14,7 @@
 //             "size": 512,
 //             "distance": "Euclid",
 //             "multivector": false,
-//             "storage_tier": "medium",
+//             "storage_tier": "balanced",
 //             "precision_tier": "high"
 //         }
 //     ],
@@ -21,7 +22,7 @@
 //         {
 //             "name": "sparse1",
 //             "use_idf": true,
-//             "storage_tier": "medium",
+//             "storage_tier": "balanced",
 //             "precision_tier": "high"
 //         }
 //     ],
@@ -51,13 +52,13 @@
 //     ],
 // }
 
-function emptyExtractor(data, stepData) { }
+function emptyExtractor(data, stepData) {}
 
 function tenantFieldExtractor(data, stepData) {
-    data.tenant_field = {
-        name: stepData.tenant_id,
-        type: "keyword"
-    }
+  data.tenant_field = {
+    name: stepData.tenant_id,
+    type: "keyword",
+  };
 }
 
 function simpleDenseEmbeddingExtractor(data, stepData) {
@@ -78,17 +79,19 @@ function simpleDenseEmbeddingExtractor(data, stepData) {
      */
 
 
-    let size = stepData?.vector_config_group?.vector_config?.dimensions;
-    let distance = stepData?.vector_config_group?.vector_config?.metric;
+  let size = stepData?.vector_config_group?.vector_config?.dimensions;
+  let distance = stepData?.vector_config_group?.vector_config?.metric;
 
-    data.dense_vectors = [{
-        name: "", // Anonymous dense vector have empty name
-        size: size,
-        distance: distance,
-        multivector: false,
-        storage_tier: "medium",
-        precision_tier: "high"
-    }];
+  data.dense_vectors = [
+    {
+      name: "", // Anonymous dense vector have empty name
+      size: size,
+      distance: distance,
+      multivector: false,
+      storage_tier: "balanced",
+      precision_tier: "high",
+    },
+  ];
 }
 
 function simpleHybridEmbeddingExtractor(data, stepData) {
@@ -123,21 +126,25 @@ function simpleHybridEmbeddingExtractor(data, stepData) {
     let sparseName = stepData?.sparse_vector_config_group?.sparse_vector_name;
     let use_idf = stepData?.sparse_vector_config_group?.sparse_vector_config?.use_idf || false;
 
-    data.dense_vectors = [{
-        name: denseName,
-        size: denseSize,
-        distance: denseDistance,
-        multivector: false,
-        storage_tier: "medium",
-        precision_tier: "high"
-    }];
+  data.dense_vectors = [
+    {
+      name: denseName,
+      size: denseSize,
+      distance: denseDistance,
+      multivector: false,
+      storage_tier: "balanced",
+      precision_tier: "high",
+    },
+  ];
 
-    data.sparse_vectors = [{
-        name: sparseName,
-        use_idf: use_idf,
-        storage_tier: "medium",
-        precision_tier: "high"
-    }];
+  data.sparse_vectors = [
+    {
+      name: sparseName,
+      use_idf: use_idf,
+      storage_tier: "balanced",
+      precision_tier: "high",
+    },
+  ];
 }
 
 function customCollectionDenseExtractor(data, stepData) {
@@ -281,17 +288,16 @@ function indexFieldSelectionExtractor(data, stepData) {
 }
 
 export const stepExtractors = {
-    "use-case-step": emptyExtractor,
-    "tenant-field-selection-step": tenantFieldExtractor,
-    "templates-selection-step": emptyExtractor,
-    "simple-dense-embedding-step": simpleDenseEmbeddingExtractor,
-    "simple-hybrid-embedding-step": simpleHybridEmbeddingExtractor,
-    "custom-collection-dense-step": customCollectionDenseExtractor,
-    "custom-collection-sparse-step": customCollectionSparseExtractor,
-    "index-field-selection-step": indexFieldSelectionExtractor,
-}
+  "use-case-step": emptyExtractor,
+  "tenant-field-selection-step": tenantFieldExtractor,
+  "templates-selection-step": emptyExtractor,
+  "simple-dense-embedding-step": simpleDenseEmbeddingExtractor,
+  "simple-hybrid-embedding-step": simpleHybridEmbeddingExtractor,
+  "custom-collection-dense-step": customCollectionDenseExtractor,
+  "custom-collection-sparse-step": customCollectionSparseExtractor,
+  "index-field-selection-step": indexFieldSelectionExtractor,
+};
 
-export function prepareOutput(formState, path) {
     let output = {};
 
     (path || []).forEach(step => {
@@ -301,5 +307,5 @@ export function prepareOutput(formState, path) {
         }
     });
 
-    return output;
+  return output;
 }

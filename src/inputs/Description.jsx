@@ -3,28 +3,24 @@ import PropTypes from "prop-types";
 import { CCFormDescription } from "../ThemedComponents.jsx";
 import { Typography } from "@mui/material";
 import { InfoOutlined } from "@mui/icons-material";
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const Description = ({ config, stepData, onChange }) => {
-
   let link = config?.link;
   let linkText = config?.linkText || "Learn more";
 
   return (
     <CCFormDescription elevation={0}>
-      <InfoOutlined fontSize="1rem" sx={{ mr: 1, mb: 0.5 }} />
-      <Typography variant="body2" sx={{ whiteSpace: "pre-line" }}>{config.description}</Typography>
-      {link && (
-        <>
-          <OpenInNewIcon fontSize="1rem" sx={{ mr: 1, mb: 0.5 }} />
-          <Typography variant="body2">
-            <a href={link} target="_blank" rel="noreferrer">
-              {linkText}
-            </a>
-          </Typography>
-        </>
-      )}
+      <InfoOutlined fontSize="1rem" sx={{ mr: 1, mt: 0.3 }} />
+      <Typography variant="caption" sx={{ whiteSpace: "pre-line" }}>
+        {config.description}&nbsp;
+        {link && (
+          <a href={link} target="_blank" rel="noreferrer">
+            {linkText}
+            <OpenInNewIcon fontSize="1rem" sx={{ mx: 1, mb: -0.4 }} />
+          </a>
+        )}
+      </Typography>
     </CCFormDescription>
   );
 };
@@ -33,7 +29,7 @@ const Description = ({ config, stepData, onChange }) => {
 Description.propTypes = {
   config: PropTypes.shape({
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
   }).isRequired,
   stepData: PropTypes.string,
   onChange: PropTypes.func.isRequired,

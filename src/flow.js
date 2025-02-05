@@ -40,15 +40,17 @@ export const elements = {
         title: "Use IDF?",
         name: "use_idf",
         default: false,
-        size: 3,
+        size: 6,
       },
       {
         type: "description",
-        description: "This checkbox enables Inverse Document Frequency (IDF) weighting. \n Enabled it if you use BM25 or other models that require IDF.",
+        description:
+          "This checkbox enables Inverse Document Frequency (IDF) weighting. \n Enabled it if you use BM25 or other models that require IDF.",
         link: "https://qdrant.tech/documentation/concepts/indexing/#idf-modifier",
         linkText: "Learn more",
-        size: 9,
-      }
+        name: "use_idf_description",
+        size: 6,
+      },
     ],
   },
 };
@@ -102,12 +104,20 @@ export const steps = {
 
     elements: [
       {
-        size: 12,
+        size: 6,
         type: "string-input",
         title: "Tenant field name",
         name: "tenant_id",
         placeholder: "Example: user-id",
         required: true,
+      },
+      {
+        size: 6,
+        type: "description",
+        description:
+          "This payload field should be used to separate tenants within collection. \n A specuil payload index of type `keyword` will be created for this field. \n All requests to the collection should include this field as a filter.",
+        link: "https://qdrant.tech/documentation/guides/multiple-partitions/",
+        linkText: "Multitenancy Documentation",
       },
     ],
     button: {
@@ -219,6 +229,7 @@ export const steps = {
             type: "description",
             description: "Name of the dense vector field",
             link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
+            name: "dense_vector_name_description",
             size: 6,
           },
           {
@@ -245,6 +256,7 @@ export const steps = {
             type: "description",
             description: "Name of the sparse vector field",
             link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
+            name: "sparse_vector_name_description",
             size: 6,
           },
           {
@@ -284,6 +296,7 @@ export const steps = {
           {
             type: "description",
             description: "This name will be used as a name of vector",
+            name: "vector_name_description",
           },
           {
             type: "dense-vector-configuration",
@@ -296,14 +309,55 @@ export const steps = {
             title: "Advanced configuration",
             elements: [
               {
-                type: "number",
-                title: "SOMETHING",
-                name: "something",
+                type: "checkbox",
+                title: "Multivector",
+                name: "multivector",
+                default: false,
+                size: 6,
+              },
+              {
+                type: "description",
+                description:
+                  "Create multiple sub-vectors per point. \n Enabled it if you use Late Interraction models like ColBERT, ColPali, e.t.c.",
+                name: "multivector_description",
+                link: "https://qdrant.tech/documentation/concepts/vectors/#multivectors",
+                linkText: "Learn more",
+                size: 6,
+              },
+              {
+                type: "enum-slider",
+                title: "Storage Tier",
+                name: "storage_tier",
+                options: ["storage", "balanced", "performance"],
+                defaultValue: "balanced",
+                size: 6,
+              },
+              {
+                type: "description",
+                description:
+                  "Storage tier defines how the vector is stored. \n Storage tier is optimized high data volume and low frequency of requests, performance tier is optimized for low latency",
+                name: "storage_tier_description",
+                size: 6,
+              },
+              {
+                type: "enum-slider",
+                title: "Precision Tier",
+                name: "precision_tier",
+                options: ["low", "medium", "high"],
+                defaultValue: "high",
+                size: 6,
+              },
+              {
+                type: "description",
+                description:
+                  "Precision tier defines how vectors are compressed. \n Low precision tier applies quantization, high precision tier doesn't compress vectors",
+                name: "precision_tier_description",
+                size: 6,
               }
-            ]
-          }
-        ]
-      }
+            ],
+          },
+        ],
+      },
     ],
     button: {
       type: "button",
@@ -389,10 +443,12 @@ export const steps = {
                   },
                   {
                     type: "description",
-                    description: "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
+                    description:
+                      "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
-                    size: 9
+                    name: "lookup_description",
+                    size: 9,
                   },
                   {
                     title: "Allow range filters",
@@ -403,10 +459,12 @@ export const steps = {
                   },
                   {
                     type: "description",
-                    description: "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
+                    description:
+                      "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
-                    size: 9
+                    name: "range_description",
+                    size: 9,
                   },
                 ],
               },
@@ -435,7 +493,8 @@ export const steps = {
                     description: "Defines how the text is tokenized",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
                     linkText: "Learn more",
-                    size: 8
+                    name: "tokenizer_description",
+                    size: 8,
                   },
                   {
                     title: "Lowercase",
@@ -449,7 +508,8 @@ export const steps = {
                     description: "Converts all characters to lowercase",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
                     linkText: "Learn more",
-                    size: 8
+                    name: "lowercase_description",
+                    size: 8,
                   },
                   {
                     title: "Min token length",

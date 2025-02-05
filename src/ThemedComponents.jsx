@@ -8,6 +8,7 @@ import {
   styled,
   Checkbox,
   Paper,
+  Accordion,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import defaultColors from "./theme/default-colors.js";
@@ -345,18 +346,30 @@ export const CCFormDescription = styled(Paper, {
     display: "flex",
     alignItems: "center",
     padding: "1rem",
-    height: "100%",
+    a: {
+      textDecoration: "none",
+      whiteSpace: "nowrap",
+      "&:hover": {
+        textDecoration: "underline",
+      },
+    },
+    "& .MuiSvgIcon-root": {
+      alignSelf: "flex-start",
+    },
   };
 
   if (theme.palette.mode === "dark") {
     styles["&.MuiPaper-root"] = {
       background: defaultColors["neutral-20"],
       border: 0,
-      color: defaultColors["neutral-90"],
+      color: defaultColors["neutral-80"],
+
       "& .MuiTypography-root": {
-        color: defaultColors["neutral-90"],
+        color: defaultColors["neutral-80"],
       },
     };
+    styles.a.color = defaultColors["secondary-blue-90"];
+    styles.a["&:hover"].color = defaultColors["secondary-blue-70"];
   }
 
   if (theme.palette.mode === "light") {
@@ -369,6 +382,46 @@ export const CCFormDescription = styled(Paper, {
         color: defaultColors["neutral-40"],
       },
     };
+    styles.a.color = defaultColors["secondary-blue-50"];
+    styles.a["&:hover"].color = defaultColors["secondary-blue-30"];
+  }
+
+  return styles;
+});
+
+export const CCFormAccordion = styled(Accordion, {
+  name: "MuiCreateCollectionForm",
+  slot: "accordion",
+})(({ theme }) => {
+  const styles = {
+    boxShadow: "none",
+    border: 0,
+    "& .MuiAccordionSummary-root": {
+      padding: 0,
+      fontSize: "0.85rem",
+      textDecoration: "underline",
+    },
+    "& .MuiAccordionDetails-root": {
+      padding: "1rem 0",
+    },
+  };
+
+  if (theme.palette.mode === "dark") {
+    styles["&.MuiAccordion-root"] = {
+      background: defaultColors["neutral-20"],
+      color: defaultColors["neutral-94"],
+    };
+    styles["& .MuiAccordionSummary-root"].color =
+      defaultColors["secondary-blue-90"];
+  }
+
+  if (theme.palette.mode === "light") {
+    styles["&.MuiAccordion-root"] = {
+      background: defaultColors["neutral-100"],
+      color: defaultColors["neutral-30"],
+    };
+    styles["& .MuiAccordionSummary-root"].color =
+      defaultColors["secondary-blue-50"];
   }
 
   return styles;
