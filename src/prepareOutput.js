@@ -298,6 +298,7 @@ export const stepExtractors = {
   "index-field-selection-step": indexFieldSelectionExtractor,
 };
 
+export function prepareOutput(formState, path) {
     let output = {};
 
     (path || []).forEach(step => {
@@ -307,5 +308,5 @@ export const stepExtractors = {
         }
     });
 
-  return output;
+    return output;
 }
