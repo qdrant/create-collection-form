@@ -51,7 +51,7 @@
 //     ],
 // }
 
-function emptyExtractor(data, stepData) {}
+function emptyExtractor(data, stepData) { }
 
 function tenantFieldExtractor(data, stepData) {
     data.tenant_field = {
@@ -118,8 +118,8 @@ function simpleHybridEmbeddingExtractor(data, stepData) {
     let denseName = stepData?.vector_config_group?.dense_vector_name;
     let denseSize = stepData?.vector_config_group?.dense_vector_config?.dimensions;
     let denseDistance = stepData?.vector_config_group?.dense_vector_config?.metric || "Cosine";
-    
-    
+
+
     let sparseName = stepData?.sparse_vector_config_group?.sparse_vector_name;
     let use_idf = stepData?.sparse_vector_config_group?.sparse_vector_config?.use_idf || false;
 
@@ -260,7 +260,7 @@ function indexFieldSelectionExtractor(data, stepData) {
      * },
      */
 
-  data.payload_indexes = stepData.payload_fields.map(field => {
+    data.payload_indexes = stepData.payload_fields.map(field => {
         let params = {};
         if (field.field_config.field_config_enum === "text") {
             params.lowercase = field.field_config?.lowercase || true;
@@ -294,7 +294,7 @@ export const stepExtractors = {
 export function prepareOutput(formState, path) {
     let output = {};
 
-    (path || []).forEach(function(step) {
+    (path || []).forEach(step => {
         let stepData = formState[step];
         if (stepExtractors[step]) {
             stepExtractors[step](output, stepData);
