@@ -1,7 +1,3 @@
-import { func } from "prop-types";
-import { steps } from "./flow.js";
-
-
 /// Function to convert form state into usable output
 /// formState: object containing each step's form data
 /// steps: array of step objects
@@ -55,7 +51,7 @@ import { steps } from "./flow.js";
 //     ],
 // }
 
-function emptyExtractor(data, stepData) { return; }
+function emptyExtractor(data, stepData) {}
 
 function tenantFieldExtractor(data, stepData) {
     data.tenant_field = {
@@ -201,7 +197,7 @@ function customCollectionSparseExtractor(data, stepData) {
     //     ]
     // },
 
-    let sparseVectors = stepData.custom_sparse_vectors.map(vector => {
+    data.sparse_vectors = stepData.custom_sparse_vectors.map(vector => {
         return {
             name: vector.vector_name,
             use_idf: vector?.vector_config?.use_idf || false,
@@ -209,8 +205,6 @@ function customCollectionSparseExtractor(data, stepData) {
             precision_tier: vector?.advanced_config?.precision_tier || "high"
         }
     });
-
-    data.sparse_vectors = sparseVectors;
 }
 
 function indexFieldSelectionExtractor(data, stepData) {
@@ -249,7 +243,7 @@ function indexFieldSelectionExtractor(data, stepData) {
     //     ]
     // },
 
-    let payloadIndexes = stepData.payload_fields.map(field => {
+  data.payload_indexes = stepData.payload_fields.map(field => {
         let params = {};
         if (field.field_config.field_config_enum === "text") {
             params.lowercase = field.field_config?.lowercase || true;
@@ -267,10 +261,7 @@ function indexFieldSelectionExtractor(data, stepData) {
             params: params
         }
     });
-
-    data.payload_indexes = payloadIndexes;
 }
-    
 
 export const stepExtractors = {
     "use-case-step": emptyExtractor,
@@ -283,15 +274,16 @@ export const stepExtractors = {
     "index-field-selection-step": indexFieldSelectionExtractor,
 }
 
-export function prepareOutput(formState, usedSteps) {
+export function prepareOutput(formState) {
+    const path = JSON.parse(localStorage.getItem("path")) || [];
     let output = {};
 
-    usedSteps.forEach(step => {
+    path.forEach(step => {
         let stepData = formState[step];
-        stepExtractors[step](output, stepData);
+        if (stepExtractors[step]) {
+          stepExtractors[step](output, stepData);
+        }
     });
 
     return output;
 }
-
-

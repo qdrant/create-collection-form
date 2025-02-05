@@ -1,5 +1,5 @@
 // This file contains a definition of a form flow.
-// It contains a list of steps and a list of transitions, with the descprion of the steps.
+// It contains a list of steps and a list of transitions, with the description of the steps.
 
 export const elements = {
   "dense-vector-configuration": {

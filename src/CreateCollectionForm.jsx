@@ -116,7 +116,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
             // key={element.title}
             disabled={!isAllCompleted}
             variant="contained"
-            onClick={() => onFinish(prepareOutput(formData))}
+            onClick={() => onFinish(JSON.stringify(prepareOutput(formData), null, 2))}
           >
             Finish
           </CCFormButton>
