@@ -46,7 +46,6 @@ EnumSlider.propTypes = {
     config: PropTypes.shape({
         options: PropTypes.arrayOf(PropTypes.string).isRequired,
         name: PropTypes.string.isRequired,
-        options: PropTypes.arrayOf(PropTypes.string).isRequired,
         defaultValue: PropTypes.string,
         title: PropTypes.string,
     }).isRequired,
