@@ -353,7 +353,7 @@ export const steps = {
                   "Precision tier defines how vectors are compressed. \n Low precision tier applies quantization, high precision tier doesn't compress vectors",
                 name: "precision_tier_description",
                 size: 6,
-              }
+              },
             ],
           },
         ],

@@ -9,6 +9,7 @@ import {
   Checkbox,
   Paper,
   Accordion,
+  Slider,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import defaultColors from "./theme/default-colors.js";
@@ -411,8 +412,14 @@ export const CCFormAccordion = styled(Accordion, {
       background: defaultColors["neutral-20"],
       color: defaultColors["neutral-94"],
     };
-    styles["& .MuiAccordionSummary-root"].color =
-      defaultColors["secondary-blue-90"];
+
+    styles["& .MuiAccordionSummary-root"] = {
+      ...styles["& .MuiAccordionSummary-root"],
+      color: defaultColors["secondary-blue-90"],
+      "&:hover": {
+        color: defaultColors["secondary-blue-70"],
+      },
+    };
   }
 
   if (theme.palette.mode === "light") {
@@ -420,8 +427,69 @@ export const CCFormAccordion = styled(Accordion, {
       background: defaultColors["neutral-100"],
       color: defaultColors["neutral-30"],
     };
-    styles["& .MuiAccordionSummary-root"].color =
-      defaultColors["secondary-blue-50"];
+
+    styles["& .MuiAccordionSummary-root"] = {
+      ...styles["& .MuiAccordionSummary-root"],
+      color: defaultColors["secondary-blue-50"],
+      "&:hover": {
+        color: defaultColors["secondary-blue-30"],
+      },
+    };
+  }
+
+  return styles;
+});
+
+export const CCFormSlider = styled(Slider, {
+  name: "MuiCreateCollectionForm",
+  slot: "slider",
+})(({ theme }) => {
+  const styles = {
+    "& .MuiSlider-markLabel": {
+      "&:nth-child(4)": {
+        transform: "none",
+        left: 0,
+      },
+      "&:nth-last-child(2)": {
+        left: "auto !important",
+        transform: "none",
+        right: "-3px",
+      },
+    },
+  };
+
+  if (theme.palette.mode === "dark") {
+    styles["&.MuiSlider-root"] = {
+      color: defaultColors["secondary-blue-90"],
+      "& .MuiSlider-valueLabel": {
+        color: defaultColors["neutral-98"],
+        backgroundColor: defaultColors["secondary-blue-70"],
+      },
+      "& .MuiSlider-mark": {
+        backgroundColor: defaultColors["neutral-100"],
+      },
+      "& .MuiSlider-markLabel": {
+        ...styles["& .MuiSlider-markLabel"],
+        color: defaultColors["neutral-98"],
+      },
+    };
+  }
+
+  if (theme.palette.mode === "light") {
+    styles["&.MuiSlider-root"] = {
+      color: defaultColors["secondary-blue-70"],
+      "& .MuiSlider-valueLabel": {
+        color: defaultColors["neutral-100"],
+        backgroundColor: defaultColors["secondary-blue-90"],
+      },
+      "& .MuiSlider-mark": {
+        backgroundColor: defaultColors["secondary-blue-50"],
+      },
+      "& .MuiSlider-markLabel": {
+        ...styles["& .MuiSlider-markLabel"],
+        color: defaultColors["neutral-30"],
+      },
+    };
   }
 
   return styles;
