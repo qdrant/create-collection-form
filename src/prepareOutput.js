@@ -61,17 +61,22 @@ function tenantFieldExtractor(data, stepData) {
 }
 
 function simpleDenseEmbeddingExtractor(data, stepData) {
-    //     "simple-dense-embedding-step": {
-    //     "completed": true,
-    //     "vector_config_group": {
-    //         "completed": true,
-    //         "vector_config": {
-    //             "completed": true,
-    //             "dimensions": 512,
-    //             "metric": "Euclid"
-    //         }
-    //     }
-    // }
+    /**
+     * Example stepData:
+     *
+     * "simple-dense-embedding-step": {
+     *     "completed": true,
+     *     "vector_config_group": {
+     *         "completed": true,
+     *         "vector_config": {
+     *             "completed": true,
+     *             "dimensions": 512,
+     *             "metric": "Euclid"
+     *         }
+     *     }
+     * }
+     */
+
 
     let size = stepData?.vector_config_group?.vector_config?.dimensions;
     let distance = stepData?.vector_config_group?.vector_config?.metric;
@@ -87,24 +92,28 @@ function simpleDenseEmbeddingExtractor(data, stepData) {
 }
 
 function simpleHybridEmbeddingExtractor(data, stepData) {
-    // "simple-hybrid-embedding-step": {
-    //     "completed": true,
-    //     "sparse_vector_config_group": {
-    //         "completed": true,
-    //         "sparse_vector_config": {
-    //             "completed": true
-    //         },
-    //         "sparse_vector_name": "title-sparse"
-    //     },
-    //     "vector_config_group": {
-    //         "completed": true,
-    //         "dense_vector_config": {
-    //             "completed": true,
-    //             "dimensions": 512
-    //         },
-    //         "dense_vector_name": "title-dense"
-    //     }
-    // },
+    /**
+     * Example stepData:
+     *
+     * "simple-hybrid-embedding-step": {
+     *     "completed": true,
+     *     "sparse_vector_config_group": {
+     *         "completed": true,
+     *         "sparse_vector_config": {
+     *             "completed": true
+     *         },
+     *         "sparse_vector_name": "title-sparse"
+     *     },
+     *     "vector_config_group": {
+     *         "completed": true,
+     *         "dense_vector_config": {
+     *             "completed": true,
+     *             "dimensions": 512
+     *         },
+     *         "dense_vector_name": "title-dense"
+     *     }
+     * },
+     */
 
     let denseName = stepData?.vector_config_group?.dense_vector_name;
     let denseSize = stepData?.vector_config_group?.dense_vector_config?.dimensions;
@@ -132,36 +141,7 @@ function simpleHybridEmbeddingExtractor(data, stepData) {
 }
 
 function customCollectionDenseExtractor(data, stepData) {
-    // "custom-collection-dense-step": {
-    //     "completed": true,
-    //     "custom_dense_vectors": [
-    //         {
-    //             "advanced_config": {
-    //                 "completed": true
-    //             },
-    //             "vector_config": {
-    //                 "completed": true,
-    //                 "dimensions": 512
-    //             },
-    //             "vector_name": "dense1",
-    //             "completed": true
-    //         },
-    //         {
-    //             "advanced_config": {
-    //                 "completed": true
-    //             },
-    //             "vector_name": "dense2",
-    //             "vector_config": {
-    //                 "dimensions": 3072,
-    //                 "completed": true,
-    //                 "metric": "Dot"
-    //             },
-    //             "completed": true
-    //         }
-    //     ]
-    // },
-
-    let denseVectors = stepData.custom_dense_vectors.map(vector => {
+    data.dense_vectors = stepData.custom_dense_vectors.map(vector => {
         return {
             name: vector.vector_name,
             size: vector.vector_config.dimensions,
@@ -171,31 +151,32 @@ function customCollectionDenseExtractor(data, stepData) {
             precision_tier: vector?.advanced_config?.precision_tier || "high"
         }
     });
-
-    data.dense_vectors = denseVectors;
 }
 
 function customCollectionSparseExtractor(data, stepData) {
-    // "custom-collection-sparse-step": {
-    //     "completed": true,
-    //     "custom_sparse_vectors": [
-    //         {
-    //             "vector_config": {
-    //                 "completed": true,
-    //                 "use_idf": true
-    //             },
-    //             "vector_name": "sparse1",
-    //             "completed": true
-    //         },
-    //         {
-    //             "vector_config": {
-    //                 "completed": true
-    //             },
-    //             "vector_name": "sparse2",
-    //             "completed": true
-    //         }
-    //     ]
-    // },
+    /**
+     * Example stepData:
+     * "custom-collection-sparse-step": {
+     *     "completed": true,
+     *     "custom_sparse_vectors": [
+     *         {
+     *             "vector_config": {
+     *                 "completed": true,
+     *                 "use_idf": true
+     *             },
+     *             "vector_name": "sparse1",
+     *             "completed": true
+     *         },
+     *         {
+     *             "vector_config": {
+     *                 "completed": true
+     *             },
+     *             "vector_name": "sparse2",
+     *             "completed": true
+     *         }
+     *     ]
+     * },
+     */
 
     data.sparse_vectors = stepData.custom_sparse_vectors.map(vector => {
         return {
@@ -208,40 +189,44 @@ function customCollectionSparseExtractor(data, stepData) {
 }
 
 function indexFieldSelectionExtractor(data, stepData) {
-    // "index-field-selection-step": {
-    //     "completed": true,
-    //     "payload_fields": [
-    //         {
-    //             "field_name": "user-id",
-    //             "field_config": {
-    //                 "field_config_enum": "keyword",
-    //                 "parentCompleted": true,
-    //                 "completed": true
-    //             },
-    //             "completed": true
-    //         },
-    //         {
-    //             "field_name": "test-field",
-    //             "field_config": {
-    //                 "field_config_enum": "text",
-    //                 "parentCompleted": true,
-    //                 "completed": true,
-    //                 "range": false
-    //             },
-    //             "completed": true
-    //         },
-    //         {
-    //             "field_name": "org-id",
-    //             "field_config": {
-    //                 "field_config_enum": "integer",
-    //                 "parentCompleted": true,
-    //                 "completed": true,
-    //                 "range": false
-    //             },
-    //             "completed": true
-    //         }
-    //     ]
-    // },
+    /**
+     * Example stepData:
+     *
+     * "index-field-selection-step": {
+     *     "completed": true,
+     *     "payload_fields": [
+     *         {
+     *             "field_name": "user-id",
+     *             "field_config": {
+     *                 "field_config_enum": "keyword",
+     *                 "parentCompleted": true,
+     *                 "completed": true
+     *             },
+     *             "completed": true
+     *         },
+     *         {
+     *             "field_name": "test-field",
+     *             "field_config": {
+     *                 "field_config_enum": "text",
+     *                 "parentCompleted": true,
+     *                 "completed": true,
+     *                 "range": false
+     *             },
+     *             "completed": true
+     *         },
+     *         {
+     *             "field_name": "org-id",
+     *             "field_config": {
+     *                 "field_config_enum": "integer",
+     *                 "parentCompleted": true,
+     *                 "completed": true,
+     *                 "range": false
+     *             },
+     *             "completed": true
+     *         }
+     *     ]
+     * },
+     */
 
   data.payload_indexes = stepData.payload_fields.map(field => {
         let params = {};
