@@ -141,6 +141,38 @@ function simpleHybridEmbeddingExtractor(data, stepData) {
 }
 
 function customCollectionDenseExtractor(data, stepData) {
+    /**
+     * Example stepData:
+     * "custom-collection-dense-step": {
+     *         "completed": true,
+     *         "custom_dense_vectors": [
+     *             {
+     *                 "advanced_config": {
+     *                     "completed": true
+     *                 },
+     *                 "vector_config": {
+     *                     "completed": true,
+     *                     "dimensions": 512
+     *                 },
+     *                 "vector_name": "dense1",
+     *                 "completed": true
+     *             },
+     *             {
+     *                 "advanced_config": {
+     *                     "completed": true
+     *                 },
+     *                 "vector_name": "dense2",
+     *                 "vector_config": {
+     *                     "dimensions": 3072,
+     *                     "completed": true,
+     *                     "metric": "Dot"
+     *                 },
+     *                 "completed": true
+     *             }
+     *         ]
+     *     },
+     */
+
     data.dense_vectors = stepData.custom_dense_vectors.map(vector => {
         return {
             name: vector.vector_name,
