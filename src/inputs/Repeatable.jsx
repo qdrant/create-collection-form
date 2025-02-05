@@ -24,6 +24,10 @@ const Repeatable = ({ config, stepData, onChange }) => {
     onChange(newValues);
   };
 
+  useEffect(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }, [stepData]);
+
   const handleRemove = (index) => {
     const newValues = [...values];
     newValues.splice(index, 1);

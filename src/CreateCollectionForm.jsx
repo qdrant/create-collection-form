@@ -48,6 +48,11 @@ export const CreateCollectionForm = function CreateCollectionForm({
     }
   }, [path, formData]);
 
+  // Scroll to the bottom of the page on step change
+  useEffect(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }, [path]);
+
   const stepsComponents = {
     "use-case-step": CardsSelect,
     "tenant-field-selection-step": TenantFieldSelectionStep,
