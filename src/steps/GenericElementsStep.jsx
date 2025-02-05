@@ -1,12 +1,10 @@
 import { elements } from "../flow.js";
-import { Typography } from "@mui/material";
+import { Grid2, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import components from "../inputs/collection.jsx";
 import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
-import { Grid2 } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
-import { useEffect } from "react";
 
 const GenericElementsStep = function ({
   stepName,
