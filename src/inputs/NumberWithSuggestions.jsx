@@ -1,11 +1,5 @@
 import PropTypes from "prop-types";
-import {
-  Autocomplete,
-  MenuItem,
-  Typography,
-  InputLabel,
-  FormControl,
-} from "@mui/material";
+import { Autocomplete, MenuItem, Typography } from "@mui/material";
 import {
   CCFormControl,
   CCFormInputBase,

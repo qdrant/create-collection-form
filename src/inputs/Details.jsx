@@ -1,7 +1,6 @@
-import { Grid2 } from "@mui/material";
+import { AccordionDetails, AccordionSummary, Grid2 } from "@mui/material";
 import GenericInputs from "./GenericInputs";
 import PropTypes from "prop-types";
-import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { CCFormAccordion } from "../ThemedComponents.jsx";
 

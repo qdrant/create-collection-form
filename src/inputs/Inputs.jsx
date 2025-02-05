@@ -1,4 +1,4 @@
-import { FormControlLabel, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControlLabel, MenuItem, Select } from "@mui/material";
 import PropTypes from "prop-types";
 import {
   CCFormCheckbox,

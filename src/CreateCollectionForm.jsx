@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import { steps } from "./flow.js";
@@ -7,11 +7,9 @@ import TenantFieldSelectionStep from "./steps/TenantFieldSelectionStep.jsx";
 import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
-import { useThemeProps } from "@mui/material";
-import { CCFormRoot } from "./ThemedComponents";
-import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { Grid2 } from "@mui/material";
-import { CCFormButton } from "./ThemedComponents";
+import { CCFormButton, CCFormRoot } from "./ThemedComponents";
+import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
 
 export const CreateCollectionForm = function CreateCollectionForm({
@@ -105,6 +103,10 @@ export const CreateCollectionForm = function CreateCollectionForm({
     );
   });
 
+  const handleFinish = () => {
+    onFinish(prepareOutput(formData, path));
+  };
+
   return (
     <CCFormRoot>
       {renderedSteps}
@@ -116,7 +118,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
             // key={element.title}
             disabled={!isAllCompleted}
             variant="contained"
-            onClick={() => onFinish(prepareOutput(formData))}
+            onClick={handleFinish}
           >
             Finish
           </CCFormButton>

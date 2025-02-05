@@ -7,10 +7,7 @@ import Group from "./Group.jsx";
 import Details from "./Details.jsx";
 import EnumSlider from "./EnumSlider.jsx";
 
-import { Dropdown } from "./Inputs.jsx";
-import { StringInput } from "./Inputs.jsx";
-import { Checkbox } from "./Inputs.jsx";
-import { NumberInput } from "./Inputs.jsx";
+import { Checkbox, Dropdown, NumberInput, StringInput } from "./Inputs.jsx";
 
 import SizeWrapper from "./SizeWrapper.jsx";
 import Description from "./Description.jsx";
