@@ -77,7 +77,7 @@ function App() {
                 <DarkModeIcon />
               )}
             </IconButton>
-            <CreateCollectionForm onFinish={(data) => alert(data)} />
+            <CreateCollectionForm onFinish={(data) => alert(JSON.stringify(data, null, 2))} />
           </Container>
         </ThemeProvider>
       </ColorModeContext.Provider>

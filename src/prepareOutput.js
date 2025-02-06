@@ -1,3 +1,5 @@
+import { validateFormOutput } from "./validateOutput";
+
 /// Function to convert form state into usable output
 /// formState: object containing each step's form data
 /// steps: array of step objects
@@ -309,5 +311,5 @@ export function prepareOutput(formState, path) {
     }
   });
 
-  return output;
+  return validateFormOutput(output);
 }
