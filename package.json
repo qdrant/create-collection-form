@@ -30,5 +30,8 @@
     "format:check": "prettier . --check",
     "lint": "eslint .",
     "test": "vitest"
+  },
+  "dependencies": {
+    "jtd": "^0.1.1"
   }
 }
