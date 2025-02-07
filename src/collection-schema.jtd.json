@@ -16,13 +16,26 @@
       "elements": {
         "properties": {
           "name": { "type": "string" },
-          "type": { "enum": ["keyword", "integer", "float", "uuid", "datetime", "text", "geo", "bool"] }
+          "type": {
+            "enum": [
+              "keyword",
+              "integer",
+              "float",
+              "uuid",
+              "datetime",
+              "text",
+              "geo",
+              "bool"
+            ]
+          }
         },
         "optionalProperties": {
           "params": {
             "optionalProperties": {
               "lowercase": { "type": "boolean" },
-              "tokenizer": { "enum": ["prefix", "whitespace", "word", "multilingual"] },
+              "tokenizer": {
+                "enum": ["prefix", "whitespace", "word", "multilingual"]
+              },
               "min_token_length": { "type": "uint32" },
               "max_token_length": { "type": "uint32" },
               "range": { "type": "boolean" },

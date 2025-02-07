@@ -189,7 +189,7 @@ function customCollectionDenseExtractor(data, stepData) {
       size: vector.vector_config.dimensions,
       distance: vector.vector_config.metric || "Cosine",
       multivector: vector?.advanced_config?.multivector || false,
-      storage_tier: vector?.advanced_config?.storage_tier || "medium",
+      storage_tier: vector?.advanced_config?.storage_tier || "balanced",
       precision_tier: vector?.advanced_config?.precision_tier || "high",
     };
   });
@@ -219,12 +219,15 @@ function customCollectionSparseExtractor(data, stepData) {
    *     ]
    * },
    */
+  if (!stepData?.custom_sparse_vectors) {
+    return;
+  }
 
   data.sparse_vectors = stepData.custom_sparse_vectors.map((vector) => {
     return {
       name: vector.vector_name,
       use_idf: vector?.vector_config?.use_idf || false,
-      storage_tier: vector?.advanced_config?.storage_tier || "medium",
+      storage_tier: vector?.advanced_config?.storage_tier || "balanced",
       precision_tier: vector?.advanced_config?.precision_tier || "high",
     };
   });
@@ -273,10 +276,27 @@ function indexFieldSelectionExtractor(data, stepData) {
   data.payload_indexes = stepData.payload_fields.map((field) => {
     let params = {};
     if (field.field_config.field_config_enum === "text") {
-      params.lowercase = field.field_config?.lowercase || true;
+      params.lowercase = field.field_config?.lowercase ?? true;
       params.tokenizer = field.field_config?.tokenizer || "whitespace";
-      params.min_token_length = field.field_config?.min_token_length || null;
-      params.max_token_length = field.field_config?.max_token_length || null;
+
+      const minLength = field.field_config?.min_token_length;
+      const maxLength = field.field_config?.max_token_length;
+
+      if (minLength !== undefined && minLength !== "") {
+        const value =
+          typeof minLength === "number" ? minLength : parseInt(minLength, 10);
+        if (!isNaN(value) && value >= 0) {
+          params.min_token_length = value;
+        }
+      }
+
+      if (maxLength !== undefined && maxLength !== "") {
+        const value =
+          typeof maxLength === "number" ? maxLength : parseInt(maxLength, 10);
+        if (!isNaN(value) && value >= 0) {
+          params.max_token_length = value;
+        }
+      }
     } else if (field.field_config.field_config_enum === "integer") {
       params.range = field.field_config?.range ?? true;
       params.lookup = field.field_config?.lookup ?? true;
