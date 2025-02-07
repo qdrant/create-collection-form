@@ -53,13 +53,12 @@ import { validateFormOutput } from "./validateOutput";
 //     ],
 // }
 
-function emptyExtractor(data, stepData) {
-}
+function emptyExtractor(data, stepData) {}
 
 function tenantFieldExtractor(data, stepData) {
   data.tenant_field = {
     name: stepData.tenant_id,
-    type: "keyword"
+    type: "keyword",
   };
 }
 
@@ -90,8 +89,8 @@ function simpleDenseEmbeddingExtractor(data, stepData) {
       distance: distance,
       multivector: false,
       storage_tier: "balanced",
-      precision_tier: "high"
-    }
+      precision_tier: "high",
+    },
   ];
 }
 
@@ -137,8 +136,8 @@ function simpleHybridEmbeddingExtractor(data, stepData) {
       distance: denseDistance,
       multivector: false,
       storage_tier: "balanced",
-      precision_tier: "high"
-    }
+      precision_tier: "high",
+    },
   ];
 
   data.sparse_vectors = [
@@ -146,8 +145,8 @@ function simpleHybridEmbeddingExtractor(data, stepData) {
       name: sparseName,
       use_idf: use_idf,
       storage_tier: "balanced",
-      precision_tier: "high"
-    }
+      precision_tier: "high",
+    },
   ];
 }
 
@@ -191,7 +190,7 @@ function customCollectionDenseExtractor(data, stepData) {
       distance: vector.vector_config.metric || "Cosine",
       multivector: vector?.advanced_config?.multivector || false,
       storage_tier: vector?.advanced_config?.storage_tier || "balanced",
-      precision_tier: vector?.advanced_config?.precision_tier || "high"
+      precision_tier: vector?.advanced_config?.precision_tier || "high",
     };
   });
 }
@@ -229,7 +228,7 @@ function customCollectionSparseExtractor(data, stepData) {
       name: vector.vector_name,
       use_idf: vector?.vector_config?.use_idf || false,
       storage_tier: vector?.advanced_config?.storage_tier || "balanced",
-      precision_tier: vector?.advanced_config?.precision_tier || "high"
+      precision_tier: vector?.advanced_config?.precision_tier || "high",
     };
   });
 }
@@ -283,20 +282,21 @@ function indexFieldSelectionExtractor(data, stepData) {
       const minLength = field.field_config?.min_token_length;
       const maxLength = field.field_config?.max_token_length;
 
-      if (minLength !== undefined && minLength !== '') {
-        const value = typeof minLength === 'number' ? minLength : parseInt(minLength, 10);
+      if (minLength !== undefined && minLength !== "") {
+        const value =
+          typeof minLength === "number" ? minLength : parseInt(minLength, 10);
         if (!isNaN(value) && value >= 0) {
           params.min_token_length = value;
         }
       }
 
-      if (maxLength !== undefined && maxLength !== '') {
-        const value = typeof maxLength === 'number' ? maxLength : parseInt(maxLength, 10);
+      if (maxLength !== undefined && maxLength !== "") {
+        const value =
+          typeof maxLength === "number" ? maxLength : parseInt(maxLength, 10);
         if (!isNaN(value) && value >= 0) {
           params.max_token_length = value;
         }
       }
-
     } else if (field.field_config.field_config_enum === "integer") {
       params.range = field.field_config?.range ?? true;
       params.lookup = field.field_config?.lookup ?? true;
@@ -305,7 +305,7 @@ function indexFieldSelectionExtractor(data, stepData) {
     return {
       name: field.field_name,
       type: field.field_config.field_config_enum,
-      params: params
+      params: params,
     };
   });
 }
@@ -318,7 +318,7 @@ export const stepExtractors = {
   "simple-hybrid-embedding-step": simpleHybridEmbeddingExtractor,
   "custom-collection-dense-step": customCollectionDenseExtractor,
   "custom-collection-sparse-step": customCollectionSparseExtractor,
-  "index-field-selection-step": indexFieldSelectionExtractor
+  "index-field-selection-step": indexFieldSelectionExtractor,
 };
 
 export function prepareOutput(formState, path) {
