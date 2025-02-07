@@ -1,5 +1,6 @@
 {
   "properties": {
+    "collection_name": { "type": "string" },
     "dense_vectors": {
       "elements": {
         "properties": {

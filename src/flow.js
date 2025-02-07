@@ -59,6 +59,34 @@ export const elements = {
 // If it doesn't have "continue-step", that means we should add one.
 
 export const steps = {
+  "collection-name-step": {
+    title: "Collection name",
+    description: "Enter name for your collection",
+    elements: [
+      {
+        type: "string-input",
+        title: "Collection name",
+        name: "collection_name",
+        placeholder: "my-collection",
+        required: true,
+        size: 6,
+      },
+      {
+        type: "description",
+        description:
+          "Collection name must be unique and can contain only letters, numbers, hyphens and underscores",
+        name: "name_description",
+        size: 6,
+      },
+    ],
+    button: {
+      type: "button",
+      title: "Continue",
+      "on-click": {
+        "continue-step": "use-case-step",
+      },
+    },
+  },
   "use-case-step": {
     // In this config user should select from 2 cards, which type of search they want to perform
     title: "Create new collection",

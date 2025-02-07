@@ -55,6 +55,10 @@ import { validateFormOutput } from "./validateOutput";
 
 function emptyExtractor(data, stepData) {}
 
+function collectionNameExtractor(data, stepData) {
+  data.collection_name = stepData?.collection_name;
+}
+
 function tenantFieldExtractor(data, stepData) {
   data.tenant_field = {
     name: stepData.tenant_id,
@@ -80,7 +84,8 @@ function simpleDenseEmbeddingExtractor(data, stepData) {
    */
 
   let size = stepData?.vector_config_group?.vector_config?.dimensions;
-  let distance = stepData?.vector_config_group?.vector_config?.metric;
+  let distance =
+    stepData?.vector_config_group?.vector_config?.metric || "Cosine";
 
   data.dense_vectors = [
     {
@@ -311,6 +316,7 @@ function indexFieldSelectionExtractor(data, stepData) {
 }
 
 export const stepExtractors = {
+  "collection-name-step": collectionNameExtractor,
   "use-case-step": emptyExtractor,
   "tenant-field-selection-step": tenantFieldExtractor,
   "templates-selection-step": emptyExtractor,
