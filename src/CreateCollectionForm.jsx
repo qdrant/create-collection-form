@@ -16,7 +16,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
 }) {
   const [path, setPath] = useState(() => {
-    return JSON.parse(localStorage.getItem("path")) || ["use-case-step"];
+    return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
   });
 
   const [formData, setFormData] = useState(() => {
