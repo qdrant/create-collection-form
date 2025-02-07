@@ -278,8 +278,8 @@ function indexFieldSelectionExtractor(data, stepData) {
       params.min_token_length = field.field_config?.min_token_length || null;
       params.max_token_length = field.field_config?.max_token_length || null;
     } else if (field.field_config.field_config_enum === "integer") {
-      params.range = field.field_config?.range || true;
-      params.lookup = field.field_config?.lookup || true;
+      params.range = field.field_config?.range ?? true;
+      params.lookup = field.field_config?.lookup ?? true;
     }
 
     return {
