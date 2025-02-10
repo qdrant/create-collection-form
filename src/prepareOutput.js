@@ -5,6 +5,7 @@ import { validateFormOutput } from "./validateOutput";
 /// steps: array of step objects
 /// Example output:
 // let exampleResult = {
+//     "collection_name": "example-collection",
 //     "tenant_field": {
 //         "name": "user-id",
 //         "type": "keyword"

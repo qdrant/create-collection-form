@@ -541,13 +541,13 @@ export const steps = {
                   },
                   {
                     title: "Min token length",
-                    name: "min_token_length",
+                    name: "min_token_len",
                     type: "number",
                     min: 1,
                   },
                   {
                     title: "Max token length",
-                    name: "max_token_length",
+                    name: "max_token_len",
                     type: "number",
                     min: 1,
                   },
