@@ -16,6 +16,7 @@ const GenericElementsStep = function ({
   const value = stepData || {};
 
   let isStepCompleted = true;
+  let totalElements = config.elements && config.elements.length;
 
   const renderedElements =
     config.elements &&
@@ -51,6 +52,7 @@ const GenericElementsStep = function ({
             config={elementConfig}
             stepData={elementData}
             onChange={onChange}
+            isLast={idx === totalElements - 1 && isLast}
           />
         </Fragment>
       );
@@ -111,6 +113,7 @@ GenericElementsStep.propTypes = {
   }),
   stepData: PropTypes.any,
   onApply: PropTypes.func.isRequired,
+  isLast: PropTypes.bool,
 };
 
 export default GenericElementsStep;

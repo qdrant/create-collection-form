@@ -4,16 +4,18 @@ import components from "./collection.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "./checkCompleted.js";
 
-const GenericInputs = function ({ config, stepData, onChange }) {
+const GenericInputs = function ({ config, stepData, onChange, isLast = false }) {
   let allElementsCompleted = true;
 
   if (stepData?.parentCompleted === false) {
     allElementsCompleted = false;
   }
 
+  let totalElements = config.elements && config.elements.length;
+
   const renderedElements = (
     <>
-      {config.elements.map((element) => {
+      {config.elements.map((element, idx) => {
         const elementConfig = {
           ...(elements[element.type] || {}),
           ...element,
@@ -49,6 +51,7 @@ const GenericInputs = function ({ config, stepData, onChange }) {
               config={elementConfig}
               stepData={elementData}
               onChange={configOnChange}
+              isLast={(idx === totalElements - 1) && isLast}
             />
           </Fragment>
         );
@@ -82,6 +85,7 @@ GenericInputs.propTypes = {
   }).isRequired,
   stepData: PropTypes.object,
   onChange: PropTypes.func.isRequired,
+  isLast: PropTypes.bool,
 };
 
 export default GenericInputs;

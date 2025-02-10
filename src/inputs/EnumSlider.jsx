@@ -30,6 +30,7 @@ const EnumSlider = ({ config, stepData, onChange }) => {
       aria-label={config.title}
       defaultValue={defaultValueIndex}
       getAriaValueText={valuetext}
+      value={options.indexOf(value)}
       step={null}
       valueLabelDisplay="off"
       marks={marks}

@@ -6,7 +6,7 @@ import GenericInputs from "./GenericInputs";
 import { useEffect } from "react";
 
 // todo: update for the new structure
-const Repeatable = ({ config, stepData, onChange }) => {
+const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   const values = stepData || [];
 
   const maxRepetitions = config?.maxRepetitions || 10000;
@@ -25,7 +25,9 @@ const Repeatable = ({ config, stepData, onChange }) => {
   };
 
   useEffect(() => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    if (isLast) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
   }, [stepData]);
 
   const handleRemove = (index) => {
@@ -98,6 +100,7 @@ Repeatable.propTypes = {
   }).isRequired,
   stepData: PropTypes.any,
   onChange: PropTypes.func.isRequired,
+  isLast: PropTypes.bool,
 };
 
 export default Repeatable;
