@@ -39,6 +39,12 @@ export const CreateCollectionForm = function CreateCollectionForm({
     updatePath(stepName, nextStep);
   };
 
+  const handleClear = () => {
+    localStorage.clear();
+    setPath(["collection-name-step"]);
+    setFormData({});
+  };
+
   useEffect(() => {
     if (formData) {
       localStorage.setItem("formData", JSON.stringify(formData));
@@ -117,8 +123,13 @@ export const CreateCollectionForm = function CreateCollectionForm({
       {renderedSteps}
 
       {isFinished && (
-        // todo: update
-        <Grid2 size={12} display={"flex"} justifyContent={"flex-end"}>
+        <Grid2 size={12} display="flex" justifyContent="flex-end" gap={2}>
+          <CCFormButton
+            variant="text"
+            onClick={handleClear}
+          >
+            Clear
+          </CCFormButton>
           <CCFormButton
             // key={element.title}
             disabled={!isAllCompleted}

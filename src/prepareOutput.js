@@ -278,6 +278,10 @@ function indexFieldSelectionExtractor(data, stepData) {
    *     ]
    * },
    */
+  if (!stepData?.payload_fields) {
+    data.payload_indexes = [];
+    return;
+  }
 
   data.payload_indexes = stepData.payload_fields.map((field) => {
     let params = {};
