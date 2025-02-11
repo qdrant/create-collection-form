@@ -189,6 +189,10 @@ function customCollectionDenseExtractor(data, stepData) {
    *     },
    */
 
+  if (!stepData?.custom_dense_vectors) {
+    return;
+  }
+
   data.dense_vectors = stepData.custom_dense_vectors.map((vector) => {
     return {
       name: vector.vector_name,
