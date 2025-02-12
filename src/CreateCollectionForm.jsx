@@ -12,7 +12,9 @@ import { CCFormButton, CCFormRoot } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
 
-export const CreateCollectionForm = function CreateCollectionForm({ onFinish }) {
+export const CreateCollectionForm = function CreateCollectionForm({
+  onFinish,
+}) {
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
   });
@@ -120,10 +122,7 @@ export const CreateCollectionForm = function CreateCollectionForm({ onFinish }) 
 
       {isFinished && (
         <Grid2 size={12} display="flex" justifyContent="flex-end">
-          <CCFormButton
-            variant="text"
-            onClick={handleClear}
-          >
+          <CCFormButton variant="text" onClick={handleClear}>
             Clear
           </CCFormButton>
           <CCFormButton
