@@ -2,11 +2,13 @@ import { useMemo, useState } from "react";
 import "./App.css";
 import { CreateCollectionForm } from "../../";
 import {
-  Container,
+  AppBar,
+  Box,
   createTheme,
   CssBaseline,
   IconButton,
   ThemeProvider,
+  Toolbar,
   useMediaQuery,
 } from "@mui/material";
 import { ColorModeContext } from "./context/color-context.jsx";
@@ -42,16 +44,23 @@ function App() {
           mode,
         },
         // here is how to override CreateCollectionForm's styles,
-        // see src/ThemedComponents.jsx for the reference
+        // see ../src/ThemedComponents.jsx for the reference
         components: {
           MuiCreateCollectionForm: {
             // the name of the component
             styleOverrides: {
-              // root: { // "root" is a slot name
+              // root: {
+              // "root" is a slot name
               //   backgroundColor: 'green',
               // },
               // selectCard: { // "selectCard" is a slot name
-              // }
+              // },
+              // sidebar: {
+              //   top: "-68px",
+              // },
+              // sidebarStickyInner: {
+              //   top: "88px",
+              // },
               // etc.
             },
           },
@@ -69,18 +78,34 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Container>
-            <IconButton size="large" onClick={colorMode.toggleColorMode}>
-              {theme.palette.mode === "dark" ? (
-                <LightModeIcon />
-              ) : (
-                <DarkModeIcon />
-              )}
-            </IconButton>
+          <Box
+            sx={{
+              minHeight: "100vh",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {/*App Header Menu, just an example */}
+            {/* See above how to adjust sidebar position */}
+            <AppBar position="static" sx={{ flexGrow: 0 }}>
+              <Toolbar>
+                <IconButton size="large" onClick={colorMode.toggleColorMode}>
+                  {theme.palette.mode === "dark" ? (
+                    <LightModeIcon />
+                  ) : (
+                    <DarkModeIcon />
+                  )}
+                </IconButton>
+              </Toolbar>
+            </AppBar>
+            {/*End of App Header Menu*/}
+
+            {/*Form Component*/}
+            {/* See above how to adjust styles */}
             <CreateCollectionForm
               onFinish={(data) => alert(JSON.stringify(data, null, 2))}
             />
-          </Container>
+          </Box>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </>

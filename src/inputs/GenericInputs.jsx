@@ -4,7 +4,12 @@ import components from "./collection.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "./checkCompleted.js";
 
-const GenericInputs = function ({ config, stepData, onChange, isLast = false }) {
+const GenericInputs = function ({
+  config,
+  stepData,
+  onChange,
+  isLast = false,
+}) {
   let allElementsCompleted = true;
 
   if (stepData?.parentCompleted === false) {
@@ -51,7 +56,7 @@ const GenericInputs = function ({ config, stepData, onChange, isLast = false }) 
               config={elementConfig}
               stepData={elementData}
               onChange={configOnChange}
-              isLast={(idx === totalElements - 1) && isLast}
+              isLast={idx === totalElements - 1 && isLast}
             />
           </Fragment>
         );

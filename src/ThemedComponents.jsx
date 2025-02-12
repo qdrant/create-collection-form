@@ -1,7 +1,9 @@
 import {
   Accordion,
   Autocomplete,
+  Box,
   Button,
+  Card,
   Checkbox,
   FormControl,
   InputBase,
@@ -11,14 +13,16 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import Card from "@mui/material/Card";
 import defaultColors from "./theme/default-colors.js";
 
 export const CCFormRoot = styled("div", {
   name: "MuiCreateCollectionForm",
   slot: "root",
 })(({ theme }) => ({
+  position: "relative",
   padding: "1rem",
+  height: "100%",
+  flex: 1,
   color:
     theme.palette.mode === "dark"
       ? defaultColors["neutral-98"]
@@ -33,6 +37,14 @@ export const CCFormRoot = styled("div", {
       theme.palette.mode === "dark"
         ? defaultColors["neutral-98"]
         : defaultColors["neutral-30"],
+  },
+  "& > .MuiContainer-root": {
+    "@media (min-width: 900px) and (max-width: 2144px)": {
+      paddingRight: "clamp(200px, 25vw, 300px) !important",
+    },
+    [theme.breakpoints.down("md")]: {
+      paddingBottom: "200px",
+    },
   },
 }));
 
@@ -54,6 +66,7 @@ export const CCFormSelectCard = styled(Card, {
   slot: "selectCard",
 })(({ theme }) => {
   const styles = {
+    width: "100%",
     padding: "0.5rem 0.25rem 1.25rem",
     cursor: "pointer",
     "&.active": {
@@ -140,7 +153,7 @@ export const CCFormCard = styled(Card, {
         color: defaultColors["neutral-98"],
       },
       "&.MuiPaper-root": {
-        backgroundColor: defaultColors["neutral-20"],
+        background: defaultColors["neutral-20"],
         border: 0,
         boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-80"]} inset`,
         color: defaultColors["neutral-98"],
@@ -153,7 +166,7 @@ export const CCFormCard = styled(Card, {
         color: defaultColors["neutral-30"],
       },
       "&.MuiPaper-root": {
-        backgroundColor: theme.palette.background.paper,
+        background: theme.palette.background.paper,
         border: 0,
         boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-80"]} inset`,
         color: defaultColors["neutral-30"],
@@ -493,4 +506,55 @@ export const CCFormSlider = styled(Slider, {
   }
 
   return styles;
+});
+
+export const CCFormSidebarInner = styled(Box, {
+  name: "MuiCreateCollectionForm",
+  slot: "sidebarStickyInner",
+})(({ theme }) => ({
+  position: "sticky",
+  top: "2rem",
+  [theme.breakpoints.down("md")]: {
+    position: "static",
+  },
+}));
+
+export const CCFormSidebar = styled(
+  (props) => (
+    <Paper {...props}>
+      <CCFormSidebarInner>{props.children}</CCFormSidebarInner>
+    </Paper>
+  ),
+  {
+    name: "MuiCreateCollectionForm",
+    slot: "sidebar",
+  },
+)(({ theme }) => {
+  return {
+    borderRadius: 0,
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    top: 0,
+    width: "clamp(200px, 25vw, 300px)",
+    minWidth: "200px",
+    padding: "2rem 1.5rem",
+    flexShrink: 0,
+    background:
+      theme.palette.mode === "dark"
+        ? defaultColors["neutral-20"]
+        : defaultColors["neutral-90"],
+    color:
+      theme.palette.mode === "dark"
+        ? defaultColors["neutral-98"]
+        : defaultColors["neutral-30"],
+    zIndex: 2,
+    [theme.breakpoints.down("md")]: {
+      position: "fixed",
+      width: "100vw",
+      top: "auto",
+      padding: "1.5rem 1.5rem 2rem",
+      boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
+    },
+  };
 });
