@@ -190,6 +190,7 @@ function customCollectionDenseExtractor(data, stepData) {
    */
 
   if (!stepData?.custom_dense_vectors) {
+    data.dense_vectors = [];
     return;
   }
 
@@ -230,6 +231,7 @@ function customCollectionSparseExtractor(data, stepData) {
    * },
    */
   if (!stepData?.custom_sparse_vectors) {
+    data.sparse_vectors = [];
     return;
   }
 
