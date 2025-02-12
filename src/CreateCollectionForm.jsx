@@ -7,10 +7,18 @@ import TenantFieldSelectionStep from "./steps/TenantFieldSelectionStep.jsx";
 import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
-import { Grid2 } from "@mui/material";
+import {
+  Container,
+  Drawer,
+  Grid2,
+  Toolbar,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { CCFormButton, CCFormRoot } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
+import Sidebar from "./Sidebar.jsx";
 
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,

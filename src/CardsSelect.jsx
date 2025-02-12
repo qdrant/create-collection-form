@@ -20,7 +20,7 @@ const FormCard = ({ card, isActive, onClick }) => {
     );
 
   return (
-    <Grid2 size={card.size || 3} display="flex">
+      <Grid2 size={{xs: 12, md: card.size || 3}} display="flex">
       <CCFormSelectCard
         elevation={1}
         className={isActive ? "active" : ""}
@@ -38,7 +38,7 @@ const FormCard = ({ card, isActive, onClick }) => {
               }}
             />
           )}
-          <Box>
+          <Box sx={{ flex: 1 }}>
             <Typography className={"CCFormSelectCard-Title"} mb={2}>
               {card.title}
             </Typography>

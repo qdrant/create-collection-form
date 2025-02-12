@@ -2,11 +2,14 @@ import { useMemo, useState } from "react";
 import "./App.css";
 import { CreateCollectionForm } from "../../";
 import {
+  AppBar,
+  Box,
   Container,
   createTheme,
   CssBaseline,
   IconButton,
   ThemeProvider,
+  Toolbar,
   useMediaQuery,
 } from "@mui/material";
 import { ColorModeContext } from "./context/color-context.jsx";
@@ -42,7 +45,7 @@ function App() {
           mode,
         },
         // here is how to override CreateCollectionForm's styles,
-        // see src/ThemedComponents.jsx for the reference
+        // see ../src/ThemedComponents.jsx for the reference
         components: {
           MuiCreateCollectionForm: {
             // the name of the component
@@ -69,18 +72,16 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Container>
-            <IconButton size="large" onClick={colorMode.toggleColorMode}>
-              {theme.palette.mode === "dark" ? (
-                <LightModeIcon />
-              ) : (
-                <DarkModeIcon />
-              )}
-            </IconButton>
-            <CreateCollectionForm
-              onFinish={(data) => alert(JSON.stringify(data, null, 2))}
-            />
-          </Container>
+          <IconButton size="large" onClick={colorMode.toggleColorMode}>
+            {theme.palette.mode === "dark" ? (
+              <LightModeIcon />
+            ) : (
+              <DarkModeIcon />
+            )}
+          </IconButton>
+          <CreateCollectionForm
+            onFinish={(data) => alert(JSON.stringify(data, null, 2))}
+          />
         </ThemeProvider>
       </ColorModeContext.Provider>
     </>

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const SizeWrapper = ({ config, element, ...other }) => {
   return (
     <Grid2
-      size={config?.size || 6} // todo: make it configurable
+      size={{xs: 12, md: config?.size || 6}} // todo: make it configurable
       sx={{
         // display: "flex",
         mt: 2,

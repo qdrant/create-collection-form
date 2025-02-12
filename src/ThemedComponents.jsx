@@ -2,7 +2,9 @@ import {
   Accordion,
   Autocomplete,
   Button,
+  Card,
   Checkbox,
+  Container,
   FormControl,
   InputBase,
   InputLabel,
@@ -11,13 +13,19 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import Card from "@mui/material/Card";
 import defaultColors from "./theme/default-colors.js";
 
-export const CCFormRoot = styled("div", {
-  name: "MuiCreateCollectionForm",
-  slot: "root",
-})(({ theme }) => ({
+export const CCFormRoot = styled(
+  (props) => (
+    <Container maxWidth="xl" {...props}>
+      {props.children}
+    </Container>
+  ),
+  {
+    name: "MuiCreateCollectionForm",
+    slot: "root",
+  },
+)(({ theme }) => ({
   padding: "1rem",
   color:
     theme.palette.mode === "dark"
@@ -54,6 +62,7 @@ export const CCFormSelectCard = styled(Card, {
   slot: "selectCard",
 })(({ theme }) => {
   const styles = {
+    width: "100%",
     padding: "0.5rem 0.25rem 1.25rem",
     cursor: "pointer",
     "&.active": {
