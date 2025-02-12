@@ -12,9 +12,7 @@ import { CCFormButton, CCFormRoot } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
 
-export const CreateCollectionForm = function CreateCollectionForm({
-  onFinish,
-}) {
+export const CreateCollectionForm = function CreateCollectionForm({ onFinish }) {
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
   });
@@ -31,7 +29,6 @@ export const CreateCollectionForm = function CreateCollectionForm({
   };
 
   const handleStepApply = (stepName, data, nextStep) => {
-    console.log("handleStepApply", stepName, data);
     setFormData((prev) => ({ ...prev, [stepName]: data }));
     if (!nextStep) {
       return;
@@ -78,8 +75,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
       StepComponent = GenericElementsStep;
     }
 
-    const restoredValue = localStorage.getItem("formData")?.[step];
-    const stepData = formData[step] || restoredValue;
+    const stepData = formData[step];
     const isLast = index === totalSteps - 1;
 
     let isStepCompleted = true;
@@ -97,12 +93,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
     }
 
     return (
-      <Box
-        key={step}
-        sx={{
-          mb: 8,
-        }}
-      >
+      <Box key={step} sx={{ mb: 8 }}>
         <StepComponent
           stepName={step}
           config={stepConfig}
@@ -115,7 +106,12 @@ export const CreateCollectionForm = function CreateCollectionForm({
   });
 
   const handleFinish = () => {
-    onFinish(prepareOutput(formData, path));
+    const output = prepareOutput(formData, path);
+    if (output) {
+      onFinish(output);
+    } else {
+      console.error("Failed to prepare output");
+    }
   };
 
   return (
@@ -123,7 +119,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
       {renderedSteps}
 
       {isFinished && (
-        <Grid2 size={12} display="flex" justifyContent="flex-end" gap={2}>
+        <Grid2 size={12} display="flex" justifyContent="flex-end">
           <CCFormButton
             variant="text"
             onClick={handleClear}
