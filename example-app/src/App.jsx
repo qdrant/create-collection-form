@@ -3,8 +3,6 @@ import "./App.css";
 import { CreateCollectionForm } from "../../";
 import {
   AppBar,
-  Box,
-  Container,
   createTheme,
   CssBaseline,
   IconButton,
