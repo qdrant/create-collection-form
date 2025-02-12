@@ -20,7 +20,7 @@ const FormCard = ({ card, isActive, onClick }) => {
     );
 
   return (
-      <Grid2 size={{xs: 12, md: card.size || 3}} display="flex">
+    <Grid2 size={{ xs: 12, md: card.size || 3 }} display="flex">
       <CCFormSelectCard
         elevation={1}
         className={isActive ? "active" : ""}

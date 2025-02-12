@@ -12,13 +12,13 @@ import {
   Drawer,
   Grid2,
   Toolbar,
+  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { CCFormButton, CCFormRoot } from "./ThemedComponents";
+import { CCFormButton, CCFormRoot, CCFormSidebar } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
-import Sidebar from "./Sidebar.jsx";
 
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
@@ -124,25 +124,35 @@ export const CreateCollectionForm = function CreateCollectionForm({
     }
   };
 
+  const theme = useTheme();
+
   return (
     <CCFormRoot>
-      {renderedSteps}
+      <Container maxWidth="xl">
+        {renderedSteps}
 
-      {isFinished && (
-        <Grid2 size={12} display="flex" justifyContent="flex-end">
-          <CCFormButton variant="text" onClick={handleClear}>
-            Clear
-          </CCFormButton>
-          <CCFormButton
-            // key={element.title}
-            disabled={!isAllCompleted}
-            variant="contained"
-            onClick={handleFinish}
-          >
-            Finish
-          </CCFormButton>
-        </Grid2>
-      )}
+        {isFinished && (
+          <Grid2 size={12} display="flex" justifyContent="flex-end">
+            <CCFormButton variant="text" onClick={handleClear}>
+              Clear
+            </CCFormButton>
+            <CCFormButton
+              // key={element.title}
+              disabled={!isAllCompleted}
+              variant="contained"
+              onClick={handleFinish}
+            >
+              Finish
+            </CCFormButton>
+          </Grid2>
+        )}
+      </Container>
+      <CCFormSidebar>
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          Estimated Price:
+        </Typography>
+        <Typography variant="h4">200$</Typography>
+      </CCFormSidebar>
     </CCFormRoot>
   );
 };
