@@ -21,6 +21,8 @@ export const CCFormRoot = styled("div", {
 })(({ theme }) => ({
   position: "relative",
   padding: "1rem",
+  height: "100%",
+  flex: 1,
   color:
     theme.palette.mode === "dark"
       ? defaultColors["neutral-98"]
