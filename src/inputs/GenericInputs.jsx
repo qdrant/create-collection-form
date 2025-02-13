@@ -71,7 +71,7 @@ const GenericInputs = function ({
     if (allElementsCompleted !== isRegisteredCompleted) {
       onChange({ ...stepData, completed: allElementsCompleted });
     }
-  }, [stepData, allElementsCompleted]);
+  }, [stepData, allElementsCompleted, onChange]);
 
   return renderedElements;
 };

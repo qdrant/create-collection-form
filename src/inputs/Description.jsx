@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { CCFormDescription } from "../ThemedComponents.jsx";
 import { Typography } from "@mui/material";
@@ -30,9 +29,12 @@ Description.propTypes = {
   config: PropTypes.shape({
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
     name: PropTypes.string,
+    link: PropTypes.string,
+    linkText: PropTypes.string,
+    description: PropTypes.string.isRequired,
   }).isRequired,
   stepData: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 };
 
 export default Description;

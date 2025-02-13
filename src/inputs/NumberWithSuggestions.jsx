@@ -65,6 +65,7 @@ NumberWithSuggestions.propTypes = {
         value: PropTypes.number.isRequired,
       }),
     ).isRequired,
+    placeholder: PropTypes.string,
   }).isRequired,
   stepData: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onChange: PropTypes.func.isRequired,

@@ -166,6 +166,7 @@ ButtonGroupWithInputs.propTypes = {
   config: PropTypes.shape({
     name: PropTypes.string.isRequired,
     title: PropTypes.string,
+    size: PropTypes.number,
     enums: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,

@@ -17,7 +17,7 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
       console.log("Repeatable: stepData is not an array", stepData);
       onChange([]);
     }
-  }, [stepData]);
+  }, [stepData, onChange]);
 
   const handleAdd = () => {
     const newValues = [...values, {}];
@@ -28,7 +28,7 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
     if (isLast) {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }
-  }, [stepData]);
+  }, [stepData, isLast]);
 
   const handleRemove = (index) => {
     const newValues = [...values];
@@ -97,6 +97,7 @@ Repeatable.propTypes = {
   config: PropTypes.shape({
     name: PropTypes.string.isRequired,
     elements: PropTypes.array,
+    maxRepetitions: PropTypes.number,
   }).isRequired,
   stepData: PropTypes.any,
   onChange: PropTypes.func.isRequired,
