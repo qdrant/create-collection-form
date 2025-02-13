@@ -1,6 +1,6 @@
 import { elements } from "../flow.js";
 import PropTypes from "prop-types";
-import components from "./collection.jsx";
+import components from "./components-map.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "./checkCompleted.js";
 

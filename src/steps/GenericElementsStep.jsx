@@ -1,7 +1,7 @@
 import { elements } from "../flow.js";
 import { Grid2, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import components from "../inputs/collection.jsx";
+import components from "../inputs/components-map.jsx";
 import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
