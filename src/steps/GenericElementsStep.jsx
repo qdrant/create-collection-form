@@ -16,6 +16,13 @@ const GenericElementsStep = function ({
   const value = stepData || {};
 
   let isStepCompleted = true;
+
+  console.log('Step data:', {
+    stepName,
+    value,
+    config
+  });
+
   let totalElements = config.elements && config.elements.length;
 
   const renderedElements =
@@ -29,6 +36,13 @@ const GenericElementsStep = function ({
       const elementData = value[element.name];
 
       const isElementRequired = elementConfig.required === true;
+
+      console.log('Element check:', {
+        name: element.name,
+        data: elementData,
+        required: isElementRequired
+      });
+
       let isElementCompleted = checkCompleted(elementData, isElementRequired);
 
       isStepCompleted = isStepCompleted && isElementCompleted;
