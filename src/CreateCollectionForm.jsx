@@ -39,6 +39,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
   };
 
   const handleStepApply = (stepName, data, nextStep) => {
+    setFormData((prev) => ({ ...prev, [stepName]: data }));
     if (!nextStep) {
       return;
     }
