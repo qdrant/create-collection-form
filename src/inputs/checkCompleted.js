@@ -16,7 +16,7 @@ export const checkCompleted = (elementData, isRequired) => {
     let isElementCompleted = elementData.completed === true;
     return !isRequired || isElementCompleted;
   } else {
-    let isElementCompleted = elementData !== undefined;
+    let isElementCompleted = elementData !== undefined && elementData !== "";
     return !isRequired || isElementCompleted;
   }
 };
