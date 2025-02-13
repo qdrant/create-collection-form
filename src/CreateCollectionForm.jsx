@@ -104,7 +104,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
     const stepData = formData[step];
     const isLast = index === totalSteps - 1;
 
-    let isStepCompleted = true;
+    let isStepCompleted;
     if (typeof stepData === "object") {
       isStepCompleted = stepData?.completed;
     } else {

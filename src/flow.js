@@ -416,7 +416,7 @@ export const steps = {
           {
             type: "sparse-vector-configuration",
             name: "vector_config",
-            required: true,
+            required: false,
           },
         ],
       },
