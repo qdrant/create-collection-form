@@ -59,7 +59,7 @@ FormCard.propTypes = {
   card: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    "short-description": PropTypes.string.isRequired,
+    "short-description": PropTypes.string,
     name: PropTypes.string.isRequired,
     "on-select": PropTypes.shape({
       "continue-step": PropTypes.string.isRequired,
@@ -126,7 +126,7 @@ CardsSelect.propTypes = {
       PropTypes.shape({
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
-        "short-description": PropTypes.string.isRequired,
+        "short-description": PropTypes.string,
         name: PropTypes.string.isRequired,
         "on-select": PropTypes.shape({
           "continue-step": PropTypes.string.isRequired,

@@ -145,6 +145,7 @@ export const steps = {
         type: "description",
         description:
           "This payload field should be used to separate tenants within collection. \n A specuil payload index of type `keyword` will be created for this field. \n All requests to the collection should include this field as a filter.",
+        name: "tenant_id_description",
         link: "https://qdrant.tech/documentation/guides/multiple-partitions/",
         linkText: "Multitenancy Documentation",
       },
