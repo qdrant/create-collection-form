@@ -31,6 +31,7 @@ Details.propTypes = {
   config: PropTypes.shape({
     name: PropTypes.string,
     elements: PropTypes.array,
+    size: PropTypes.number,
   }).isRequired,
   stepData: PropTypes.any,
   onChange: PropTypes.func.isRequired,

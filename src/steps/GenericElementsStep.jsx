@@ -1,7 +1,7 @@
 import { elements } from "../flow.js";
 import { Grid2, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import components from "../inputs/collection.jsx";
+import components from "../inputs/components-map.jsx";
 import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
@@ -65,7 +65,7 @@ const GenericElementsStep = function ({
     if (isStepCompleted !== isRegisteredCompleted) {
       onApply(stepName, { ...stepData, completed: isStepCompleted }, null);
     }
-  }, [stepData]);
+  }, [stepData, isStepCompleted, onApply, stepName]);
 
   return (
     <Grid2 container spacing={2}>
@@ -106,12 +106,19 @@ GenericElementsStep.propTypes = {
   stepName: PropTypes.string.isRequired,
   config: PropTypes.shape({
     title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
     elements: PropTypes.arrayOf(
       PropTypes.shape({
         type: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
       }),
     ),
+    button: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      "on-click": PropTypes.shape({
+        "continue-step": PropTypes.string,
+      }),
+    }),
   }),
   stepData: PropTypes.any,
   onApply: PropTypes.func.isRequired,

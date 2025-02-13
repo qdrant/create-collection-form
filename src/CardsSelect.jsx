@@ -59,6 +59,15 @@ FormCard.propTypes = {
   card: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    "short-description": PropTypes.string,
+    name: PropTypes.string.isRequired,
+    "on-select": PropTypes.shape({
+      "continue-step": PropTypes.string.isRequired,
+    }).isRequired,
+    icon: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+    }),
+    size: PropTypes.number,
   }),
   isActive: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
@@ -117,12 +126,18 @@ CardsSelect.propTypes = {
       PropTypes.shape({
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
+        "short-description": PropTypes.string,
         name: PropTypes.string.isRequired,
         "on-select": PropTypes.shape({
           "continue-step": PropTypes.string.isRequired,
         }).isRequired,
+        icon: PropTypes.shape({
+          path: PropTypes.string.isRequired,
+        }),
+        size: PropTypes.number,
       }),
     ),
+    gap: PropTypes.number,
   }).isRequired,
   stepData: PropTypes.string,
   onApply: PropTypes.func.isRequired,

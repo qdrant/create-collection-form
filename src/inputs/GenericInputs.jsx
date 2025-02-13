@@ -1,6 +1,6 @@
 import { elements } from "../flow.js";
 import PropTypes from "prop-types";
-import components from "./collection.jsx";
+import components from "./components-map.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "./checkCompleted.js";
 
@@ -71,7 +71,7 @@ const GenericInputs = function ({
     if (allElementsCompleted !== isRegisteredCompleted) {
       onChange({ ...stepData, completed: allElementsCompleted });
     }
-  }, [stepData, allElementsCompleted]);
+  }, [stepData, allElementsCompleted, onChange]);
 
   return renderedElements;
 };
