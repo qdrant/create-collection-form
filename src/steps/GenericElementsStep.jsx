@@ -17,11 +17,12 @@ const GenericElementsStep = function ({
 
   let isStepCompleted = true;
 
-  console.log('Step data:', {
-    stepName,
-    value,
-    config
-  });
+  // will be removed later
+  // console.log('Step data:', {
+  //   stepName,
+  //   value,
+  //   config
+  // });
 
   let totalElements = config.elements && config.elements.length;
 
@@ -37,11 +38,12 @@ const GenericElementsStep = function ({
 
       const isElementRequired = elementConfig.required === true;
 
-      console.log('Element check:', {
-        name: element.name,
-        data: elementData,
-        required: isElementRequired
-      });
+      // will be removed later
+      // console.log('Element check:', {
+      //   name: element.name,
+      //   data: elementData,
+      //   required: isElementRequired
+      // });
 
       let isElementCompleted = checkCompleted(elementData, isElementRequired);
 
