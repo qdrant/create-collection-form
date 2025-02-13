@@ -39,7 +39,23 @@ export const CreateCollectionForm = function CreateCollectionForm({
   };
 
   const handleStepApply = (stepName, data, nextStep) => {
-    setFormData((prev) => ({ ...prev, [stepName]: data }));
+    setFormData((prev) => {
+      const newFormData = {};
+
+      const currentStepIndex = path.indexOf(stepName);
+      const relevantSteps = path.slice(0, currentStepIndex + 1);
+
+      relevantSteps.forEach(step => {
+        if (step === stepName) {
+          newFormData[step] = data;
+        } else {
+          newFormData[step] = prev[step];
+        }
+      });
+
+      return newFormData;
+    });
+
     if (!nextStep) {
       return;
     }
