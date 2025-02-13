@@ -238,7 +238,7 @@ function customCollectionSparseExtractor(data, stepData) {
   data.sparse_vectors = stepData.custom_sparse_vectors.map((vector) => {
     return {
       name: vector.vector_name,
-      use_idf: vector?.vector_config?.use_idf || false,
+      use_idf: vector?.vector_config?.use_idf ?? false,
       storage_tier: vector?.advanced_config?.storage_tier || "balanced",
       precision_tier: vector?.advanced_config?.precision_tier || "high",
     };

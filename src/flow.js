@@ -40,6 +40,7 @@ export const elements = {
         title: "Use IDF?",
         name: "use_idf",
         default: false,
+        required: false,
         size: 6,
       },
       {
