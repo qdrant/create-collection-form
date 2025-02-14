@@ -272,6 +272,7 @@ export const steps = {
       {
         type: "group",
         name: "sparse_vector_config_group",
+        required: true,
         elements: [
           {
             type: "string-input",
