@@ -41,7 +41,6 @@ const GenericInputs = function ({
             ...stepData,
             [element.name]: value,
           };
-          newData.completed = true;
           onChange(newData);
         };
 
