@@ -216,7 +216,7 @@ export const CCFormButton = styled(Button, {
       background:
         theme.palette.mode === "dark"
           ? defaultColors["neutral-80"]
-          : defaultColors["neutral-90"],
+          : defaultColors["neutral-94"],
       color: defaultColors["neutral-60"],
     },
   },
@@ -514,8 +514,22 @@ export const CCFormSidebarInner = styled(Box, {
 })(({ theme }) => ({
   position: "sticky",
   top: "2rem",
+  height: "80vh",
+  "& .CCFormSidebarActions": {
+    display: "flex",
+    position: "fixed",
+    bottom: "0",
+    paddingBottom: "20px",
+  },
   [theme.breakpoints.down("md")]: {
     position: "static",
+    height: "auto",
+    "& .CCFormSidebarActions": {
+      paddingBottom: 0,
+      paddingTop: "1rem",
+      position: "static",
+      justifyContent: "end",
+    },
   },
 }));
 
