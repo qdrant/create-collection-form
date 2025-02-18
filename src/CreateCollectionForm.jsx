@@ -38,7 +38,6 @@ export const CreateCollectionForm = function CreateCollectionForm({
   };
 
   const handleClear = () => {
-    localStorage.clear();
     setPath(["collection-name-step"]);
     setFormData({});
   };
