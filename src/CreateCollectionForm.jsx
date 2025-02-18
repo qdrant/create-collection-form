@@ -6,7 +6,7 @@ import TenantFieldSelectionStep from "./steps/TenantFieldSelectionStep.jsx";
 import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
-import { Box, Container, Grid2, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { CCFormButton, CCFormRoot, CCFormSidebar } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
@@ -116,30 +116,29 @@ export const CreateCollectionForm = function CreateCollectionForm({
 
   return (
     <CCFormRoot>
-      <Container maxWidth="xl">
-        {renderedSteps}
+      <Container maxWidth="xl">{renderedSteps}</Container>
 
-        {isFinished && (
-          <Grid2 size={12} display="flex" justifyContent="flex-end">
-            <CCFormButton variant="text" onClick={handleClear}>
-              Clear
-            </CCFormButton>
+      <CCFormSidebar>
+        <Box>
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            Estimated Price:
+          </Typography>
+          <Typography variant="h4">200$</Typography>
+        </Box>
+        <Box className="CCFormSidebarActions">
+          <CCFormButton variant="text" onClick={handleClear} sx={{ mr: 2 }}>
+            Clear
+          </CCFormButton>
+          {isFinished && (
             <CCFormButton
-              // key={element.title}
               disabled={!isAllCompleted}
               variant="contained"
               onClick={handleFinish}
             >
               Finish
             </CCFormButton>
-          </Grid2>
-        )}
-      </Container>
-      <CCFormSidebar>
-        <Typography variant="h6" sx={{ mb: 2 }}>
-          Estimated Price:
-        </Typography>
-        <Typography variant="h4">200$</Typography>
+          )}
+        </Box>
       </CCFormSidebar>
     </CCFormRoot>
   );
