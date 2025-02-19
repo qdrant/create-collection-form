@@ -5,11 +5,11 @@ import { Fragment, useEffect } from "react";
 import { checkCompleted } from "./checkCompleted.js";
 
 const GenericInputs = function ({
-  config,
-  stepData,
-  onChange,
-  isLast = false,
-}) {
+                                  config,
+                                  stepData,
+                                  onChange,
+                                  isLast = false,
+                                }) {
   let allElementsCompleted = true;
 
   if (stepData?.parentCompleted === false) {
@@ -66,12 +66,16 @@ const GenericInputs = function ({
   );
 
   useEffect(() => {
-    /// Always change ig complete is not defined
-    const isRegisteredCompleted = stepData && stepData.completed === true;
+    if (!stepData) return;
+
+    const isRegisteredCompleted = stepData.completed === true;
     if (allElementsCompleted !== isRegisteredCompleted) {
-      onChange({ ...stepData, completed: allElementsCompleted });
+      onChange({
+        ...stepData,
+        completed: allElementsCompleted
+      });
     }
-  }, [stepData, allElementsCompleted, onChange]);
+  }, [stepData, allElementsCompleted]);
 
   return renderedElements;
 };

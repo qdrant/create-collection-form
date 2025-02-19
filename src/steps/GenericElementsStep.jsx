@@ -7,12 +7,12 @@ import { Fragment, useEffect } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
 
 const GenericElementsStep = function ({
-  stepName,
-  config,
-  stepData,
-  onApply,
-  isLast = true,
-}) {
+                                        stepName,
+                                        config,
+                                        stepData,
+                                        onApply,
+                                        isLast = true,
+                                      }) {
   const value = stepData || {};
 
   let isStepCompleted = true;
@@ -61,11 +61,16 @@ const GenericElementsStep = function ({
     });
 
   useEffect(() => {
-    const isRegisteredCompleted = stepData && stepData.completed === true;
+    if (!stepData) return;
+
+    const isRegisteredCompleted = stepData.completed === true;
     if (isStepCompleted !== isRegisteredCompleted) {
-      onApply(stepName, { ...stepData, completed: isStepCompleted }, null);
+      onApply(stepName, {
+        ...stepData,
+        completed: isStepCompleted
+      }, null);
     }
-  }, [stepData, isStepCompleted, onApply, stepName]);
+  }, [isStepCompleted, stepData?.completed]);
 
   return (
     <Grid2 container spacing={2}>

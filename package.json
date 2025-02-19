@@ -39,6 +39,7 @@
     "rtest": "react-scripts test"
   },
   "dependencies": {
-    "jtd": "^0.1.1"
+    "jtd": "^0.1.1",
+    "react-router-dom": "^7.2.0"
   }
 }
