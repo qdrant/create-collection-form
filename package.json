@@ -16,22 +16,30 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.12",
     "eslint": "^9.13.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
+    "jsdom": "^26.0.0",
     "prettier": "3.4.2",
+    "vite": "^6.1.0",
     "vitest": "^3.0.5"
   },
   "scripts": {
     "format": "npx prettier . --write",
     "format:check": "prettier . --check",
     "lint": "eslint .",
-    "test": "vitest"
+    "test": "vitest",
+    "rtest": "react-scripts test"
   },
   "dependencies": {
-    "jtd": "^0.1.1"
+    "jtd": "^0.1.1",
+    "react-router-dom": "^7.2.0"
   }
 }
