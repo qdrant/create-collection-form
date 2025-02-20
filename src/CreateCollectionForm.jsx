@@ -10,6 +10,7 @@ import { Box, Container, Grid2, Typography } from "@mui/material";
 import { CCFormButton, CCFormRoot, CCFormSidebar } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
+import PayloadFieldsStep from "./PayloadFieldsStep.jsx";
 
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
@@ -63,7 +64,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
     "templates-selection-step": CardsSelect,
     "simple-dense-embedding-step": SimpleDenseEmbeddingStep,
     "simple-hybrid-embedding-step": SimpleHybridEmbeddingStep,
-    "index-field-selection-step": IndexFieldSelectionStep,
+    "index-field-selection-step": PayloadFieldsStep,
   };
 
   const totalSteps = path.length;
