@@ -1,9 +1,9 @@
-import { Grid2 } from "@mui/material";
+import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 
 const SizeWrapper = ({ config, element, ...other }) => {
   return (
-    <Grid2
+    <Grid
       size={{ xs: 12, md: config?.size || 6 }}
       sx={{
         // display: "flex",
@@ -12,7 +12,7 @@ const SizeWrapper = ({ config, element, ...other }) => {
       }}
     >
       {element({ config, ...other })}
-    </Grid2>
+    </Grid>
   );
 };
 

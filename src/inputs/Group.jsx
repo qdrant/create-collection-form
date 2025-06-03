@@ -1,26 +1,26 @@
-import { Grid2 } from "@mui/material";
+import { Grid } from "@mui/material";
 import { CCFormCard } from "../ThemedComponents";
 import GenericInputs from "./GenericInputs";
 import PropTypes from "prop-types";
 
 const Group = function ({ config, stepData, onChange }) {
   return (
-    <Grid2 size={12}>
+    <Grid size={12}>
       <CCFormCard
         sx={{
           p: 2,
           mt: 2,
         }}
       >
-        <Grid2 container spacing={2}>
+        <Grid container spacing={2}>
           <GenericInputs
             config={config}
             stepData={stepData}
             onChange={onChange}
           />
-        </Grid2>
+        </Grid>
       </CCFormCard>
-    </Grid2>
+    </Grid>
   );
 };
 
