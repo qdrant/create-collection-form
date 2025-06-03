@@ -1,7 +1,7 @@
 import { memo, useCallback, useMemo, useState } from "react";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { createSvgIcon, Divider, Grid2, Typography } from "@mui/material";
+import { createSvgIcon, Divider, Grid, Typography } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import { CCFormSelectCard, CCFormTitle } from "./ThemedComponents";
 import defaultColors from "./theme/default-colors.js";
@@ -20,7 +20,7 @@ const FormCard = ({ card, isActive, onClick }) => {
     );
 
   return (
-    <Grid2 size={{ xs: 12, md: card.size || 3 }} display="flex">
+    <Grid size={{ xs: 12, md: card.size || 3 }} display="flex">
       <CCFormSelectCard
         elevation={1}
         className={isActive ? "active" : ""}
@@ -50,7 +50,7 @@ const FormCard = ({ card, isActive, onClick }) => {
           </Box>
         </CardContent>
       </CCFormSelectCard>
-    </Grid2>
+    </Grid>
   );
 };
 
@@ -107,9 +107,9 @@ const CardsSelect = ({ stepName, config, stepData, onApply }) => {
         {title}
       </CCFormTitle>
       <p>{description}</p>
-      <Grid2 container spacing={gap || 2} alignItems={"stretch"}>
+      <Grid container spacing={gap || 2} alignItems={"stretch"}>
         {renderedCards}
-      </Grid2>
+      </Grid>
     </Box>
   );
 };

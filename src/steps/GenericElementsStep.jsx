@@ -1,5 +1,5 @@
 import { elements } from "../flow.js";
-import { Grid2, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import components from "../inputs/components-map.jsx";
 import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
@@ -66,19 +66,17 @@ const GenericElementsStep = function ({
   }, [stepData, isStepCompleted, onApply, stepName]);
 
   return (
-    <Grid2 container spacing={2}>
-      <Grid2 size={12}>
+    <Grid container spacing={2}>
+      <Grid size={12}>
         <CCFormTitle sx={{ mb: 2 }}>{config.title}</CCFormTitle>
         <Typography variant="body1" sx={{ mb: 2 }}>
           {config.description}
         </Typography>
-      </Grid2>
-
+      </Grid>
       {renderedElements}
-
       {config.button && isLast && (
         // todo: update
-        <Grid2 size={12} display={"flex"} justifyContent={"flex-end"}>
+        (<Grid size={12} display={"flex"} justifyContent={"flex-end"}>
           <CCFormButton
             // key={element.title}
             disabled={!isStepCompleted}
@@ -93,9 +91,9 @@ const GenericElementsStep = function ({
           >
             {config.button.title}
           </CCFormButton>
-        </Grid2>
+        </Grid>)
       )}
-    </Grid2>
+    </Grid>
   );
 };
 

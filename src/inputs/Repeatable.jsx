@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Add, Delete } from "@mui/icons-material";
-import { Divider, Grid2 } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 import { CCFormButton, CCFormCard } from "../ThemedComponents.jsx";
 import GenericInputs from "./GenericInputs";
 import { useEffect } from "react";
@@ -37,7 +37,7 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   };
 
   return (
-    <Grid2 size={12}>
+    <Grid size={12}>
       {values.map((value, index) => {
         const elementOnChange = (value) => {
           const newValues = [...values];
@@ -57,13 +57,13 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
             }}
             key={index}
           >
-            <Grid2 container spacing={2}>
+            <Grid container spacing={2}>
               <GenericInputs
                 config={config}
                 stepData={value}
                 onChange={elementOnChange}
               />
-            </Grid2>
+            </Grid>
 
             <Divider sx={{ mt: 2, mb: 1, mx: -4 }} />
 
@@ -89,7 +89,7 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
           Add
         </CCFormButton>
       )}
-    </Grid2>
+    </Grid>
   );
 };
 

@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Grid2, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import GenericInputs from "./GenericInputs.jsx";
 import { CCFormSelectCard } from "../ThemedComponents.jsx";
 
@@ -100,7 +100,7 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
 
   return (
     <>
-      <Grid2 size={size}>
+      <Grid size={size}>
         <Typography variant="h6" mt={2}>
           {config.title}
         </Typography>
@@ -142,9 +142,9 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
         </Box>
 
         {/* Render fields of the selected enum */}
-      </Grid2>
-      <Grid2 size={12}>
-        <Grid2 container spacing={2}>
+      </Grid>
+      <Grid size={12}>
+        <Grid container spacing={2}>
           <GenericInputs
             config={fieldsConfig}
             stepData={{
@@ -153,8 +153,8 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
             }}
             onChange={onChange}
           />
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
     </>
   );
 };

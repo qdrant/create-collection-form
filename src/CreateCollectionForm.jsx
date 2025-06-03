@@ -6,13 +6,14 @@ import TenantFieldSelectionStep from "./steps/TenantFieldSelectionStep.jsx";
 import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
-import { Box, Container, Grid2, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import { CCFormButton, CCFormRoot, CCFormSidebar } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
 
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
+  hideSidebar = false,
 }) {
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
@@ -120,7 +121,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
         {renderedSteps}
 
         {isFinished && (
-          <Grid2 size={12} display="flex" justifyContent="flex-end">
+          <Grid size={12} display="flex" justifyContent="flex-end">
             <CCFormButton variant="text" onClick={handleClear}>
               Clear
             </CCFormButton>
@@ -132,15 +133,18 @@ export const CreateCollectionForm = function CreateCollectionForm({
             >
               Finish
             </CCFormButton>
-          </Grid2>
+          </Grid>
         )}
       </Container>
+      {!hideSidebar && (
       <CCFormSidebar>
         <Typography variant="h6" sx={{ mb: 2 }}>
           Estimated Price:
         </Typography>
+        {/*todo: Price?*/}
         <Typography variant="h4">200$</Typography>
       </CCFormSidebar>
+      )}
     </CCFormRoot>
   );
 };
