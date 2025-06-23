@@ -25,7 +25,7 @@ const defaultColors = {
   "secondary-blue-10": "#001848",
   "secondary-blue-30": "#24386c",
   "secondary-blue-50": "#3b5db3",
-  "secondary-blue-70": "#759cbe",
+  "secondary-blue-70": "#7592be",
   "secondary-blue-90": "#cbdaff",
 };
 
