@@ -120,7 +120,6 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
                 ...stepData,
                 [config.name + "_enum"]: value,
               };
-              console.log("newData", newData);
               onChange(newData);
             };
 
@@ -133,6 +132,7 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
                   }}
                   onClick={() => configOnChange(enumObject.name)}
                   className={selectedEnum === enumObject.name ? "active" : ""}
+                  variant="contained"
                 >
                   {enumObject.name}
                 </CCFormSelectCard>

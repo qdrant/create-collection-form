@@ -1,4 +1,4 @@
-import { FormControlLabel, MenuItem, Select } from "@mui/material";
+import { Box, FormControlLabel, MenuItem, Select } from "@mui/material";
 import PropTypes from "prop-types";
 import {
   CCFormCheckbox,
@@ -6,6 +6,7 @@ import {
   CCFormInputBase,
   CCFormLabel,
 } from "../ThemedComponents.jsx";
+import Description from "./Description.jsx";
 
 export const Dropdown = ({ config, stepData, onChange }) => {
   const value = stepData || "";
@@ -62,14 +63,17 @@ export const StringInput = ({ config, stepData, onChange }) => {
   // validate input
   return (
     <CCFormControl variant="standard">
-      <CCFormLabel shrink htmlFor={config.name}>
-        {config.title}
-      </CCFormLabel>
+      {config.title && (
+        <CCFormLabel shrink htmlFor={config.name}>
+          {config.title}
+        </CCFormLabel>
+      )}
       <CCFormInputBase
         key={config.title}
         id={config.name}
         placeholder={config.placeholder || ""}
-        variant={config.variant || "standard"}
+        // variant={config.variant || "standard"}
+        variant="outlined"
         value={value}
         onChange={(e) => {
           onChange(e.target.value);
@@ -100,19 +104,22 @@ export const Checkbox = ({ config, stepData, onChange }) => {
   };
 
   return (
-    <CCFormControl sx={{ display: "flex", flexDirection: "row" }}>
-      <FormControlLabel
-        label={config.title}
-        control={
-          <CCFormCheckbox
-            sx={{ alignSelf: "start" }}
-            checked={value}
-            onChange={handleChange}
-            inputProps={{ "aria-label": "controlled" }}
-          />
-        }
-      />
-    </CCFormControl>
+    <Box>
+      <CCFormControl sx={{ display: "flex", flexDirection: "row" }}>
+        <FormControlLabel
+          label={config.title}
+          control={
+            <CCFormCheckbox
+              sx={{ alignSelf: "start" }}
+              checked={value}
+              onChange={handleChange}
+              inputProps={{ "aria-label": "controlled" }}
+            />
+          }
+        />
+      </CCFormControl>
+      {config.description && <Description config={config} />}
+    </Box>
   );
 };
 

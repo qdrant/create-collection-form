@@ -10,6 +10,7 @@ const Group = function ({ config, stepData, onChange }) {
         sx={{
           p: 2,
           mt: 2,
+          borderRadius: 5,
         }}
       >
         <Grid container spacing={2}>

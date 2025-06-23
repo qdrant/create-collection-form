@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { CCFormSlider } from "../ThemedComponents.jsx";
+import { Box } from "@mui/material";
 
 const EnumSlider = ({ config, stepData, onChange }) => {
   const defaultValue = config.defaultValue;
@@ -25,18 +26,20 @@ const EnumSlider = ({ config, stepData, onChange }) => {
 
   // todo: add labelId and id
   return (
-    <CCFormSlider
-      aria-label={config.title}
-      defaultValue={defaultValueIndex}
-      getAriaValueText={valuetext}
-      value={options.indexOf(value)}
-      step={null}
-      valueLabelDisplay="off"
-      marks={marks}
-      onChange={handleChange}
-      min={0}
-      max={options.length - 1}
-    />
+    <Box sx={{ mr: 3 }}>
+      <CCFormSlider
+        aria-label={config.title}
+        defaultValue={defaultValueIndex}
+        getAriaValueText={valuetext}
+        value={options.indexOf(value)}
+        step={null}
+        valueLabelDisplay="off"
+        marks={marks}
+        onChange={handleChange}
+        min={0}
+        max={options.length - 1}
+      />
+    </Box>
   );
 };
 

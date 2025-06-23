@@ -14,6 +14,8 @@ import { prepareOutput } from "./prepareOutput.js";
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
   hideSidebar = false,
+  sx,
+  ...props
 }) {
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
@@ -101,6 +103,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
           stepData={stepData}
           onApply={handleStepApply}
           isLast={isLast}
+          handleClear={handleClear}
         />
       </Box>
     );
@@ -117,33 +120,38 @@ export const CreateCollectionForm = function CreateCollectionForm({
 
   return (
     <CCFormRoot>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         {renderedSteps}
 
-        {isFinished && (
+        {isFinished &&
+        Object.values(formData).some(
+          (data) => typeof data === "object" && data?.completed,
+        ) ? (
           <Grid size={12} display="flex" justifyContent="flex-end">
             <CCFormButton variant="text" onClick={handleClear}>
               Clear
             </CCFormButton>
             <CCFormButton
-              // key={element.title}
               disabled={!isAllCompleted}
               variant="contained"
               onClick={handleFinish}
+              sx={{ ml: 4 }}
             >
               Finish
             </CCFormButton>
           </Grid>
+        ) : (
+          <></>
         )}
       </Container>
       {!hideSidebar && (
-      <CCFormSidebar>
-        <Typography variant="h6" sx={{ mb: 2 }}>
-          Estimated Price:
-        </Typography>
-        {/*todo: Price?*/}
-        <Typography variant="h4">200$</Typography>
-      </CCFormSidebar>
+        <CCFormSidebar>
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            Estimated Price:
+          </Typography>
+          {/*todo: Price?*/}
+          <Typography variant="h4">200$</Typography>
+        </CCFormSidebar>
       )}
     </CCFormRoot>
   );
@@ -153,6 +161,8 @@ export const CreateCollectionForm = function CreateCollectionForm({
 CreateCollectionForm.propTypes = {
   ref: PropTypes.object,
   onFinish: PropTypes.func.isRequired,
+  hideSidebar: PropTypes.bool,
+  sx: PropTypes.object,
 };
 
 export default CreateCollectionForm;
