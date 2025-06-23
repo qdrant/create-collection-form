@@ -144,15 +144,27 @@ export const CCFormSelectCard = styled(Card, {
   if (theme.palette.mode === "light") {
     styles["&.MuiPaper-root"] = {
       background: theme.palette.background.paper,
-      boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-90"]} inset`,
       border: 0,
+      position: "relative",
+      "&.MuiPaper-contained": {
+        background: defaultColors["neutral-98"],
+      },
+      "& .MuiSvgIcon-root path": {
+        fill: defaultColors["secondary-blue-30"],
+      },
       "&:hover": {
-        boxShadow: `0px 0px 0px 1px ${defaultColors["secondary-blue-30"]} inset`,
+        boxShadow: `0 0 1px 0 ${defaultColors["secondary-blue-30"]} inset`,
+        "& .MuiSvgIcon-root path": {
+          fill: defaultColors["secondary-blue-50"],
+        },
       },
       "&.active": {
         cursor: "default",
         border: 0,
-        boxShadow: `0px 0px 0px 2px ${defaultColors["secondary-blue-50"]} inset`,
+        boxShadow: `-1px -1px 1px 0 ${defaultColors["secondary-blue-50"]} inset,
+                     1px 1px 1px 0 ${defaultColors["secondary-blue-50"]} inset,
+                     ${defaultColors["neutral-70"]} 0px 5px 6px -4px, ${defaultColors["neutral-70"]} 0px 10px 18px -7px,
+                     2px 2px 4px 0 ${defaultColors["neutral-90"]}`,
       },
       "&:not(.active)": {
         "& .MuiCardContent-root .MuiTypography-root": {
@@ -161,6 +173,11 @@ export const CCFormSelectCard = styled(Card, {
             color: `${defaultColors["secondary-blue-30"]}`,
           },
         },
+      },
+      "&.MuiPaper-contained.active": {
+        boxShadow: `-1px -1px 1px 0 ${defaultColors["secondary-blue-50"]} inset,
+                     1px 1px 1px 0 ${defaultColors["secondary-blue-50"]} inset,
+                     2px 2px 4px 0 ${defaultColors["neutral-90"]}`,
       },
       "& .MuiCardContent-root .MuiTypography-root": {
         color: defaultColors["neutral-30"],
@@ -295,14 +312,16 @@ export const CCFormInputBase = styled(InputBase, {
     borderColor:
       theme.palette.mode === "dark"
         ? defaultColors["secondary-blue-90"]
-        : defaultColors["neutral-90"],
+        : defaultColors["secondary-blue-50"],
     borderRadius: "4px",
     padding: "8px 12px",
   },
 
   "&.Mui-focused": {
     borderColor:
-      theme.palette.mode === "dark" ? "white" : defaultColors["neutral-50"],
+      theme.palette.mode === "dark"
+        ? "white"
+        : defaultColors["secondary-blue-30"],
   },
 
   "&.Mui-disabled": {
@@ -412,7 +431,6 @@ export const CCFormDescription = styled(Paper, {
 
   if (theme.palette.mode === "light") {
     styles["&.MuiPaper-root"] = {
-      background: defaultColors["neutral-100"],
       boxShadow: "none",
       color: defaultColors["neutral-40"],
       border: 0,
