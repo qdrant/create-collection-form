@@ -5,6 +5,7 @@ import components from "../inputs/components-map.jsx";
 import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
+import defaultColors from "../theme/default-colors.js";
 
 const GenericElementsStep = function ({
   stepName,
@@ -12,6 +13,7 @@ const GenericElementsStep = function ({
   stepData,
   onApply,
   isLast = true,
+  handleClear,
 }) {
   const value = stepData || {};
 
@@ -69,14 +71,19 @@ const GenericElementsStep = function ({
     <Grid container spacing={2}>
       <Grid size={12}>
         <CCFormTitle sx={{ mb: 2 }}>{config.title}</CCFormTitle>
-        <Typography variant="body1" sx={{ mb: 2 }}>
+        <Typography variant="body1" sx={{ mb: 1 }}>
           {config.description}
         </Typography>
       </Grid>
       {renderedElements}
       {config.button && isLast && (
         // todo: update
-        (<Grid size={12} display={"flex"} justifyContent={"flex-end"}>
+        <Grid size={12} display={"flex"} justifyContent={"flex-end"}>
+          {handleClear && typeof handleClear === "function" && (
+            <CCFormButton variant="text" onClick={handleClear}>
+              Clear
+            </CCFormButton>
+          )}
           <CCFormButton
             // key={element.title}
             disabled={!isStepCompleted}
@@ -88,10 +95,11 @@ const GenericElementsStep = function ({
                 config.button["on-click"]["continue-step"],
               )
             }
+            sx={{ ml: 4 }}
           >
             {config.button.title}
           </CCFormButton>
-        </Grid>)
+        </Grid>
       )}
     </Grid>
   );
@@ -119,6 +127,7 @@ GenericElementsStep.propTypes = {
   stepData: PropTypes.any,
   onApply: PropTypes.func.isRequired,
   isLast: PropTypes.bool,
+  handleClear: PropTypes.func,
 };
 
 export default GenericElementsStep;

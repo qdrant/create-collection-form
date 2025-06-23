@@ -10,12 +10,7 @@ const FormCard = ({ card, isActive, onClick }) => {
   const CardIcon =
     card.icon &&
     createSvgIcon(
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d={card.icon.path}
-        fill={defaultColors["neutral-50"]}
-      />,
+      <path fillRule="evenodd" clipRule="evenodd" d={card.icon.path} />,
       "CardIcon",
     );
 

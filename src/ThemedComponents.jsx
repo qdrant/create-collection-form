@@ -21,15 +21,13 @@ export const CCFormRoot = styled("div", {
 })(({ theme }) => ({
   position: "relative",
   padding: "1rem",
+  paddingTop: "2rem",
   minHeight: "100%",
   flex: 1,
-  color:
-    theme.palette.mode === "dark"
-      ? defaultColors["neutral-98"]
-      : defaultColors["neutral-10"],
+  color: theme.palette.mode === "dark" ? "white" : defaultColors["neutral-10"],
   backgroundColor:
     theme.palette.mode === "dark"
-      ? defaultColors["neutral-10"]
+      ? defaultColors["neutral-20"]
       : defaultColors["neutral-98"],
 
   "& > .MuiTypography-root": {
@@ -49,15 +47,17 @@ export const CCFormRoot = styled("div", {
 }));
 
 export const CCFormTitle = styled(
-  (props) => <Typography variant="h6" component="h2" {...props} />,
+  (props) => <Typography variant="h5" component="h2" {...props} />,
   {
     name: "MuiCreateCollectionForm",
     slot: "title",
   },
 )(({ theme }) => ({
+  fontSize: "1.3rem",
+  fontWeight: "500",
   color:
     theme.palette.mode === "dark"
-      ? defaultColors["secondary-blue-90"]
+      ? "white"
       : defaultColors["secondary-blue-50"],
 }));
 
@@ -79,24 +79,58 @@ export const CCFormSelectCard = styled(Card, {
 
   if (theme.palette.mode === "dark") {
     styles["&.MuiPaper-root"] = {
-      background: defaultColors["neutral-20"],
+      background: defaultColors["neutral-30"],
       border: 0,
-      boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-40"]} inset`,
-      color: defaultColors["neutral-80"],
+      color: "white",
+      position: "relative",
+      "&.MuiPaper-contained": {
+        background: defaultColors["neutral-40"],
+      },
       "&:hover": {
         boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-80"]} inset`,
       },
       "&.active": {
         border: 0,
-        boxShadow: `0px 0px 0px 2px ${defaultColors["secondary-blue-90"]} inset`,
-        color: defaultColors["neutral-98"],
+        boxShadow: `-1px -1px 1px 0 ${defaultColors["neutral-50"]} inset,
+                     1px 1px 1px 0 ${defaultColors["neutral-50"]} inset,
+                     hsl(255 50% 2%) 0px 10px 16px -8px, hsl(225 50% 4%) 0px 20px 36px -14px,
+                     2px 2px 4px 0 ${defaultColors["neutral-10"]}`,
+        color: "white",
         "& .MuiCardContent-root .MuiTypography-root": {
-          color: defaultColors["neutral-98"],
+          color: "white",
         },
+        "& .CCFormSelectCard-Title": {
+          color: `${defaultColors["secondary-blue-90"]} !important`,
+        },
+        "& .MuiSvgIcon-root path": {
+          fill: defaultColors["secondary-blue-90"],
+        },
+      },
+      "&.MuiPaper-contained.active": {
+        boxShadow: `-1px -1px 1px 0 ${defaultColors["neutral-50"]} inset,
+                     1px 1px 1px 0 ${defaultColors["neutral-50"]} inset,
+                     2px 2px 4px 0 ${defaultColors["neutral-10"]}`,
       },
       "&:not(.active)": {
         "& .MuiCardContent-root .MuiTypography-root": {
-          color: `${defaultColors["neutral-80"]} !important`,
+          color: `${defaultColors["neutral-90"]}`,
+        },
+        "& .CCFormSelectCard-Title": {
+          color: "white",
+        },
+        "& .MuiSvgIcon-root path": {
+          fill: defaultColors["neutral-90"],
+        },
+        "&:hover": {
+          "& .MuiCardContent-root .MuiTypography-root": {
+            color: "white",
+          },
+          "& .CCFormSelectCard-Title": {
+            color: "white",
+          },
+          "& .MuiSvgIcon-root path": {
+            fill: "white",
+          },
         },
       },
       "& .MuiCardContent-root .MuiTypography-root": {
@@ -104,7 +138,6 @@ export const CCFormSelectCard = styled(Card, {
       },
       "& .CCFormSelectCard-Title": {
         fontWeight: "bold",
-        color: `${defaultColors["neutral-80"]} !important`,
       },
     };
   }
@@ -153,9 +186,8 @@ export const CCFormCard = styled(Card, {
         color: defaultColors["neutral-98"],
       },
       "&.MuiPaper-root": {
-        background: defaultColors["neutral-20"],
+        background: defaultColors["neutral-30"],
         border: 0,
-        boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-80"]} inset`,
         color: defaultColors["neutral-98"],
       },
     };
@@ -246,8 +278,6 @@ export const CCFormControl = styled(FormControl, {
   display: "flex",
   flexDirection: "column",
   width: "100%",
-  marginTop: "1rem",
-  marginBottom: "16px",
 }));
 
 export const CCFormInputBase = styled(InputBase, {
@@ -264,21 +294,15 @@ export const CCFormInputBase = styled(InputBase, {
     border: `1px solid ${defaultColors["neutral-40"]}`,
     borderColor:
       theme.palette.mode === "dark"
-        ? defaultColors["neutral-40"]
+        ? defaultColors["secondary-blue-90"]
         : defaultColors["neutral-90"],
     borderRadius: "4px",
     padding: "8px 12px",
-    backgroundColor:
-      theme.palette.mode === "dark"
-        ? defaultColors["neutral-20"]
-        : theme.palette.background.paper,
   },
 
   "&.Mui-focused": {
     borderColor:
-      theme.palette.mode === "dark"
-        ? defaultColors["neutral-80"]
-        : defaultColors["neutral-50"],
+      theme.palette.mode === "dark" ? "white" : defaultColors["neutral-50"],
   },
 
   "&.Mui-disabled": {
@@ -359,7 +383,8 @@ export const CCFormDescription = styled(Paper, {
   const styles = {
     display: "flex",
     alignItems: "center",
-    padding: "1rem",
+    marginBottom: "1rem",
+    backgroundColor: "transparent",
     a: {
       textDecoration: "none",
       whiteSpace: "nowrap",
@@ -374,7 +399,6 @@ export const CCFormDescription = styled(Paper, {
 
   if (theme.palette.mode === "dark") {
     styles["&.MuiPaper-root"] = {
-      background: defaultColors["neutral-20"],
       border: 0,
       color: defaultColors["neutral-80"],
 
@@ -422,7 +446,7 @@ export const CCFormAccordion = styled(Accordion, {
 
   if (theme.palette.mode === "dark") {
     styles["&.MuiAccordion-root"] = {
-      background: defaultColors["neutral-20"],
+      background: "transparent",
       color: defaultColors["neutral-94"],
     };
 

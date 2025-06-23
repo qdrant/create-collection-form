@@ -103,6 +103,7 @@ function App() {
             {/*Form Component*/}
             {/* See above how to adjust styles */}
             <CreateCollectionForm
+              hideSidebar={true}
               onFinish={(data) => alert(JSON.stringify(data, null, 2))}
             />
           </Box>

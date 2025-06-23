@@ -1,8 +1,8 @@
 const defaultColors = {
   "neutral-10": "#0b0f19",
-  "neutral-20": "#111827",
-  "neutral-30": "#28324d",
-  "neutral-40": "#3d4866",
+  "neutral-20": "#0f172b",
+  "neutral-30": "#1e293c",
+  "neutral-40": "#324155",
   "neutral-50": "#576280",
   "neutral-60": "#717c99",
   "neutral-70": "#8f98b2",
@@ -25,8 +25,8 @@ const defaultColors = {
   "secondary-blue-10": "#001848",
   "secondary-blue-30": "#24386c",
   "secondary-blue-50": "#3b5db3",
-  "secondary-blue-70": "#7589be",
-  "secondary-blue-90": "#b2bfe8",
+  "secondary-blue-70": "#759cbe",
+  "secondary-blue-90": "#cbdaff",
 };
 
 export default defaultColors;

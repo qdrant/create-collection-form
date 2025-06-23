@@ -48,12 +48,14 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
         return (
           <CCFormCard
             sx={{
-              px: 2,
-              pt: 2,
+              px: 3,
+              pt: 4,
               pb: 1,
               mt: 2,
+              mb: 4,
               display: "flex",
               flexDirection: "column",
+              borderRadius: 3,
             }}
             key={index}
           >
