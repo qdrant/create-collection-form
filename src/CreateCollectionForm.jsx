@@ -113,6 +113,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
     const output = prepareOutput(formData, path);
     if (output) {
       onFinish(output);
+      handleClear();
     } else {
       console.error("Failed to prepare output");
     }
