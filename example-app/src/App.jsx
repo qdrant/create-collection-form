@@ -104,7 +104,17 @@ function App() {
             {/* See above how to adjust styles */}
             <CreateCollectionForm
               hideSidebar={true}
-              onFinish={(data) => alert(JSON.stringify(data, null, 2))}
+              onFinish={(data) => {
+                alert(JSON.stringify(data, null, 2));
+                // This is just an example of how to handle the form finish,
+                // but you always have to return a promise that resolves to a value,
+                // otherwise the form will not be cleared (for example, if an error occurs).
+                return new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve(data);
+                  }, 100);
+                });
+              }}
             />
           </Box>
         </ThemeProvider>

@@ -11,6 +11,15 @@ import { CCFormButton, CCFormRoot, CCFormSidebar } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
 
+/**
+ * CreateCollectionForm component
+ *
+ * @param {Object} props - Component props
+ * @param {() => Promise<any>} props.onFinish - Async function called on form finish. Must return a resolved value (not undefined), otherwise the form will not be cleared.
+ * @param {boolean} [props.hideSidebar=false] - Whether to hide the sidebar
+ * @param {Object} [props.sx] - Styles to be applied to the form
+ * @returns {JSX.Element}
+ */
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
   hideSidebar = false,
@@ -112,8 +121,12 @@ export const CreateCollectionForm = function CreateCollectionForm({
   const handleFinish = () => {
     const output = prepareOutput(formData, path);
     if (output) {
-      onFinish(output);
-      handleClear();
+      onFinish(output).then((result) => {
+        if (!result) {
+          return;
+        }
+        handleClear();
+      });
     } else {
       console.error("Failed to prepare output");
     }
