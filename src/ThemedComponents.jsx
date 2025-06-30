@@ -87,13 +87,14 @@ export const CCFormSelectCard = styled(Card, {
         background: defaultColors["neutral-40"],
       },
       "&:hover": {
-        boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-80"]} inset`,
+        boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-50"]} inset`,
       },
       "&.active": {
         border: 0,
-        boxShadow: `-1px -1px 1px 0 ${defaultColors["neutral-50"]} inset,
-                     1px 1px 1px 0 ${defaultColors["neutral-50"]} inset,
-                     hsl(255 50% 2%) 0px 10px 16px -8px, hsl(225 50% 4%) 0px 20px 36px -14px,
+        boxShadow: `-1px -1px 1px 0 ${defaultColors["neutral-60"]} inset,
+                     1px 1px 1px 0 ${defaultColors["neutral-60"]} inset,
+                     hsl(255 50% 2%) 0px 10px 16px -8px,
+                      hsl(225 50% 4%) 0px 20px 36px -14px,
                      2px 2px 4px 0 ${defaultColors["neutral-10"]}`,
         color: "white",
         "& .MuiCardContent-root .MuiTypography-root": {
@@ -107,8 +108,8 @@ export const CCFormSelectCard = styled(Card, {
         },
       },
       "&.MuiPaper-contained.active": {
-        boxShadow: `-1px -1px 1px 0 ${defaultColors["neutral-50"]} inset,
-                     1px 1px 1px 0 ${defaultColors["neutral-50"]} inset,
+        boxShadow: `-1px -1px 0 1px ${defaultColors["neutral-80"]} inset,
+                     1px 1px 0 1px ${defaultColors["neutral-80"]} inset,
                      2px 2px 4px 0 ${defaultColors["neutral-10"]}`,
       },
       "&:not(.active)": {
@@ -153,7 +154,10 @@ export const CCFormSelectCard = styled(Card, {
         fill: defaultColors["secondary-blue-30"],
       },
       "&:hover": {
-        boxShadow: `0 0 1px 0 ${defaultColors["secondary-blue-30"]} inset`,
+        boxShadow: `0 0 1px 0 ${defaultColors["secondary-blue-30"]} inset,
+        0 0 2px 0 ${defaultColors["secondary-blue-30"]} inset,
+       ${defaultColors["neutral-80"]} 0px 10px 16px -8px,
+        ${defaultColors["neutral-90"]} 0px 20px 36px -14px`,
         "& .MuiSvgIcon-root path": {
           fill: defaultColors["secondary-blue-50"],
         },
@@ -163,7 +167,8 @@ export const CCFormSelectCard = styled(Card, {
         border: 0,
         boxShadow: `-1px -1px 1px 0 ${defaultColors["secondary-blue-50"]} inset,
                      1px 1px 1px 0 ${defaultColors["secondary-blue-50"]} inset,
-                     ${defaultColors["neutral-70"]} 0px 5px 6px -4px, ${defaultColors["neutral-70"]} 0px 10px 18px -7px,
+                     ${defaultColors["neutral-70"]} 0px 5px 6px -4px,
+                     ${defaultColors["neutral-70"]} 0px 10px 18px -7px,
                      2px 2px 4px 0 ${defaultColors["neutral-90"]}`,
       },
       "&:not(.active)": {
@@ -175,9 +180,10 @@ export const CCFormSelectCard = styled(Card, {
         },
       },
       "&.MuiPaper-contained.active": {
-        boxShadow: `-1px -1px 1px 0 ${defaultColors["secondary-blue-50"]} inset,
-                     1px 1px 1px 0 ${defaultColors["secondary-blue-50"]} inset,
-                     2px 2px 4px 0 ${defaultColors["neutral-90"]}`,
+        boxShadow: `-1px -1px 2px 0 ${defaultColors["secondary-blue-50"]} inset,
+                     1px 1px 2px 0 ${defaultColors["secondary-blue-50"]} inset
+                     0px 5px 6px -4px ${defaultColors["neutral-70"]},
+                     0px 10px 18px -7px ${defaultColors["neutral-70"]}`,
       },
       "& .MuiCardContent-root .MuiTypography-root": {
         color: defaultColors["neutral-30"],
