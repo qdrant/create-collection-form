@@ -17,12 +17,14 @@ import { prepareOutput } from "./prepareOutput.js";
  * @param {Object} props - Component props
  * @param {() => Promise<any>} props.onFinish - Async function called on form finish. Must return a resolved value (not undefined), otherwise the form will not be cleared.
  * @param {boolean} [props.hideSidebar=false] - Whether to hide the sidebar
+ * @param {Object} [props.scrollableParent=window] - The parent element to scroll to the bottom on step change
  * @param {Object} [props.sx] - Styles to be applied to the form
  * @returns {JSX.Element}
  */
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
   hideSidebar = false,
+  scrollableParent = window,
   sx,
   ...props
 }) {
@@ -65,7 +67,13 @@ export const CreateCollectionForm = function CreateCollectionForm({
 
   // Scroll to the bottom of the page on step change
   useEffect(() => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    if (!scrollableParent) {
+      return;
+    }
+    scrollableParent.scrollTo({
+      top: scrollableParent.scrollHeight,
+      behavior: "smooth",
+    });
   }, [path]);
 
   const stepsComponents = {
@@ -176,6 +184,7 @@ CreateCollectionForm.propTypes = {
   ref: PropTypes.object,
   onFinish: PropTypes.func.isRequired,
   hideSidebar: PropTypes.bool,
+  scrollableParent: PropTypes.object,
   sx: PropTypes.object,
 };
 
