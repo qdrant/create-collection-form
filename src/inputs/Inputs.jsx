@@ -128,6 +128,7 @@ Checkbox.propTypes = {
   config: PropTypes.shape({
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    description: PropTypes.string,
   }).isRequired,
   stepData: PropTypes.bool,
   onChange: PropTypes.func.isRequired,

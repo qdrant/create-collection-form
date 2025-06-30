@@ -10,6 +10,7 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import { CCFormButton, CCFormRoot, CCFormSidebar } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
+import { ScrollableParentContext } from "./context/scrollable-parent-context.jsx";
 
 /**
  * CreateCollectionForm component
@@ -17,15 +18,21 @@ import { prepareOutput } from "./prepareOutput.js";
  * @param {Object} props - Component props
  * @param {() => Promise<any>} props.onFinish - Async function called on form finish. Must return a resolved value (not undefined), otherwise the form will not be cleared.
  * @param {boolean} [props.hideSidebar=false] - Whether to hide the sidebar
+ * @param {() => Object} [props.scrollableParent] - Function that returns the parent element
  * @param {Object} [props.sx] - Styles to be applied to the form
  * @returns {JSX.Element}
  */
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
   hideSidebar = false,
+  scrollableParent,
   sx,
   ...props
 }) {
+  const resolvedScrollableParent = scrollableParent
+    ? scrollableParent
+    : () => window;
+
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
   });
@@ -65,7 +72,11 @@ export const CreateCollectionForm = function CreateCollectionForm({
 
   // Scroll to the bottom of the page on step change
   useEffect(() => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    const currentScrollableParent = resolvedScrollableParent();
+    currentScrollableParent.scrollTo({
+      top: currentScrollableParent.scrollHeight,
+      behavior: "smooth",
+    });
   }, [path]);
 
   const stepsComponents = {
@@ -133,41 +144,45 @@ export const CreateCollectionForm = function CreateCollectionForm({
   };
 
   return (
-    <CCFormRoot>
-      <Container maxWidth="lg">
-        {renderedSteps}
+    <ScrollableParentContext.Provider
+      value={{ scrollableParent: resolvedScrollableParent }}
+    >
+      <CCFormRoot>
+        <Container maxWidth="lg">
+          {renderedSteps}
 
-        {isFinished &&
-        Object.values(formData).some(
-          (data) => typeof data === "object" && data?.completed,
-        ) ? (
-          <Grid size={12} display="flex" justifyContent="flex-end">
-            <CCFormButton variant="text" onClick={handleClear}>
-              Clear
-            </CCFormButton>
-            <CCFormButton
-              disabled={!isAllCompleted}
-              variant="contained"
-              onClick={handleFinish}
-              sx={{ ml: 4 }}
-            >
-              Finish
-            </CCFormButton>
-          </Grid>
-        ) : (
-          <></>
+          {isFinished &&
+          Object.values(formData).some(
+            (data) => typeof data === "object" && data?.completed,
+          ) ? (
+            <Grid size={12} display="flex" justifyContent="flex-end">
+              <CCFormButton variant="text" onClick={handleClear}>
+                Clear
+              </CCFormButton>
+              <CCFormButton
+                disabled={!isAllCompleted}
+                variant="contained"
+                onClick={handleFinish}
+                sx={{ ml: 4 }}
+              >
+                Finish
+              </CCFormButton>
+            </Grid>
+          ) : (
+            <></>
+          )}
+        </Container>
+        {!hideSidebar && (
+          <CCFormSidebar>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              Estimated Price:
+            </Typography>
+            {/*todo: Price?*/}
+            <Typography variant="h4">200$</Typography>
+          </CCFormSidebar>
         )}
-      </Container>
-      {!hideSidebar && (
-        <CCFormSidebar>
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            Estimated Price:
-          </Typography>
-          {/*todo: Price?*/}
-          <Typography variant="h4">200$</Typography>
-        </CCFormSidebar>
-      )}
-    </CCFormRoot>
+      </CCFormRoot>
+    </ScrollableParentContext.Provider>
   );
 };
 
@@ -176,6 +191,7 @@ CreateCollectionForm.propTypes = {
   ref: PropTypes.object,
   onFinish: PropTypes.func.isRequired,
   hideSidebar: PropTypes.bool,
+  scrollableParent: PropTypes.func,
   sx: PropTypes.object,
 };
 
