@@ -29,7 +29,9 @@ export const CreateCollectionForm = function CreateCollectionForm({
   sx,
   ...props
 }) {
-  const resolvedScrollableParent = scrollableParent ? scrollableParent : () => window;
+  const resolvedScrollableParent = scrollableParent
+    ? scrollableParent
+    : () => window;
 
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
@@ -142,7 +144,9 @@ export const CreateCollectionForm = function CreateCollectionForm({
   };
 
   return (
-    <ScrollableParentContext.Provider value={{ scrollableParent: resolvedScrollableParent }}>
+    <ScrollableParentContext.Provider
+      value={{ scrollableParent: resolvedScrollableParent }}
+    >
       <CCFormRoot>
         <Container maxWidth="lg">
           {renderedSteps}

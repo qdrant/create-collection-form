@@ -29,9 +29,9 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   useEffect(() => {
     if (isLast) {
       const currentScrollableParent = scrollableParent();
-      currentScrollableParent.scrollTo({ 
-        top: currentScrollableParent.scrollHeight, 
-        behavior: "smooth" 
+      currentScrollableParent.scrollTo({
+        top: currentScrollableParent.scrollHeight,
+        behavior: "smooth",
       });
     }
   }, [stepData, isLast, scrollableParent]);
