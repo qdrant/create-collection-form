@@ -17,7 +17,7 @@ import { prepareOutput } from "./prepareOutput.js";
  * @param {Object} props - Component props
  * @param {() => Promise<any>} props.onFinish - Async function called on form finish. Must return a resolved value (not undefined), otherwise the form will not be cleared.
  * @param {boolean} [props.hideSidebar=false] - Whether to hide the sidebar
- * @param {Object} [props.scrollableParent=window] - The parent element to scroll to the bottom on step change
+ * @param {() => Object} [props.scrollableParent] - Function that returns the parent element
  * @param {Object} [props.sx] - Styles to be applied to the form
  * @returns {JSX.Element}
  */
@@ -28,7 +28,8 @@ export const CreateCollectionForm = function CreateCollectionForm({
   sx,
   ...props
 }) {
-  const resolvedScrollableParent = scrollableParent || (typeof window !== 'undefined' ? window : null);
+  const resolvedScrollableParent = !!scrollableParent ? scrollableParent : () => window;
+
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
   });
@@ -68,11 +69,9 @@ export const CreateCollectionForm = function CreateCollectionForm({
 
   // Scroll to the bottom of the page on step change
   useEffect(() => {
-    if (!scrollableParent) {
-      return;
-    }
-    scrollableParent.scrollTo({
-      top: scrollableParent.scrollHeight,
+    const currentScrollableParent = resolvedScrollableParent();
+    currentScrollableParent.scrollTo({
+      top: currentScrollableParent.scrollHeight,
       behavior: "smooth",
     });
   }, [path]);
@@ -185,7 +184,7 @@ CreateCollectionForm.propTypes = {
   ref: PropTypes.object,
   onFinish: PropTypes.func.isRequired,
   hideSidebar: PropTypes.bool,
-  scrollableParent: PropTypes.object,
+  scrollableParent: PropTypes.func,
   sx: PropTypes.object,
 };
 
