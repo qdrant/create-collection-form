@@ -24,10 +24,11 @@ import { prepareOutput } from "./prepareOutput.js";
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
   hideSidebar = false,
-  scrollableParent = window,
+  scrollableParent,
   sx,
   ...props
 }) {
+  const resolvedScrollableParent = scrollableParent || (typeof window !== 'undefined' ? window : null);
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
   });
