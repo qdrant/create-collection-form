@@ -10,6 +10,7 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import { CCFormButton, CCFormRoot, CCFormSidebar } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
+import { ScrollableParentContext } from "./context/scrollable-parent-context.jsx";
 
 /**
  * CreateCollectionForm component
@@ -28,7 +29,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
   sx,
   ...props
 }) {
-  const resolvedScrollableParent = !!scrollableParent ? scrollableParent : () => window;
+  const resolvedScrollableParent = scrollableParent ? scrollableParent : () => window;
 
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
@@ -141,41 +142,43 @@ export const CreateCollectionForm = function CreateCollectionForm({
   };
 
   return (
-    <CCFormRoot>
-      <Container maxWidth="lg">
-        {renderedSteps}
+    <ScrollableParentContext.Provider value={{ scrollableParent: resolvedScrollableParent }}>
+      <CCFormRoot>
+        <Container maxWidth="lg">
+          {renderedSteps}
 
-        {isFinished &&
-        Object.values(formData).some(
-          (data) => typeof data === "object" && data?.completed,
-        ) ? (
-          <Grid size={12} display="flex" justifyContent="flex-end">
-            <CCFormButton variant="text" onClick={handleClear}>
-              Clear
-            </CCFormButton>
-            <CCFormButton
-              disabled={!isAllCompleted}
-              variant="contained"
-              onClick={handleFinish}
-              sx={{ ml: 4 }}
-            >
-              Finish
-            </CCFormButton>
-          </Grid>
-        ) : (
-          <></>
+          {isFinished &&
+          Object.values(formData).some(
+            (data) => typeof data === "object" && data?.completed,
+          ) ? (
+            <Grid size={12} display="flex" justifyContent="flex-end">
+              <CCFormButton variant="text" onClick={handleClear}>
+                Clear
+              </CCFormButton>
+              <CCFormButton
+                disabled={!isAllCompleted}
+                variant="contained"
+                onClick={handleFinish}
+                sx={{ ml: 4 }}
+              >
+                Finish
+              </CCFormButton>
+            </Grid>
+          ) : (
+            <></>
+          )}
+        </Container>
+        {!hideSidebar && (
+          <CCFormSidebar>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              Estimated Price:
+            </Typography>
+            {/*todo: Price?*/}
+            <Typography variant="h4">200$</Typography>
+          </CCFormSidebar>
         )}
-      </Container>
-      {!hideSidebar && (
-        <CCFormSidebar>
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            Estimated Price:
-          </Typography>
-          {/*todo: Price?*/}
-          <Typography variant="h4">200$</Typography>
-        </CCFormSidebar>
-      )}
-    </CCFormRoot>
+      </CCFormRoot>
+    </ScrollableParentContext.Provider>
   );
 };
 

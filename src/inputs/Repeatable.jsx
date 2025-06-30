@@ -4,10 +4,12 @@ import { Divider, Grid } from "@mui/material";
 import { CCFormButton, CCFormCard } from "../ThemedComponents.jsx";
 import GenericInputs from "./GenericInputs";
 import { useEffect } from "react";
+import { useScrollableParent } from "../context/scrollable-parent-context.jsx";
 
 // todo: update for the new structure
 const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   const values = stepData || [];
+  const scrollableParent = useScrollableParent();
 
   const maxRepetitions = config?.maxRepetitions || 10000;
 
@@ -26,9 +28,13 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
 
   useEffect(() => {
     if (isLast) {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      const currentScrollableParent = scrollableParent();
+      currentScrollableParent.scrollTo({ 
+        top: currentScrollableParent.scrollHeight, 
+        behavior: "smooth" 
+      });
     }
-  }, [stepData, isLast]);
+  }, [stepData, isLast, scrollableParent]);
 
   const handleRemove = (index) => {
     const newValues = [...values];
