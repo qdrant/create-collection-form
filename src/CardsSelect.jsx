@@ -20,6 +20,12 @@ const FormCard = ({ card, isActive, onClick }) => {
         elevation={1}
         className={isActive ? "active" : ""}
         onClick={onClick}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            onClick(e);
+          }
+        }}
       >
         <CardContent sx={{ display: "flex" }}>
           {card.icon && (

@@ -133,6 +133,12 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
                   onClick={() => configOnChange(enumObject.name)}
                   className={selectedEnum === enumObject.name ? "active" : ""}
                   variant="contained"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      configOnChange(enumObject.name);
+                    }
+                  }}
                 >
                   {enumObject.name}
                 </CCFormSelectCard>

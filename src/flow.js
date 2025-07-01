@@ -66,6 +66,7 @@ export const steps = {
         placeholder: "Example: my-collection",
         required: true,
         size: 12,
+        setFocus: true,
       },
       {
         type: "description",
@@ -133,6 +134,7 @@ export const steps = {
         name: "tenant_id",
         placeholder: "Example: user-id",
         required: true,
+        setFocus: true,
       },
       {
         size: 12,
@@ -251,6 +253,7 @@ export const steps = {
             placeholder: "Example: abstract-dense-vector",
             size: 12,
             required: true,
+            setFocus: true,
           },
           {
             type: "description",
@@ -320,6 +323,7 @@ export const steps = {
             placeholder: "Example: dense-vector",
             size: 12,
             required: true,
+            setFocus: true,
           },
           {
             type: "description",
@@ -412,6 +416,7 @@ export const steps = {
             placeholder: "Example: sparse-vector",
             size: 12,
             required: true,
+            setFocus: true,
           },
           {
             type: "sparse-vector-configuration",
@@ -449,6 +454,7 @@ export const steps = {
             placeholder: "Example: document-id",
             size: 12,
             required: true,
+            setFocus: true,
           },
           {
             type: "button-group-with-inputs",

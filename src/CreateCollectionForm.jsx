@@ -73,8 +73,12 @@ export const CreateCollectionForm = function CreateCollectionForm({
   // Scroll to the bottom of the page on step change
   useEffect(() => {
     const currentScrollableParent = resolvedScrollableParent();
+    let currentScrollHeight =
+      currentScrollableParent === window
+        ? document.documentElement.scrollHeight
+        : currentScrollableParent.scrollHeight;
     currentScrollableParent.scrollTo({
-      top: currentScrollableParent.scrollHeight,
+      top: currentScrollHeight,
       behavior: "smooth",
     });
   }, [path]);

@@ -11,6 +11,8 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   const values = stepData || [];
   const scrollableParent = useScrollableParent();
 
+  const numValues = values.length;
+
   const maxRepetitions = config?.maxRepetitions || 10000;
 
   useEffect(() => {
@@ -29,12 +31,16 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   useEffect(() => {
     if (isLast) {
       const currentScrollableParent = scrollableParent();
+      let currentScrollHeight =
+        currentScrollableParent === window
+          ? document.documentElement.scrollHeight
+          : currentScrollableParent.scrollHeight;
       currentScrollableParent.scrollTo({
-        top: currentScrollableParent.scrollHeight,
+        top: currentScrollHeight,
         behavior: "smooth",
       });
     }
-  }, [stepData, isLast, scrollableParent]);
+  }, [numValues]);
 
   const handleRemove = (index) => {
     const newValues = [...values];
