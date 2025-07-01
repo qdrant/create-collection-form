@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Box, FormControlLabel, MenuItem, Select } from "@mui/material";
 import PropTypes from "prop-types";
 import {
@@ -59,6 +60,14 @@ export const StringInput = ({ config, stepData, onChange }) => {
 
   const value = !stepData && stepData !== "" ? defaultValue : stepData;
 
+  // we can specify in the flow.js if we want to set focus on the input
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (config.setFocus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [config.setFocus]);
+
   // todo:
   // validate input
   return (
@@ -72,6 +81,7 @@ export const StringInput = ({ config, stepData, onChange }) => {
         key={config.title}
         id={config.name}
         placeholder={config.placeholder || ""}
+        inputRef={inputRef}
         // variant={config.variant || "standard"}
         variant="outlined"
         value={value}
