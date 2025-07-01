@@ -11,6 +11,8 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   const values = stepData || [];
   const scrollableParent = useScrollableParent();
 
+  const numValues = values.length;
+
   const maxRepetitions = config?.maxRepetitions || 10000;
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
         behavior: "smooth",
       });
     }
-  }, [stepData, isLast, scrollableParent]);
+  }, [numValues]);
 
   const handleRemove = (index) => {
     const newValues = [...values];
