@@ -29,8 +29,10 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   useEffect(() => {
     if (isLast) {
       const currentScrollableParent = scrollableParent();
+      let currentScrollHeight = currentScrollableParent === window ?
+          document.documentElement.scrollHeight : currentScrollableParent.scrollHeight;
       currentScrollableParent.scrollTo({
-        top: currentScrollableParent.scrollHeight,
+        top: currentScrollHeight,
         behavior: "smooth",
       });
     }
