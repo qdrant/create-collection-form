@@ -21,6 +21,11 @@ const FormCard = ({ card, isActive, onClick }) => {
         className={isActive ? "active" : ""}
         onClick={onClick}
         tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            onClick(e);
+          }
+        }}
       >
         <CardContent sx={{ display: "flex" }}>
           {card.icon && (
