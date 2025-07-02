@@ -539,7 +539,17 @@ export const steps = {
                     description: "Converts all characters to lowercase",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
                     linkText: "Learn more",
-                    size: 12,
+                    size: 6,
+                  },
+                  {
+                    title: "Phrase matching",
+                    name: "phrase_matching",
+                    type: "checkbox",
+                    default: true,
+                    description: "Allows phrase matching at the cost of extra index structure",
+                    link: "https://qdrant.tech/documentation/concepts/filtering/#phrase-matching",
+                    linkText: "Learn more",
+                    size: 6,
                   },
                   {
                     title: "Min token length",
