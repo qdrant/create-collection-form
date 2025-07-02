@@ -13,7 +13,7 @@ const Description = ({ config }) => {
         variant="caption"
         sx={{ whiteSpace: "pre-line", fontSize: "0.9rem", fontWeight: 500 }}
       >
-        {config.description}&nbsp;
+        <span dangerouslySetInnerHTML={{ __html: config.description }} />&nbsp;
         {link && (
           <a href={link} target="_blank" rel="noreferrer">
             {linkText}
