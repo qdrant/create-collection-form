@@ -13,7 +13,9 @@ const Description = ({ config }) => {
         variant="caption"
         sx={{ whiteSpace: "pre-line", fontSize: "0.9rem", fontWeight: 500 }}
       >
-        {config.description}&nbsp;
+        {/* here we can use `dangerouslySetInnerHTML` because the content source is trusted */}
+        {/* but do not use it with untrusted content */}
+        <span dangerouslySetInnerHTML={{ __html: config.description }} />&nbsp;
         {link && (
           <a href={link} target="_blank" rel="noreferrer">
             {linkText}
