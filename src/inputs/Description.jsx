@@ -15,7 +15,8 @@ const Description = ({ config }) => {
       >
         {/* here we can use `dangerouslySetInnerHTML` because the content source is trusted */}
         {/* but do not use it with untrusted content */}
-        <span dangerouslySetInnerHTML={{ __html: config.description }} />&nbsp;
+        <span dangerouslySetInnerHTML={{ __html: config.description }} />
+        &nbsp;
         {link && (
           <a href={link} target="_blank" rel="noreferrer">
             {linkText}

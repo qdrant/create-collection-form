@@ -5,7 +5,6 @@ import components from "../inputs/components-map.jsx";
 import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
-import defaultColors from "../theme/default-colors.js";
 
 const GenericElementsStep = function ({
   stepName,

@@ -51,7 +51,7 @@ const GenericInputs = function ({
         }
 
         return (
-          <Fragment key={element.name}>
+          <Fragment key={idx}>
             <Component
               config={elementConfig}
               stepData={elementData}

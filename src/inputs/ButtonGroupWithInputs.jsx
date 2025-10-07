@@ -180,7 +180,7 @@ ButtonGroupWithInputs.propTypes = {
           PropTypes.shape({
             title: PropTypes.string,
             type: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
+            name: PropTypes.string,
             default: PropTypes.any,
           }),
         ),

@@ -7,10 +7,10 @@ const Group = function ({ config, stepData, onChange }) {
   return (
     <Grid size={12}>
       <CCFormCard
+        elevation={0}
         sx={{
           p: 2,
           mt: 2,
-          borderRadius: 5,
         }}
       >
         <Grid container spacing={2}>

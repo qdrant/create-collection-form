@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Accordion,
   Autocomplete,
@@ -14,37 +15,38 @@ import {
   Typography,
 } from "@mui/material";
 import defaultColors from "./theme/default-colors.js";
+import { alpha } from "@mui/material/styles";
 
 export const CCFormRoot = styled("div", {
   name: "MuiCreateCollectionForm",
   slot: "root",
-})(({ theme }) => ({
-  position: "relative",
-  padding: "1rem",
-  paddingTop: "2rem",
-  minHeight: "100%",
-  flex: 1,
-  color: theme.palette.mode === "dark" ? "white" : defaultColors["neutral-10"],
-  backgroundColor:
-    theme.palette.mode === "dark"
-      ? defaultColors["neutral-20"]
-      : defaultColors["neutral-98"],
+})(({ theme }) => {
+  console.log(theme);
+  return {
+    position: "relative",
+    padding: "1rem",
+    paddingTop: "2rem",
+    minHeight: "100%",
+    flex: 1,
+    color: theme.palette.text.primary,
+    backgroundColor: theme.palette.background.default,
 
-  "& > .MuiTypography-root": {
-    color:
-      theme.palette.mode === "dark"
-        ? defaultColors["neutral-98"]
-        : defaultColors["neutral-30"],
-  },
-  "& > .MuiContainer-root": {
-    "@media (min-width: 900px) and (max-width: 2144px)": {
-      paddingRight: "clamp(200px, 25vw, 300px) !important",
-    },
-    [theme.breakpoints.down("md")]: {
-      paddingBottom: "200px",
-    },
-  },
-}));
+    // "& > .MuiTypography-root": {
+    //   color:
+    //     theme.palette.mode === "dark"
+    //       ? defaultColors["neutral-98"]
+    //       : defaultColors["neutral-30"],
+    // },
+    // "& > .MuiContainer-root": {
+    //   "@media (min-width: 900px) and (max-width: 2144px)": {
+    //     paddingRight: "clamp(200px, 25vw, 300px) !important",
+    //   },
+    //   [theme.breakpoints.down("md")]: {
+    //     paddingBottom: "200px",
+    //   },
+    // },
+  };
+});
 
 export const CCFormTitle = styled(
   (props) => <Typography variant="h5" component="h2" {...props} />,
@@ -53,147 +55,104 @@ export const CCFormTitle = styled(
     slot: "title",
   },
 )(({ theme }) => ({
-  fontSize: "1.3rem",
-  fontWeight: "500",
-  color:
-    theme.palette.mode === "dark"
-      ? "white"
-      : defaultColors["secondary-blue-50"],
+  // background: theme.palette.background?.paperElevation1,
+  // fontSize: "inherit",
+  // fontWeight: "inherit",
+  // color: "inherit",
 }));
 
-export const CCFormSelectCard = styled(Card, {
-  name: "MuiCreateCollectionForm",
-  slot: "selectCard",
-})(({ theme }) => {
+export const CCFormSelectCard = styled(
+  (props) => <Card elevation={0} {...props} />,
+  {
+    name: "MuiCreateCollectionForm",
+    slot: "selectCard",
+  },
+)(({ theme }) => {
   const styles = {
     width: "100%",
-    padding: "0.5rem 0.25rem 1.25rem",
-    cursor: "pointer",
+    p: 3,
+    boxShadow: "none",
+    boxSizing: "border-box",
+    borderRadius: "8px",
+    transition: "all 0.1s ease-in-out",
+    "& svg": {
+      stroke: theme.palette.text.primary,
+      fill: "none",
+      strokeWidth: "1.5",
+    },
+    "& ul": {
+      paddingLeft: "0",
+      marginBottom: "0",
+      listStyleType: "none",
+      "& li": {
+        paddingLeft: "28px",
+        position: "relative",
+        "&:not(:last-child)": {
+          marginBottom: "10px",
+        },
+        "&:before": {
+          content: '""',
+          position: "absolute",
+          left: "0",
+          top: "2px",
+          width: "20px",
+          height: "21px",
+          display: "inline-block",
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='21' viewBox='0 0 20 21' fill='none'%3E%3Cpath d='M16.6668 5.5L7.50016 14.6667L3.3335 10.5' stroke='${encodeURIComponent(theme.palette.text.secondary)}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "left center",
+        },
+      },
+    },
     "&.active": {
-      cursor: "default",
+      boxShadow: `0 0 0 2px ${theme.palette.primary.main}`,
+      background: alpha(theme.palette.primary.main, 0.08),
+
+      "& svg": {
+        stroke: theme.palette.primary.main,
+        fill: "none",
+      },
     },
-    "& .MuiCardContent-root .MuiDivider-root ~ .MuiTypography-root": {
-      lineHeight: 2,
+    "&:hover:not(.active)": {
+      boxShadow: `0 0 0 2px ${theme.palette.primary.main}`,
+      background: alpha(theme.palette.primary.main, 0.08),
     },
+    //     "&.MuiPaper-contained.active": {
+    //       boxShadow: `-1px -1px 0 1px ${defaultColors["neutral-80"]} inset,
+    //                    1px 1px 0 1px ${defaultColors["neutral-80"]} inset,
+    //                    2px 2px 4px 0 ${defaultColors["neutral-10"]}`,
+    //     },
+    //     "&:not(.active)": {
+    //       "& .MuiCardContent-root .MuiTypography-root": {
+    //         color: `${defaultColors["neutral-90"]}`,
+    //       },
+    //       "& .CCFormSelectCard-Title": {
+    //         color: "white",
+    //       },
+    //       "& .MuiSvgIcon-root path": {
+    //         fill: defaultColors["neutral-90"],
+    //       },
+    //       "&:hover": {
+    //         "& .MuiCardContent-root .MuiTypography-root": {
+    //           color: "white",
+    //         },
+    //         "& .CCFormSelectCard-Title": {
+    //           color: "white",
+    //         },
+    //         "& .MuiSvgIcon-root path": {
+    //           fill: "white",
+    //         },
+    //       },
+    //     },
+    //     "& .MuiCardContent-root .MuiTypography-root": {
+    //       color: defaultColors["neutral-98"],
+    //     },
+    //     "& .CCFormSelectCard-Title": {
+    //       fontWeight: "bold",
+    //     },
+    //   };
+    // }
   };
-
-  if (theme.palette.mode === "dark") {
-    styles["&.MuiPaper-root"] = {
-      background: defaultColors["neutral-30"],
-      border: 0,
-      color: "white",
-      position: "relative",
-      "&.MuiPaper-contained": {
-        background: defaultColors["neutral-40"],
-      },
-      "&:hover": {
-        boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-50"]} inset`,
-      },
-      "&.active": {
-        border: 0,
-        boxShadow: `-1px -1px 1px 0 ${defaultColors["neutral-60"]} inset,
-                     1px 1px 1px 0 ${defaultColors["neutral-60"]} inset,
-                     hsl(255 50% 2%) 0px 10px 16px -8px,
-                      hsl(225 50% 4%) 0px 20px 36px -14px,
-                     2px 2px 4px 0 ${defaultColors["neutral-10"]}`,
-        color: "white",
-        "& .MuiCardContent-root .MuiTypography-root": {
-          color: "white",
-        },
-        "& .CCFormSelectCard-Title": {
-          color: `${defaultColors["secondary-blue-90"]} !important`,
-        },
-        "& .MuiSvgIcon-root path": {
-          fill: defaultColors["secondary-blue-90"],
-        },
-      },
-      "&.MuiPaper-contained.active": {
-        boxShadow: `-1px -1px 0 1px ${defaultColors["neutral-80"]} inset,
-                     1px 1px 0 1px ${defaultColors["neutral-80"]} inset,
-                     2px 2px 4px 0 ${defaultColors["neutral-10"]}`,
-      },
-      "&:not(.active)": {
-        "& .MuiCardContent-root .MuiTypography-root": {
-          color: `${defaultColors["neutral-90"]}`,
-        },
-        "& .CCFormSelectCard-Title": {
-          color: "white",
-        },
-        "& .MuiSvgIcon-root path": {
-          fill: defaultColors["neutral-90"],
-        },
-        "&:hover": {
-          "& .MuiCardContent-root .MuiTypography-root": {
-            color: "white",
-          },
-          "& .CCFormSelectCard-Title": {
-            color: "white",
-          },
-          "& .MuiSvgIcon-root path": {
-            fill: "white",
-          },
-        },
-      },
-      "& .MuiCardContent-root .MuiTypography-root": {
-        color: defaultColors["neutral-98"],
-      },
-      "& .CCFormSelectCard-Title": {
-        fontWeight: "bold",
-      },
-    };
-  }
-  if (theme.palette.mode === "light") {
-    styles["&.MuiPaper-root"] = {
-      background: theme.palette.background.paper,
-      border: 0,
-      position: "relative",
-      "&.MuiPaper-contained": {
-        background: defaultColors["neutral-98"],
-      },
-      "& .MuiSvgIcon-root path": {
-        fill: defaultColors["secondary-blue-30"],
-      },
-      "&:hover": {
-        boxShadow: `0 0 1px 0 ${defaultColors["secondary-blue-30"]} inset,
-        0 0 2px 0 ${defaultColors["secondary-blue-30"]} inset,
-       ${defaultColors["neutral-80"]} 0px 10px 16px -8px,
-        ${defaultColors["neutral-90"]} 0px 20px 36px -14px`,
-        "& .MuiSvgIcon-root path": {
-          fill: defaultColors["secondary-blue-50"],
-        },
-      },
-      "&.active": {
-        cursor: "default",
-        border: 0,
-        boxShadow: `-1px -1px 1px 0 ${defaultColors["secondary-blue-50"]} inset,
-                     1px 1px 1px 0 ${defaultColors["secondary-blue-50"]} inset,
-                     ${defaultColors["neutral-70"]} 0px 5px 6px -4px,
-                     ${defaultColors["neutral-70"]} 0px 10px 18px -7px,
-                     2px 2px 4px 0 ${defaultColors["neutral-90"]}`,
-      },
-      "&:not(.active)": {
-        "& .MuiCardContent-root .MuiTypography-root": {
-          color: `${defaultColors["neutral-50"]}`,
-          "&.CCFormSelectCard-Title": {
-            color: `${defaultColors["secondary-blue-30"]}`,
-          },
-        },
-      },
-      "&.MuiPaper-contained.active": {
-        boxShadow: `-1px -1px 2px 0 ${defaultColors["secondary-blue-50"]} inset,
-                     1px 1px 2px 0 ${defaultColors["secondary-blue-50"]} inset
-                     0px 5px 6px -4px ${defaultColors["neutral-70"]},
-                     0px 10px 18px -7px ${defaultColors["neutral-70"]}`,
-      },
-      "& .MuiCardContent-root .MuiTypography-root": {
-        color: defaultColors["neutral-30"],
-      },
-      "& .CCFormSelectCard-Title": {
-        color: `${defaultColors["secondary-blue-30"]}`,
-      },
-    };
-  }
-
   return styles;
 });
 
@@ -203,31 +162,31 @@ export const CCFormCard = styled(Card, {
 })(({ theme }) => {
   let styles = {};
 
-  if (theme.palette.mode === "dark") {
-    styles = {
-      "& .MuiTypography-root": {
-        color: defaultColors["neutral-98"],
-      },
-      "&.MuiPaper-root": {
-        background: defaultColors["neutral-30"],
-        border: 0,
-        color: defaultColors["neutral-98"],
-      },
-    };
-  }
-  if (theme.palette.mode === "light") {
-    styles = {
-      "& .MuiTypography-root": {
-        color: defaultColors["neutral-30"],
-      },
-      "&.MuiPaper-root": {
-        background: theme.palette.background.paper,
-        border: 0,
-        boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-80"]} inset`,
-        color: defaultColors["neutral-30"],
-      },
-    };
-  }
+  // if (theme.palette.mode === "dark") {
+  //   styles = {
+  //     "& .MuiTypography-root": {
+  //       color: defaultColors["neutral-98"],
+  //     },
+  //     "&.MuiPaper-root": {
+  //       background: defaultColors["neutral-30"],
+  //       border: 0,
+  //       color: defaultColors["neutral-98"],
+  //     },
+  //   };
+  // }
+  // if (theme.palette.mode === "light") {
+  //   styles = {
+  //     "& .MuiTypography-root": {
+  //       color: defaultColors["neutral-30"],
+  //     },
+  //     "&.MuiPaper-root": {
+  //       background: theme.palette.background.paper,
+  //       border: 0,
+  //       boxShadow: `0px 0px 0px 1px ${defaultColors["neutral-80"]} inset`,
+  //       color: defaultColors["neutral-30"],
+  //     },
+  //   };
+  // }
   return styles;
 });
 
@@ -235,63 +194,62 @@ export const CCFormButton = styled(Button, {
   name: "MuiCreateCollectionForm",
   slot: "button",
 })(({ theme }) => ({
-  textTransform: "capitalize",
-  fontWeight: "semibold",
-  fontSize: "18px",
-  "&.MuiButton-contained": {
-    display: "flex",
-    height: "40px",
-    padding: "8px 22px",
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "stretch",
-    fontWeight: "semibold",
-    fontSize: "15px",
-    background:
-      theme.palette.mode === "dark"
-        ? defaultColors["secondary-blue-90"]
-        : defaultColors["secondary-blue-50"],
-    color:
-      theme.palette.mode === "dark"
-        ? defaultColors["neutral-10"]
-        : defaultColors["neutral-100"],
-    "&:hover": {
-      background:
-        theme.palette.mode === "dark"
-          ? defaultColors["secondary-blue-70"]
-          : defaultColors["secondary-blue-30"],
-    },
-    "&:active": {
-      background:
-        theme.palette.mode === "dark"
-          ? defaultColors["secondary-blue-90"]
-          : defaultColors["secondary-blue-50"],
-    },
-    "&:disabled": {
-      background:
-        theme.palette.mode === "dark"
-          ? defaultColors["neutral-80"]
-          : defaultColors["neutral-90"],
-      color: defaultColors["neutral-60"],
-    },
-  },
-  "& .MuiButton-icon": {
-    marginTop: "-3px",
-  },
-  "&.MuiButton-text": {
-    color:
-      theme.palette.mode === "dark"
-        ? defaultColors["secondary-blue-90"]
-        : defaultColors["secondary-blue-50"],
-
-    "&:hover": {
-      background: "transparent",
-      color:
-        theme.palette.mode === "dark"
-          ? defaultColors["secondary-blue-70"]
-          : defaultColors["secondary-blue-30"],
-    },
-  },
+  // textTransform: "capitalize",
+  // fontWeight: "semibold",
+  // fontSize: "18px",
+  // "&.MuiButton-contained": {
+  //   display: "flex",
+  //   height: "40px",
+  //   padding: "8px 22px",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   alignSelf: "stretch",
+  //   fontWeight: "semibold",
+  //   fontSize: "15px",
+  //   background:
+  //     theme.palette.mode === "dark"
+  //       ? defaultColors["secondary-blue-90"]
+  //       : defaultColors["secondary-blue-50"],
+  //   color:
+  //     theme.palette.mode === "dark"
+  //       ? defaultColors["neutral-10"]
+  //       : defaultColors["neutral-100"],
+  //   "&:hover": {
+  //     background:
+  //       theme.palette.mode === "dark"
+  //         ? defaultColors["secondary-blue-70"]
+  //         : defaultColors["secondary-blue-30"],
+  //   },
+  //   "&:active": {
+  //     background:
+  //       theme.palette.mode === "dark"
+  //         ? defaultColors["secondary-blue-90"]
+  //         : defaultColors["secondary-blue-50"],
+  //   },
+  //   "&:disabled": {
+  //     background:
+  //       theme.palette.mode === "dark"
+  //         ? defaultColors["neutral-80"]
+  //         : defaultColors["neutral-90"],
+  //     color: defaultColors["neutral-60"],
+  //   },
+  // },
+  // "& .MuiButton-icon": {
+  //   marginTop: "-3px",
+  // },
+  // "&.MuiButton-text": {
+  //   color:
+  //     theme.palette.mode === "dark"
+  //       ? defaultColors["secondary-blue-90"]
+  //       : defaultColors["secondary-blue-50"],
+  //   "&:hover": {
+  //     background: "transparent",
+  //     color:
+  //       theme.palette.mode === "dark"
+  //         ? defaultColors["secondary-blue-70"]
+  //         : defaultColors["secondary-blue-30"],
+  //   },
+  // },
 }));
 
 export const CCFormControl = styled(FormControl, {
@@ -308,44 +266,49 @@ export const CCFormInputBase = styled(InputBase, {
   slot: "input",
 })(({ theme }) => ({
   display: "flex",
-  height: "40px",
-  lineHeight: "40px",
-  borderBottom: `1px solid ${defaultColors["neutral-70"]}`,
-  padding: "8px 0",
 
   "&[variant='outlined']": {
-    border: `1px solid ${defaultColors["neutral-40"]}`,
+    border: "1px solid rgba(0, 0, 0, 0.23)",
     borderColor:
       theme.palette.mode === "dark"
-        ? defaultColors["secondary-blue-90"]
-        : defaultColors["secondary-blue-50"],
-    borderRadius: "4px",
-    padding: "8px 12px",
+        ? "rgba(255, 255, 255, 0.23)"
+        : "rgba(0, 0, 0, 0.23)",
+    padding: "16px 12px",
+    borderRadius: "8px",
+    lineHeight: 1,
+  },
+
+  "& input": {
+    padding: "0",
   },
 
   "&.Mui-focused": {
-    borderColor:
-      theme.palette.mode === "dark"
-        ? "white"
-        : defaultColors["secondary-blue-30"],
+    // borderColor:
+    //   theme.palette.mode === "dark"
+    //     ? "white"
+    //     : defaultColors["secondary-blue-30"],
   },
 
   "&.Mui-disabled": {
-    color:
-      theme.palette.mode === "dark"
-        ? defaultColors["neutral-80"]
-        : defaultColors["neutral-50"],
+    // color:
+    //   theme.palette.mode === "dark"
+    //     ? defaultColors["neutral-80"]
+    //     : defaultColors["neutral-50"],
   },
   // placeholder
   "& input::placeholder": {
-    color:
-      theme.palette.mode === "dark"
-        ? defaultColors["neutral-80"]
-        : defaultColors["neutral-50"] + " !important",
+    // color:
+    //   theme.palette.mode === "dark"
+    //     ? defaultColors["neutral-80"]
+    //     : defaultColors["neutral-50"] + " !important",
   },
 
   "label + &": {
     marginTop: theme.spacing(3),
+  },
+  "& .MuiSelect-select": {
+    padding: 0,
+    lineHeight: 1.5,
   },
 }));
 

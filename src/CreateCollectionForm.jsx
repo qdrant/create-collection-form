@@ -152,7 +152,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
       value={{ scrollableParent: resolvedScrollableParent }}
     >
       <CCFormRoot>
-        <Container maxWidth="lg">
+        <Container maxWidth="md">
           {renderedSteps}
 
           {isFinished &&

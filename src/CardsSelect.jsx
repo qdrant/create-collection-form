@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { createSvgIcon, Divider, Grid, Typography } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import { CCFormSelectCard, CCFormTitle } from "./ThemedComponents";
-import defaultColors from "./theme/default-colors.js";
 
 const FormCard = ({ card, isActive, onClick }) => {
   const CardIcon =
@@ -28,25 +27,24 @@ const FormCard = ({ card, isActive, onClick }) => {
         }}
       >
         <CardContent sx={{ display: "flex" }}>
-          {card.icon && (
-            <CardIcon
-              sx={{
-                width: "1rem",
-                height: "1rem",
-                mb: 2,
-                mr: 2,
-                mt: 0.5,
-              }}
-            />
-          )}
           <Box sx={{ flex: 1 }}>
-            <Typography className={"CCFormSelectCard-Title"} mb={2}>
-              {card.title}
-            </Typography>
-            <Typography variant="body2">{card["short-description"]}</Typography>
-            <Divider sx={{ my: 2 }} />
+            <Box
+              sx={{ display: "flex", alignItems: "center", gap: 1, mb: "10px" }}
+            >
+              {card.icon && (
+                <CardIcon
+                  sx={{
+                    width: "1.5rem",
+                    height: "1.5rem",
+                  }}
+                />
+              )}
+
+              <Typography variant="subtitle1">{card.title}</Typography>
+            </Box>
+            {/* <Typography variant="body2">{card["short-description"]}</Typography> */}
             <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              {card.description}
+              <span dangerouslySetInnerHTML={{ __html: card.description }} />
             </Typography>
           </Box>
         </CardContent>
