@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { CCFormDescription } from "../ThemedComponents.jsx";
 import { Typography } from "@mui/material";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import { ExternalLink } from "lucide-react";
 
 const Description = ({ config }) => {
   let link = config?.link;
@@ -20,7 +20,7 @@ const Description = ({ config }) => {
         {link && (
           <a href={link} target="_blank" rel="noreferrer">
             {linkText}
-            <OpenInNewIcon fontSize="1rem" sx={{ mx: 1, mb: -0.4 }} />
+            <ExternalLink size={16} />
           </a>
         )}
       </Typography>

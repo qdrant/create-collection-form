@@ -54,7 +54,7 @@ export const CCFormTitle = styled(
     name: "MuiCreateCollectionForm",
     slot: "title",
   },
-)(({ theme }) => ({
+)(() => ({
   lineHeight: "1.4",
   fontWeight: 600,
   letterSpacing: "-0.5px",
@@ -385,45 +385,39 @@ export const CCFormDescription = styled(Paper, {
   const styles = {
     display: "flex",
     alignItems: "center",
-    marginBottom: "1rem",
     backgroundColor: "transparent",
+
+    "&.MuiPaper-root": {
+      "& .MuiTypography-root": {
+        color: theme.palette.text.secondary,
+        fontSize: "12px",
+        fontWeight: 400,
+        lineHeight: "150%",
+        border: 0,
+      },
+      border: 0,
+      boxShadow: "none",
+    },
     a: {
+      display: "inline-flex",
       textDecoration: "none",
       whiteSpace: "nowrap",
+      color: theme.palette.primary.main,
+      // fixng Monas Sans thick underline
+      textDecorationThickness: "1px !important",
+      textUnderlineOffset: "2px !important",
       "&:hover": {
+        textDecorationThickness: "1px !important",
+        textUnderlineOffset: "2px !important",
         textDecoration: "underline",
+        color: theme.palette.primary.dark,
       },
     },
-    "& .MuiSvgIcon-root": {
+    "& svg": {
       alignSelf: "flex-start",
+      marginLeft: "4px",
     },
   };
-
-  if (theme.palette.mode === "dark") {
-    styles["&.MuiPaper-root"] = {
-      border: 0,
-      color: defaultColors["neutral-80"],
-
-      "& .MuiTypography-root": {
-        color: defaultColors["neutral-80"],
-      },
-    };
-    styles.a.color = defaultColors["secondary-blue-90"];
-    styles.a["&:hover"].color = defaultColors["secondary-blue-70"];
-  }
-
-  if (theme.palette.mode === "light") {
-    styles["&.MuiPaper-root"] = {
-      boxShadow: "none",
-      color: defaultColors["neutral-40"],
-      border: 0,
-      "& .MuiTypography-root": {
-        color: defaultColors["neutral-40"],
-      },
-    };
-    styles.a.color = defaultColors["secondary-blue-50"];
-    styles.a["&:hover"].color = defaultColors["secondary-blue-30"];
-  }
 
   return styles;
 });
