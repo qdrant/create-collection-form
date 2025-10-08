@@ -59,6 +59,7 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
 
         return (
           <CCFormCard
+            elevation={0}
             sx={{
               px: 3,
               pt: 4,

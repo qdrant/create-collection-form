@@ -128,6 +128,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
           onApply={handleStepApply}
           isLast={isLast}
           handleClear={handleClear}
+          useCard={stepConfig.useCard}
         />
       </Box>
     );

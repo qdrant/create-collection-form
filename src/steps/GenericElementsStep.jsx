@@ -2,7 +2,7 @@ import { elements } from "../flow.js";
 import { Grid, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import components from "../inputs/components-map.jsx";
-import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
+import { CCFormButton, CCFormCard, CCFormTitle } from "../ThemedComponents.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
 
@@ -13,6 +13,7 @@ const GenericElementsStep = function ({
   onApply,
   isLast = true,
   handleClear,
+  useCard = false,
 }) {
   const value = stepData || {};
 
@@ -66,14 +67,8 @@ const GenericElementsStep = function ({
     }
   }, [stepData, isStepCompleted, onApply, stepName]);
 
-  return (
-    <Grid container spacing={2}>
-      <Grid size={12}>
-        <CCFormTitle sx={{ mb: 2 }}>{config.title}</CCFormTitle>
-        <Typography variant="body1" sx={{ mb: 1 }}>
-          {config.description}
-        </Typography>
-      </Grid>
+  const stepContent = (
+    <>
       {renderedElements}
       {config.button && isLast && (
         // todo: update
@@ -99,6 +94,30 @@ const GenericElementsStep = function ({
             {config.button.title}
           </CCFormButton>
         </Grid>
+      )}
+    </>
+  );
+
+  return (
+    <Grid container spacing={2}>
+      <Grid size={12}>
+        <CCFormTitle sx={{ mb: 2 }}>{config.title}</CCFormTitle>
+        {!useCard && (
+          <Typography variant="body1" sx={{ mb: 1 }}>
+            {config.description}
+          </Typography>
+        )}
+      </Grid>
+      {useCard ? (
+        <Grid size={12}>
+          <CCFormCard elevation={0} sx={{ p: 3 }}>
+            <Grid container spacing={2}>
+              {stepContent}
+            </Grid>
+          </CCFormCard>
+        </Grid>
+      ) : (
+        stepContent
       )}
     </Grid>
   );
@@ -127,6 +146,7 @@ GenericElementsStep.propTypes = {
   onApply: PropTypes.func.isRequired,
   isLast: PropTypes.bool,
   handleClear: PropTypes.func,
+  useCard: PropTypes.bool,
 };
 
 export default GenericElementsStep;

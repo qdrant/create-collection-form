@@ -58,6 +58,7 @@ export const steps = {
   "collection-name-step": {
     title: "Collection name",
     description: "Enter name for your collection",
+    useCard: true,
     elements: [
       {
         type: "string-input",

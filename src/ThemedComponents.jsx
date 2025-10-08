@@ -275,11 +275,12 @@ export const CCFormInputBase = styled(InputBase, {
         : "rgba(0, 0, 0, 0.23)",
     padding: "16px 12px",
     borderRadius: "8px",
-    lineHeight: 1,
+    lineHeight: 1.5,
   },
 
   "& input": {
     padding: "0",
+    lineHeight: 1.5,
   },
 
   "&.Mui-focused": {
