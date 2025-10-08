@@ -89,6 +89,7 @@ export const StringInput = ({ config, stepData, onChange }) => {
           onChange(e.target.value);
         }}
       />
+      {config.description && <Description config={config} sx={{ mt: "3px" }} />}
     </CCFormControl>
   );
 };
@@ -101,6 +102,7 @@ StringInput.propTypes = {
     default: PropTypes.string,
     placeholder: PropTypes.string,
     variant: PropTypes.string,
+    description: PropTypes.string,
   }).isRequired,
   stepData: PropTypes.string,
   onChange: PropTypes.func.isRequired,

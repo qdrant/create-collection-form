@@ -65,16 +65,11 @@ export const steps = {
         // title: "Collection name",
         name: "collection_name",
         placeholder: "Example: my-collection",
+        description:
+          "Collection name must be unique and can contain only letters, numbers, hyphens and underscores",
         required: true,
         size: 12,
         setFocus: true,
-      },
-      {
-        type: "description",
-        description:
-          "Collection name must be unique and can contain only letters, numbers, hyphens and underscores",
-        name: "name_description",
-        size: 12,
       },
     ],
     button: {
@@ -141,7 +136,7 @@ export const steps = {
         size: 12,
         type: "description",
         description:
-          "This payload field should be used to separate tenants within collection. \n A specuil payload index of type `keyword` will be created for this field. \n All requests to the collection should include this field as a filter.",
+          "This payload field should be used to separate tenants within collection. <br> A specuil payload index of type `keyword` will be created for this field. <br> All requests to the collection should include this field as a filter.",
         name: "tenant_id_description",
         link: "https://qdrant.tech/documentation/guides/multiple-partitions/",
         linkText: "Multitenancy Documentation",
