@@ -286,7 +286,7 @@ export const CCFormInputBase = styled(InputBase, {
       theme.palette.mode === "dark"
         ? "rgba(255, 255, 255, 0.23)"
         : "rgba(0, 0, 0, 0.23)",
-    padding: "16px 12px",
+    padding: "8px 12px",
     borderRadius: "8px",
     lineHeight: 1.5,
   },
