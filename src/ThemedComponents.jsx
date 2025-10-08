@@ -60,7 +60,6 @@ export const CCFormTitle = styled(
   letterSpacing: "-0.5px",
 }));
 
-
 export const CCFormSubtitle = styled(
   (props) => <Typography variant="subtitle2" component="h3" {...props} />,
   {
@@ -173,7 +172,7 @@ export const CCFormCard = styled(Card, {
   slot: "card",
 })(({ theme }) => {
   let styles = {
-    padding: '24px',
+    padding: "24px",
   };
 
   // if (theme.palette.mode === "dark") {

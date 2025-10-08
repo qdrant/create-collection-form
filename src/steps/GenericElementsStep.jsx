@@ -2,7 +2,12 @@ import { elements } from "../flow.js";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import components from "../inputs/components-map.jsx";
-import { CCFormButton, CCFormCard, CCFormSubtitle, CCFormTitle } from "../ThemedComponents.jsx";
+import {
+  CCFormButton,
+  CCFormCard,
+  CCFormSubtitle,
+  CCFormTitle,
+} from "../ThemedComponents.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
 
@@ -102,9 +107,9 @@ const GenericElementsStep = function ({
     <Grid container spacing={3}>
       <Grid size={12}>
         <CCFormTitle>{config.title}</CCFormTitle>
-          {config.description && <CCFormSubtitle>
-            {config.description}
-          </CCFormSubtitle>}
+        {config.description && (
+          <CCFormSubtitle>{config.description}</CCFormSubtitle>
+        )}
       </Grid>
       {useCard ? (
         <Grid size={12}>

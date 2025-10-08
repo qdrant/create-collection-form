@@ -6,9 +6,7 @@ import PropTypes from "prop-types";
 const Group = function ({ config, stepData, onChange }) {
   return (
     <Grid size={12}>
-      <CCFormCard
-        elevation={0}
-      >
+      <CCFormCard elevation={0}>
         <Grid container spacing={2}>
           <GenericInputs
             config={config}
