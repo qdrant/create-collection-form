@@ -49,16 +49,28 @@ export const CCFormRoot = styled("div", {
 });
 
 export const CCFormTitle = styled(
-  (props) => <Typography variant="h5" component="h2" {...props} />,
+  (props) => <Typography variant="h6" component="h2" {...props} />,
   {
     name: "MuiCreateCollectionForm",
     slot: "title",
   },
 )(({ theme }) => ({
-  // background: theme.palette.background?.paperElevation1,
-  // fontSize: "inherit",
-  // fontWeight: "inherit",
-  // color: "inherit",
+  lineHeight: "1.4",
+  fontWeight: 600,
+  letterSpacing: "-0.5px",
+}));
+
+
+export const CCFormSubtitle = styled(
+  (props) => <Typography variant="subtitle2" component="h3" {...props} />,
+  {
+    name: "MuiCreateCollectionForm",
+    slot: "subtitle",
+  },
+)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  lineHeight: "1.5",
+  mt: "4px",
 }));
 
 export const CCFormSelectCard = styled(
@@ -160,7 +172,9 @@ export const CCFormCard = styled(Card, {
   name: "MuiCreateCollectionForm",
   slot: "card",
 })(({ theme }) => {
-  let styles = {};
+  let styles = {
+    padding: '24px',
+  };
 
   // if (theme.palette.mode === "dark") {
   //   styles = {

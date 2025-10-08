@@ -1,7 +1,7 @@
 import { memo, useCallback, useMemo, useState } from "react";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { createSvgIcon, Divider, Grid, Typography } from "@mui/material";
+import { createSvgIcon, Grid, Typography } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import { CCFormSelectCard, CCFormTitle } from "./ThemedComponents";
 
@@ -102,7 +102,7 @@ const CardsSelect = ({ stepName, config, stepData, onApply }) => {
 
   return (
     <Box>
-      <CCFormTitle variant="h6" sx={{ mb: 2 }}>
+      <CCFormTitle variant="h6">
         {title}
       </CCFormTitle>
       <p>{description}</p>

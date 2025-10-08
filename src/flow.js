@@ -56,8 +56,8 @@ export const elements = {
 
 export const steps = {
   "collection-name-step": {
-    title: "Collection name",
-    description: "Enter name for your collection",
+    title: "Name your collection",
+    // description: "Enter name for your collection",
     useCard: true,
     elements: [
       {

@@ -1,8 +1,8 @@
 import { elements } from "../flow.js";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import components from "../inputs/components-map.jsx";
-import { CCFormButton, CCFormCard, CCFormTitle } from "../ThemedComponents.jsx";
+import { CCFormButton, CCFormCard, CCFormSubtitle, CCFormTitle } from "../ThemedComponents.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
 
@@ -99,18 +99,16 @@ const GenericElementsStep = function ({
   );
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3}>
       <Grid size={12}>
-        <CCFormTitle sx={{ mb: 2 }}>{config.title}</CCFormTitle>
-        {!useCard && (
-          <Typography variant="body1" sx={{ mb: 1 }}>
+        <CCFormTitle>{config.title}</CCFormTitle>
+          <CCFormSubtitle>
             {config.description}
-          </Typography>
-        )}
+          </CCFormSubtitle>
       </Grid>
       {useCard ? (
         <Grid size={12}>
-          <CCFormCard elevation={0} sx={{ p: 3 }}>
+          <CCFormCard elevation={0}>
             <Grid container spacing={2}>
               {stepContent}
             </Grid>
