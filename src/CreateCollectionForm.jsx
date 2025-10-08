@@ -120,7 +120,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
     }
 
     return (
-      <Box key={step} sx={{ mb: 8 }}>
+      <Box key={step} sx={{ mb: 4 }}>
         <StepComponent
           stepName={step}
           config={stepConfig}

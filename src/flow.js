@@ -125,6 +125,7 @@ export const steps = {
     description: "Which payload field should be used as a tenant id?",
     "long-description":
       "This field should be used to filter data based on tenant id. For example: user_id, organization_id, etc. Payload field should be of a `keyword` type.",
+    useCard: true,
 
     elements: [
       {

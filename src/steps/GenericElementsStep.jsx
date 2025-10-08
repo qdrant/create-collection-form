@@ -25,7 +25,7 @@ const GenericElementsStep = function ({
   let isStepCompleted = true;
   let totalElements = config.elements && config.elements.length;
 
-  const renderedElements =
+  const elementsContent =
     config.elements &&
     config.elements.map((element, idx) => {
       const elementConfig = {
@@ -64,6 +64,18 @@ const GenericElementsStep = function ({
         </Fragment>
       );
     });
+
+  const renderedElements = useCard ? (
+    <Grid size={12}>
+      <CCFormCard elevation={0}>
+        <Grid container spacing={2}>
+          {elementsContent}
+        </Grid>
+      </CCFormCard>
+    </Grid>
+  ) : (
+    elementsContent
+  );
 
   useEffect(() => {
     const isRegisteredCompleted = stepData && stepData.completed === true;
@@ -111,17 +123,7 @@ const GenericElementsStep = function ({
           <CCFormSubtitle>{config.description}</CCFormSubtitle>
         )}
       </Grid>
-      {useCard ? (
-        <Grid size={12}>
-          <CCFormCard elevation={0}>
-            <Grid container spacing={2}>
-              {stepContent}
-            </Grid>
-          </CCFormCard>
-        </Grid>
-      ) : (
-        stepContent
-      )}
+      {stepContent}
     </Grid>
   );
 };
