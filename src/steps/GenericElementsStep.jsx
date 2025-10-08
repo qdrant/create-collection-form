@@ -102,9 +102,9 @@ const GenericElementsStep = function ({
     <Grid container spacing={3}>
       <Grid size={12}>
         <CCFormTitle>{config.title}</CCFormTitle>
-          <CCFormSubtitle>
+          {config.description && <CCFormSubtitle>
             {config.description}
-          </CCFormSubtitle>
+          </CCFormSubtitle>}
       </Grid>
       {useCard ? (
         <Grid size={12}>
@@ -126,7 +126,7 @@ GenericElementsStep.propTypes = {
   stepName: PropTypes.string.isRequired,
   config: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
     elements: PropTypes.arrayOf(
       PropTypes.shape({
         type: PropTypes.string.isRequired,

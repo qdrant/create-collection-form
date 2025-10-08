@@ -87,8 +87,7 @@ export const steps = {
   },
   "use-case-step": {
     // In this config user should select from 2 cards, which type of search they want to perform
-    title: "Create new collection",
-    description: "What's your use case?",
+    title: "What's your use case?",
     cards: [
       {
         title: "Global search",

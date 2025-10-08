@@ -1,9 +1,8 @@
 import { memo, useCallback, useMemo, useState } from "react";
-import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { createSvgIcon, Grid, Typography } from "@mui/material";
+import { createSvgIcon, Typography, Grid, Box } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
-import { CCFormSelectCard, CCFormTitle } from "./ThemedComponents";
+import { CCFormSelectCard, CCFormTitle, CCFormSubtitle } from "./ThemedComponents";
 
 const FormCard = ({ card, isActive, onClick }) => {
   const CardIcon =
@@ -101,15 +100,19 @@ const CardsSelect = ({ stepName, config, stepData, onApply }) => {
   );
 
   return (
-    <Box>
+    <Grid container spacing={3}>
+      <Grid size={12}>
       <CCFormTitle variant="h6">
         {title}
       </CCFormTitle>
-      <p>{description}</p>
+      {description && <CCFormSubtitle>
+        {description}
+        </CCFormSubtitle>}
+      </Grid>
       <Grid container spacing={gap || 2} alignItems={"stretch"}>
         {renderedCards}
       </Grid>
-    </Box>
+    </Grid>
   );
 };
 
@@ -120,7 +123,7 @@ CardsSelect.propTypes = {
   stepName: PropTypes.string.isRequired,
   config: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
     cards: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
