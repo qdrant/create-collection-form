@@ -21,7 +21,6 @@ export const CCFormRoot = styled("div", {
   name: "MuiCreateCollectionForm",
   slot: "root",
 })(({ theme }) => {
-  console.log(theme);
   return {
     position: "relative",
     padding: "1rem",
@@ -203,10 +202,21 @@ export const CCFormCard = styled(Card, {
   return styles;
 });
 
-export const CCFormButton = styled(Button, {
+export const CCFormButton = styled((props) => <Button {...props} />, {
   name: "MuiCreateCollectionForm",
   slot: "button",
-})(({ theme }) => ({
+})(({ size }) => {
+  console.log(size);
+  const styles = {};
+  if (size === "small") {
+    styles["&.MuiButton-outlined"] = {
+      padding: "4px 10px",
+      fontSize: "13px",
+    };
+  }
+  return styles;
+  // "&.MuiButton-outlined": {
+  // },
   // textTransform: "capitalize",
   // fontWeight: "semibold",
   // fontSize: "18px",
@@ -263,7 +273,7 @@ export const CCFormButton = styled(Button, {
   //         : defaultColors["secondary-blue-30"],
   //   },
   // },
-}));
+});
 
 export const CCFormControl = styled(FormControl, {
   name: "MuiCreateCollectionForm",
@@ -297,24 +307,19 @@ export const CCFormInputBase = styled(InputBase, {
   },
 
   "&.Mui-focused": {
-    // borderColor:
-    //   theme.palette.mode === "dark"
-    //     ? "white"
-    //     : defaultColors["secondary-blue-30"],
+    borderColor: theme.palette.primary.main,
+  },
+
+  "&.Mui-error": {
+    borderColor: theme.palette.error.main,
+  },
+
+  "&:hover": {
+    borderColor: theme.palette.text.primary,
   },
 
   "&.Mui-disabled": {
-    // color:
-    //   theme.palette.mode === "dark"
-    //     ? defaultColors["neutral-80"]
-    //     : defaultColors["neutral-50"],
-  },
-  // placeholder
-  "& input::placeholder": {
-    // color:
-    //   theme.palette.mode === "dark"
-    //     ? defaultColors["neutral-80"]
-    //     : defaultColors["neutral-50"] + " !important",
+    color: theme.palette.text.disabled,
   },
 
   "label + &": {
@@ -330,20 +335,15 @@ export const CCFormCheckbox = styled(Checkbox, {
   name: "MuiCreateCollectionForm",
   slot: "checkbox",
 })(({ theme }) => ({
-  color:
-    theme.palette.mode === "dark"
-      ? defaultColors["secondary-blue-90"]
-      : defaultColors["secondary-blue-50"],
+  color: theme.palette.text.primary,
   "&.MuiCheckbox-colorPrimary": {
-    color:
-      theme.palette.mode === "dark"
-        ? defaultColors["secondary-blue-90"]
-        : defaultColors["secondary-blue-50"],
+    color: theme.palette.text.secondary,
     "&.Mui-checked": {
-      color:
-        theme.palette.mode === "dark"
-          ? defaultColors["secondary-blue-90"]
-          : defaultColors["secondary-blue-50"],
+      color: theme.palette.primary.main,
+    },
+    "& ~ span": {
+      color: theme.palette.text.primary,
+      fontSize: "14px",
     },
   },
 }));
@@ -353,16 +353,11 @@ export const CCFormLabel = styled(InputLabel, {
   slot: "label",
 })(({ theme }) => ({
   fontSize: "1.25rem",
-  color:
-    theme.palette.mode === "dark"
-      ? defaultColors["neutral-80"]
-      : defaultColors["neutral-50"],
+  fontWeight: 500,
+  color: theme.palette.text.primary,
   lineHeight: "21px",
   "&.Mui-focused": {
-    color:
-      theme.palette.mode === "dark"
-        ? defaultColors["neutral-98"]
-        : defaultColors["neutral-30"],
+    color: theme.palette.text.primary,
   },
 }));
 
@@ -429,45 +424,33 @@ export const CCFormAccordion = styled(Accordion, {
   const styles = {
     boxShadow: "none",
     border: 0,
+
+    background: "transparent",
+
     "& .MuiAccordionSummary-root": {
+      width: "auto",
+      color: theme.palette.text.primary,
+      fontSize: "14px",
+      fontWeight: 500,
+      lineHeight: "150%",
       padding: 0,
-      fontSize: "0.85rem",
-      textDecoration: "underline",
+
+      "&:hover": {
+        textDecoration: "underline",
+        textDecorationThickness: "1px !important",
+        textUnderlineOffset: "2px !important",
+      },
+
+      "& svg": {
+        marginLeft: "4px",
+        marginRight: "4px",
+        stroke: theme.palette.text.primary,
+      },
     },
     "& .MuiAccordionDetails-root": {
       padding: "1rem 0",
     },
   };
-
-  if (theme.palette.mode === "dark") {
-    styles["&.MuiAccordion-root"] = {
-      background: "transparent",
-      color: defaultColors["neutral-94"],
-    };
-
-    styles["& .MuiAccordionSummary-root"] = {
-      ...styles["& .MuiAccordionSummary-root"],
-      color: defaultColors["secondary-blue-90"],
-      "&:hover": {
-        color: defaultColors["secondary-blue-70"],
-      },
-    };
-  }
-
-  if (theme.palette.mode === "light") {
-    styles["&.MuiAccordion-root"] = {
-      background: defaultColors["neutral-100"],
-      color: defaultColors["neutral-30"],
-    };
-
-    styles["& .MuiAccordionSummary-root"] = {
-      ...styles["& .MuiAccordionSummary-root"],
-      color: defaultColors["secondary-blue-50"],
-      "&:hover": {
-        color: defaultColors["secondary-blue-30"],
-      },
-    };
-  }
 
   return styles;
 });
@@ -490,39 +473,20 @@ export const CCFormSlider = styled(Slider, {
     },
   };
 
-  if (theme.palette.mode === "dark") {
-    styles["&.MuiSlider-root"] = {
-      color: defaultColors["secondary-blue-90"],
-      "& .MuiSlider-valueLabel": {
-        color: defaultColors["neutral-98"],
-        backgroundColor: defaultColors["secondary-blue-70"],
-      },
-      "& .MuiSlider-mark": {
-        backgroundColor: defaultColors["neutral-100"],
-      },
-      "& .MuiSlider-markLabel": {
-        ...styles["& .MuiSlider-markLabel"],
-        color: defaultColors["neutral-98"],
-      },
-    };
-  }
-
-  if (theme.palette.mode === "light") {
-    styles["&.MuiSlider-root"] = {
-      color: defaultColors["secondary-blue-70"],
-      "& .MuiSlider-valueLabel": {
-        color: defaultColors["neutral-100"],
-        backgroundColor: defaultColors["secondary-blue-90"],
-      },
-      "& .MuiSlider-mark": {
-        backgroundColor: defaultColors["secondary-blue-50"],
-      },
-      "& .MuiSlider-markLabel": {
-        ...styles["& .MuiSlider-markLabel"],
-        color: defaultColors["neutral-30"],
-      },
-    };
-  }
+  styles["&.MuiSlider-root"] = {
+    color: theme.palette.primary.main,
+    "& .MuiSlider-valueLabel": {
+      color: theme.palette.text.secondary,
+      backgroundColor: theme.palette.primary.main,
+    },
+    "& .MuiSlider-mark": {
+      backgroundColor: "transparent",
+    },
+    "& .MuiSlider-markLabel": {
+      ...styles["& .MuiSlider-markLabel"],
+      color: theme.palette.text.secondary,
+    },
+  };
 
   return styles;
 });

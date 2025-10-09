@@ -122,6 +122,7 @@ export const Checkbox = ({ config, stepData, onChange }) => {
           label={config.title}
           control={
             <CCFormCheckbox
+              size="small"
               sx={{ alignSelf: "start" }}
               checked={value}
               onChange={handleChange}

@@ -83,8 +83,9 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
             <Divider sx={{ mt: 2, mb: 1, mx: -4 }} />
 
             <CCFormButton
-              variant="text"
-              size={"small"}
+              variant="outlined"
+              color="error"
+              size="small"
               startIcon={<Delete />}
               sx={{ alignSelf: "end" }}
               onClick={() => handleRemove(index)}
@@ -97,7 +98,8 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
       {values.length < maxRepetitions && (
         <CCFormButton
           variant="text"
-          size="large"
+          size="medium"
+          color="secondary"
           startIcon={<Add />}
           onClick={handleAdd}
         >
