@@ -49,7 +49,7 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   };
 
   return (
-    <Grid size={12}>
+    <Grid size={12} spacing={2}>
       {values.map((value, index) => {
         const elementOnChange = (value) => {
           const newValues = [...values];
@@ -61,14 +61,9 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
           <CCFormCard
             elevation={0}
             sx={{
-              px: 3,
-              pt: 4,
-              pb: 1,
-              mt: 2,
               mb: 4,
               display: "flex",
               flexDirection: "column",
-              borderRadius: 3,
             }}
             key={index}
           >
@@ -80,7 +75,7 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
               />
             </Grid>
 
-            <Divider sx={{ mt: 2, mb: 1, mx: -4 }} />
+            <Divider sx={{ mt: 2, mb: 3 }} />
 
             <CCFormButton
               variant="outlined"
