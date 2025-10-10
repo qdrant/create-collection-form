@@ -356,6 +356,7 @@ export const CCFormLabel = styled(InputLabel, {
   fontWeight: 500,
   color: theme.palette.text.primary,
   lineHeight: "21px",
+  overflow: "unset",
   "&.Mui-focused": {
     color: theme.palette.text.primary,
   },

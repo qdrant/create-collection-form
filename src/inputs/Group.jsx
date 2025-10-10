@@ -7,7 +7,7 @@ const Group = function ({ config, stepData, onChange }) {
   return (
     <Grid size={12}>
       <CCFormCard elevation={0}>
-        <Grid container spacing={2}>
+        <Grid container spacing={"20px"}>
           <GenericInputs
             config={config}
             stepData={stepData}

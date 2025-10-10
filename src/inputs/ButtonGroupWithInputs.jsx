@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
+import { CCFormLabel } from "../ThemedComponents.jsx";
 import GenericInputs from "./GenericInputs.jsx";
 import { CCFormSelectCard } from "../ThemedComponents.jsx";
 
@@ -101,9 +102,9 @@ const ButtonGroupWithInputs = function ({ config, stepData, onChange }) {
   return (
     <>
       <Grid size={size}>
-        <Typography variant="h6" mt={2}>
+        <CCFormLabel shrink sx={{ mt: 1, mb: 1 }}>
           {config.title}
-        </Typography>
+        </CCFormLabel>
 
         {/* Select one of the enums with group button */}
         <Box
