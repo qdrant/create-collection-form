@@ -40,6 +40,7 @@ export const Dropdown = ({ config, stepData, onChange }) => {
           </MenuItem>
         ))}
       </Select>
+      {config.description && <Description config={config} sx={{ mt: "3px" }} />}
     </CCFormControl>
   );
 };
@@ -50,6 +51,7 @@ Dropdown.propTypes = {
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
     name: PropTypes.string.isRequired,
     title: PropTypes.string,
+    description: PropTypes.string,
   }).isRequired,
   stepData: PropTypes.string,
   onChange: PropTypes.func.isRequired,

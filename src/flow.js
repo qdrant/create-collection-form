@@ -42,7 +42,7 @@ export const elements = {
         default: false,
         required: false,
         description:
-          "This checkbox enables Inverse Document Frequency (IDF) weighting. \n Enabled it if you use BM25 or other models that require IDF.",
+          "This checkbox enables Inverse Document Frequency (IDF) weighting. <br> Enabled it if you use BM25 or other models that require IDF.",
         link: "https://qdrant.tech/documentation/concepts/indexing/#idf-modifier",
         linkText: "Learn more",
         size: 12,
@@ -247,16 +247,11 @@ export const steps = {
             name: "dense_vector_name",
             variant: "outlined",
             placeholder: "Example: abstract-dense-vector",
+            description: "Name of the dense vector field",
+            link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
             size: 12,
             required: true,
             setFocus: true,
-          },
-          {
-            type: "description",
-            description: "Name of the dense vector field",
-            link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
-            name: "dense_vector_name_description",
-            size: 12,
           },
           {
             type: "dense-vector-configuration",
@@ -276,15 +271,10 @@ export const steps = {
             name: "sparse_vector_name",
             variant: "outlined",
             placeholder: "Example: title-sparse-vector",
-            size: 12,
-            required: true,
-          },
-          {
-            type: "description",
             description: "Name of the sparse vector field",
             link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
-            name: "sparse_vector_name_description",
             size: 12,
+            required: true,
           },
           {
             type: "sparse-vector-configuration",
@@ -317,15 +307,10 @@ export const steps = {
             name: "vector_name",
             variant: "outlined",
             placeholder: "Example: dense-vector",
+            description: "This name will be used as a name of vector",
             size: 12,
             required: true,
             setFocus: true,
-          },
-          {
-            type: "description",
-            description: "This name will be used as a name of vector",
-            name: "vector_name_description",
-            size: 12,
           },
           {
             type: "dense-vector-configuration",
@@ -347,7 +332,7 @@ export const steps = {
               {
                 type: "description",
                 description:
-                  "Create multiple sub-vectors per point. \n Enabled it if you use Late Interraction models like ColBERT, ColPali, e.t.c.",
+                  "Create multiple sub-vectors per point. <br> Enabled it if you use Late Interraction models like ColBERT, ColPali, e.t.c.",
                 name: "multivector_description",
                 link: "https://qdrant.tech/documentation/concepts/vectors/#multivectors",
                 linkText: "Learn more",
@@ -364,7 +349,7 @@ export const steps = {
               {
                 type: "description",
                 description:
-                  "Storage tier defines how the vector is stored. \n Storage tier is optimized high data volume and low frequency of requests, performance tier is optimized for low latency",
+                  "Storage tier defines how the vector is stored. <br> Storage tier is optimized high data volume and low frequency of requests, performance tier is optimized for low latency",
                 name: "storage_tier_description",
                 size: 6,
               },
@@ -379,7 +364,7 @@ export const steps = {
               {
                 type: "description",
                 description:
-                  "Precision tier defines how vectors are compressed. \n Low precision tier applies quantization, high precision tier doesn't compress vectors",
+                  "Precision tier defines how vectors are compressed. <br> Low precision tier applies quantization, high precision tier doesn't compress vectors",
                 name: "precision_tier_description",
                 size: 6,
               },
@@ -465,7 +450,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      'Keyword field index, suitable for exact match of string values. \n Example: <code>color: "red"</code> \n Docs:',
+                      'Keyword field index, suitable for exact match of string values. <br> Example: <code>color: "red"</code> <br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#keyword",
                     size: 12,
@@ -478,7 +463,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      "Integer field index, suitable for exact match and range filters on integer numbers. \n Example: <code>age: 25</code> \n Docs:",
+                      "Integer field index, suitable for exact match and range filters on integer numbers. <br> Example: <code>age: 25</code> <br> Docs:",
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#integer",
                     size: 12,
@@ -493,7 +478,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
+                      "This checkbox enables indexing of the integer field for exact match filters. <br> If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
                     name: "lookup_description",
@@ -509,7 +494,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
+                      "This checkbox enables indexing of the integer field for exact match filters. <br> If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
                     name: "range_description",
@@ -523,7 +508,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      "Float field index, suitable for range filters on floating point and integer numbers. \n Example: <code>price: 99.5</code> \n Docs:",
+                      "Float field index, suitable for range filters on floating point and integer numbers. <br> Example: <code>price: 99.5</code> <br> Docs:",
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#float",
                     size: 12,
@@ -536,7 +521,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      'UUID field index, suitable for exact match of UUID values. Similar to keyword field, optimized for UUID values. \n Example: <code>doc_id: "123e4567-e89b-12d3-a456-426614174000"</code> \n Docs:',
+                      'UUID field index, suitable for exact match of UUID values. Similar to keyword field, optimized for UUID values. <br> Example: <code>doc_id: "123e4567-e89b-12d3-a456-426614174000"</code> <br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#uuid",
                     size: 12,
@@ -549,7 +534,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      'Datetime field index, suitable for range filters on datetime values. \n Example: <code>created_at: "2023-02-08T10:49:00Z"</code> \n Docs:',
+                      'Datetime field index, suitable for range filters on datetime values. <br> Example: <code>created_at: "2023-02-08T10:49:00Z"</code> <br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#datetime",
                     size: 12,
@@ -562,7 +547,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      'Text field index, suitable for full-text filtering on string values. \n Example: <code>title: "The Last Question"</code> \n Docs:',
+                      'Text field index, suitable for full-text filtering on string values. <br> Example: <code>title: "The Last Question"</code> <br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/filtering/#full-text-match",
                     size: 12,
@@ -572,15 +557,10 @@ export const steps = {
                     name: "tokenizer",
                     type: "dropdown",
                     options: ["prefix", "whitespace", "word", "multilingual"],
-                    default: "whitespace",
-                    size: 12,
-                  },
-                  {
-                    type: "description",
                     description: "Defines how the text is tokenized",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
                     linkText: "Learn more",
-                    name: "tokenizer_description",
+                    default: "whitespace",
                     size: 12,
                   },
                   {
@@ -623,7 +603,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      'Geo field index, suitable for geospatial filtering on latitude and longitude values. \n Example: <code>location: { "lon": 52.5200, "lat": 13.4050 }</code> \n Docs:',
+                      'Geo field index, suitable for geospatial filtering on latitude and longitude values. <br> Example: <code>location: { "lon": 52.5200, "lat": 13.4050 }</code> <br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#geo",
                     size: 12,
@@ -636,7 +616,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      "Boolean field index, suitable for exact match of boolean values. \n Example: <code>is_active: true</code> \n Docs:",
+                      "Boolean field index, suitable for exact match of boolean values. <br> Example: <code>is_active: true</code> <br> Docs:",
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#bool",
                     size: 12,
