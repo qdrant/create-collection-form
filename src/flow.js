@@ -450,7 +450,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      'Keyword field index, suitable for exact match of string values. <br> Example: <code>color: "red"</code> <br> Docs:',
+                      'Keyword field index, suitable for exact match of string values. <br><br> Example: <code>color: "red"</code> <br><br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#keyword",
                     size: 12,
@@ -463,7 +463,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      "Integer field index, suitable for exact match and range filters on integer numbers. <br> Example: <code>age: 25</code> <br> Docs:",
+                      "Integer field index, suitable for exact match and range filters on integer numbers. <br><br> Example: <code>age: 25</code> <br><br> Docs:",
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#integer",
                     size: 12,
@@ -508,7 +508,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      "Float field index, suitable for range filters on floating point and integer numbers. <br> Example: <code>price: 99.5</code> <br> Docs:",
+                      "Float field index, suitable for range filters on floating point and integer numbers. <br><br> Example: <code>price: 99.5</code> <br><br> Docs:",
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#float",
                     size: 12,
@@ -521,7 +521,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      'UUID field index, suitable for exact match of UUID values. Similar to keyword field, optimized for UUID values. <br> Example: <code>doc_id: "123e4567-e89b-12d3-a456-426614174000"</code> <br> Docs:',
+                      'UUID field index, suitable for exact match of UUID values. Similar to keyword field, optimized for UUID values. <br><br> Example: <code>doc_id: "123e4567-e89b-12d3-a456-426614174000"</code> <br><br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#uuid",
                     size: 12,
@@ -534,7 +534,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      'Datetime field index, suitable for range filters on datetime values. <br> Example: <code>created_at: "2023-02-08T10:49:00Z"</code> <br> Docs:',
+                      'Datetime field index, suitable for range filters on datetime values. <br><br> Example: <code>created_at: "2023-02-08T10:49:00Z"</code> <br><br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#datetime",
                     size: 12,
@@ -547,7 +547,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      'Text field index, suitable for full-text filtering on string values. <br> Example: <code>title: "The Last Question"</code> <br> Docs:',
+                      'Text field index, suitable for full-text filtering on string values. <br><br> Example: <code>title: "The Last Question"</code> <br><br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/filtering/#full-text-match",
                     size: 12,
@@ -603,7 +603,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      'Geo field index, suitable for geospatial filtering on latitude and longitude values. <br> Example: <code>location: { "lon": 52.5200, "lat": 13.4050 }</code> <br> Docs:',
+                      'Geo field index, suitable for geospatial filtering on latitude and longitude values. <br><br> Example: <code>location: { "lon": 52.5200, "lat": 13.4050 }</code> <br><br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#geo",
                     size: 12,
@@ -616,7 +616,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      "Boolean field index, suitable for exact match of boolean values. <br> Example: <code>is_active: true</code> <br> Docs:",
+                      "Boolean field index, suitable for exact match of boolean values. <br><br> Example: <code>is_active: true</code> <br><br> Docs:",
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#bool",
                     size: 12,
