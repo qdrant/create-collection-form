@@ -6,7 +6,6 @@ import GenericInputs from "./GenericInputs";
 import { useEffect } from "react";
 import { useScrollableParent } from "../context/scrollable-parent-context.jsx";
 
-// todo: update for the new structure
 const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   const values = stepData || [];
   const scrollableParent = useScrollableParent();

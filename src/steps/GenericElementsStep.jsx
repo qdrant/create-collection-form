@@ -88,7 +88,6 @@ const GenericElementsStep = function ({
     <>
       {renderedElements}
       {config.button && isLast && (
-        // todo: update
         <Grid size={12} display={"flex"} justifyContent={"flex-end"}>
           {handleClear && typeof handleClear === "function" && (
             <CCFormButton variant="text" onClick={handleClear}>
@@ -96,7 +95,6 @@ const GenericElementsStep = function ({
             </CCFormButton>
           )}
           <CCFormButton
-            // key={element.title}
             disabled={!isStepCompleted}
             variant="contained"
             onClick={() =>

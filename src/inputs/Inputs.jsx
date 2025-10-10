@@ -16,7 +16,6 @@ export const Dropdown = ({ config, stepData, onChange }) => {
     onChange(e.target.value);
   };
 
-  // todo: add labelId and id
   return (
     <CCFormControl variant="standard">
       <CCFormLabel shrink htmlFor={config.name}>
@@ -84,7 +83,6 @@ export const StringInput = ({ config, stepData, onChange }) => {
         id={config.name}
         placeholder={config.placeholder || ""}
         inputRef={inputRef}
-        // variant={config.variant || "standard"}
         variant="outlined"
         value={value}
         onChange={(e) => {
