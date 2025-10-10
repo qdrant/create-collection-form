@@ -1,14 +1,25 @@
 import PropTypes from "prop-types";
 import { CCFormDescription } from "../ThemedComponents.jsx";
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 import { ExternalLink } from "lucide-react";
 
 const Description = ({ config, sx = {} }) => {
+  const theme = useTheme();
   let link = config?.link;
   let linkText = config?.linkText || "Learn more";
 
   return (
-    <CCFormDescription elevation={0}>
+    <CCFormDescription
+      elevation={0}
+      sx={{
+        "& code": {
+          borderRadius: "4px",
+          border: `1px solid ${theme.palette.divider}`,
+          background: theme.palette.background.paperElevation1,
+          padding: "2px 4px",
+        },
+      }}
+    >
       <Typography variant="caption" sx={{ ...sx }}>
         {/* here we can use `dangerouslySetInnerHTML` because the content source is trusted */}
         {/* but do not use it with untrusted content */}
