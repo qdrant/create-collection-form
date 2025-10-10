@@ -32,7 +32,12 @@ const FormCard = ({ card, isActive, onClick }) => {
         <CardContent sx={{ display: "flex" }}>
           <Box sx={{ flex: 1 }}>
             <Box
-              sx={{ display: "flex", alignItems: "center", gap: 1, mb: "10px" }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                mb: "0.625rem",
+              }}
             >
               {card.icon && (
                 <CardIcon

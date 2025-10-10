@@ -66,7 +66,7 @@ export const CCFormSelectCard = styled(
     p: 3,
     boxShadow: "none",
     boxSizing: "border-box",
-    borderRadius: "8px",
+    borderRadius: "0.5rem",
     transition: "all 0.1s ease-in-out",
     "& svg": {
       stroke: theme.palette.text.primary,
@@ -78,18 +78,18 @@ export const CCFormSelectCard = styled(
       marginBottom: "0",
       listStyleType: "none",
       "& li": {
-        paddingLeft: "28px",
+        paddingLeft: "1.75rem",
         position: "relative",
         "&:not(:last-child)": {
-          marginBottom: "10px",
+          marginBottom: "0.625rem",
         },
         "&:before": {
           content: '""',
           position: "absolute",
           left: "0",
-          top: "2px",
-          width: "20px",
-          height: "21px",
+          top: "0.125rem",
+          width: "1.25rem",
+          height: "1.3125rem",
           display: "inline-block",
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='21' viewBox='0 0 20 21' fill='none'%3E%3Cpath d='M16.6668 5.5L7.50016 14.6667L3.3335 10.5' stroke='${encodeURIComponent(theme.palette.text.secondary)}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
           backgroundRepeat: "no-repeat",
@@ -119,7 +119,7 @@ export const CCFormCard = styled(Card, {
   slot: "card",
 })(() => {
   return {
-    padding: "24px",
+    padding: "1.5rem",
   };
 });
 
@@ -130,8 +130,8 @@ export const CCFormButton = styled((props) => <Button {...props} />, {
   const styles = {};
   if (size === "small") {
     styles["&.MuiButton-outlined"] = {
-      padding: "4px 10px",
-      fontSize: "13px",
+      padding: "0.25rem 0.625rem",
+      fontSize: "0.8125rem",
     };
   }
   return styles;
@@ -158,8 +158,8 @@ export const CCFormInputBase = styled(InputBase, {
       theme.palette.mode === "dark"
         ? "rgba(255, 255, 255, 0.23)"
         : "rgba(0, 0, 0, 0.23)",
-    padding: "8px 12px",
-    borderRadius: "8px",
+    padding: "0.5rem 0.75rem",
+    borderRadius: "0.5rem",
     lineHeight: 1.5,
   },
 
@@ -205,7 +205,7 @@ export const CCFormCheckbox = styled(Checkbox, {
     },
     "& ~ span": {
       color: theme.palette.text.primary,
-      fontSize: "14px",
+      fontSize: "0.875rem",
     },
   },
 }));
@@ -232,7 +232,7 @@ export const CCFormAutoComplete = styled(Autocomplete, {
     paddingRight: 0,
   },
   "& .MuiAutocomplete-endAdornment": {
-    right: "10px",
+    right: "0.625rem",
   },
 }));
 
@@ -247,7 +247,7 @@ export const CCFormDescription = styled(Paper, {
   "&.MuiPaper-root": {
     "& .MuiTypography-root": {
       color: theme.palette.text.secondary,
-      fontSize: "12px",
+      fontSize: "0.75rem",
       fontWeight: 400,
       lineHeight: "150%",
       border: 0,
@@ -261,18 +261,18 @@ export const CCFormDescription = styled(Paper, {
     whiteSpace: "nowrap",
     color: theme.palette.primary.main,
     // fixng Monas Sans thick underline
-    textDecorationThickness: "1px !important",
-    textUnderlineOffset: "2px !important",
+    textDecorationThickness: "0.0625rem !important",
+    textUnderlineOffset: "0.125rem !important",
     "&:hover": {
-      textDecorationThickness: "1px !important",
-      textUnderlineOffset: "2px !important",
+      textDecorationThickness: "0.0625rem !important",
+      textUnderlineOffset: "0.125rem !important",
       textDecoration: "underline",
       color: theme.palette.primary.dark,
     },
   },
   "& svg": {
     alignSelf: "flex-start",
-    marginLeft: "4px",
+    marginLeft: "0.25rem",
   },
 }));
 
@@ -288,20 +288,20 @@ export const CCFormAccordion = styled(Accordion, {
   "& .MuiAccordionSummary-root": {
     width: "auto",
     color: theme.palette.text.primary,
-    fontSize: "14px",
+    fontSize: "0.875rem",
     fontWeight: 500,
     lineHeight: "150%",
     padding: 0,
 
     "&:hover": {
       textDecoration: "underline",
-      textDecorationThickness: "1px !important",
-      textUnderlineOffset: "2px !important",
+      textDecorationThickness: "0.0625rem !important",
+      textUnderlineOffset: "0.125rem !important",
     },
 
     "& svg": {
-      marginLeft: "4px",
-      marginRight: "4px",
+      marginLeft: "0.25rem",
+      marginRight: "0.25rem",
       stroke: theme.palette.text.primary,
     },
   },
@@ -323,7 +323,7 @@ export const CCFormSlider = styled(Slider, {
       "&:nth-last-of-type(2)": {
         left: "auto !important",
         transform: "none",
-        right: "-3px",
+        right: "-0.1875rem",
       },
     },
   };
@@ -373,8 +373,8 @@ export const CCFormSidebar = styled(
   bottom: 0,
   right: 0,
   top: 0,
-  width: "clamp(200px, 25vw, 300px)",
-  minWidth: "200px",
+  width: "clamp(12.5rem, 25vw, 18.75rem)",
+  minWidth: "12.5rem",
   padding: "2rem 1.5rem",
   flexShrink: 0,
   background: theme.palette.background.default,
@@ -385,6 +385,6 @@ export const CCFormSidebar = styled(
     width: "100vw",
     top: "auto",
     padding: "1.5rem 1.5rem 2rem",
-    boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
+    boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
   },
 }));
