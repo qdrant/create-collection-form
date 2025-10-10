@@ -49,7 +49,7 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   };
 
   return (
-    <Grid size={12} spacing={2}>
+    <Grid size={12}>
       {values.map((value, index) => {
         const elementOnChange = (value) => {
           const newValues = [...values];
