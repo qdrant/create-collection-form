@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   Accordion,
   Autocomplete,
@@ -14,7 +13,6 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import defaultColors from "./theme/default-colors.js";
 import { alpha } from "@mui/material/styles";
 
 export const CCFormRoot = styled("div", {
@@ -119,12 +117,10 @@ export const CCFormSelectCard = styled(
 export const CCFormCard = styled(Card, {
   name: "MuiCreateCollectionForm",
   slot: "card",
-})(({ theme }) => {
-  let styles = {
+})(() => {
+  return {
     padding: "24px",
   };
-
-  return styles;
 });
 
 export const CCFormButton = styled((props) => <Button {...props} />, {
@@ -243,84 +239,76 @@ export const CCFormAutoComplete = styled(Autocomplete, {
 export const CCFormDescription = styled(Paper, {
   name: "MuiCreateCollectionForm",
   slot: "description",
-})(({ theme }) => {
-  const styles = {
-    display: "flex",
-    alignItems: "center",
-    backgroundColor: "transparent",
+})(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  backgroundColor: "transparent",
 
-    "&.MuiPaper-root": {
-      "& .MuiTypography-root": {
-        color: theme.palette.text.secondary,
-        fontSize: "12px",
-        fontWeight: 400,
-        lineHeight: "150%",
-        border: 0,
-      },
+  "&.MuiPaper-root": {
+    "& .MuiTypography-root": {
+      color: theme.palette.text.secondary,
+      fontSize: "12px",
+      fontWeight: 400,
+      lineHeight: "150%",
       border: 0,
-      boxShadow: "none",
     },
-    a: {
-      display: "inline-flex",
-      textDecoration: "none",
-      whiteSpace: "nowrap",
-      color: theme.palette.primary.main,
-      // fixng Monas Sans thick underline
+    border: 0,
+    boxShadow: "none",
+  },
+  a: {
+    display: "inline-flex",
+    textDecoration: "none",
+    whiteSpace: "nowrap",
+    color: theme.palette.primary.main,
+    // fixng Monas Sans thick underline
+    textDecorationThickness: "1px !important",
+    textUnderlineOffset: "2px !important",
+    "&:hover": {
       textDecorationThickness: "1px !important",
       textUnderlineOffset: "2px !important",
-      "&:hover": {
-        textDecorationThickness: "1px !important",
-        textUnderlineOffset: "2px !important",
-        textDecoration: "underline",
-        color: theme.palette.primary.dark,
-      },
+      textDecoration: "underline",
+      color: theme.palette.primary.dark,
     },
-    "& svg": {
-      alignSelf: "flex-start",
-      marginLeft: "4px",
-    },
-  };
-
-  return styles;
-});
+  },
+  "& svg": {
+    alignSelf: "flex-start",
+    marginLeft: "4px",
+  },
+}));
 
 export const CCFormAccordion = styled(Accordion, {
   name: "MuiCreateCollectionForm",
   slot: "accordion",
-})(({ theme }) => {
-  const styles = {
-    boxShadow: "none",
-    border: 0,
+})(({ theme }) => ({
+  boxShadow: "none",
+  border: 0,
 
-    background: "transparent",
+  background: "transparent",
 
-    "& .MuiAccordionSummary-root": {
-      width: "auto",
-      color: theme.palette.text.primary,
-      fontSize: "14px",
-      fontWeight: 500,
-      lineHeight: "150%",
-      padding: 0,
+  "& .MuiAccordionSummary-root": {
+    width: "auto",
+    color: theme.palette.text.primary,
+    fontSize: "14px",
+    fontWeight: 500,
+    lineHeight: "150%",
+    padding: 0,
 
-      "&:hover": {
-        textDecoration: "underline",
-        textDecorationThickness: "1px !important",
-        textUnderlineOffset: "2px !important",
-      },
-
-      "& svg": {
-        marginLeft: "4px",
-        marginRight: "4px",
-        stroke: theme.palette.text.primary,
-      },
+    "&:hover": {
+      textDecoration: "underline",
+      textDecorationThickness: "1px !important",
+      textUnderlineOffset: "2px !important",
     },
-    "& .MuiAccordionDetails-root": {
-      padding: "1rem 0",
-    },
-  };
 
-  return styles;
-});
+    "& svg": {
+      marginLeft: "4px",
+      marginRight: "4px",
+      stroke: theme.palette.text.primary,
+    },
+  },
+  "& .MuiAccordionDetails-root": {
+    padding: "1rem 0",
+  },
+}));
 
 export const CCFormSlider = styled(Slider, {
   name: "MuiCreateCollectionForm",
@@ -379,32 +367,24 @@ export const CCFormSidebar = styled(
     name: "MuiCreateCollectionForm",
     slot: "sidebar",
   },
-)(({ theme }) => {
-  return {
-    borderRadius: 0,
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    top: 0,
-    width: "clamp(200px, 25vw, 300px)",
-    minWidth: "200px",
-    padding: "2rem 1.5rem",
-    flexShrink: 0,
-    background:
-      theme.palette.mode === "dark"
-        ? defaultColors["neutral-20"]
-        : defaultColors["neutral-90"],
-    color:
-      theme.palette.mode === "dark"
-        ? defaultColors["neutral-98"]
-        : defaultColors["neutral-30"],
-    zIndex: 2,
-    [theme.breakpoints.down("md")]: {
-      position: "fixed",
-      width: "100vw",
-      top: "auto",
-      padding: "1.5rem 1.5rem 2rem",
-      boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
-    },
-  };
-});
+)(({ theme }) => ({
+  borderRadius: 0,
+  position: "absolute",
+  bottom: 0,
+  right: 0,
+  top: 0,
+  width: "clamp(200px, 25vw, 300px)",
+  minWidth: "200px",
+  padding: "2rem 1.5rem",
+  flexShrink: 0,
+  background: theme.palette.background.default,
+  color: theme.palette.text.primary,
+  zIndex: 2,
+  [theme.breakpoints.down("md")]: {
+    position: "fixed",
+    width: "100vw",
+    top: "auto",
+    padding: "1.5rem 1.5rem 2rem",
+    boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
+  },
+}));

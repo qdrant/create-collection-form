@@ -1,15 +1,9 @@
-// import defaultColors from "./default-colors.js";
-
 export const muiMenuTheme = {
   styleOverrides: {
     paper: ({ theme }) => {
       const styles = {
         backgroundColor: theme.palette.background.default,
-        // theme.palette.mode === "dark"
-        //   ? theme.palette.background.default
-        //   : defaultColors["neutral-100"],
         backgroundImage: "none",
-        // border: `1px solid ${theme.palette.mode === "dark" ? defaultColors["neutral-30"] : defaultColors["neutral-90"]}`,
       };
       return styles;
     },
@@ -20,22 +14,6 @@ export const muiMenuItemTheme = {
     root: ({ theme }) => {
       const styles = {
         color: theme.palette.text.primary,
-        background: "red",
-        // theme.palette.mode === "dark"
-        //   ? defaultColors["neutral-98"]
-        //   : defaultColors["neutral-30"],
-        // "&.Mui-selected": {
-        //   color:
-        //     theme.palette.mode === "dark"
-        //       ? defaultColors["neutral-90"]
-        //       : defaultColors["neutral-10"],
-        // },
-        // "&:hover": {
-        //   color:
-        //     theme.palette.mode === "dark"
-        //       ? defaultColors["neutral-98"]
-        //       : defaultColors["neutral-30"],
-        // },
       };
       return styles;
     },
