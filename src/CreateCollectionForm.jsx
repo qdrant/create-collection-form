@@ -120,7 +120,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
     }
 
     return (
-      <Box key={step} sx={{ mb: 8 }}>
+      <Box key={step} sx={{ mb: 4 }}>
         <StepComponent
           stepName={step}
           config={stepConfig}
@@ -128,6 +128,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
           onApply={handleStepApply}
           isLast={isLast}
           handleClear={handleClear}
+          useCard={stepConfig.useCard}
         />
       </Box>
     );
@@ -152,7 +153,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
       value={{ scrollableParent: resolvedScrollableParent }}
     >
       <CCFormRoot>
-        <Container maxWidth="lg">
+        <Container maxWidth="md">
           {renderedSteps}
 
           {isFinished &&

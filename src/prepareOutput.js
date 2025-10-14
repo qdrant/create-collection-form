@@ -41,6 +41,7 @@ import { validateFormOutput } from "./validateOutput";
 //                 "tokenizer": "whitespace",
 //                 "min_token_length": null,
 //                 "max_token_length": null,
+//                 "phrase_matching": true
 //             }
 //         },
 //         {
@@ -294,6 +295,7 @@ function indexFieldSelectionExtractor(data, stepData) {
     if (field.field_config.field_config_enum === "text") {
       params.lowercase = field.field_config?.lowercase ?? true;
       params.tokenizer = field.field_config?.tokenizer || "whitespace";
+      params.phrase_matching = field.field_config?.phrase_matching ?? true;
 
       const minLength = field.field_config?.min_token_length;
       const maxLength = field.field_config?.max_token_length;

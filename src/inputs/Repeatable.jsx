@@ -6,7 +6,6 @@ import GenericInputs from "./GenericInputs";
 import { useEffect } from "react";
 import { useScrollableParent } from "../context/scrollable-parent-context.jsx";
 
-// todo: update for the new structure
 const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
   const values = stepData || [];
   const scrollableParent = useScrollableParent();
@@ -59,15 +58,11 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
 
         return (
           <CCFormCard
+            elevation={0}
             sx={{
-              px: 3,
-              pt: 4,
-              pb: 1,
-              mt: 2,
               mb: 4,
               display: "flex",
               flexDirection: "column",
-              borderRadius: 3,
             }}
             key={index}
           >
@@ -79,11 +74,12 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
               />
             </Grid>
 
-            <Divider sx={{ mt: 2, mb: 1, mx: -4 }} />
+            <Divider sx={{ mt: 2, mb: 3 }} />
 
             <CCFormButton
-              variant="text"
-              size={"small"}
+              variant="outlined"
+              color="error"
+              size="small"
               startIcon={<Delete />}
               sx={{ alignSelf: "end" }}
               onClick={() => handleRemove(index)}
@@ -96,7 +92,8 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
       {values.length < maxRepetitions && (
         <CCFormButton
           variant="text"
-          size="large"
+          size="medium"
+          color="secondary"
           startIcon={<Add />}
           onClick={handleAdd}
         >

@@ -1,7 +1,7 @@
 import { AccordionDetails, AccordionSummary, Grid } from "@mui/material";
 import GenericInputs from "./GenericInputs";
 import PropTypes from "prop-types";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { ChevronDown } from "lucide-react";
 import { CCFormAccordion } from "../ThemedComponents.jsx";
 
 const Details = function ({ config, stepData, onChange }) {
@@ -10,7 +10,7 @@ const Details = function ({ config, stepData, onChange }) {
   return (
     <Grid size={size}>
       <CCFormAccordion>
-        <AccordionSummary expandIcon={<ArrowDropDownIcon />}>
+        <AccordionSummary expandIcon={<ChevronDown size={20} />}>
           Advanced Configuration
         </AccordionSummary>
         <AccordionDetails>

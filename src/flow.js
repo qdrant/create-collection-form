@@ -42,7 +42,7 @@ export const elements = {
         default: false,
         required: false,
         description:
-          "This checkbox enables Inverse Document Frequency (IDF) weighting. \n Enabled it if you use BM25 or other models that require IDF.",
+          "This checkbox enables Inverse Document Frequency (IDF) weighting. <br> Enabled it if you use BM25 or other models that require IDF.",
         link: "https://qdrant.tech/documentation/concepts/indexing/#idf-modifier",
         linkText: "Learn more",
         size: 12,
@@ -56,24 +56,20 @@ export const elements = {
 
 export const steps = {
   "collection-name-step": {
-    title: "Collection name",
-    description: "Enter name for your collection",
+    title: "Name your collection",
+    // description: "Enter name for your collection",
+    useCard: true,
     elements: [
       {
         type: "string-input",
         // title: "Collection name",
         name: "collection_name",
         placeholder: "Example: my-collection",
+        description:
+          "Collection name must be unique and can contain only letters, numbers, hyphens and underscores",
         required: true,
         size: 12,
         setFocus: true,
-      },
-      {
-        type: "description",
-        description:
-          "Collection name must be unique and can contain only letters, numbers, hyphens and underscores",
-        name: "name_description",
-        size: 12,
       },
     ],
     button: {
@@ -86,18 +82,17 @@ export const steps = {
   },
   "use-case-step": {
     // In this config user should select from 2 cards, which type of search they want to perform
-    title: "Create new collection",
-    description: "What's your use case?",
+    title: "What's your use case?",
     cards: [
       {
         title: "Global search",
         icon: {
-          path: "M3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10C17 11.9164 16.2299 13.6529 14.9823 14.917C14.971 14.9273 14.9598 14.938 14.9489 14.9489C14.938 14.9598 14.9273 14.971 14.917 14.9823C13.6529 16.2299 11.9164 17 10 17C6.13401 17 3 13.866 3 10ZM15.6177 17.0319C14.078 18.2635 12.125 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 12.125 18.2635 14.078 17.0319 15.6177L22.7071 21.2929C23.0976 21.6834 23.0976 22.3166 22.7071 22.7071C22.3166 23.0976 21.6834 23.0976 21.2929 22.7071L15.6177 17.0319Z",
+          path: "M22 12C22 17.5228 17.5228 22 12 22M22 12C22 6.47715 17.5228 2 12 2M22 12H2M12 22C6.47715 22 2 17.5228 2 12M12 22C9.43223 19.3038 8 15.7233 8 12C8 8.27674 9.43223 4.69615 12 2M12 22C14.5678 19.3038 16 15.7233 16 12C16 8.27674 14.5678 4.69615 12 2M2 12C2 6.47715 6.47715 2 12 2",
         },
         size: 6,
         "short-description": "Search across the whole collection",
         description:
-          "Search across whole collection of data with optional filters. For example: e-commerce search, website search, etc.",
+          "Search across whole collection of data with optional filters. For example: <ul><li>e-commerce search,</li><li>website search,</li></ul>",
         name: "global-search",
         "on-select": {
           "continue-step": "templates-selection-step",
@@ -106,12 +101,12 @@ export const steps = {
       {
         title: "Multitenancy",
         icon: {
-          path: "M 12 0.001953125 C 9.3612104 -0.035285308 6.794465 1.5829041 5.7597656 4.0253906 C 2.7352486 3.7509055 -0.087524872 6.4772791 0 9.5 C -0.079277631 12.466125 2.6044748 15.114122 5.5683594 15 C 5.7115912 14.999678 5.8548131 15.000243 5.9980469 15 C 5.9983936 15.028079 5.9999517 15.058771 6 15.085938 C 5.965374 15.594176 6.0667898 16.160075 5.9511719 16.634766 L 4.2910156 18.294922 C 3.8903449 18.102027 3.4462729 17.997769 3 18 C 1.0625646 17.93387 -0.51223666 20.05439 0.13671875 21.888672 C 0.63700985 23.69233 2.979798 24.602621 4.5507812 23.5625 C 5.8835279 22.817353 6.3364831 21.028925 5.7128906 19.701172 C 6.4420251 18.921792 7.2903005 18.240663 7.9238281 17.382812 C 8.0424524 16.597831 8.0088956 15.797936 7.9960938 15 C 8.9968236 15.000244 9.9972951 15.000795 10.998047 15.001953 C 10.99838 15.029375 10.999953 15.059388 11 15.085938 L 11 18.164062 C 9.5678216 18.68957 8.6046289 20.384702 9.1367188 21.888672 C 9.6370073 23.692337 11.979796 24.60263 13.550781 23.5625 C 15.187179 22.647573 15.498298 20.159094 14.117188 18.882812 C 13.803444 18.566538 13.418388 18.324069 13 18.173828 C 12.988792 17.117067 13.008486 16.058868 13 15.001953 C 13.999222 15.002387 14.998899 15.000689 15.998047 14.998047 C 15.998407 15.026783 15.999951 15.058153 16 15.085938 C 16.03363 15.85065 15.922512 16.629932 16.076172 17.382812 C 16.724192 18.236968 17.551463 18.943129 18.304688 19.710938 C 17.973121 20.376972 17.877622 21.156326 18.136719 21.888672 C 18.637008 23.692337 20.979796 24.60263 22.550781 23.5625 C 24.187179 22.647573 24.498298 20.159094 23.117188 18.882812 C 22.563776 18.324938 21.787133 17.996064 21 18 C 20.539254 17.984273 20.099847 18.092753 19.705078 18.291016 L 18 16.585938 C 17.99111 16.053732 18.000819 15.52105 18.001953 14.988281 C 18.304102 14.986457 18.606068 14.986769 18.908203 14.984375 C 21.849848 14.845728 24.274955 12.01481 23.984375 9.0917969 C 23.845706 6.2212638 21.114296 3.7711045 18.240234 4.0253906 C 17.181936 1.5640043 14.6643 -0.020261243 12 0.001953125 z M 12 2.0019531 C 14.091462 1.9709412 16.092704 3.4106759 16.730469 5.4023438 C 17.570637 6.5780874 19.365528 5.5428379 20.441406 6.5878906 C 22.251898 7.7095713 22.530672 10.520278 20.974609 11.974609 C 20.082458 12.952854 18.719977 13.059642 17.482422 13 C 17.323578 12.999565 17.164707 13.000307 17.005859 13 C 17.003877 13.000019 17.001984 12.999968 17 13 L 16.998047 13 C 15.360094 12.996855 13.722102 12.999763 12.083984 13.001953 C 12.055842 12.999758 12.028447 12.999545 12 13 C 11.991948 13.000336 11.984488 13.001504 11.976562 13.001953 C 9.7023415 13.004923 7.4277454 13.004413 5.1542969 12.982422 C 3.0311564 12.842516 1.4632104 10.496941 2.1503906 8.4824219 C 2.6167664 6.8251517 4.4398627 5.7014217 6.1289062 6.0644531 C 7.6846691 5.8224586 7.63979 3.6079074 9.0878906 2.9394531 C 9.9289299 2.3321233 10.96267 1.9997691 12 2.0019531 z M 2.9101562 20 C 2.9392669 19.998844 2.9697728 19.998439 3 20 C 4.7172265 19.989839 3.8706744 22.799979 2.4355469 21.832031 C 1.6520959 21.342817 2.0077263 20.035848 2.9101562 20 z M 11.910156 20 C 11.939267 19.998845 11.969772 19.998438 12 20 C 13.717243 19.98982 12.870701 22.800008 11.435547 21.832031 C 10.652124 21.342814 11.007714 20.03582 11.910156 20 z M 20.910156 20 C 20.939267 19.998845 20.969772 19.998438 21 20 C 22.717243 19.98982 21.870701 22.800008 20.435547 21.832031 C 19.652124 21.342814 20.007714 20.03582 20.910156 20 z",
+          path: "M12 18.9996L8.03 21.3796C7.71894 21.5665 7.36289 21.6652 7 21.6652C6.63711 21.6652 6.28106 21.5665 5.97 21.3796L2.97 19.5796C2.67476 19.4022 2.43033 19.1516 2.26039 18.852C2.09045 18.5524 2.00075 18.214 2 17.8696V14.6296C2.00075 14.2852 2.09045 13.9468 2.26039 13.6472C2.43033 13.3476 2.67476 13.097 2.97 12.9196L7 10.4996M12 18.9996V13.4996M12 18.9996L15.97 21.3796C16.2811 21.5665 16.6371 21.6652 17 21.6652C17.3629 21.6652 17.7189 21.5665 18.03 21.3796L21.03 19.5796C21.3252 19.4022 21.5697 19.1516 21.7396 18.852C21.9096 18.5524 21.9992 18.214 22 17.8696V14.6296C21.9992 14.2852 21.9096 13.9468 21.7396 13.6472C21.5697 13.3476 21.3252 13.097 21.03 12.9196L17 10.4996M12 13.4996L7 10.4996M12 13.4996L7 16.4996M12 13.4996L17 10.4996M12 13.4996L17 16.4996M12 13.4996V7.9996M7 10.4996V6.1296C7.00075 5.78518 7.09045 5.44678 7.26039 5.14719C7.43033 4.84761 7.67476 4.59698 7.97 4.4196L10.97 2.6196C11.2811 2.43272 11.6371 2.33398 12 2.33398C12.3629 2.33398 12.7189 2.43272 13.03 2.6196L16.03 4.4196C16.3252 4.59698 16.5697 4.84761 16.7396 5.14719C16.9096 5.44678 16.9992 5.78518 17 6.1296V10.4996M7 16.4996L2.26 13.6496M7 16.4996V21.6696M17 16.4996L21.74 13.6496M17 16.4996V21.6696M12 7.9996L7.26 5.1496M12 7.9996L16.74 5.1496",
         },
         size: 6,
         "short-description": "Many tenants, isolated data",
         description:
-          "Search across multiple isolated tenants. For example: per-user documents, chat history search, organization-based isolation",
+          "Search across multiple isolated tenants. For example: <ul><li>per-user documents,</li><li>chat history search,</li><li>organization-based isolation</li></ul>",
         name: "multitenancy",
         "on-select": {
           "continue-step": "tenant-field-selection-step",
@@ -125,6 +120,7 @@ export const steps = {
     description: "Which payload field should be used as a tenant id?",
     "long-description":
       "This field should be used to filter data based on tenant id. For example: user_id, organization_id, etc. Payload field should be of a `keyword` type.",
+    useCard: true,
 
     elements: [
       {
@@ -140,7 +136,7 @@ export const steps = {
         size: 12,
         type: "description",
         description:
-          "This payload field should be used to separate tenants within collection. \n A specuil payload index of type `keyword` will be created for this field. \n All requests to the collection should include this field as a filter.",
+          "This payload field should be used to separate tenants within collection. <br> A specuil payload index of type `keyword` will be created for this field. <br> All requests to the collection should include this field as a filter.",
         name: "tenant_id_description",
         link: "https://qdrant.tech/documentation/guides/multiple-partitions/",
         linkText: "Multitenancy Documentation",
@@ -251,16 +247,11 @@ export const steps = {
             name: "dense_vector_name",
             variant: "outlined",
             placeholder: "Example: abstract-dense-vector",
+            description: "Name of the dense vector field",
+            link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
             size: 12,
             required: true,
             setFocus: true,
-          },
-          {
-            type: "description",
-            description: "Name of the dense vector field",
-            link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
-            name: "dense_vector_name_description",
-            size: 12,
           },
           {
             type: "dense-vector-configuration",
@@ -280,15 +271,10 @@ export const steps = {
             name: "sparse_vector_name",
             variant: "outlined",
             placeholder: "Example: title-sparse-vector",
-            size: 12,
-            required: true,
-          },
-          {
-            type: "description",
             description: "Name of the sparse vector field",
             link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
-            name: "sparse_vector_name_description",
             size: 12,
+            required: true,
           },
           {
             type: "sparse-vector-configuration",
@@ -321,15 +307,10 @@ export const steps = {
             name: "vector_name",
             variant: "outlined",
             placeholder: "Example: dense-vector",
+            description: "This name will be used as a name of vector",
             size: 12,
             required: true,
             setFocus: true,
-          },
-          {
-            type: "description",
-            description: "This name will be used as a name of vector",
-            name: "vector_name_description",
-            size: 12,
           },
           {
             type: "dense-vector-configuration",
@@ -351,7 +332,7 @@ export const steps = {
               {
                 type: "description",
                 description:
-                  "Create multiple sub-vectors per point. \n Enabled it if you use Late Interraction models like ColBERT, ColPali, e.t.c.",
+                  "Create multiple sub-vectors per point. <br> Enabled it if you use Late Interraction models like ColBERT, ColPali, e.t.c.",
                 name: "multivector_description",
                 link: "https://qdrant.tech/documentation/concepts/vectors/#multivectors",
                 linkText: "Learn more",
@@ -368,7 +349,7 @@ export const steps = {
               {
                 type: "description",
                 description:
-                  "Storage tier defines how the vector is stored. \n Storage tier is optimized high data volume and low frequency of requests, performance tier is optimized for low latency",
+                  "Storage tier defines how the vector is stored. <br> Storage tier is optimized high data volume and low frequency of requests, performance tier is optimized for low latency",
                 name: "storage_tier_description",
                 size: 6,
               },
@@ -383,7 +364,7 @@ export const steps = {
               {
                 type: "description",
                 description:
-                  "Precision tier defines how vectors are compressed. \n Low precision tier applies quantization, high precision tier doesn't compress vectors",
+                  "Precision tier defines how vectors are compressed. <br> Low precision tier applies quantization, high precision tier doesn't compress vectors",
                 name: "precision_tier_description",
                 size: 6,
               },
@@ -468,7 +449,8 @@ export const steps = {
                 fields: [
                   {
                     type: "description",
-                    description: "Keyword field index, suitable for exact match of string values. \n Example: <code>color: \"red\"</code> \n Docs:",
+                    description:
+                      'Keyword field index, suitable for exact match of string values. <br><br> Example: <code>color: "red"</code> <br><br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#keyword",
                     size: 12,
@@ -480,7 +462,8 @@ export const steps = {
                 fields: [
                   {
                     type: "description",
-                    description: "Integer field index, suitable for exact match and range filters on integer numbers. \n Example: <code>age: 25</code> \n Docs:",
+                    description:
+                      "Integer field index, suitable for exact match and range filters on integer numbers. <br><br> Example: <code>age: 25</code> <br><br> Docs:",
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#integer",
                     size: 12,
@@ -495,7 +478,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
+                      "This checkbox enables indexing of the integer field for exact match filters. <br> If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
                     name: "lookup_description",
@@ -511,7 +494,7 @@ export const steps = {
                   {
                     type: "description",
                     description:
-                      "This checkbox enables indexing of the integer field for exact match filters. \n If enabled, index will consume additional memory.",
+                      "This checkbox enables indexing of the integer field for exact match filters. <br> If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#parameterized-index",
                     linkText: "Learn more",
                     name: "range_description",
@@ -524,7 +507,8 @@ export const steps = {
                 fields: [
                   {
                     type: "description",
-                    description: "Float field index, suitable for range filters on floating point and integer numbers. \n Example: <code>price: 99.5</code> \n Docs:",
+                    description:
+                      "Float field index, suitable for range filters on floating point and integer numbers. <br><br> Example: <code>price: 99.5</code> <br><br> Docs:",
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#float",
                     size: 12,
@@ -536,7 +520,8 @@ export const steps = {
                 fields: [
                   {
                     type: "description",
-                    description: "UUID field index, suitable for exact match of UUID values. Similar to keyword field, optimized for UUID values. \n Example: <code>doc_id: \"123e4567-e89b-12d3-a456-426614174000\"</code> \n Docs:",
+                    description:
+                      'UUID field index, suitable for exact match of UUID values. Similar to keyword field, optimized for UUID values. <br><br> Example: <code>doc_id: "123e4567-e89b-12d3-a456-426614174000"</code> <br><br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#uuid",
                     size: 12,
@@ -548,7 +533,8 @@ export const steps = {
                 fields: [
                   {
                     type: "description",
-                    description: "Datetime field index, suitable for range filters on datetime values. \n Example: <code>created_at: \"2023-02-08T10:49:00Z\"</code> \n Docs:",
+                    description:
+                      'Datetime field index, suitable for range filters on datetime values. <br><br> Example: <code>created_at: "2023-02-08T10:49:00Z"</code> <br><br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#datetime",
                     size: 12,
@@ -560,7 +546,8 @@ export const steps = {
                 fields: [
                   {
                     type: "description",
-                    description: "Text field index, suitable for full-text filtering on string values. \n Example: <code>title: \"The Last Question\"</code> \n Docs:",
+                    description:
+                      'Text field index, suitable for full-text filtering on string values. <br><br> Example: <code>title: "The Last Question"</code> <br><br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/filtering/#full-text-match",
                     size: 12,
@@ -570,15 +557,10 @@ export const steps = {
                     name: "tokenizer",
                     type: "dropdown",
                     options: ["prefix", "whitespace", "word", "multilingual"],
-                    default: "whitespace",
-                    size: 12,
-                  },
-                  {
-                    type: "description",
                     description: "Defines how the text is tokenized",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
                     linkText: "Learn more",
-                    name: "tokenizer_description",
+                    default: "whitespace",
                     size: 12,
                   },
                   {
@@ -620,7 +602,8 @@ export const steps = {
                 fields: [
                   {
                     type: "description",
-                    description: "Geo field index, suitable for geospatial filtering on latitude and longitude values. \n Example: <code>location: { \"lon\": 52.5200, \"lat\": 13.4050 }</code> \n Docs:",
+                    description:
+                      'Geo field index, suitable for geospatial filtering on latitude and longitude values. <br><br> Example: <code>location: { "lon": 52.5200, "lat": 13.4050 }</code> <br><br> Docs:',
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#geo",
                     size: 12,
@@ -632,7 +615,8 @@ export const steps = {
                 fields: [
                   {
                     type: "description",
-                    description: "Boolean field index, suitable for exact match of boolean values. \n Example: <code>is_active: true</code> \n Docs:",
+                    description:
+                      "Boolean field index, suitable for exact match of boolean values. <br><br> Example: <code>is_active: true</code> <br><br> Docs:",
                     linkText: "Learn more",
                     link: "https://qdrant.tech/documentation/concepts/payload/#bool",
                     size: 12,

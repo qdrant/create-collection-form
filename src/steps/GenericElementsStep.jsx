@@ -1,11 +1,15 @@
 import { elements } from "../flow.js";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import components from "../inputs/components-map.jsx";
-import { CCFormButton, CCFormTitle } from "../ThemedComponents.jsx";
+import {
+  CCFormButton,
+  CCFormCard,
+  CCFormSubtitle,
+  CCFormTitle,
+} from "../ThemedComponents.jsx";
 import { Fragment, useEffect } from "react";
 import { checkCompleted } from "../inputs/checkCompleted.js";
-import defaultColors from "../theme/default-colors.js";
 
 const GenericElementsStep = function ({
   stepName,
@@ -14,13 +18,14 @@ const GenericElementsStep = function ({
   onApply,
   isLast = true,
   handleClear,
+  useCard = false,
 }) {
   const value = stepData || {};
 
   let isStepCompleted = true;
   let totalElements = config.elements && config.elements.length;
 
-  const renderedElements =
+  const elementsContent =
     config.elements &&
     config.elements.map((element, idx) => {
       const elementConfig = {
@@ -60,6 +65,18 @@ const GenericElementsStep = function ({
       );
     });
 
+  const renderedElements = useCard ? (
+    <Grid size={12}>
+      <CCFormCard elevation={0}>
+        <Grid container spacing={2}>
+          {elementsContent}
+        </Grid>
+      </CCFormCard>
+    </Grid>
+  ) : (
+    elementsContent
+  );
+
   useEffect(() => {
     const isRegisteredCompleted = stepData && stepData.completed === true;
     if (isStepCompleted !== isRegisteredCompleted) {
@@ -67,17 +84,10 @@ const GenericElementsStep = function ({
     }
   }, [stepData, isStepCompleted, onApply, stepName]);
 
-  return (
-    <Grid container spacing={2}>
-      <Grid size={12}>
-        <CCFormTitle sx={{ mb: 2 }}>{config.title}</CCFormTitle>
-        <Typography variant="body1" sx={{ mb: 1 }}>
-          {config.description}
-        </Typography>
-      </Grid>
+  const stepContent = (
+    <>
       {renderedElements}
       {config.button && isLast && (
-        // todo: update
         <Grid size={12} display={"flex"} justifyContent={"flex-end"}>
           {handleClear && typeof handleClear === "function" && (
             <CCFormButton variant="text" onClick={handleClear}>
@@ -85,7 +95,6 @@ const GenericElementsStep = function ({
             </CCFormButton>
           )}
           <CCFormButton
-            // key={element.title}
             disabled={!isStepCompleted}
             variant="contained"
             onClick={() =>
@@ -101,6 +110,18 @@ const GenericElementsStep = function ({
           </CCFormButton>
         </Grid>
       )}
+    </>
+  );
+
+  return (
+    <Grid container spacing={3}>
+      <Grid size={12}>
+        <CCFormTitle>{config.title}</CCFormTitle>
+        {config.description && (
+          <CCFormSubtitle>{config.description}</CCFormSubtitle>
+        )}
+      </Grid>
+      {stepContent}
     </Grid>
   );
 };
@@ -110,7 +131,7 @@ GenericElementsStep.propTypes = {
   stepName: PropTypes.string.isRequired,
   config: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
     elements: PropTypes.arrayOf(
       PropTypes.shape({
         type: PropTypes.string.isRequired,
@@ -128,6 +149,7 @@ GenericElementsStep.propTypes = {
   onApply: PropTypes.func.isRequired,
   isLast: PropTypes.bool,
   handleClear: PropTypes.func,
+  useCard: PropTypes.bool,
 };
 
 export default GenericElementsStep;

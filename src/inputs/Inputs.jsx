@@ -16,7 +16,6 @@ export const Dropdown = ({ config, stepData, onChange }) => {
     onChange(e.target.value);
   };
 
-  // todo: add labelId and id
   return (
     <CCFormControl variant="standard">
       <CCFormLabel shrink htmlFor={config.name}>
@@ -40,6 +39,7 @@ export const Dropdown = ({ config, stepData, onChange }) => {
           </MenuItem>
         ))}
       </Select>
+      {config.description && <Description config={config} sx={{ mt: "3px" }} />}
     </CCFormControl>
   );
 };
@@ -50,6 +50,7 @@ Dropdown.propTypes = {
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
     name: PropTypes.string.isRequired,
     title: PropTypes.string,
+    description: PropTypes.string,
   }).isRequired,
   stepData: PropTypes.string,
   onChange: PropTypes.func.isRequired,
@@ -82,13 +83,13 @@ export const StringInput = ({ config, stepData, onChange }) => {
         id={config.name}
         placeholder={config.placeholder || ""}
         inputRef={inputRef}
-        // variant={config.variant || "standard"}
         variant="outlined"
         value={value}
         onChange={(e) => {
           onChange(e.target.value);
         }}
       />
+      {config.description && <Description config={config} sx={{ mt: "3px" }} />}
     </CCFormControl>
   );
 };
@@ -101,6 +102,7 @@ StringInput.propTypes = {
     default: PropTypes.string,
     placeholder: PropTypes.string,
     variant: PropTypes.string,
+    description: PropTypes.string,
   }).isRequired,
   stepData: PropTypes.string,
   onChange: PropTypes.func.isRequired,
@@ -120,6 +122,7 @@ export const Checkbox = ({ config, stepData, onChange }) => {
           label={config.title}
           control={
             <CCFormCheckbox
+              size="small"
               sx={{ alignSelf: "start" }}
               checked={value}
               onChange={handleChange}

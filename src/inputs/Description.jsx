@@ -1,25 +1,34 @@
 import PropTypes from "prop-types";
 import { CCFormDescription } from "../ThemedComponents.jsx";
-import { Typography } from "@mui/material";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import { Typography, useTheme } from "@mui/material";
+import { ExternalLink } from "lucide-react";
 
-const Description = ({ config }) => {
+const Description = ({ config, sx = {} }) => {
+  const theme = useTheme();
   let link = config?.link;
   let linkText = config?.linkText || "Learn more";
 
   return (
-    <CCFormDescription elevation={0}>
-      <Typography
-        variant="caption"
-        sx={{ whiteSpace: "pre-line", fontSize: "0.9rem", fontWeight: 500 }}
-      >
+    <CCFormDescription
+      elevation={0}
+      sx={{
+        "& code": {
+          borderRadius: "4px",
+          border: `1px solid ${theme.palette.divider}`,
+          background: theme.palette.background.paperElevation1,
+          padding: "2px 4px",
+        },
+      }}
+    >
+      <Typography variant="caption" sx={{ ...sx }}>
         {/* here we can use `dangerouslySetInnerHTML` because the content source is trusted */}
         {/* but do not use it with untrusted content */}
-        <span dangerouslySetInnerHTML={{ __html: config.description }} />&nbsp;
+        <span dangerouslySetInnerHTML={{ __html: config.description }} />
+        &nbsp;
         {link && (
           <a href={link} target="_blank" rel="noreferrer">
             {linkText}
-            <OpenInNewIcon fontSize="1rem" sx={{ mx: 1, mb: -0.4 }} />
+            <ExternalLink size={16} />
           </a>
         )}
       </Typography>
@@ -34,6 +43,7 @@ Description.propTypes = {
     linkText: PropTypes.string,
     description: PropTypes.string.isRequired,
   }).isRequired,
+  sx: PropTypes.object,
 };
 
 export default Description;

@@ -24,7 +24,6 @@ const EnumSlider = ({ config, stepData, onChange }) => {
     return options[value];
   }
 
-  // todo: add labelId and id
   return (
     <Box sx={{ mr: 3 }}>
       <CCFormSlider
