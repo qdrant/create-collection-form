@@ -1,5 +1,5 @@
 {
-  "properties": {
+  "optionalProperties": {
     "collection_name": { "type": "string" },
     "dense_vectors": {
       "elements": {
@@ -40,14 +40,13 @@
               "min_token_length": { "type": "uint32" },
               "max_token_length": { "type": "uint32" },
               "range": { "type": "boolean" },
-              "lookup": { "type": "boolean" }
+              "lookup": { "type": "boolean" },
+              "phrase_matching": { "type": "boolean" }
             }
           }
         }
       }
-    }
-  },
-  "optionalProperties": {
+    },  
     "tenant_field": {
       "properties": {
         "name": { "type": "string" },
