@@ -7,12 +7,9 @@ import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
 import { Box, Grid } from "@mui/material";
-import {
-  CCFormButton,
-  CCFormRoot,
-} from './ThemedComponents';
+import { CCFormButton, CCFormRoot } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
-import { prepareOutput } from './prepareOutput.js';
+import { prepareOutput } from "./prepareOutput.js";
 import { ScrollableParentContext } from "./context/scrollable-parent-context.jsx";
 import Sidebar from "./Sidebar.jsx";
 
@@ -157,37 +154,47 @@ export const CreateCollectionForm = function CreateCollectionForm({
       value={{ scrollableParent: resolvedScrollableParent }}
     >
       <CCFormRoot>
-          <Grid container spacing={4}>
-           <Grid size={onPreviewFormOutput && typeof onPreviewFormOutput === "function" ? 8 : 12}>
-          {renderedSteps}
+        <Grid container spacing={4}>
+          <Grid
+            size={
+              onPreviewFormOutput && typeof onPreviewFormOutput === "function"
+                ? 8
+                : 12
+            }
+          >
+            {renderedSteps}
 
-          {isFinished &&
-          Object.values(formData).some(
-            (data) => typeof data === "object" && data?.completed,
-          ) ? (
-            <Grid size={12} display="flex" justifyContent="flex-end">
-              <CCFormButton variant="text" onClick={handleClear}>
-                Clear
-              </CCFormButton>
-              <CCFormButton
-                disabled={!isAllCompleted}
-                variant="contained"
-                onClick={handleFinish}
-                sx={{ ml: 4 }}
-              >
-                Finish
-              </CCFormButton>
-            </Grid>
-          ) : (
-            <></>
-          )}
+            {isFinished &&
+            Object.values(formData).some(
+              (data) => typeof data === "object" && data?.completed,
+            ) ? (
+              <Grid size={12} display="flex" justifyContent="flex-end">
+                <CCFormButton variant="text" onClick={handleClear}>
+                  Clear
+                </CCFormButton>
+                <CCFormButton
+                  disabled={!isAllCompleted}
+                  variant="contained"
+                  onClick={handleFinish}
+                  sx={{ ml: 4 }}
+                >
+                  Finish
+                </CCFormButton>
+              </Grid>
+            ) : (
+              <></>
+            )}
           </Grid>
-        {onPreviewFormOutput && typeof onPreviewFormOutput === "function" && (
+          {onPreviewFormOutput && typeof onPreviewFormOutput === "function" && (
             <Grid size={4}>
-             <Sidebar formData={formData} path={path} handleOutput={onPreviewFormOutput} />
+              <Sidebar
+                formData={formData}
+                path={path}
+                handleOutput={onPreviewFormOutput}
+              />
             </Grid>
-        )}
-      </Grid>
+          )}
+        </Grid>
       </CCFormRoot>
     </ScrollableParentContext.Provider>
   );

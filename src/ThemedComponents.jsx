@@ -349,13 +349,7 @@ export const CCFormSlider = styled(Slider, {
 export const CCFormSidebarInner = styled(Box, {
   name: "MuiCreateCollectionForm",
   slot: "sidebarStickyInner",
-})(({ theme }) => ({
-  position: "sticky",
-  top: "2rem",
-  [theme.breakpoints.down("md")]: {
-    position: "static",
-  },
-}));
+})();
 
 export const CCFormSidebar = styled(
   (props) => (
@@ -368,17 +362,23 @@ export const CCFormSidebar = styled(
     slot: "sidebar",
   },
 )(({ theme }) => ({
+  position: "sticky",
+  top: "2rem",
+  alignSelf: "flex-start",
   borderRadius: 0,
   padding: "3rem 0 2rem",
   flexShrink: 0,
   background: theme.palette.background.default,
   color: theme.palette.text.primary,
   zIndex: 2,
+  maxHeight: "calc(100vh - 4rem)",
+  overflowY: "auto",
   [theme.breakpoints.down("md")]: {
     position: "fixed",
     width: "100vw",
     top: "auto",
     padding: "1.5rem 1.5rem 2rem",
     boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
+    maxHeight: "none",
   },
 }));

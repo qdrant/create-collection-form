@@ -39,8 +39,8 @@ import { validateFormOutput } from "./validateOutput";
 //             "params": {
 //                 "lowercase": true,
 //                 "tokenizer": "whitespace",
-//                 "min_token_length": null,
-//                 "max_token_length": null,
+//                 "min_token_len": null,
+//                 "max_token_len": null,
 //                 "phrase_matching": true
 //             }
 //         },
@@ -290,42 +290,46 @@ function indexFieldSelectionExtractor(data, stepData) {
     return;
   }
 
-  data.payload_indexes = stepData.payload_fields.map((field) => {
-    let params = {};
-    if (field.field_config.field_config_enum === "text") {
-      params.lowercase = field.field_config?.lowercase ?? true;
-      params.tokenizer = field.field_config?.tokenizer || "whitespace";
-      params.phrase_matching = field.field_config?.phrase_matching ?? true;
+  data.payload_indexes = stepData.payload_fields
+    .filter((field) => field?.field_config?.field_config_enum)
+    .map((field) => {
+      let params = {};
+      if (field?.field_config?.field_config_enum?.toLowerCase() === "text") {
+        params.lowercase = field.field_config?.lowercase ?? true;
+        params.tokenizer = field.field_config?.tokenizer || "whitespace";
+        params.phrase_matching = field.field_config?.phrase_matching ?? true;
 
-      const minLength = field.field_config?.min_token_length;
-      const maxLength = field.field_config?.max_token_length;
+        const minLength = field.field_config?.min_token_len;
+        const maxLength = field.field_config?.max_token_len;
 
-      if (minLength !== undefined && minLength !== "") {
-        const value =
-          typeof minLength === "number" ? minLength : parseInt(minLength, 10);
-        if (!isNaN(value) && value >= 0) {
-          params.min_token_length = value;
+        if (minLength !== undefined && minLength !== "") {
+          const value =
+            typeof minLength === "number" ? minLength : parseInt(minLength, 10);
+          if (!isNaN(value) && value >= 0) {
+            params.min_token_len = value;
+          }
         }
+
+        if (maxLength !== undefined && maxLength !== "") {
+          const value =
+            typeof maxLength === "number" ? maxLength : parseInt(maxLength, 10);
+          if (!isNaN(value) && value >= 0) {
+            params.max_token_len = value;
+          }
+        }
+      } else if (
+        field?.field_config?.field_config_enum?.toLowerCase() === "integer"
+      ) {
+        params.range = field.field_config?.range ?? true;
+        params.lookup = field.field_config?.lookup ?? true;
       }
 
-      if (maxLength !== undefined && maxLength !== "") {
-        const value =
-          typeof maxLength === "number" ? maxLength : parseInt(maxLength, 10);
-        if (!isNaN(value) && value >= 0) {
-          params.max_token_length = value;
-        }
-      }
-    } else if (field.field_config.field_config_enum === "integer") {
-      params.range = field.field_config?.range ?? true;
-      params.lookup = field.field_config?.lookup ?? true;
-    }
-
-    return {
-      name: field.field_name,
-      type: field.field_config.field_config_enum,
-      params: params,
-    };
-  });
+      return {
+        name: field.field_name,
+        type: field?.field_config?.field_config_enum,
+        params: params,
+      };
+    });
 }
 
 export const stepExtractors = {
