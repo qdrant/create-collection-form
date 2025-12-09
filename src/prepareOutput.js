@@ -197,9 +197,9 @@ function customCollectionDenseExtractor(data, stepData) {
 
   data.dense_vectors = stepData.custom_dense_vectors.map((vector) => {
     return {
-      name: vector.vector_name,
-      size: vector.vector_config.dimensions,
-      distance: vector.vector_config.metric || "Cosine",
+      name: vector?.vector_name,
+      size: vector.vector_config?.dimensions,
+      distance: vector.vector_config?.metric || "Cosine",
       multivector: vector?.advanced_config?.multivector || false,
       storage_tier: vector?.advanced_config?.storage_tier || "balanced",
       precision_tier: vector?.advanced_config?.precision_tier || "high",
@@ -238,7 +238,7 @@ function customCollectionSparseExtractor(data, stepData) {
 
   data.sparse_vectors = stepData.custom_sparse_vectors.map((vector) => {
     return {
-      name: vector.vector_name,
+      name: vector?.vector_name,
       use_idf: vector?.vector_config?.use_idf ?? false,
       storage_tier: vector?.advanced_config?.storage_tier || "balanced",
       precision_tier: vector?.advanced_config?.precision_tier || "high",
