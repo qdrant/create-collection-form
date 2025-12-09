@@ -63,7 +63,7 @@ function collectionNameExtractor(data, stepData) {
 
 function tenantFieldExtractor(data, stepData) {
   data.tenant_field = {
-    name: stepData.tenant_id,
+    name: stepData?.tenant_id,
     type: "keyword",
   };
 }
