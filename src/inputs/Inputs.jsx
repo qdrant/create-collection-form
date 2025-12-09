@@ -148,7 +148,7 @@ Checkbox.propTypes = {
 };
 
 export const NumberInput = ({ config, stepData, onChange }) => {
-  const value = stepData || 0;
+  const value = stepData || null;
 
   const maxValue = config?.max;
   const minValue = config?.min;
@@ -156,7 +156,7 @@ export const NumberInput = ({ config, stepData, onChange }) => {
   const handleChange = (e) => {
     let valueNumber = parseInt(e.target.value);
     if (isNaN(valueNumber)) {
-      valueNumber = 0;
+      valueNumber = null;
     } else {
       if (maxValue && valueNumber > maxValue) {
         valueNumber = maxValue;
