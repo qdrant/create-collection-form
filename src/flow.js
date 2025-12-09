@@ -92,7 +92,7 @@ export const steps = {
         size: 6,
         "short-description": "Search across the whole collection",
         description:
-          "Search across whole collection of data with optional filters. For example: <ul><li>e-commerce search,</li><li>website search,</li></ul>",
+          "Search across whole collection of data with optional filters. For example: <ul><li>e-commerce search</li><li>website search</li><li>documents search</li></ul>",
         name: "global-search",
         "on-select": {
           "continue-step": "templates-selection-step",
@@ -106,7 +106,7 @@ export const steps = {
         size: 6,
         "short-description": "Many tenants, isolated data",
         description:
-          "Search across multiple isolated tenants. For example: <ul><li>per-user documents,</li><li>chat history search,</li><li>organization-based isolation</li></ul>",
+          "Search across multiple isolated tenants. For example: <ul><li>per-user documents</li><li>chat history search</li><li>organization-based isolation</li></ul>",
         name: "multitenancy",
         "on-select": {
           "continue-step": "tenant-field-selection-step",
