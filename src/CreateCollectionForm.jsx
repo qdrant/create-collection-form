@@ -158,7 +158,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
           <Grid
             size={
               onPreviewFormOutput && typeof onPreviewFormOutput === "function"
-                ? 8
+                ? { xs: 12, md: 8 }
                 : 12
             }
           >
@@ -186,7 +186,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
             )}
           </Grid>
           {onPreviewFormOutput && typeof onPreviewFormOutput === "function" && (
-            <Grid size={4}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Sidebar
                 formData={formData}
                 path={path}
