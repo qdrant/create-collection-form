@@ -39,8 +39,8 @@ import { validateFormOutput } from "./validateOutput";
 //             "params": {
 //                 "lowercase": true,
 //                 "tokenizer": "whitespace",
-//                 "min_token_length": null,
-//                 "max_token_length": null,
+//                 "min_token_len": null,
+//                 "max_token_len": null,
 //                 "phrase_matching": true
 //             }
 //         },
@@ -63,7 +63,7 @@ function collectionNameExtractor(data, stepData) {
 
 function tenantFieldExtractor(data, stepData) {
   data.tenant_field = {
-    name: stepData.tenant_id,
+    name: stepData?.tenant_id,
     type: "keyword",
   };
 }
@@ -197,9 +197,9 @@ function customCollectionDenseExtractor(data, stepData) {
 
   data.dense_vectors = stepData.custom_dense_vectors.map((vector) => {
     return {
-      name: vector.vector_name,
-      size: vector.vector_config.dimensions,
-      distance: vector.vector_config.metric || "Cosine",
+      name: vector?.vector_name,
+      size: vector.vector_config?.dimensions,
+      distance: vector.vector_config?.metric || "Cosine",
       multivector: vector?.advanced_config?.multivector || false,
       storage_tier: vector?.advanced_config?.storage_tier || "balanced",
       precision_tier: vector?.advanced_config?.precision_tier || "high",
@@ -238,7 +238,7 @@ function customCollectionSparseExtractor(data, stepData) {
 
   data.sparse_vectors = stepData.custom_sparse_vectors.map((vector) => {
     return {
-      name: vector.vector_name,
+      name: vector?.vector_name,
       use_idf: vector?.vector_config?.use_idf ?? false,
       storage_tier: vector?.advanced_config?.storage_tier || "balanced",
       precision_tier: vector?.advanced_config?.precision_tier || "high",
@@ -290,42 +290,46 @@ function indexFieldSelectionExtractor(data, stepData) {
     return;
   }
 
-  data.payload_indexes = stepData.payload_fields.map((field) => {
-    let params = {};
-    if (field.field_config.field_config_enum === "text") {
-      params.lowercase = field.field_config?.lowercase ?? true;
-      params.tokenizer = field.field_config?.tokenizer || "whitespace";
-      params.phrase_matching = field.field_config?.phrase_matching ?? true;
+  data.payload_indexes = stepData.payload_fields
+    .filter((field) => field?.field_config?.field_config_enum)
+    .map((field) => {
+      let params = {};
+      if (field?.field_config?.field_config_enum?.toLowerCase() === "text") {
+        params.lowercase = field.field_config?.lowercase ?? true;
+        params.tokenizer = field.field_config?.tokenizer || "whitespace";
+        params.phrase_matching = field.field_config?.phrase_matching ?? true;
 
-      const minLength = field.field_config?.min_token_length;
-      const maxLength = field.field_config?.max_token_length;
+        const minLength = field.field_config?.min_token_len;
+        const maxLength = field.field_config?.max_token_len;
 
-      if (minLength !== undefined && minLength !== "") {
-        const value =
-          typeof minLength === "number" ? minLength : parseInt(minLength, 10);
-        if (!isNaN(value) && value >= 0) {
-          params.min_token_length = value;
+        if (minLength !== undefined && minLength !== "") {
+          const value =
+            typeof minLength === "number" ? minLength : parseInt(minLength, 10);
+          if (!isNaN(value) && value >= 0) {
+            params.min_token_len = value;
+          }
         }
+
+        if (maxLength !== undefined && maxLength !== "") {
+          const value =
+            typeof maxLength === "number" ? maxLength : parseInt(maxLength, 10);
+          if (!isNaN(value) && value >= 0) {
+            params.max_token_len = value;
+          }
+        }
+      } else if (
+        field?.field_config?.field_config_enum?.toLowerCase() === "integer"
+      ) {
+        params.range = field.field_config?.range ?? true;
+        params.lookup = field.field_config?.lookup ?? true;
       }
 
-      if (maxLength !== undefined && maxLength !== "") {
-        const value =
-          typeof maxLength === "number" ? maxLength : parseInt(maxLength, 10);
-        if (!isNaN(value) && value >= 0) {
-          params.max_token_length = value;
-        }
-      }
-    } else if (field.field_config.field_config_enum === "integer") {
-      params.range = field.field_config?.range ?? true;
-      params.lookup = field.field_config?.lookup ?? true;
-    }
-
-    return {
-      name: field.field_name,
-      type: field.field_config.field_config_enum,
-      params: params,
-    };
-  });
+      return {
+        name: field.field_name,
+        type: field?.field_config?.field_config_enum,
+        params: params,
+      };
+    });
 }
 
 export const stepExtractors = {
@@ -340,7 +344,7 @@ export const stepExtractors = {
   "index-field-selection-step": indexFieldSelectionExtractor,
 };
 
-export function prepareOutput(formState, path) {
+export function preprocessOutput(formState, path) {
   let output = {};
 
   (path || []).forEach((step) => {
@@ -349,6 +353,13 @@ export function prepareOutput(formState, path) {
       stepExtractors[step](output, stepData);
     }
   });
+  return output;
+}
+
+export function prepareOutput(formState, path) {
+  let output = preprocessOutput(formState, path);
 
   return validateFormOutput(output);
 }
+
+export const previewOutput = preprocessOutput;

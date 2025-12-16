@@ -346,45 +346,46 @@ export const CCFormSlider = styled(Slider, {
   return styles;
 });
 
-export const CCFormSidebarInner = styled(Box, {
-  name: "MuiCreateCollectionForm",
-  slot: "sidebarStickyInner",
-})(({ theme }) => ({
-  position: "sticky",
-  top: "2rem",
-  [theme.breakpoints.down("md")]: {
-    position: "static",
-  },
-}));
-
 export const CCFormSidebar = styled(
   (props) => (
-    <Paper {...props}>
-      <CCFormSidebarInner>{props.children}</CCFormSidebarInner>
-    </Paper>
+    <Card {...props}>
+      <Box>{props.children}</Box>
+    </Card>
   ),
   {
     name: "MuiCreateCollectionForm",
     slot: "sidebar",
   },
 )(({ theme }) => ({
-  borderRadius: 0,
-  position: "absolute",
-  bottom: 0,
-  right: 0,
-  top: 0,
-  width: "clamp(12.5rem, 25vw, 18.75rem)",
-  minWidth: "12.5rem",
-  padding: "2rem 1.5rem",
+  position: "sticky",
+  top: "2rem",
+  alignSelf: "flex-start",
+  borderRadius: "0.5rem",
+  padding: "1.5rem",
   flexShrink: 0,
-  background: theme.palette.background.default,
+  background: theme.palette.background.paper,
+  boxShadow: "none",
   color: theme.palette.text.primary,
   zIndex: 2,
+  maxHeight: "calc(100vh - 4rem)",
+  overflowY: "auto",
+  // chrome scrollbar styles
+  "&::-webkit-scrollbar": {
+    width: "0.5rem",
+  },
+  "&::-webkit-scrollbar-track": {
+    background: theme.palette.background.paperElevation1,
+    borderRadius: "0.25rem",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    background: theme.palette.divider,
+    borderRadius: "0.25rem",
+  },
+  // firefox scrollbar styles
+  scrollbarWidth: "thin",
+  scrollbarColor: `${theme.palette.divider} ${theme.palette.background.paperElevation1}`,
+
   [theme.breakpoints.down("md")]: {
-    position: "fixed",
-    width: "100vw",
-    top: "auto",
-    padding: "1.5rem 1.5rem 2rem",
-    boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
+    display: "none",
   },
 }));

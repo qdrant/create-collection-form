@@ -103,7 +103,10 @@ function App() {
             {/*Form Component*/}
             {/* See above how to adjust styles */}
             <CreateCollectionForm
-              hideSidebar={true}
+              onPreviewFormOutput={(data) => {
+                console.log(data);
+                return <div>Preview</div>;
+              }}
               onFinish={(data) => {
                 alert(JSON.stringify(data, null, 2));
                 // This is just an example of how to handle the form finish,

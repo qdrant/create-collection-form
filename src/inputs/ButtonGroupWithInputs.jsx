@@ -53,12 +53,12 @@ Component capable of rendering the following configuration:
             default: true,
             },
             {
-            name: "min_token_length",
+            name: "min_token_len",
             type: "number",
             default: null,
             },
             {
-            name: "max_token_length",
+            name: "max_token_len",
             type: "number",
             default: null,
             },

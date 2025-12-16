@@ -6,27 +6,28 @@ import TenantFieldSelectionStep from "./steps/TenantFieldSelectionStep.jsx";
 import SimpleDenseEmbeddingStep from "./steps/SimpleDenseEmbeddingStep.jsx";
 import SimpleHybridEmbeddingStep from "./steps/SimpleHybridEmbeddingStep.jsx";
 import IndexFieldSelectionStep from "./steps/IndexFieldSelectionStep.jsx";
-import { Box, Container, Grid, Typography } from "@mui/material";
-import { CCFormButton, CCFormRoot, CCFormSidebar } from "./ThemedComponents";
+import { Box, Grid } from "@mui/material";
+import { CCFormButton, CCFormRoot } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
 import { ScrollableParentContext } from "./context/scrollable-parent-context.jsx";
+import Sidebar from "./Sidebar.jsx";
 
 /**
  * CreateCollectionForm component
  *
  * @param {Object} props - Component props
  * @param {() => Promise<any>} props.onFinish - Async function called on form finish. Must return a resolved value (not undefined), otherwise the form will not be cleared.
- * @param {boolean} [props.hideSidebar=false] - Whether to hide the sidebar
  * @param {() => Object} [props.scrollableParent] - Function that returns the parent element
  * @param {Object} [props.sx] - Styles to be applied to the form
+ * @param {function} [props.onPreviewFormOutput] - Function to process the preview output data. Sidebar is shown only when this prop is provided and is a function.
  * @returns {JSX.Element}
  */
 export const CreateCollectionForm = function CreateCollectionForm({
   onFinish,
-  hideSidebar = false,
   scrollableParent,
   sx,
+  onPreviewFormOutput,
   ...props
 }) {
   const resolvedScrollableParent = scrollableParent
@@ -153,39 +154,47 @@ export const CreateCollectionForm = function CreateCollectionForm({
       value={{ scrollableParent: resolvedScrollableParent }}
     >
       <CCFormRoot>
-        <Container maxWidth="md">
-          {renderedSteps}
+        <Grid container spacing={4}>
+          <Grid
+            size={
+              onPreviewFormOutput && typeof onPreviewFormOutput === "function"
+                ? { xs: 12, md: 8 }
+                : 12
+            }
+          >
+            {renderedSteps}
 
-          {isFinished &&
-          Object.values(formData).some(
-            (data) => typeof data === "object" && data?.completed,
-          ) ? (
-            <Grid size={12} display="flex" justifyContent="flex-end">
-              <CCFormButton variant="text" onClick={handleClear}>
-                Clear
-              </CCFormButton>
-              <CCFormButton
-                disabled={!isAllCompleted}
-                variant="contained"
-                onClick={handleFinish}
-                sx={{ ml: 4 }}
-              >
-                Finish
-              </CCFormButton>
+            {isFinished &&
+            Object.values(formData).some(
+              (data) => typeof data === "object" && data?.completed,
+            ) ? (
+              <Grid size={12} display="flex" justifyContent="flex-end">
+                <CCFormButton variant="text" onClick={handleClear}>
+                  Clear
+                </CCFormButton>
+                <CCFormButton
+                  disabled={!isAllCompleted}
+                  variant="contained"
+                  onClick={handleFinish}
+                  sx={{ ml: 4 }}
+                >
+                  Finish
+                </CCFormButton>
+              </Grid>
+            ) : (
+              <></>
+            )}
+          </Grid>
+          {onPreviewFormOutput && typeof onPreviewFormOutput === "function" && (
+            <Grid size={{ xs: 12, md: 4 }}>
+              <Sidebar
+                formData={formData}
+                path={path}
+                handleOutput={onPreviewFormOutput}
+              />
             </Grid>
-          ) : (
-            <></>
           )}
-        </Container>
-        {!hideSidebar && (
-          <CCFormSidebar>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              Estimated Price:
-            </Typography>
-            {/*todo: Price?*/}
-            <Typography variant="h4">200$</Typography>
-          </CCFormSidebar>
-        )}
+        </Grid>
       </CCFormRoot>
     </ScrollableParentContext.Provider>
   );
@@ -195,9 +204,9 @@ export const CreateCollectionForm = function CreateCollectionForm({
 CreateCollectionForm.propTypes = {
   ref: PropTypes.object,
   onFinish: PropTypes.func.isRequired,
-  hideSidebar: PropTypes.bool,
   scrollableParent: PropTypes.func,
   sx: PropTypes.object,
+  onPreviewFormOutput: PropTypes.func,
 };
 
 export default CreateCollectionForm;
