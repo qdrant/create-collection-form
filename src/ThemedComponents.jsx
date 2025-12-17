@@ -68,6 +68,7 @@ export const CCFormSelectCard = styled(
     boxSizing: "border-box",
     borderRadius: "0.5rem",
     transition: "all 0.1s ease-in-out",
+    cursor: "pointer",
     "& svg": {
       stroke: theme.palette.text.primary,
       fill: "none",
@@ -100,6 +101,7 @@ export const CCFormSelectCard = styled(
     "&.active": {
       boxShadow: `0 0 0 2px ${theme.palette.primary.main}`,
       background: alpha(theme.palette.primary.main, 0.08),
+      cursor: "default",
 
       "& svg": {
         stroke: theme.palette.primary.main,
