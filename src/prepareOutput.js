@@ -317,11 +317,27 @@ function indexFieldSelectionExtractor(data, stepData) {
             params.max_token_len = value;
           }
         }
+
+        params.ascii_folding = field.field_config?.ascii_folding ?? false;
+
+        const stemmerLanguage = field.field_config?.stemmer_language;
+        if (stemmerLanguage && stemmerLanguage !== "none") {
+          params.stemmer = { type: "snowball", language: stemmerLanguage };
+        }
+
+        const stopwords = field.field_config?.stopwords;
+        if (stopwords && stopwords !== "none") {
+          params.stopwords = stopwords;
+        }
       } else if (
         field?.field_config?.field_config_enum?.toLowerCase() === "integer"
       ) {
         params.range = field.field_config?.range ?? true;
         params.lookup = field.field_config?.lookup ?? true;
+      } else if (
+        field?.field_config?.field_config_enum?.toLowerCase() === "keyword"
+      ) {
+        params.prefix = field.field_config?.prefix ?? false;
       }
 
       return {
