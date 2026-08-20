@@ -41,7 +41,16 @@
               "max_token_len": { "type": "uint32" },
               "range": { "type": "boolean" },
               "lookup": { "type": "boolean" },
-              "phrase_matching": { "type": "boolean" }
+              "phrase_matching": { "type": "boolean" },
+              "ascii_folding": { "type": "boolean" },
+              "stemmer": {
+                "properties": {
+                  "type": { "enum": ["snowball"] },
+                  "language": { "type": "string" }
+                }
+              },
+              "stopwords": { "type": "string" },
+              "prefix": { "type": "boolean" }
             }
           }
         }

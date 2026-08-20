@@ -182,4 +182,86 @@ describe("Convert form data into usable format", () => {
     expect(output.tenant_field.name).toBe("user-id");
     expect(output.tenant_field.type).toBe("keyword");
   });
+
+  it("Should convert text index params (stemmer, stopwords, ascii folding)", () => {
+    const state = {
+      "index-field-selection-step": {
+        completed: true,
+        payload_fields: [
+          {
+            field_name: "body",
+            field_config: {
+              field_config_enum: "text",
+              parentCompleted: true,
+              completed: true,
+              tokenizer: "word",
+              lowercase: true,
+              phrase_matching: false,
+              ascii_folding: true,
+              stemmer_language: "english",
+              stopwords: "english",
+            },
+            completed: true,
+          },
+          {
+            field_name: "plain",
+            field_config: {
+              field_config_enum: "text",
+              parentCompleted: true,
+              completed: true,
+            },
+            completed: true,
+          },
+        ],
+      },
+    };
+
+    const output = prepareOutput(state, ["index-field-selection-step"]);
+    const [body, plain] = output.payload_indexes;
+
+    expect(body.params.ascii_folding).toBe(true);
+    expect(body.params.stemmer).toEqual({
+      type: "snowball",
+      language: "english",
+    });
+    expect(body.params.stopwords).toBe("english");
+
+    // Defaults: no stemmer/stopwords emitted when left as "none"/unset
+    expect(plain.params.ascii_folding).toBe(false);
+    expect(plain.params.stemmer).toBeUndefined();
+    expect(plain.params.stopwords).toBeUndefined();
+  });
+
+  it("Should convert keyword prefix param", () => {
+    const state = {
+      "index-field-selection-step": {
+        completed: true,
+        payload_fields: [
+          {
+            field_name: "sku",
+            field_config: {
+              field_config_enum: "keyword",
+              parentCompleted: true,
+              completed: true,
+              prefix: true,
+            },
+            completed: true,
+          },
+          {
+            field_name: "color",
+            field_config: {
+              field_config_enum: "keyword",
+              parentCompleted: true,
+              completed: true,
+            },
+            completed: true,
+          },
+        ],
+      },
+    };
+
+    const output = prepareOutput(state, ["index-field-selection-step"]);
+    expect(output.payload_indexes[0].params.prefix).toBe(true);
+    expect(output.payload_indexes[1].params.prefix).toBe(false);
+  });
 });
