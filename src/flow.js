@@ -6,7 +6,7 @@ export const elements = {
     elements: [
       {
         type: "number-with-suggestions",
-        title: "Choose dimensions",
+        title: "Choose Dimensions",
         name: "dimensions",
         required: true,
         suggestions: [
@@ -29,7 +29,7 @@ export const elements = {
         name: "metric",
         options: ["Cosine", "Euclid", "Dot", "Manhattan"],
         default: "Cosine",
-        title: "Choose metric",
+        title: "Choose Metric",
       },
     ],
   },
@@ -44,7 +44,7 @@ export const elements = {
         description:
           "This checkbox enables Inverse Document Frequency (IDF) weighting. <br> Enabled it if you use BM25 or other models that require IDF.",
         link: "https://qdrant.tech/documentation/concepts/indexing/#idf-modifier",
-        linkText: "Learn more",
+        linkText: "Learn More",
         size: 12,
       },
     ],
@@ -56,7 +56,7 @@ export const elements = {
 
 export const steps = {
   "collection-name-step": {
-    title: "Name your collection",
+    title: "Name Your Collection",
     // description: "Enter name for your collection",
     useCard: true,
     elements: [
@@ -82,10 +82,10 @@ export const steps = {
   },
   "use-case-step": {
     // In this config user should select from 2 cards, which type of search they want to perform
-    title: "What's your use case?",
+    title: "What's Your Use Case?",
     cards: [
       {
-        title: "Global search",
+        title: "Global Search",
         icon: {
           path: "M22 12C22 17.5228 17.5228 22 12 22M22 12C22 6.47715 17.5228 2 12 2M22 12H2M12 22C6.47715 22 2 17.5228 2 12M12 22C9.43223 19.3038 8 15.7233 8 12C8 8.27674 9.43223 4.69615 12 2M12 22C14.5678 19.3038 16 15.7233 16 12C16 8.27674 14.5678 4.69615 12 2M2 12C2 6.47715 6.47715 2 12 2",
         },
@@ -116,7 +116,7 @@ export const steps = {
   },
   "tenant-field-selection-step": {
     // In this config user should select a field that contains tenant id
-    title: "Tenant field",
+    title: "Tenant Field",
     description: "Which payload field should be used as a tenant id?",
     "long-description":
       "This field should be used to filter data based on tenant id. For example: user_id, organization_id, etc. Payload field should be of a `keyword` type.",
@@ -126,7 +126,7 @@ export const steps = {
       {
         size: 12,
         type: "string-input",
-        title: "Tenant field name",
+        title: "Tenant Field Name",
         name: "tenant_id",
         placeholder: "Example: user-id",
         required: true,
@@ -152,12 +152,12 @@ export const steps = {
   },
   "templates-selection-step": {
     // In this config user should select a template for the index
-    title: "What to use for search?",
+    title: "What to Use for Search?",
     description:
       "There are some common configurations used for search, maybe you want to use one of them?",
     cards: [
       {
-        title: "Simple Single embedding",
+        title: "Simple Single Embedding",
         description:
           "Simplest configuration, only one vector field per document.",
         name: "simple-single-embedding",
@@ -207,7 +207,7 @@ export const steps = {
   },
   "simple-dense-embedding-step": {
     // In this config user should select a field that contains tenant id
-    title: "Vector configuration",
+    title: "Vector Configuration",
     description: "Configuration for dense embedding",
     elements: [
       {
@@ -233,7 +233,7 @@ export const steps = {
   },
   "simple-hybrid-embedding-step": {
     // In this config user should select a field that contains tenant id
-    title: "Vector configuration",
+    title: "Vector Configuration",
     description: "Configuration for dense and sparse embeddings",
     elements: [
       {
@@ -243,11 +243,11 @@ export const steps = {
         elements: [
           {
             type: "string-input",
-            title: "Dense vector name",
+            title: "Dense Vector Name",
             name: "dense_vector_name",
             variant: "outlined",
             placeholder: "Example: abstract-dense-vector",
-            description: "Name of the dense vector field",
+            description: "Name of the dense vector field.",
             link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
             size: 12,
             required: true,
@@ -267,11 +267,11 @@ export const steps = {
         elements: [
           {
             type: "string-input",
-            title: "Sparse vector name",
+            title: "Sparse Vector Name",
             name: "sparse_vector_name",
             variant: "outlined",
             placeholder: "Example: title-sparse-vector",
-            description: "Name of the sparse vector field",
+            description: "Name of the sparse vector field.",
             link: "https://qdrant.tech/documentation/concepts/vectors/#named-vectors",
             size: 12,
             required: true,
@@ -293,7 +293,7 @@ export const steps = {
     },
   },
   "custom-collection-dense-step": {
-    title: "Custom collection - Dense vectors",
+    title: "Custom Collection - Dense vectors",
     description: "Configure dense vectors for your collection",
     elements: [
       {
@@ -303,7 +303,7 @@ export const steps = {
         elements: [
           {
             type: "string-input",
-            title: "Vector name",
+            title: "Vector Name",
             name: "vector_name",
             variant: "outlined",
             placeholder: "Example: dense-vector",
@@ -320,7 +320,7 @@ export const steps = {
           {
             type: "details",
             name: "advanced_config",
-            title: "Advanced configuration",
+            title: "Advanced Configuration",
             elements: [
               {
                 type: "checkbox",
@@ -335,7 +335,7 @@ export const steps = {
                   "Create multiple sub-vectors per point. <br> Enabled it if you use Late Interraction models like ColBERT, ColPali, e.t.c.",
                 name: "multivector_description",
                 link: "https://qdrant.tech/documentation/concepts/vectors/#multivectors",
-                linkText: "Learn more",
+                linkText: "Learn More",
                 size: 6,
               },
               {
@@ -382,7 +382,7 @@ export const steps = {
     },
   },
   "custom-collection-sparse-step": {
-    title: "Custom collection - Sparse vectors",
+    title: "Custom Collection - Sparse Vectors",
     description: "Configure sparse vectors for your collection",
     elements: [
       {
@@ -392,7 +392,7 @@ export const steps = {
         elements: [
           {
             type: "string-input",
-            title: "Vector name",
+            title: "Vector Name",
             name: "vector_name",
             placeholder: "Example: sparse-vector",
             size: 12,
@@ -419,7 +419,7 @@ export const steps = {
     // In this config we let user specify which payload fields should be indexed.
     // User can specify as many fields as they want.
     // For each field user needs to choose which type in index they want and parameters for this index.
-    title: "Payload indexes",
+    title: "Payload Indexes",
     description: "We need to create indexes, if we want to do filtered search.",
     finish: true,
     elements: [
@@ -430,7 +430,7 @@ export const steps = {
         elements: [
           {
             type: "string-input",
-            title: "Field name",
+            title: "Field Name",
             name: "field_name",
             placeholder: "Example: document-id",
             size: 12,
@@ -439,7 +439,7 @@ export const steps = {
           },
           {
             type: "button-group-with-inputs",
-            title: "Field type",
+            title: "Field Type",
             name: "field_config",
             required: true,
             size: 12,
@@ -451,19 +451,19 @@ export const steps = {
                     type: "description",
                     description:
                       'Keyword field index, suitable for exact match of string values. <br><br> Example: <code>color: "red"</code> <br><br> Docs:',
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     link: "https://qdrant.tech/documentation/concepts/payload/#keyword",
                     size: 12,
                   },
                   {
-                    title: "Prefix matching",
+                    title: "Prefix Matching",
                     name: "prefix",
                     type: "checkbox",
                     default: false,
                     description:
                       "Enables prefix matching (<code>match: { prefix: ... }</code>) on this field, at the cost of extra index structure.",
                     link: "https://qdrant.tech/documentation/concepts/filtering/#prefix-match",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     size: 12,
                   },
                 ],
@@ -475,12 +475,12 @@ export const steps = {
                     type: "description",
                     description:
                       "Integer field index, suitable for exact match and range filters on integer numbers. <br><br> Example: <code>age: 25</code> <br><br> Docs:",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     link: "https://qdrant.tech/documentation/concepts/payload/#integer",
                     size: 12,
                   },
                   {
-                    title: "Allow match filters",
+                    title: "Allow Match Filters",
                     name: "lookup",
                     type: "checkbox",
                     default: true,
@@ -491,12 +491,12 @@ export const steps = {
                     description:
                       "This checkbox enables indexing of the integer field for exact match filters. <br> If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#using-lookup-and-range-in-integer-indices",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     name: "lookup_description",
                     size: 9,
                   },
                   {
-                    title: "Allow range filters",
+                    title: "Allow Range Filters",
                     name: "range",
                     type: "checkbox",
                     default: true,
@@ -507,7 +507,7 @@ export const steps = {
                     description:
                       "This checkbox enables indexing of the integer field for exact match filters. <br> If enabled, index will consume additional memory.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#using-lookup-and-range-in-integer-indices",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     name: "range_description",
                     size: 9,
                   },
@@ -520,7 +520,7 @@ export const steps = {
                     type: "description",
                     description:
                       "Float field index, suitable for range filters on floating point and integer numbers. <br><br> Example: <code>price: 99.5</code> <br><br> Docs:",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     link: "https://qdrant.tech/documentation/concepts/payload/#float",
                     size: 12,
                   },
@@ -533,7 +533,7 @@ export const steps = {
                     type: "description",
                     description:
                       'UUID field index, suitable for exact match of UUID values. Similar to keyword field, optimized for UUID values. <br><br> Example: <code>doc_id: "123e4567-e89b-12d3-a456-426614174000"</code> <br><br> Docs:',
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     link: "https://qdrant.tech/documentation/concepts/payload/#uuid",
                     size: 12,
                   },
@@ -546,7 +546,7 @@ export const steps = {
                     type: "description",
                     description:
                       'Datetime field index, suitable for range filters on datetime values. <br><br> Example: <code>created_at: "2023-02-08T10:49:00Z"</code> <br><br> Docs:',
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     link: "https://qdrant.tech/documentation/concepts/payload/#datetime",
                     size: 12,
                   },
@@ -559,7 +559,7 @@ export const steps = {
                     type: "description",
                     description:
                       'Text field index, suitable for full-text filtering on string values. <br><br> Example: <code>title: "The Last Question"</code> <br><br> Docs:',
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     link: "https://qdrant.tech/documentation/concepts/filtering/#full-text-match",
                     size: 12,
                   },
@@ -570,7 +570,7 @@ export const steps = {
                     options: ["prefix", "whitespace", "word", "multilingual"],
                     description: "Defines how the text is tokenized",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#tokenizers",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     default: "whitespace",
                     size: 12,
                   },
@@ -581,28 +581,28 @@ export const steps = {
                     default: true,
                     description: "Converts all characters to lowercase",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#lowercasing",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     size: 6,
                   },
                   {
-                    title: "Phrase matching",
+                    title: "Phrase Matching",
                     name: "phrase_matching",
                     type: "checkbox",
                     default: true,
                     description:
                       "Allows phrase matching at the cost of extra index structure",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#phrase-search",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     size: 6,
                   },
                   {
-                    title: "Min token length",
+                    title: "Min Token Length",
                     name: "min_token_len",
                     type: "number",
                     min: 1,
                   },
                   {
-                    title: "Max token length",
+                    title: "Max Token Length",
                     name: "max_token_len",
                     type: "number",
                     min: 1,
@@ -637,7 +637,7 @@ export const steps = {
                     description:
                       "Reduces words to their root form using the Snowball algorithm, so that e.g. <code>running</code> matches <code>run</code>. Select the language of your text.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#stemmer",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     size: 6,
                   },
                   {
@@ -681,18 +681,18 @@ export const steps = {
                     description:
                       "Removes common words (e.g. <code>the</code>, <code>and</code>) of the selected language from the index.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#stopwords",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     size: 6,
                   },
                   {
-                    title: "ASCII folding",
+                    title: "ASCII Folding",
                     name: "ascii_folding",
                     type: "checkbox",
                     default: false,
                     description:
                       "Converts accented characters to their ASCII equivalent, so that e.g. <code>café</code> matches <code>cafe</code>.",
                     link: "https://qdrant.tech/documentation/concepts/indexing/#ascii-folding",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     size: 12,
                   },
                 ],
@@ -704,7 +704,7 @@ export const steps = {
                     type: "description",
                     description:
                       'Geo field index, suitable for geospatial filtering on latitude and longitude values. <br><br> Example: <code>location: { "lon": 52.5200, "lat": 13.4050 }</code> <br><br> Docs:',
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     link: "https://qdrant.tech/documentation/concepts/payload/#geo",
                     size: 12,
                   },
@@ -717,7 +717,7 @@ export const steps = {
                     type: "description",
                     description:
                       "Boolean field index, suitable for exact match of boolean values. <br><br> Example: <code>is_active: true</code> <br><br> Docs:",
-                    linkText: "Learn more",
+                    linkText: "Learn More",
                     link: "https://qdrant.tech/documentation/concepts/payload/#bool",
                     size: 12,
                   },
