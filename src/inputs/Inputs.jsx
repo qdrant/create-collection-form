@@ -103,6 +103,7 @@ StringInput.propTypes = {
     placeholder: PropTypes.string,
     variant: PropTypes.string,
     description: PropTypes.string,
+    setFocus: PropTypes.bool,
   }).isRequired,
   stepData: PropTypes.string,
   onChange: PropTypes.func.isRequired,
