@@ -39,7 +39,7 @@ const Repeatable = ({ config, stepData, onChange, isLast = false }) => {
         behavior: "smooth",
       });
     }
-  }, [numValues]);
+  }, [numValues, isLast, scrollableParent]);
 
   const handleRemove = (index) => {
     const newValues = [...values];
