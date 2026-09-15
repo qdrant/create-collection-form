@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { steps } from "./flow.js";
 import CardsSelect from "./CardsSelect.jsx";
@@ -10,7 +10,10 @@ import { Box, Grid } from "@mui/material";
 import { CCFormButton, CCFormRoot } from "./ThemedComponents";
 import GenericElementsStep from "./steps/GenericElementsStep.jsx";
 import { prepareOutput } from "./prepareOutput.js";
-import { ScrollableParentContext } from "./context/scrollable-parent-context.jsx";
+import {
+  defaultScrollableParent,
+  ScrollableParentContext,
+} from "./context/scrollable-parent-context.jsx";
 import Sidebar from "./Sidebar.jsx";
 
 /**
@@ -32,7 +35,15 @@ export const CreateCollectionForm = function CreateCollectionForm({
 }) {
   const resolvedScrollableParent = scrollableParent
     ? scrollableParent
-    : () => window;
+    : defaultScrollableParent;
+
+  // The resolver is exposed through context and consumed as an effect
+  // dependency, so the context value must stay referentially stable while the
+  // form re-renders (e.g. on every keystroke).
+  const scrollableParentContextValue = useMemo(
+    () => ({ scrollableParent: resolvedScrollableParent }),
+    [resolvedScrollableParent],
+  );
 
   const [path, setPath] = useState(() => {
     return JSON.parse(localStorage.getItem("path")) || ["collection-name-step"];
@@ -82,7 +93,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
       top: currentScrollHeight,
       behavior: "smooth",
     });
-  }, [path]);
+  }, [path, resolvedScrollableParent]);
 
   const stepsComponents = {
     "use-case-step": CardsSelect,
@@ -150,9 +161,7 @@ export const CreateCollectionForm = function CreateCollectionForm({
   };
 
   return (
-    <ScrollableParentContext.Provider
-      value={{ scrollableParent: resolvedScrollableParent }}
-    >
+    <ScrollableParentContext.Provider value={scrollableParentContextValue}>
       <CCFormRoot>
         <Grid container spacing={4}>
           <Grid
